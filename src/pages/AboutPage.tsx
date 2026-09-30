@@ -24,7 +24,7 @@ export default function AboutPage() {
   const [copied, setCopied] = useState(false);
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText('kejzhin@gmail.com');
+    navigator.clipboard.writeText('jericdelosreyes127001@gmail.com');
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -207,8 +207,8 @@ export default function AboutPage() {
               <div className="space-y-0.5 flex-1">
                 <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Email</span>
                 <div className="flex items-center gap-2">
-                  <a href="mailto:kejzhin@gmail.com" className="text-sm sm:text-base font-bold text-white hover:text-indigo-400 transition-colors break-all">
-                    kejzhin@gmail.com
+                  <a href="mailto:jericdelosreyes127001@gmail.com" className="text-sm sm:text-base font-bold text-white hover:text-indigo-400 transition-colors break-all">
+                    jericdelosreyes127001@gmail.com
                   </a>
                   <button
                     onClick={handleCopyEmail}
@@ -218,19 +218,7 @@ export default function AboutPage() {
                     {copied ? <Check size={14} className="text-emerald-400" /> : <Copy size={14} />}
                   </button>
                 </div>
-                <span className="text-xs text-slate-500">Alt: jericdelosreyes127001@gmail.com</span>
-              </div>
-            </div>
-
-            {/* Education */}
-            <div className="flex items-start gap-4">
-              <div className="w-11 h-11 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
-                <GraduationCap size={20} />
-              </div>
-              <div className="space-y-0.5">
-                <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Education</span>
-                <p className="text-sm sm:text-base font-bold text-white">BS Computer Science</p>
-                <span className="text-xs text-indigo-400 font-medium">(In Progress)</span>
+                <span className="text-xs text-indigo-400/90 font-medium">Direct Inquiries & Opportunities</span>
               </div>
             </div>
           </div>

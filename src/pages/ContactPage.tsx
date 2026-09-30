@@ -30,7 +30,7 @@ export default function ContactPage() {
         },
         body: JSON.stringify({
           ...formData,
-          _to: 'kejzhin@gmail.com'
+          _to: 'jericdelosreyes127001@gmail.com'
         })
       });
 
@@ -49,9 +49,9 @@ export default function ContactPage() {
     {
       icon: Mail,
       label: 'Email',
-      value: 'kejzhin@gmail.com',
-      href: 'mailto:kejzhin@gmail.com',
-      sub: 'jericdelosreyes127001@gmail.com',
+      value: 'jericdelosreyes127001@gmail.com',
+      href: 'mailto:jericdelosreyes127001@gmail.com',
+      sub: 'Direct Inquiries & Opportunities',
       action: 'Send Email'
     },
     {
@@ -125,7 +125,7 @@ export default function ContactPage() {
                 <Linkedin size={18} />
               </a>
               <button
-                onClick={() => handleCopy('kejzhin@gmail.com')}
+                onClick={() => handleCopy('jericdelosreyes127001@gmail.com')}
                 className="w-11 h-11 rounded-full bg-white/[0.05] border border-white/[0.12] hover:border-indigo-500 hover:text-white text-slate-300 flex items-center justify-center transition-all cursor-pointer"
                 title="Copy Email"
               >

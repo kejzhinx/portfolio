@@ -121,7 +121,7 @@ export default function HomePage() {
                 <Linkedin size={16} />
               </a>
               <a
-                href="mailto:kejzhin@gmail.com"
+                href="mailto:jericdelosreyes127001@gmail.com"
                 aria-label="Email"
                 className={`w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-105 ${
                   isDark

@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="100%" height="100%">
+  <defs>
+    <filter id="winShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#020617" flood-opacity="0.6" />
+    </filter>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.12" />
+    </filter>
+  </defs>
+
+  <!-- Browser Frame -->
+  <g filter="url(#winShadow)">
+    <rect width="1000" height="700" rx="12" fill="#b0e0e6" stroke="#94a3b8" stroke-width="1" />
+
+    <!-- Browser Header -->
+    <rect width="1000" height="46" rx="12" fill="#1e293b" />
+    <rect y="36" width="1000" height="10" fill="#1e293b" />
+    <line x1="0" y1="46" x2="1000" y2="46" stroke="#334155" stroke-width="1" />
+
+    <!-- Buttons -->
+    <circle cx="24" cy="23" r="5.5" fill="#ef4444" />
+    <circle cx="42" cy="23" r="5.5" fill="#f59e0b" />
+    <circle cx="60" cy="23" r="5.5" fill="#10b981" />
+
+    <!-- Address -->
+    <rect x="240" y="10" width="520" height="26" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1" />
+    <text x="500" y="27" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" text-anchor="middle">
+      localhost/Mocamesh/insert_data.php?reference=T948291048
+    </text>
+  </g>
+
+  <!-- Real Webpage Body (Powderblue #B0E0E6) -->
+  <g transform="translate(0, 46)">
+    <g transform="translate(200, 60)" filter="url(#cardShadow)">
+      <!-- Bootstrap Card -->
+      <rect width="600" height="500" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" />
+
+      <!-- Success Check Icon & Header -->
+      <g transform="translate(300, 50)">
+        <circle cx="-160" cy="0" r="16" fill="#198754" />
+        <!-- Check Icon -->
+        <path d="M -168 0 L -162 6 L -152 -5" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+        <text x="-132" y="7" fill="#198754" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="700">
+          Payment received successfully!
+        </text>
+      </g>
+
+      <!-- Subtitle -->
+      <text x="300" y="95" fill="#6c757d" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" text-anchor="middle">
+        Please screenshot or copy your voucher code for activation. Thank you!
+      </text>
+
+      <!-- Golden Voucher Box -->
+      <g transform="translate(160, 130)">
+        <rect width="280" height="75" rx="6" fill="#ffc107" />
+        <text x="140" y="49" fill="#000000" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="34" font-weight="900" letter-spacing="4" text-anchor="middle">
+          MOCA-9X7K
+        </text>
+      </g>
+
+      <!-- Transaction Info Block -->
+      <g transform="translate(180, 245)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15">
+        <text x="0" y="25" fill="#000000" font-weight="700">Email: </text>
+        <text x="60" y="25" fill="#212529">customer@example.com</text>
+
+        <text x="0" y="65" fill="#000000" font-weight="700">Amount Paid: </text>
+        <text x="110" y="65" fill="#212529">100 NGN (10GB Access)</text>
+
+        <text x="0" y="105" fill="#000000" font-weight="700">Phone Number: </text>
+        <text x="125" y="105" fill="#212529">09123456789</text>
+      </g>
+
+      <!-- Divider line -->
+      <line x1="80" y1="390" x2="520" y2="390" stroke="#e2e8f0" stroke-width="1" />
+
+      <!-- Back to Home Link -->
+      <g transform="translate(300, 435)">
+        <path d="M -75 0 L -85 -5 L -85 5 Z" fill="#212529" />
+        <text x="0" y="4" fill="#212529" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="600" text-anchor="middle">
+          Back To Home
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>

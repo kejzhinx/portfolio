@@ -121,7 +121,11 @@ export default function ProjectsPage() {
       tags: ['Payment Gateway', 'Paystack API', 'PHP', 'MySQL'],
       description: 'An automated Paystack payment gateway integration and voucher code distribution system built with PHP and MySQL.',
       longDescription: 'Engineered an automated voucher issuance system interfacing with the Paystack payment gateway. Upon verified transaction callbacks, system automatically generates, stores, and sends digital voucher codes with webhook validation.',
-      image: '/image/mocamesh.png',
+      image: '/image/mocamesh_homepage.svg',
+      galleryImages: [
+        '/image/mocamesh_homepage.svg',
+        '/image/mocamesh_voucher_success.svg'
+      ],
       githubUrl: 'https://github.com/kejzhin/Mocamesh',
       liveUrl: 'https://github.com/kejzhin/Mocamesh',
       features: [
@@ -599,103 +603,6 @@ export default function ProjectsPage() {
                       className="max-h-[66vh] sm:max-h-[72vh] max-w-full w-auto object-contain mx-auto rounded-lg shadow-2xl transition-all"
                       referrerPolicy="no-referrer"
                     />
-                    {((activeModalImage || selectedProject.image) === '/image/katrina_screenshot.png') && (
-                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-rose-300 border border-rose-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                        ✦ Portfolio Homepage Hero
-                      </span>
-                    )}
-                    {(activeModalImage || selectedProject.image).includes('katrina_about') && (
-                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-rose-300 border border-rose-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                        ✦ A Little About Me
-                      </span>
-                    )}
-                    {(activeModalImage || selectedProject.image).includes('katrina_skills') && (
-                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                        📁 Core Skills & Capabilities
-                      </span>
-                    )}
-                    {(activeModalImage || selectedProject.image).includes('katrina_experience') && (
-                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-emerald-300 border border-emerald-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                        💼 Work Experience & Career Milestones
-                      </span>
-                    )}
-                    {(activeModalImage || selectedProject.image).includes('katrina_tools') && (
-                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-blue-300 border border-blue-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                        📊 Tech & Software Stack
-                      </span>
-                    )}
-                    {(activeModalImage || selectedProject.image).includes('katrina_contact') && (
-                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-teal-300 border border-teal-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                        ✉ Contact & Direct Inquiries
-                      </span>
-                    )}
-                    {((activeModalImage || selectedProject.image) === '/image/serena_homepage.svg') && (
-                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-amber-950/90 text-amber-200 border border-amber-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                        ✦ Storefront Homepage (The Solis Sandstone Vessel)
-                      </span>
-                    )}
-                    {(activeModalImage || selectedProject.image).includes('serena_catalog') && (
-                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                        🛍 Curated Collection & Category Tabs
-                      </span>
-                    )}
-                    {(activeModalImage || selectedProject.image).includes('serena_bag') && (
-                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                        🛍 Shopping Bag Drawer (₱6,450 Total)
-                      </span>
-                    )}
-                    {(activeModalImage || selectedProject.image).includes('serena_checkout') && (
-                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-sky-950/90 text-sky-300 border border-sky-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                        💳 Custom Checkout & GCash / Maya Gateways
-                      </span>
-                    )}
-                    {(activeModalImage || selectedProject.image).includes('serena_admin') && (
-                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-amber-200 border border-amber-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                        ⚙️ Studio Admin Dashboard (Sales Tracking Curve)
-                      </span>
-                    )}
-                    {(activeModalImage || selectedProject.image).includes('serena_orders') && (
-                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-emerald-300 border border-emerald-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                        📦 Order Management & Customer Fulfillment
-                      </span>
-                    )}
-                    {(activeModalImage || selectedProject.image).includes('serena_payments') && (
-                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-sky-300 border border-sky-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                        ⚙️ Payment Options & Store Configuration
-                      </span>
-                    )}
-                    {(activeModalImage || selectedProject.image).includes('jw_dark_login') && (
-                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                        <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                        🌙 Dark Mode Sign In
-                      </span>
-                    )}
-                    {(activeModalImage || selectedProject.image).includes('jw_dark_inbox') && (
-                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                        <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                        🌙 Dark Mode Inbox
-                      </span>
-                    )}
-                    {((activeModalImage || selectedProject.image) === '/image/jw_login.svg') && (
-                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-orange-300 border border-orange-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg">
-                        ☀️ Webmail Portal (Light Mode)
-                      </span>
-                    )}
-                    {(activeModalImage || selectedProject.image).includes('inbox') && !(activeModalImage || selectedProject.image).includes('dark') && (
-                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-blue-300 border border-blue-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg">
-                        📬 Corporate Webmail Inbox
-                      </span>
-                    )}
-                    {(activeModalImage || selectedProject.image).includes('chat') && (
-                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-emerald-300 border border-emerald-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg">
-                        💬 Messenger & Company Chat
-                      </span>
-                    )}
-                    {((activeModalImage || selectedProject.image).includes('jw_admin') || (activeModalImage || selectedProject.image).includes('webmail_admin')) && (
-                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-violet-300 border border-violet-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg">
-                        ⚙️ Enterprise Admin Console
-                      </span>
-                    )}
                   </div>
                 </div>
 

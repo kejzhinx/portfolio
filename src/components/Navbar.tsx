@@ -148,62 +148,58 @@ export default function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={() => setMobileMenuOpen(false)}
               className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 md:hidden"
             />
             <motion.div
-              initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -20, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className={`absolute top-full left-0 right-0 px-6 py-5 shadow-2xl z-50 md:hidden border-b ${
+              initial={{ y: -12, opacity: 0, scale: 0.98 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: -12, opacity: 0, scale: 0.98 }}
+              transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className={`absolute top-full left-4 right-4 mt-2 p-3.5 rounded-2xl shadow-2xl z-50 md:hidden border backdrop-blur-2xl ${
                 isDark
-                  ? 'bg-[#0D1424] border-white/[0.1] text-white'
-                  : 'bg-white border-slate-200 text-slate-900'
+                  ? 'bg-[#0D1424]/95 border-white/[0.1] text-white shadow-black/60'
+                  : 'bg-white/95 border-slate-200 text-slate-900 shadow-slate-300/60'
               }`}
             >
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-1">
                 {navLinks.map((item) => (
                   <NavLink
                     key={item.path}
                     to={item.path}
                     className={({ isActive }) =>
-                      `flex items-center justify-between px-4 py-3 rounded-xl text-sm font-semibold transition-colors ${
+                      `flex items-center justify-between px-4 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                         isActive
                           ? isDark 
-                            ? 'bg-indigo-600/20 text-indigo-300 border border-indigo-500/30'
+                            ? 'bg-indigo-600/15 text-indigo-300 border border-indigo-500/30'
                             : 'bg-indigo-50 text-indigo-700 border border-indigo-200'
                           : isDark
-                            ? 'text-slate-300 hover:bg-white/[0.04] hover:text-white'
+                            ? 'text-slate-300 hover:bg-white/[0.05] hover:text-white'
                             : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900'
                       }`
                     }
                   >
                     <span>{item.label}</span>
-                    <span className="text-xs text-slate-400 font-mono">→</span>
+                    <span className={`text-xs transition-transform ${isDark ? 'text-slate-500' : 'text-slate-400'}`}>
+                      →
+                    </span>
                   </NavLink>
                 ))}
 
-                <div className="pt-3 mt-2 border-t border-slate-200 dark:border-white/[0.08] flex items-center justify-between gap-3">
-                  <button
-                    onClick={toggleTheme}
-                    className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold flex-1 border transition-colors ${
-                      isDark
-                        ? 'bg-white/[0.05] border-white/[0.1] text-amber-300'
-                        : 'bg-slate-100 border-slate-300 text-slate-800'
-                    }`}
-                  >
-                    {isDark ? <Sun size={15} /> : <Moon size={15} />}
-                    <span>{isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}</span>
-                  </button>
+                <div className="pt-2 mt-1 border-t border-slate-200/60 dark:border-white/[0.08]">
                   <a
                     href="https://github.com/kejzhin"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center p-2.5 rounded-xl text-white bg-indigo-600 hover:bg-indigo-500"
-                    aria-label="GitHub"
+                    className={`flex items-center justify-center gap-2 w-full py-2.5 px-4 rounded-xl text-xs font-semibold transition-all ${
+                      isDark
+                        ? 'bg-white/[0.06] hover:bg-white/[0.1] text-slate-200 border border-white/[0.1] hover:text-white'
+                        : 'bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-200'
+                    }`}
                   >
-                    <Github size={16} />
+                    <Github size={15} />
+                    <span>View GitHub Profile</span>
                   </a>
                 </div>
               </div>

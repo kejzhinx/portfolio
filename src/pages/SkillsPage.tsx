@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { useTheme } from '../context/ThemeContext';
 import {
   Sparkles,
   Terminal,
@@ -49,6 +50,7 @@ function SkillIconRenderer({ skill }: { skill: SkillItem }) {
 }
 
 export default function SkillsPage() {
+  const { isDark } = useTheme();
   const [activeTab, setActiveTab] = useState<'all' | 'dev' | 'security' | 'design' | 'db'>('all');
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -61,7 +63,7 @@ export default function SkillsPage() {
       role: 'OOP & Android Core',
       iconBg: 'bg-[#EA2D2E]/10 border-[#EA2D2E]/30',
       textColor: 'text-[#EA2D2E]',
-      iconUrl: 'https://cdn.simpleicons.org/openjdk/white',
+      iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg',
       fallbackIcon: Code2,
       description: 'Robust backend development, object-oriented programming, and native Android applications.'
     },
@@ -72,7 +74,7 @@ export default function SkillsPage() {
       role: 'Android & Jetpack',
       iconBg: 'bg-[#7F52FF]/10 border-[#7F52FF]/30',
       textColor: 'text-[#7F52FF]',
-      iconUrl: 'https://cdn.simpleicons.org/kotlin/white',
+      iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kotlin/kotlin-original.svg',
       fallbackIcon: Code2,
       description: 'Modern Android architecture, Jetpack Compose UI, coroutines, and declarative design.'
     },
@@ -83,7 +85,7 @@ export default function SkillsPage() {
       role: 'Mobile IDE & SDK',
       iconBg: 'bg-[#3DDC84]/10 border-[#3DDC84]/30',
       textColor: 'text-[#3DDC84]',
-      iconUrl: 'https://cdn.simpleicons.org/androidstudio/white',
+      iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/androidstudio/androidstudio-original.svg',
       fallbackIcon: Cpu,
       description: 'Full mobile app lifecycle management, profiling, layout debugging, and APK deployment.'
     },
@@ -94,7 +96,7 @@ export default function SkillsPage() {
       role: 'Server-Side Scripting',
       iconBg: 'bg-[#777BB4]/10 border-[#777BB4]/30',
       textColor: 'text-[#777BB4]',
-      iconUrl: 'https://cdn.simpleicons.org/php/white',
+      iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg',
       fallbackIcon: Code2,
       description: 'Dynamic web backend engineering, API development, session security, and MVC architectures.'
     },
@@ -105,7 +107,7 @@ export default function SkillsPage() {
       role: 'Relational DB',
       iconBg: 'bg-[#4479A1]/10 border-[#4479A1]/30',
       textColor: 'text-[#4479A1]',
-      iconUrl: 'https://cdn.simpleicons.org/mysql/white',
+      iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg',
       fallbackIcon: Database,
       description: 'Relational schema design, complex query optimization, transactions, and database security.'
     },
@@ -116,7 +118,7 @@ export default function SkillsPage() {
       role: 'Web Scripting & ES6+',
       iconBg: 'bg-[#F7DF1E]/10 border-[#F7DF1E]/30',
       textColor: 'text-[#F7DF1E]',
-      iconUrl: 'https://cdn.simpleicons.org/javascript/white',
+      iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg',
       fallbackIcon: Code2,
       description: 'Interactive frontends, asynchronous DOM handling, modern ES6+ paradigms, and APIs.'
     },
@@ -127,7 +129,7 @@ export default function SkillsPage() {
       role: 'Semantic Markup',
       iconBg: 'bg-[#E34F26]/10 border-[#E34F26]/30',
       textColor: 'text-[#E34F26]',
-      iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-plain.svg',
+      iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg',
       fallbackIcon: Code2,
       description: 'Accessible semantic structures, SEO compliance, modern web forms, and media integration.'
     },
@@ -138,7 +140,7 @@ export default function SkillsPage() {
       role: 'Modern Layouts',
       iconBg: 'bg-[#1572B6]/10 border-[#1572B6]/30',
       textColor: 'text-[#1572B6]',
-      iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-plain.svg',
+      iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg',
       fallbackIcon: Palette,
       description: 'Responsive flexbox/grid architectures, keyframe animations, custom properties, and UI styling.'
     },
@@ -149,7 +151,7 @@ export default function SkillsPage() {
       role: 'Utility-First Styling',
       iconBg: 'bg-[#06B6D4]/10 border-[#06B6D4]/30',
       textColor: 'text-[#06B6D4]',
-      iconUrl: 'https://cdn.simpleicons.org/tailwindcss/white',
+      iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg',
       fallbackIcon: Palette,
       description: 'Rapid, component-driven responsive interfaces with custom design systems and micro-utilities.'
     },
@@ -160,7 +162,7 @@ export default function SkillsPage() {
       role: 'Version Control',
       iconBg: 'bg-[#F05032]/10 border-[#F05032]/30',
       textColor: 'text-[#F05032]',
-      iconUrl: 'https://cdn.simpleicons.org/git/white',
+      iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg',
       fallbackIcon: Terminal,
       description: 'Branch workflows, repository management, collaborative code review, and CI/CD pipelines.'
     },
@@ -171,7 +173,7 @@ export default function SkillsPage() {
       role: 'Automation & Scripts',
       iconBg: 'bg-[#3776AB]/10 border-[#3776AB]/30',
       textColor: 'text-[#3776AB]',
-      iconUrl: 'https://cdn.simpleicons.org/python/white',
+      iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg',
       fallbackIcon: Code2,
       description: 'Security scripting, automated penetration testing utilities, data processing, and backends.'
     },
@@ -182,7 +184,7 @@ export default function SkillsPage() {
       role: 'Component UI',
       iconBg: 'bg-[#61DAFB]/10 border-[#61DAFB]/30',
       textColor: 'text-[#61DAFB]',
-      iconUrl: 'https://cdn.simpleicons.org/react/white',
+      iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg',
       fallbackIcon: Layers,
       description: 'Single-page applications, custom React hooks, declarative state orchestration, and performance.'
     },
@@ -206,7 +208,7 @@ export default function SkillsPage() {
       role: 'Web Proxy & Audit',
       iconBg: 'bg-[#FF6633]/10 border-[#FF6633]/30',
       textColor: 'text-[#FF6633]',
-      iconUrl: 'https://cdn.simpleicons.org/burpsuite/white',
+      iconUrl: 'https://cdn.simpleicons.org/burpsuite/FF6633',
       fallbackIcon: Shield,
       description: 'HTTP proxy interceptor, vulnerability scanning, CSRF/XSS testing, and API security auditing.'
     },
@@ -217,7 +219,7 @@ export default function SkillsPage() {
       role: 'Exploitation Framework',
       iconBg: 'bg-[#294E80]/10 border-[#294E80]/30',
       textColor: 'text-[#294E80]',
-      iconUrl: 'https://cdn.simpleicons.org/metasploit/white',
+      iconUrl: 'https://cdn.simpleicons.org/metasploit/294E80',
       fallbackIcon: Terminal,
       description: 'Testing system resistance against known CVE vulnerabilities and payload verification.'
     },
@@ -228,6 +230,7 @@ export default function SkillsPage() {
       role: 'Network Scanner',
       iconBg: 'bg-[#00B4D8]/10 border-[#00B4D8]/30',
       textColor: 'text-[#00B4D8]',
+      iconUrl: 'https://cdn.simpleicons.org/nmap/2D5C88',
       fallbackIcon: Radar,
       description: 'Port scanning, service discovery, host detection, and network perimeter mapping.'
     },
@@ -238,7 +241,7 @@ export default function SkillsPage() {
       role: 'Packet Inspection',
       iconBg: 'bg-[#1679A7]/10 border-[#1679A7]/30',
       textColor: 'text-[#1679A7]',
-      iconUrl: 'https://cdn.simpleicons.org/wireshark/white',
+      iconUrl: 'https://cdn.simpleicons.org/wireshark/1679A7',
       fallbackIcon: Network,
       description: 'Deep packet inspection, network protocol analysis, and unencrypted traffic detection.'
     },
@@ -249,6 +252,7 @@ export default function SkillsPage() {
       role: 'SQL Injection Audit',
       iconBg: 'bg-[#E63946]/10 border-[#E63946]/30',
       textColor: 'text-[#E63946]',
+      iconUrl: 'https://cdn.simpleicons.org/sqlmap/E63946',
       fallbackIcon: Database,
       description: 'Automated detection and auditing of database injection vulnerabilities across web servers.'
     },
@@ -343,19 +347,27 @@ export default function SkillsPage() {
           <span>My Skills</span>
         </div>
 
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight leading-tight">
+        <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight ${
+          isDark ? 'text-white' : 'text-slate-900'
+        }`}>
           Technologies I <span className="text-gradient">Work With</span>
         </h1>
 
-        <p className="text-slate-400 text-base sm:text-lg max-w-2xl leading-relaxed">
+        <p className={`text-base sm:text-lg max-w-2xl leading-relaxed ${
+          isDark ? 'text-slate-400' : 'text-slate-600'
+        }`}>
           A combination of modern programming languages, security assessment utilities, and creative design tools to build responsive, secure, and visually appealing applications.
         </p>
       </motion.div>
 
       {/* Filter Tabs & Search Bar */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-10 pb-6 border-b border-white/[0.08]">
+      <div className={`flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-10 pb-6 border-b ${
+        isDark ? 'border-white/[0.08]' : 'border-slate-200'
+      }`}>
         {/* Category Tabs */}
-        <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-md">
+        <div className={`flex flex-wrap items-center gap-2 p-1.5 rounded-2xl backdrop-blur-md ${
+          isDark ? 'bg-white/[0.03] border border-white/[0.08]' : 'bg-slate-100 border border-slate-200 shadow-sm'
+        }`}>
           {[
             { id: 'all', label: 'All Skills' },
             { id: 'dev', label: 'Development' },
@@ -369,7 +381,9 @@ export default function SkillsPage() {
               className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wide transition-all cursor-pointer ${
                 activeTab === tab.id
                   ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                  : 'text-slate-400 hover:text-white hover:bg-white/[0.05]'
+                  : isDark
+                  ? 'text-slate-400 hover:text-white hover:bg-white/[0.05]'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-white'
               }`}
             >
               {tab.label}
@@ -379,13 +393,19 @@ export default function SkillsPage() {
 
         {/* Search */}
         <div className="relative w-full sm:w-64">
-          <Search size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
+          <Search size={16} className={`absolute left-3.5 top-1/2 -translate-y-1/2 ${
+            isDark ? 'text-slate-500' : 'text-slate-400'
+          }`} />
           <input
             type="text"
             placeholder="Search technology..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-white/[0.03] border border-white/[0.08] focus:border-indigo-500/50 rounded-xl pl-9 pr-4 py-2 text-xs text-white placeholder:text-slate-500 focus:outline-none transition-colors"
+            className={`w-full rounded-xl pl-9 pr-4 py-2 text-xs focus:outline-none transition-colors ${
+              isDark
+                ? 'bg-white/[0.03] border border-white/[0.08] focus:border-indigo-500/50 text-white placeholder:text-slate-500'
+                : 'bg-white border border-slate-300 focus:border-indigo-500 text-slate-900 placeholder:text-slate-400 shadow-sm'
+            }`}
           />
         </div>
       </div>
@@ -401,30 +421,46 @@ export default function SkillsPage() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.3, delay: idx * 0.03 }}
-              className="card-surface p-5 flex flex-col justify-between group hover:border-indigo-500/40 hover:-translate-y-1 transition-all h-full"
+              className={`p-5 flex flex-col justify-between group hover:-translate-y-1 transition-all h-full rounded-2xl border ${
+                isDark
+                  ? 'bg-[#0D1424] border-white/[0.08] hover:border-indigo-500/40'
+                  : 'bg-white border-slate-200 shadow-sm hover:shadow-md hover:border-indigo-400'
+              }`}
             >
               <div className="space-y-4">
                 {/* Icon & Category */}
                 <div className="flex items-center justify-between">
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center p-2.5 border ${skill.iconBg} group-hover:scale-110 transition-transform`}>
+                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center p-2.5 border ${
+                    isDark ? skill.iconBg : 'bg-slate-50 border-slate-200'
+                  } group-hover:scale-110 transition-transform`}>
                     <SkillIconRenderer skill={skill} />
                   </div>
 
-                  <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-slate-400 bg-white/[0.03] px-2.5 py-1 rounded-md border border-white/[0.06]">
+                  <span className={`text-[10px] font-mono font-semibold uppercase tracking-wider px-2.5 py-1 rounded-md border ${
+                    isDark
+                      ? 'text-slate-400 bg-white/[0.03] border-white/[0.06]'
+                      : 'text-slate-600 bg-slate-100 border-slate-200'
+                  }`}>
                     {skill.categoryLabel}
                   </span>
                 </div>
 
                 {/* Skill Name & Role */}
                 <div>
-                  <h3 className="text-base font-bold text-white group-hover:text-indigo-300 transition-colors">
+                  <h3 className={`text-base font-bold transition-colors ${
+                    isDark ? 'text-white group-hover:text-indigo-300' : 'text-slate-900 group-hover:text-indigo-600'
+                  }`}>
                     {skill.name}
                   </h3>
-                  <p className="text-xs font-semibold text-indigo-400/90 mt-0.5">{skill.role}</p>
+                  <p className={`text-xs font-semibold mt-0.5 ${
+                    isDark ? 'text-indigo-400/90' : 'text-indigo-600 font-medium'
+                  }`}>{skill.role}</p>
                 </div>
 
                 {/* Description */}
-                <p className="text-xs text-slate-400 leading-relaxed">{skill.description}</p>
+                <p className={`text-xs leading-relaxed ${
+                  isDark ? 'text-slate-400' : 'text-slate-600'
+                }`}>{skill.description}</p>
               </div>
             </motion.div>
           ))}

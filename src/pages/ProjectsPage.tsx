@@ -163,24 +163,24 @@ export default function ProjectsPage() {
       highlights: 'Screen-Printed Streetwear Apparel'
     },
     {
-      id: 'brand-identity-systems',
-      title: 'Blockchain & Tech Startup Logo Systems',
+      id: 'gaming-logo-design',
+      title: '3D Metallic Gaming & Esports Logo',
       category: 'graphics',
-      categoryLabel: 'Brand Identity',
-      tags: ['Brand Identity', 'Vector Emblems', 'Typography'],
-      description: 'Minimalist, memorable visual identities, geometric emblems, and brand guidelines for Web3 protocols and tech startups.',
-      longDescription: 'Conceptualized and rendered versatile vector brand marks, corporate typography hierarchies, and complete design asset kits across dark and light surfaces.',
+      categoryLabel: 'Gaming & Identity',
+      tags: ['Gaming Logo', '3D Design', 'Esports Branding', 'Typography'],
+      description: 'Custom 3D metallic blue gaming insignia, geometric monogram emblem, and futuristic typography tailored for gaming clans, esports teams, and content creators.',
+      longDescription: 'Designed a high-impact 3D metallic blue gaming logo and custom geometric monogram. Features clean metallic facets, studio lighting highlights, and futuristic typography optimized for streaming overlays, team jerseys, avatars, and community merchandise.',
       image: '/image/logo.png',
       galleryImages: [
         '/image/logo.png',
         '/image/db.png'
       ],
       features: [
-        'Geometric vector marks scalable from 16px favicons to billboard prints',
-        'Digital brand guideline documentation with exact RGB/CMYK values',
-        'Comprehensive asset kits including social banners and app icons'
+        '3D metallic chrome finish with precision bevels and studio lighting accents',
+        'Custom geometric monogram emblem paired with futuristic bevel typography',
+        'Scalable across stream overlays, esports jerseys, avatars, and merchandise'
       ],
-      highlights: 'Modern Tech & Web3 Brand Identity'
+      highlights: '3D Metallic Gaming & Esports Logo Design'
     },
     {
       id: 'editorial-publications',

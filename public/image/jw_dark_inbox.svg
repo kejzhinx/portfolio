@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap');
+      text { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+    </style>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#080B11"/>
+
+  <!-- Top Header -->
+  <rect width="1920" height="68" fill="#0C1019" stroke="#1A202C" stroke-width="1"/>
+  <g transform="translate(24, 16)">
+    <text x="0" y="24" font-size="18" font-weight="800" fill="#E45A1B">JW Summit Group Inc.</text>
+    <text x="0" y="40" font-size="11" font-weight="500" fill="#64748B">Corporate Webmail</text>
+  </g>
+  <g transform="translate(680, 14)">
+    <rect width="560" height="40" rx="10" fill="#111622" stroke="#1E2638" stroke-width="1"/>
+    <text x="24" y="25" font-size="13" fill="#64748B">🔍 Search messages, senders, or attachments...</text>
+  </g>
+  <g transform="translate(1760, 24)">
+    <!-- Sun icon -->
+    <circle cx="10" cy="10" r="5" stroke="#94A3B8" stroke-width="1.8" fill="none"/>
+    <text x="45" y="16" font-size="13" font-weight="700" fill="#DC2626">↪ Sign Out</text>
+  </g>
+
+  <!-- Left Sidebar (Dark) -->
+  <rect x="0" y="68" width="260" height="1012" fill="#0A0E17" stroke="#1A202C" stroke-width="1"/>
+  <g transform="translate(16, 84)">
+    <rect width="42" height="42" rx="10" fill="#E45A1B"/>
+    <text x="21" y="27" text-anchor="middle" font-size="18" fill="#FFFFFF">✉</text>
+    <text x="52" y="20" font-size="14" font-weight="700" fill="#F8FAFC">inquiry 12</text>
+    <text x="52" y="36" font-size="11" font-weight="500" fill="#64748B">inquiry12@playbook.com.ph</text>
+  </g>
+  <rect x="16" y="146" width="228" height="44" rx="10" fill="#E45A1B"/>
+  <text x="130" y="174" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">+ Compose Email</text>
+
+  <!-- Inbox Selected (Dark) -->
+  <g transform="translate(16, 235)">
+    <rect width="228" height="38" rx="8" fill="#1C1816" stroke="#C2410C" stroke-width="1"/>
+    <text x="12" y="24" font-size="13" font-weight="700" fill="#FB923C">📥   Inbox</text>
+  </g>
+  <g transform="translate(16, 280)"><text x="12" y="24" font-size="13" fill="#64748B">✈   Sent</text></g>
+  <g transform="translate(16, 320)"><text x="12" y="24" font-size="13" fill="#64748B">🛡   Spam</text></g>
+  <g transform="translate(16, 360)"><text x="12" y="24" font-size="13" fill="#64748B">🗄   Archive</text></g>
+  <g transform="translate(16, 400)"><text x="12" y="24" font-size="13" fill="#64748B">📄   Drafts</text></g>
+  <g transform="translate(16, 440)"><text x="12" y="24" font-size="13" fill="#64748B">🗑   Trash</text></g>
+  <g transform="translate(16, 520)"><text x="12" y="24" font-size="13" fill="#FB923C">📁   VIP CLIENT</text></g>
+  <g transform="translate(16, 600)"><text x="12" y="24" font-size="13" fill="#64748B">💬   Messenger / Chat</text></g>
+
+  <!-- Middle Pane: Empty Inbox State -->
+  <rect x="260" y="68" width="820" height="1012" fill="#080B11" stroke="#1A202C" stroke-width="1"/>
+  <text x="290" y="105" font-size="12" font-weight="700" fill="#94A3B8">☐ INBOX</text>
+  <text x="1040" y="105" font-size="16" fill="#64748B">⟳</text>
+  <line x1="260" y1="125" x2="1080" y2="125" stroke="#1A202C" stroke-width="1"/>
+  
+  <g transform="translate(670, 220)">
+    <circle cx="0" cy="0" r="32" fill="#141824"/>
+    <text x="0" y="8" text-anchor="middle" font-size="24" fill="#64748B">✉</text>
+    <text x="0" y="55" text-anchor="middle" font-size="14" font-weight="700" fill="#94A3B8">No emails in this folder</text>
+    <text x="0" y="78" text-anchor="middle" font-size="12" fill="#475569">Messages you move or receive here will appear instantly.</text>
+  </g>
+
+  <!-- Right Pane: Select an email state -->
+  <rect x="1080" y="68" width="840" height="1012" fill="#080B11"/>
+  <g transform="translate(1500, 520)">
+    <circle cx="0" cy="0" r="36" fill="#1F1A17" stroke="#9A3412" stroke-width="1"/>
+    <text x="0" y="10" text-anchor="middle" font-size="28" fill="#FB923C">✉</text>
+    <text x="0" y="65" text-anchor="middle" font-size="18" font-weight="800" fill="#F8FAFC">Select an email to view</text>
+    <text x="0" y="92" text-anchor="middle" font-size="13" fill="#64748B">Choose a message from your mailbox or custom folders to read,</text>
+    <text x="0" y="112" text-anchor="middle" font-size="13" fill="#64748B">reply, or move to custom folders.</text>
+  </g>
+</svg>

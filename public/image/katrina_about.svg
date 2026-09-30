@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap');
+      text { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+      .serif { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; }
+      .kicker { font-size: 12px; font-weight: 800; letter-spacing: 0.2em; fill: #b87b70; text-transform: uppercase; }
+      .title { font-size: 46px; fill: #2c2426; letter-spacing: -0.015em; }
+      .lead { font-size: 17px; fill: #6e6264; line-height: 1.6; font-weight: 400; }
+    </style>
+    <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#b87b70" flood-opacity="0.08"/>
+    </filter>
+    <filter id="btn-shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#2c2426" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+
+  <rect width="1920" height="1080" fill="#fcf9f7"/>
+  
+  <!-- Top Navigation Bar -->
+  <g transform="translate(160, 36)">
+    <text x="0" y="24" font-size="15" font-weight="800" fill="#2c2426" letter-spacing="1.5">✦ KATRINA REGALADO</text>
+    <g transform="translate(980, 24)">
+      <text x="0" y="0" font-size="13" font-weight="800" fill="#b87b70">ABOUT</text>
+<circle cx="20" cy="8" r="2.5" fill="#b87b70"/>
+<text x="90" y="0" font-size="13" font-weight="600" fill="#6e6264">SKILLS</text>
+<text x="180" y="0" font-size="13" font-weight="600" fill="#6e6264">EXPERIENCE</text>
+<text x="310" y="0" font-size="13" font-weight="600" fill="#6e6264">TOOLS</text>
+<text x="400" y="0" font-size="13" font-weight="600" fill="#6e6264">CONTACT</text>
+
+    </g>
+    <!-- Get In Touch Button -->
+    <rect x="1450" y="0" width="130" height="38" rx="10" fill="#2c2426"/>
+    <text x="1515" y="24" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF" letter-spacing="0.5">GET IN TOUCH</text>
+  </g>
+  <line x1="160" y1="92" x2="1760" y2="92" stroke="#ebded7" stroke-width="1"/>
+
+
+  <g transform="translate(160, 150)">
+    <text x="0" y="0" class="kicker">A LITTLE ABOUT ME</text>
+    <text x="0" y="44" class="serif title">Professional, organized, and people-focused.</text>
+    <text x="0" y="78" class="lead">I am a dependable and organized professional who enjoys keeping tasks structured, information accurate, and communication clear. I am comfortable working independently, managing multiple priorities, and providing consistent support to clients and teams.</text>
+  </g>
+
+  <!-- 3 About Feature Cards matching Qd array from the site -->
+  <g transform="translate(160, 360)">
+    <!-- Feature 1: Reliable Execution -->
+    <g transform="translate(0, 0)" filter="url(#card-shadow)">
+      <rect width="500" height="240" rx="14" fill="#ffffff" stroke="#ebdad2d9" stroke-width="1"/>
+      <g transform="translate(30, 35)">
+        <circle cx="24" cy="24" r="22" fill="#fbf0eb"/>
+        <text x="24" y="31" text-anchor="middle" font-size="18" fill="#b87b70">✔</text>
+        <text x="0" y="90" font-size="18" font-weight="700" fill="#2c2426">Reliable Execution</text>
+        <text x="0" y="125" font-size="14.5" fill="#6e6264" width="440">Committed to task accuracy, punctual delivery, and clean organization.</text>
+      </g>
+    </g>
+
+    <!-- Feature 2: Time & Schedule Savvy -->
+    <g transform="translate(540, 0)" filter="url(#card-shadow)">
+      <rect width="500" height="240" rx="14" fill="#ffffff" stroke="#ebdad2d9" stroke-width="1"/>
+      <g transform="translate(30, 35)">
+        <circle cx="24" cy="24" r="22" fill="#fbf0eb"/>
+        <text x="24" y="31" text-anchor="middle" font-size="18" fill="#b87b70">⏱</text>
+        <text x="0" y="90" font-size="18" font-weight="700" fill="#2c2426">Time &amp; Schedule Savvy</text>
+        <text x="0" y="125" font-size="14.5" fill="#6e6264" width="440">Adept at managing tight deadlines, multi-calendar agendas, and fast environments.</text>
+      </g>
+    </g>
+
+    <!-- Feature 3: Discreet & Professional -->
+    <g transform="translate(1080, 0)" filter="url(#card-shadow)">
+      <rect width="500" height="240" rx="14" fill="#ffffff" stroke="#ebdad2d9" stroke-width="1"/>
+      <g transform="translate(30, 35)">
+        <circle cx="24" cy="24" r="22" fill="#fbf0eb"/>
+        <text x="24" y="31" text-anchor="middle" font-size="18" fill="#b87b70">🔒</text>
+        <text x="0" y="90" font-size="18" font-weight="700" fill="#2c2426">Discreet &amp; Professional</text>
+        <text x="0" y="125" font-size="14.5" fill="#6e6264" width="440">Maintaining high confidentiality, clear client communications, and integrity.</text>
+      </g>
+    </g>
+  </g>
+</svg>

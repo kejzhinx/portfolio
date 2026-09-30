@@ -33,13 +33,21 @@ export default function ProjectsPage() {
     // Applications & Software
     {
       id: 'katrina-regalado-portfolio',
-      title: 'Katrina Regalado Portfolio',
+      title: 'Katrina Portfolio',
       category: 'apps',
       categoryLabel: 'Portfolio Website',
-      tags: ['Portfolio Website', 'React', 'Vercel', 'Responsive UI'],
+      tags: ['Portfolio Website', 'React', 'Vercel', 'Responsive UI', 'Executive Support'],
       description: 'A modern, responsive virtual assistant and executive support portfolio showcasing administrative expertise, client services, and case studies.',
       longDescription: 'Designed and engineered an executive portfolio website for Katrina Regalado, featuring modern typographic hierarchy, smooth animations, interactive case study showcases, responsive mobile layout, and direct client inquiry integration.',
-      image: '/image/katrina_laptop.png',
+      image: '/image/katrina_screenshot.png',
+      galleryImages: [
+        '/image/katrina_screenshot.png',
+        '/image/katrina_about.svg',
+        '/image/katrina_skills.svg',
+        '/image/katrina_experience.svg',
+        '/image/katrina_tools.svg',
+        '/image/katrina_contact.svg'
+      ],
       liveUrl: 'https://katrinaregalado.vercel.app/',
       features: [
         'Responsive single-page architecture deployed on Vercel',
@@ -57,13 +65,14 @@ export default function ProjectsPage() {
       tags: ['Webmail Client', 'Corporate Mail', 'TypeScript', 'Dark & Light Mode', 'IMAP/SMTP'],
       description: 'Secure corporate webmail client and mail server portal for JW Summit Group Inc. featuring responsive authentication, team chat, admin console, and dark mode.',
       longDescription: 'Designed and developed an enterprise webmail client and administrative portal for JW Summit Group Inc. Engineered with end-to-end TLS handling, inbox filters, real-time message synchronization, corporate messaging room, dark/light theme switching, and multi-user storage quota management.',
-      image: '/image/jw_mockup.jpg',
+      image: '/image/jw_login.svg',
       galleryImages: [
-        '/image/jw_mockup.jpg',
-        '/image/jw_dark.jpg',
-        '/image/jw_inbox.jpg',
-        '/image/jw_chat.jpg',
-        '/image/jw_admin.jpg'
+        '/image/jw_login.svg',
+        '/image/jw_dark_login.svg',
+        '/image/jw_inbox.svg',
+        '/image/jw_chat.svg',
+        '/image/jw_admin.svg',
+        '/image/jw_dark_inbox.svg'
       ],
       githubUrl: 'https://github.com/kejzhin/Jw-Webmail',
       liveUrl: 'https://github.com/kejzhin/Jw-Webmail',
@@ -103,16 +112,23 @@ export default function ProjectsPage() {
       tags: ['E-Commerce', 'GCash & Bank Transfer', 'Admin Studio', 'TypeScript'],
       description: 'Serena Heart Crystals e-commerce studio featuring handcrafted stone and sculptural homewares with custom checkout and complete Admin Studio.',
       longDescription: 'A full-fledged luxury homewares e-commerce experience. Includes dynamic product catalog, shopping bag state management, GCash and bank transfer manual payment proof verification, and an administrative order management studio.',
-      image: '/image/serena.jpg',
+      image: '/image/serena_homepage.svg',
+      galleryImages: [
+        '/image/serena_homepage.svg',
+        '/image/serena_catalog.svg',
+        '/image/serena_detail.svg',
+        '/image/serena_checkout.svg',
+        '/image/serena_admin.svg'
+      ],
       githubUrl: 'https://github.com/kejzhin/Serena-Heart-Crystals',
-      liveUrl: 'https://github.com/kejzhin/Serena-Heart-Crystals',
+      liveUrl: 'https://serena-heart-crystals.vercel.app',
       features: [
         'Sculptural stone homewares product catalog with multi-angle galleries',
         'Seamless checkout flow with local Philippine payment gateways (GCash & BDO/BPI)',
         'Complete administrative studio for inventory and order fulfillment',
         'Responsive luxury aesthetics and high-performance asset loading'
       ],
-      highlights: 'Luxury Homewares E-Commerce Studio • GitHub Repository'
+      highlights: 'Luxury Homewares E-Commerce Studio • Live Store & Admin'
     },
     {
       id: 'mocamesh',
@@ -482,28 +498,48 @@ export default function ProjectsPage() {
               className="card-surface overflow-hidden flex flex-col justify-between group hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-950/40 transition-all duration-300 h-full"
             >
               <div>
-                {/* Project Image Preview Box */}
+                {/* Project Image Preview Box - Clean Browser Mockup Frame */}
                 <div
                   onClick={() => openProjectModal(project)}
-                  className="aspect-video w-full bg-[#080D1A] relative overflow-hidden flex items-center justify-center cursor-pointer border-b border-white/[0.06] p-4"
+                  className="w-full bg-[#080D1A] relative overflow-hidden cursor-pointer border-b border-white/[0.08] flex flex-col group/thumb"
                 >
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                    referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      (e.target as HTMLElement).style.display = 'none';
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0D1424] via-transparent to-transparent opacity-60 pointer-events-none" />
-
-                  {project.galleryImages && project.galleryImages.length > 1 && (
-                    <span className="absolute top-3 right-3 px-2 py-0.5 rounded-md bg-black/70 backdrop-blur-md text-[10px] font-mono font-semibold text-white border border-white/10 flex items-center gap-1">
-                      <Eye size={11} />
-                      <span>{project.galleryImages.length} Screenshots</span>
+                  {/* Browser Mockup Header Bar for Web & App Projects */}
+                  <div className="h-6 bg-[#0E1628] border-b border-white/[0.06] px-3 flex items-center justify-between z-10 shrink-0">
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-[#FF5F56]/80" />
+                      <span className="w-2 h-2 rounded-full bg-[#FFBD2E]/80" />
+                      <span className="w-2 h-2 rounded-full bg-[#27C93F]/80" />
+                    </div>
+                    <span className="text-[10px] font-mono text-slate-400 truncate max-w-[200px] bg-slate-950/70 px-2 py-0.5 rounded border border-white/5">
+                      {project.liveUrl ? project.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '') : `${project.id.replace(/-/g, '')}.app`}
                     </span>
-                  )}
+                    <div className="w-6" />
+                  </div>
+
+                  {/* Full Bleed Homepage Mockup Display */}
+                  <div className="aspect-[16/10] w-full relative overflow-hidden bg-slate-950 flex items-start justify-center">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className={`w-full h-full ${
+                        project.category === 'apps' || project.category === 'security'
+                          ? 'object-cover object-top'
+                          : 'object-contain p-2'
+                      } group-hover:scale-105 transition-transform duration-500`}
+                      referrerPolicy="no-referrer"
+                      onError={(e) => {
+                        (e.target as HTMLElement).style.display = 'none';
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0D1424]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+
+                    {project.galleryImages && project.galleryImages.length > 1 && (
+                      <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-[10px] font-mono font-semibold text-white border border-white/10 flex items-center gap-1 shadow-lg z-20">
+                        <Eye size={11} />
+                        <span>{project.galleryImages.length} Screens</span>
+                      </span>
+                    )}
+                  </div>
                 </div>
 
                 {/* Project Content */}
@@ -619,44 +655,140 @@ export default function ProjectsPage() {
               </button>
 
               <div className="overflow-y-auto flex-1">
-                {/* Modal Image Header */}
-                <div className="w-full aspect-video bg-[#070B14] p-4 sm:p-6 flex items-center justify-center relative border-b border-white/[0.08] overflow-hidden">
-                  <motion.img
-                    key={activeModalImage || selectedProject.image}
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.2 }}
-                    src={activeModalImage || selectedProject.image}
-                    alt={selectedProject.title}
-                    className="w-full h-full object-contain rounded-lg"
-                    referrerPolicy="no-referrer"
-                  />
-                  {(activeModalImage || selectedProject.image).includes('dark') && (
-                    <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                      🌙 Dark Mode View
-                    </span>
-                  )}
-                  {(activeModalImage || selectedProject.image).includes('mockup') && (
-                    <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-indigo-300 border border-indigo-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg">
-                      💻 Laptop Mockup Display
-                    </span>
-                  )}
-                  {(activeModalImage || selectedProject.image).includes('inbox') && (
-                    <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-blue-300 border border-blue-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg">
-                      📬 Corporate Webmail Inbox
-                    </span>
-                  )}
-                  {(activeModalImage || selectedProject.image).includes('chat') && (
-                    <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-emerald-300 border border-emerald-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg">
-                      💬 Messenger & Company Chat
-                    </span>
-                  )}
-                  {(activeModalImage || selectedProject.image).includes('admin') && (
-                    <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-violet-300 border border-violet-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg">
-                      ⚙️ Enterprise Admin Console
-                    </span>
-                  )}
+                {/* Modal Image Header with Clean Browser Mockup Frame */}
+                <div className="w-full bg-[#080D1A] border-b border-white/[0.08] flex flex-col">
+                  {/* Browser Chrome Bar */}
+                  <div className="h-8 bg-[#0D1527] border-b border-white/[0.08] px-4 flex items-center justify-between shrink-0 z-10">
+                    <div className="flex items-center gap-2">
+                      <span className="w-3 h-3 rounded-full bg-[#FF5F56]" />
+                      <span className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
+                      <span className="w-3 h-3 rounded-full bg-[#27C93F]" />
+                    </div>
+                    <div className="flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#080D1A] border border-white/[0.08] text-xs font-mono text-slate-300 max-w-[340px] truncate shadow-inner">
+                      <span className="text-emerald-400 text-[10px]">🔒</span>
+                      <span className="truncate">{selectedProject.liveUrl || `https://${selectedProject.id}.app`}</span>
+                    </div>
+                    <div>
+                      {selectedProject.liveUrl ? (
+                        <a
+                          href={selectedProject.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:text-indigo-300 text-slate-400 flex items-center gap-1 text-[11px] font-sans font-semibold transition-colors"
+                        >
+                          <span>Visit Site</span>
+                          <ExternalLink size={12} />
+                        </a>
+                      ) : (
+                        <div className="w-12" />
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Viewport Canvas */}
+                  <div className="w-full aspect-[16/10] sm:aspect-video bg-[#070B14] flex items-start justify-center relative overflow-hidden">
+                    <motion.img
+                      key={activeModalImage || selectedProject.image}
+                      initial={{ opacity: 0, scale: 0.99 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.2 }}
+                      src={activeModalImage || selectedProject.image}
+                      alt={selectedProject.title}
+                      className={`w-full h-full ${
+                        selectedProject.category === 'apps' || selectedProject.category === 'security'
+                          ? 'object-cover object-top'
+                          : 'object-contain p-4'
+                      }`}
+                      referrerPolicy="no-referrer"
+                    />
+                    {((activeModalImage || selectedProject.image) === '/image/katrina_screenshot.png') && (
+                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-rose-300 border border-rose-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
+                        ✦ Portfolio Homepage Hero
+                      </span>
+                    )}
+                    {(activeModalImage || selectedProject.image).includes('katrina_about') && (
+                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-rose-300 border border-rose-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
+                        ✦ A Little About Me
+                      </span>
+                    )}
+                    {(activeModalImage || selectedProject.image).includes('katrina_skills') && (
+                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
+                        📁 Core Skills & Capabilities
+                      </span>
+                    )}
+                    {(activeModalImage || selectedProject.image).includes('katrina_experience') && (
+                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-emerald-300 border border-emerald-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
+                        💼 Work Experience & Career Milestones
+                      </span>
+                    )}
+                    {(activeModalImage || selectedProject.image).includes('katrina_tools') && (
+                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-blue-300 border border-blue-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
+                        📊 Tech & Software Stack
+                      </span>
+                    )}
+                    {(activeModalImage || selectedProject.image).includes('katrina_contact') && (
+                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-teal-300 border border-teal-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
+                        ✉ Contact & Direct Inquiries
+                      </span>
+                    )}
+                    {((activeModalImage || selectedProject.image) === '/image/serena_homepage.svg') && (
+                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-amber-950/90 text-amber-200 border border-amber-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
+                        ✦ Storefront Homepage (Sculptural Stone Architecture)
+                      </span>
+                    )}
+                    {(activeModalImage || selectedProject.image).includes('serena_catalog') && (
+                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
+                        🛍 Curated Collection & Category Tabs
+                      </span>
+                    )}
+                    {(activeModalImage || selectedProject.image).includes('serena_detail') && (
+                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
+                        🔎 Product Detail & Raw Stone Specs
+                      </span>
+                    )}
+                    {(activeModalImage || selectedProject.image).includes('serena_checkout') && (
+                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-sky-950/90 text-sky-300 border border-sky-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
+                        💳 Bag & GCash / BPI Checkout
+                      </span>
+                    )}
+                    {(activeModalImage || selectedProject.image).includes('serena_admin') && (
+                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-emerald-300 border border-emerald-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
+                        ⚙️ Admin Studio & Order Pipeline
+                      </span>
+                    )}
+                    {(activeModalImage || selectedProject.image).includes('jw_dark_login') && (
+                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                        🌙 Dark Mode Sign In
+                      </span>
+                    )}
+                    {(activeModalImage || selectedProject.image).includes('jw_dark_inbox') && (
+                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
+                        <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                        🌙 Dark Mode Inbox
+                      </span>
+                    )}
+                    {((activeModalImage || selectedProject.image) === '/image/jw_login.svg') && (
+                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-orange-300 border border-orange-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg">
+                        ☀️ Webmail Portal (Light Mode)
+                      </span>
+                    )}
+                    {(activeModalImage || selectedProject.image).includes('inbox') && !(activeModalImage || selectedProject.image).includes('dark') && (
+                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-blue-300 border border-blue-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg">
+                        📬 Corporate Webmail Inbox
+                      </span>
+                    )}
+                    {(activeModalImage || selectedProject.image).includes('chat') && (
+                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-emerald-300 border border-emerald-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg">
+                        💬 Messenger & Company Chat
+                      </span>
+                    )}
+                    {(activeModalImage || selectedProject.image).includes('admin') && (
+                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-violet-300 border border-violet-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg">
+                        ⚙️ Enterprise Admin Console
+                      </span>
+                    )}
+                  </div>
                 </div>
 
                 {/* Modal Content */}
@@ -691,17 +823,57 @@ export default function ProjectsPage() {
                         </h4>
                         <span className="text-[11px] text-slate-400">Click any thumbnail below to preview it above</span>
                       </div>
-                      <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+                      <div className="grid grid-cols-2 sm:grid-cols-6 gap-2.5">
                         {selectedProject.galleryImages.map((img, i) => {
-                          const isDark = img.includes('dark');
-                          const isMockup = img.includes('mockup');
-                          const isInbox = img.includes('inbox');
+                          const isKatrinaHome = img.includes('katrina_screenshot');
+                          const isKatrinaAbout = img.includes('katrina_about');
+                          const isKatrinaSkills = img.includes('katrina_skills');
+                          const isKatrinaExp = img.includes('katrina_experience');
+                          const isKatrinaTools = img.includes('katrina_tools');
+                          const isKatrinaContact = img.includes('katrina_contact');
+
+                          const isSerenaHome = img.includes('serena_homepage');
+                          const isSerenaCatalog = img.includes('serena_catalog');
+                          const isSerenaDetail = img.includes('serena_detail');
+                          const isSerenaCheckout = img.includes('serena_checkout');
+                          const isSerenaAdmin = img.includes('serena_admin');
+
+                          const isDarkLogin = img.includes('dark_login');
+                          const isDarkInbox = img.includes('dark_inbox');
+                          const isLogin = img.includes('jw_login');
+                          const isInbox = img.includes('inbox') && !img.includes('dark');
                           const isChat = img.includes('chat');
                           const isAdmin = img.includes('admin');
-                          const label = isDark
-                            ? 'Dark Mode'
-                            : isMockup
-                            ? 'Portal Mockup'
+                          const isDark = isDarkLogin || isDarkInbox || img.includes('dark');
+
+                          const label = isKatrinaHome
+                            ? 'Homepage Hero'
+                            : isKatrinaAbout
+                            ? 'About Me'
+                            : isKatrinaSkills
+                            ? 'Core Skills'
+                            : isKatrinaExp
+                            ? 'Experience'
+                            : isKatrinaTools
+                            ? 'Tools & Stack'
+                            : isKatrinaContact
+                            ? 'Contact Info'
+                            : isSerenaHome
+                            ? 'Storefront Hero'
+                            : isSerenaCatalog
+                            ? 'Collection Grid'
+                            : isSerenaDetail
+                            ? 'Product Specs'
+                            : isSerenaCheckout
+                            ? 'GCash Checkout'
+                            : isSerenaAdmin
+                            ? 'Admin Studio'
+                            : isDarkLogin
+                            ? 'Dark Sign In'
+                            : isDarkInbox
+                            ? 'Dark Inbox'
+                            : isLogin
+                            ? 'Light Sign In'
                             : isInbox
                             ? 'Webmail Inbox'
                             : isChat

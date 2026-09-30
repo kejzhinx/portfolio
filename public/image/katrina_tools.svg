@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap');
+      text { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+      .serif { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; }
+      .kicker { font-size: 12px; font-weight: 800; letter-spacing: 0.2em; fill: #b87b70; text-transform: uppercase; }
+      .title { font-size: 46px; fill: #2c2426; letter-spacing: -0.015em; }
+      .lead { font-size: 17px; fill: #6e6264; line-height: 1.6; font-weight: 400; }
+    </style>
+    <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#b87b70" flood-opacity="0.08"/>
+    </filter>
+    <filter id="btn-shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#2c2426" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+
+  <rect width="1920" height="1080" fill="#fcf9f7"/>
+  
+  <!-- Top Navigation Bar -->
+  <g transform="translate(160, 36)">
+    <text x="0" y="24" font-size="15" font-weight="800" fill="#2c2426" letter-spacing="1.5">✦ KATRINA REGALADO</text>
+    <g transform="translate(980, 24)">
+      <text x="0" y="0" font-size="13" font-weight="600" fill="#6e6264">ABOUT</text>
+<text x="90" y="0" font-size="13" font-weight="600" fill="#6e6264">SKILLS</text>
+<text x="180" y="0" font-size="13" font-weight="600" fill="#6e6264">EXPERIENCE</text>
+<text x="310" y="0" font-size="13" font-weight="800" fill="#b87b70">TOOLS</text>
+<circle cx="330" cy="8" r="2.5" fill="#b87b70"/>
+<text x="400" y="0" font-size="13" font-weight="600" fill="#6e6264">CONTACT</text>
+
+    </g>
+    <!-- Get In Touch Button -->
+    <rect x="1450" y="0" width="130" height="38" rx="10" fill="#2c2426"/>
+    <text x="1515" y="24" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF" letter-spacing="0.5">GET IN TOUCH</text>
+  </g>
+  <line x1="160" y1="92" x2="1760" y2="92" stroke="#ebded7" stroke-width="1"/>
+
+
+  <g transform="translate(160, 150)">
+    <text x="0" y="0" class="kicker">TOOLS I USE</text>
+    <text x="0" y="44" class="serif title">Tools &amp; platforms</text>
+    <text x="0" y="78" class="lead">Software and applications I use regularly to organize work, manage data, and support daily operations.</text>
+  </g>
+
+  <!-- 4 Real Tool Cards (2x2 Grid, matching .tools) -->
+  <g transform="translate(160, 300)">
+    <!-- Tool 1: Microsoft Excel -->
+    <g transform="translate(0, 0)" filter="url(#card-shadow)">
+      <rect width="780" height="180" rx="16" fill="#ffffff" stroke="#ebdad2d9" stroke-width="1"/>
+      <g transform="translate(24, 26)">
+        <circle cx="28" cy="28" r="24" fill="#fbf0eb"/>
+        <text x="28" y="36" text-anchor="middle" font-size="22" fill="#b87b70">📊</text>
+        <g transform="translate(70, 16)">
+          <text x="0" y="12" font-size="18" font-weight="700" fill="#2c2426">Microsoft Excel</text>
+          <text x="0" y="42" font-size="14" fill="#6e6264" width="650">Data entry · Data validation · Sorting &amp; filtering · Spreadsheet organization</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- Tool 2: Google Workspace -->
+    <g transform="translate(820, 0)" filter="url(#card-shadow)">
+      <rect width="780" height="180" rx="16" fill="#ffffff" stroke="#ebdad2d9" stroke-width="1"/>
+      <g transform="translate(24, 26)">
+        <circle cx="28" cy="28" r="24" fill="#fbf0eb"/>
+        <text x="28" y="36" text-anchor="middle" font-size="22" fill="#b87b70">🌐</text>
+        <g transform="translate(70, 16)">
+          <text x="0" y="12" font-size="18" font-weight="700" fill="#2c2426">Google Workspace</text>
+          <text x="0" y="42" font-size="14" fill="#6e6264" width="650">Google Docs · Google Sheets · Google Drive · Gmail</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- Tool 3: Microsoft Office -->
+    <g transform="translate(0, 220)" filter="url(#card-shadow)">
+      <rect width="780" height="180" rx="16" fill="#ffffff" stroke="#ebdad2d9" stroke-width="1"/>
+      <g transform="translate(24, 26)">
+        <circle cx="28" cy="28" r="24" fill="#fbf0eb"/>
+        <text x="28" y="36" text-anchor="middle" font-size="22" fill="#b87b70">📁</text>
+        <g transform="translate(70, 16)">
+          <text x="0" y="12" font-size="18" font-weight="700" fill="#2c2426">Microsoft Office</text>
+          <text x="0" y="42" font-size="14" fill="#6e6264" width="650">Word · Excel · Outlook · Document and file organization</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- Tool 4: Canva -->
+    <g transform="translate(820, 220)" filter="url(#card-shadow)">
+      <rect width="780" height="180" rx="16" fill="#ffffff" stroke="#ebdad2d9" stroke-width="1"/>
+      <g transform="translate(24, 26)">
+        <circle cx="28" cy="28" r="24" fill="#fbf0eb"/>
+        <text x="28" y="36" text-anchor="middle" font-size="22" fill="#b87b70">🎨</text>
+        <g transform="translate(70, 16)">
+          <text x="0" y="12" font-size="18" font-weight="700" fill="#2c2426">Canva</text>
+          <text x="0" y="42" font-size="14" fill="#6e6264" width="650">Basic graphic design · Documents · Presentations · Visual content</text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

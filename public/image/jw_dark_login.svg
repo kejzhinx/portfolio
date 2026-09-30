@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap');
+      text { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+      .mono { font-family: 'JetBrains Mono', monospace; }
+    </style>
+    <filter id="dark-card-shadow" x="-10%" y="-5%" width="120%" height="115%">
+      <feDropShadow dx="0" dy="16" stdDeviation="28" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+    <filter id="dark-btn-glow" x="-10%" y="-20%" width="120%" height="150%">
+      <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#E45A1B" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- Deep Obsidian Dark Background -->
+  <rect width="1920" height="1080" fill="#080B10"/>
+
+  <!-- Top Accent Orange Strip -->
+  <rect x="0" y="0" width="1920" height="3" fill="#E45A1B"/>
+
+  <!-- Top Theme Toggle (Sun) -->
+  <g transform="translate(1860, 30)">
+    <circle cx="16" cy="16" r="18" fill="transparent"/>
+    <circle cx="16" cy="16" r="5" fill="none" stroke="#94A3B8" stroke-width="1.8"/>
+    <line x1="16" y1="3" x2="16" y2="7" stroke="#94A3B8" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="16" y1="25" x2="16" y2="29" stroke="#94A3B8" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="3" y1="16" x2="7" y2="16" stroke="#94A3B8" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="25" y1="16" x2="29" y2="16" stroke="#94A3B8" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="6.8" y1="6.8" x2="9.6" y2="9.6" stroke="#94A3B8" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="22.4" y1="22.4" x2="25.2" y2="25.2" stroke="#94A3B8" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="6.8" y1="25.2" x2="9.6" y2="22.4" stroke="#94A3B8" stroke-width="1.8" stroke-linecap="round"/>
+    <line x1="22.4" y1="9.6" x2="25.2" y2="6.8" stroke="#94A3B8" stroke-width="1.8" stroke-linecap="round"/>
+  </g>
+
+  <!-- Centered Logo (Inverted/White text version) -->
+  <g transform="translate(770, 140)">
+    <!-- Stylized emblem -->
+    <path d="M 45 10 C 25 10, 10 25, 10 45 C 10 65, 25 80, 45 80 L 55 80 C 70 80, 80 65, 80 50 L 80 25 L 68 25 L 68 50 C 68 58, 62 68, 52 68 C 40 68, 22 56, 22 45 C 22 34, 30 22, 45 22 Z" fill="#E45A1B"/>
+    <path d="M 50 15 L 75 15 C 85 15, 95 25, 95 35 L 95 65 L 83 65 L 83 38 C 83 30, 77 27, 72 27 L 50 27 Z" fill="#FFFFFF"/>
+    <!-- Divider -->
+    <line x1="110" y1="12" x2="110" y2="78" stroke="#475569" stroke-width="2"/>
+    <!-- Text -->
+    <text x="125" y="44" font-size="28" font-weight="800" fill="#E45A1B" letter-spacing="1">JW SUMMIT</text>
+    <text x="125" y="74" font-size="24" font-weight="700" fill="#FFFFFF" letter-spacing="2">GROUP INC.</text>
+  </g>
+
+  <!-- Dark Login Card (width 440, height 540) -->
+  <g transform="translate(740, 270)" filter="url(#dark-card-shadow)">
+    <!-- Dark Card Body -->
+    <rect width="440" height="540" rx="16" fill="#11141C" stroke="#1E2330" stroke-width="1.5"/>
+    
+    <!-- Top Orange Accent Bar -->
+    <path d="M 0 16 A 16 16 0 0 1 16 0 L 424 0 A 16 16 0 0 1 440 16 L 440 6 L 0 6 Z" fill="#E45A1B"/>
+
+    <!-- Card Header -->
+    <text x="220" y="65" text-anchor="middle" font-size="20" font-weight="700" fill="#F8FAFC">Sign In to Webmail</text>
+    <text x="220" y="92" text-anchor="middle" font-size="13" font-weight="500" fill="#94A3B8">Enter your JW Summit Group Inc. credentials to</text>
+    <text x="220" y="110" text-anchor="middle" font-size="13" font-weight="500" fill="#94A3B8">continue</text>
+
+    <!-- Field 1: Email Address -->
+    <text x="40" y="165" font-size="11" font-weight="700" fill="#94A3B8" letter-spacing="0.5">EMAIL ADDRESS</text>
+    <rect x="40" y="180" width="360" height="52" rx="10" fill="#181D28" stroke="#2A3245" stroke-width="1.5"/>
+    <!-- Mail Icon -->
+    <g transform="translate(56, 196)">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" fill="none" stroke="#64748B" stroke-width="1.8"/>
+      <polyline points="22,6 12,13 2,6" fill="none" stroke="#64748B" stroke-width="1.8"/>
+    </g>
+    <text x="88" y="212" font-size="14" font-weight="500" fill="#F1F5F9">jw@playbook.com.ph</text>
+
+    <!-- Field 2: Password -->
+    <text x="40" y="270" font-size="11" font-weight="700" fill="#94A3B8" letter-spacing="0.5">PASSWORD</text>
+    <rect x="40" y="285" width="360" height="52" rx="10" fill="#181D28" stroke="#2A3245" stroke-width="1.5"/>
+    <!-- Lock Icon -->
+    <g transform="translate(56, 301)">
+      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" fill="none" stroke="#64748B" stroke-width="1.8"/>
+      <path d="M7 11V7a5 5 0 0 1 10 0v4" fill="none" stroke="#64748B" stroke-width="1.8"/>
+    </g>
+    <text x="88" y="318" font-size="18" font-weight="600" fill="#94A3B8" letter-spacing="2">••••••••••••</text>
+    <!-- Eye Icon -->
+    <g transform="translate(366, 301)">
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" fill="none" stroke="#64748B" stroke-width="1.8"/>
+      <circle cx="12" cy="12" r="3" fill="none" stroke="#64748B" stroke-width="1.8"/>
+    </g>
+
+    <!-- Sign In Button -->
+    <g transform="translate(40, 375)" filter="url(#dark-btn-glow)">
+      <rect width="360" height="52" rx="10" fill="#E45A1B"/>
+      <text x="170" y="32" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">Sign In to Mailbox</text>
+      <path d="M245 32 L258 32 M253 27 L258 32 L253 37" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+
+    <!-- Host Protected Badge -->
+    <g transform="translate(145, 475)">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="none" stroke="#E45A1B" stroke-width="1.8"/>
+      <text x="32" y="16" font-size="12" font-weight="500" fill="#94A3B8">Host Protected Local Mail Storage</text>
+    </g>
+  </g>
+
+  <!-- Bottom Footer Line -->
+  <line x1="420" y1="960" x2="1500" y2="960" stroke="#1E2330" stroke-width="1"/>
+  <text x="440" y="990" font-size="12" font-weight="500" fill="#64748B">© 2026 JW Summit Group Inc.</text>
+  <text x="1300" y="990" font-size="12" font-weight="500" fill="#64748B">Host Storage: Local Mail Storage   •   <tspan fill="#10B981" font-weight="600">IMAP / SMTP 2.4-LTS</tspan></text>
+</svg>

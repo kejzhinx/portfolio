@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap');
+      text { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+      .serif { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; }
+      .kicker { font-size: 12px; font-weight: 800; letter-spacing: 0.2em; fill: #b87b70; text-transform: uppercase; }
+      .title { font-size: 46px; fill: #2c2426; letter-spacing: -0.015em; }
+      .lead { font-size: 17px; fill: #6e6264; line-height: 1.6; font-weight: 400; }
+    </style>
+    <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#b87b70" flood-opacity="0.08"/>
+    </filter>
+    <filter id="btn-shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#2c2426" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+
+  <rect width="1920" height="1080" fill="#fcf9f7"/>
+  
+  <!-- Top Navigation Bar -->
+  <g transform="translate(160, 36)">
+    <text x="0" y="24" font-size="15" font-weight="800" fill="#2c2426" letter-spacing="1.5">✦ KATRINA REGALADO</text>
+    <g transform="translate(980, 24)">
+      <text x="0" y="0" font-size="13" font-weight="600" fill="#6e6264">ABOUT</text>
+<text x="90" y="0" font-size="13" font-weight="800" fill="#b87b70">SKILLS</text>
+<circle cx="114" cy="8" r="2.5" fill="#b87b70"/>
+<text x="180" y="0" font-size="13" font-weight="600" fill="#6e6264">EXPERIENCE</text>
+<text x="310" y="0" font-size="13" font-weight="600" fill="#6e6264">TOOLS</text>
+<text x="400" y="0" font-size="13" font-weight="600" fill="#6e6264">CONTACT</text>
+
+    </g>
+    <!-- Get In Touch Button -->
+    <rect x="1450" y="0" width="130" height="38" rx="10" fill="#2c2426"/>
+    <text x="1515" y="24" text-anchor="middle" font-size="12" font-weight="700" fill="#FFFFFF" letter-spacing="0.5">GET IN TOUCH</text>
+  </g>
+  <line x1="160" y1="92" x2="1760" y2="92" stroke="#ebded7" stroke-width="1"/>
+
+
+  <g transform="translate(160, 130)">
+    <text x="0" y="0" class="kicker">WHAT I BRING</text>
+    <text x="0" y="44" class="serif title">Core skills</text>
+    <text x="0" y="78" class="lead">Practical skills for virtual assistance, administration, data handling, and customer support.</text>
+  </g>
+
+  <!-- 4 Skills Cards Grid -->
+  <g transform="translate(160, 250)">
+    <!-- Card 1: Administrative Support -->
+    <g transform="translate(0, 0)" filter="url(#card-shadow)">
+      <rect width="780" height="340" rx="16" fill="#ffffff" stroke="#ebdad2d9" stroke-width="1"/>
+      <g transform="translate(32, 34)">
+        <text x="0" y="20" font-size="19" font-weight="700" fill="#2c2426">📁   Administrative Support</text>
+        <g transform="translate(0, 50)">
+          <!-- Row 1 -->
+          <rect x="0" y="0" width="168" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="84" y="23" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Email Management</text>
+
+          <rect x="180" y="0" width="186" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="273" y="23" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Calendar Management</text>
+
+          <rect x="378" y="0" width="108" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="432" y="23" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Data Entry</text>
+
+          <rect x="498" y="0" width="138" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="567" y="23" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Data Validation</text>
+
+          <!-- Row 2 -->
+          <rect x="0" y="52" width="132" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="66" y="75" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Data Cleaning</text>
+
+          <rect x="144" y="52" width="194" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="241" y="75" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Document Organization</text>
+
+          <rect x="350" y="52" width="158" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="429" y="75" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">File Management</text>
+
+          <rect x="520" y="52" width="156" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="598" y="75" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Internet Research</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- Card 2: Data & Office Skills -->
+    <g transform="translate(820, 0)" filter="url(#card-shadow)">
+      <rect width="780" height="340" rx="16" fill="#ffffff" stroke="#ebdad2d9" stroke-width="1"/>
+      <g transform="translate(32, 34)">
+        <text x="0" y="20" font-size="19" font-weight="700" fill="#2c2426">📊   Data &amp; Office Skills</text>
+        <g transform="translate(0, 50)">
+          <!-- Row 1 -->
+          <rect x="0" y="0" width="138" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="69" y="23" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Microsoft Excel</text>
+
+          <rect x="150" y="0" width="188" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="244" y="23" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Excel Data Validation</text>
+
+          <rect x="350" y="0" width="158" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="429" y="23" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Sorting &amp; Filtering</text>
+
+          <!-- Row 2 -->
+          <rect x="0" y="52" width="206" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="103" y="75" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Spreadsheet Organization</text>
+
+          <rect x="218" y="52" width="138" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="287" y="75" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Microsoft Word</text>
+
+          <rect x="368" y="52" width="132" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="434" y="75" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Google Sheets</text>
+
+          <rect x="512" y="52" width="124" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="574" y="75" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Google Docs</text>
+
+          <!-- Row 3 -->
+          <rect x="0" y="104" width="124" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="62" y="127" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Google Drive</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- Card 3: Virtual Assistant Skills -->
+    <g transform="translate(0, 380)" filter="url(#card-shadow)">
+      <rect width="780" height="340" rx="16" fill="#ffffff" stroke="#ebdad2d9" stroke-width="1"/>
+      <g transform="translate(32, 34)">
+        <text x="0" y="20" font-size="19" font-weight="700" fill="#2c2426">⚡   Virtual Assistant Skills</text>
+        <g transform="translate(0, 50)">
+          <!-- Row 1 -->
+          <rect x="0" y="0" width="166" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="83" y="23" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Inbox Management</text>
+
+          <rect x="178" y="0" width="186" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="271" y="23" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Client Communication</text>
+
+          <rect x="376" y="0" width="224" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="488" y="23" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Appointment Coordination</text>
+
+          <!-- Row 2 -->
+          <rect x="0" y="52" width="112" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="56" y="75" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Follow-ups</text>
+
+          <rect x="124" y="52" width="168" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="208" y="75" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Database Updating</text>
+
+          <rect x="304" y="52" width="144" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="376" y="75" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Record Keeping</text>
+
+          <rect x="460" y="52" width="194" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="557" y="75" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Information Verification</text>
+
+          <!-- Row 3 -->
+          <rect x="0" y="104" width="124" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="62" y="127" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Multitasking</text>
+        </g>
+      </g>
+    </g>
+
+    <!-- Card 4: Customer & Team Support -->
+    <g transform="translate(820, 380)" filter="url(#card-shadow)">
+      <rect width="780" height="340" rx="16" fill="#ffffff" stroke="#ebdad2d9" stroke-width="1"/>
+      <g transform="translate(32, 34)">
+        <text x="0" y="20" font-size="19" font-weight="700" fill="#2c2426">🤝   Customer &amp; Team Support</text>
+        <g transform="translate(0, 50)">
+          <!-- Row 1 -->
+          <rect x="0" y="0" width="158" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="79" y="23" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Customer Support</text>
+
+          <rect x="170" y="0" width="224" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="282" y="23" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Professional Communication</text>
+
+          <rect x="406" y="0" width="168" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="490" y="23" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Task Coordination</text>
+
+          <!-- Row 2 -->
+          <rect x="0" y="52" width="162" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="81" y="75" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Time Management</text>
+
+          <rect x="174" y="52" width="156" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="252" y="75" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Problem Solving</text>
+
+          <rect x="342" y="52" width="164" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="424" y="75" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Attention to Detail</text>
+
+          <rect x="518" y="52" width="170" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="603" y="75" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Team Collaboration</text>
+
+          <!-- Row 3 -->
+          <rect x="0" y="104" width="144" height="38" rx="19" fill="#fffffff2" stroke="#ebdad2d9"/>
+          <text x="72" y="127" text-anchor="middle" font-size="13" font-weight="500" fill="#2c2426">Remote Support</text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

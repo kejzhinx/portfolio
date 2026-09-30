@@ -174,12 +174,12 @@ export default function AboutSection() {
 
       <div className="md:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-12">
         {[
-          { name: "Adobe Photoshop", role: "Image Manipulation", color: "bg-blue-600/10 text-blue-500", image: "https://cdn.simpleicons.org/adobephotoshop/white", icon: ImageIcon },
-          { name: "Canva", role: "Layout Design", color: "bg-cyan-500/10 text-cyan-400", image: "https://cdn.simpleicons.org/canva/white", icon: Layout },
+          { name: "Adobe Photoshop", role: "Image Manipulation", color: "bg-blue-600/10 text-blue-500", image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/photoshop/photoshop-original.svg", icon: ImageIcon },
+          { name: "Canva", role: "Layout Design", color: "bg-cyan-500/10 text-cyan-400", image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/canva/canva-original.svg", icon: Layout },
           { name: "ChatGPT", role: "AI Creative Assist", color: "bg-emerald-600/10 text-emerald-500", image: "https://cdn.simpleicons.org/openai/white", icon: MessageSquare },
           { name: "Filmora", role: "Video Editing", color: "bg-teal-500/10 text-teal-400", image: "https://cdn.simpleicons.org/wondersharefilmora/white", icon: Video },
           { name: "Lightroom", role: "Photo Grading", color: "bg-blue-400/10 text-blue-300", image: "https://cdn.simpleicons.org/adobelightroom/white", icon: Sun },
-          { name: "After Effects", role: "Motion Design", color: "bg-violet-600/10 text-violet-500", image: "https://cdn.simpleicons.org/adobeaftereffects/white", icon: Move }
+          { name: "After Effects", role: "Motion Design", color: "bg-violet-600/10 text-violet-500", image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/aftereffects/aftereffects-original.svg", icon: Move }
         ].map((tool, i) => (
           <motion.div
             key={tool.name}

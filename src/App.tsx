@@ -8,6 +8,7 @@ import SkillsPage from './pages/SkillsPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ContactPage from './pages/ContactPage';
 import { motion, AnimatePresence } from 'motion/react';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -40,8 +41,16 @@ function AnimatedRoutes() {
 }
 
 function MainLayout() {
+  const { isDark } = useTheme();
+
   return (
-    <div className="min-h-screen flex flex-col bg-[#070B14] text-white selection:bg-indigo-600/30 selection:text-indigo-200">
+    <div
+      className={`min-h-screen flex flex-col transition-colors duration-300 ${
+        isDark
+          ? 'bg-[#070B14] text-white selection:bg-indigo-600/30 selection:text-indigo-200'
+          : 'bg-[#F8FAFC] text-slate-900 selection:bg-indigo-500/20 selection:text-indigo-900'
+      }`}
+    >
       <Navbar />
       <main className="flex-1 flex flex-col">
         <AnimatedRoutes />
@@ -53,9 +62,11 @@ function MainLayout() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <MainLayout />
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <MainLayout />
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }

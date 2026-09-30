@@ -117,3 +117,175 @@
   }
 }
 
+/* ==========================================================================
+   Light Mode Global Adaptations & Overrides
+   Ensures all UI components, backgrounds, cards, typography & surfaces adapt
+   ========================================================================== */
+html.light {
+  color-scheme: light;
+}
+
+html.light body {
+  background-color: #F8FAFC !important;
+  color: #0F172A !important;
+}
+
+/* Light Mode Background Overrides */
+html.light .bg-\[\#070B14\],
+html.light .bg-\[\#080D1A\] {
+  background-color: #F8FAFC !important;
+}
+
+html.light .bg-\[\#0D1424\] {
+  background-color: #FFFFFF !important;
+}
+
+html.light .bg-\[\#0E1628\] {
+  background-color: #F1F5F9 !important;
+}
+
+html.light .bg-slate-950,
+html.light .bg-slate-950\/80,
+html.light .bg-slate-950\/90,
+html.light .bg-slate-900\/90 {
+  background-color: #F1F5F9 !important;
+}
+
+/* Card Surfaces in Light Mode */
+html.light .card-surface {
+  background-color: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03) !important;
+}
+
+html.light .card-surface:hover {
+  background-color: #FFFFFF !important;
+  border-color: rgba(99, 102, 241, 0.45) !important;
+  box-shadow: 0 12px 28px -4px rgba(99, 102, 241, 0.12), 0 4px 10px -2px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Typography Adaptations */
+html.light .text-white {
+  color: #0F172A !important;
+}
+
+html.light .text-slate-200 {
+  color: #1E293B !important;
+}
+
+html.light .text-slate-300 {
+  color: #334155 !important;
+}
+
+html.light .text-slate-400 {
+  color: #475569 !important;
+}
+
+html.light .text-slate-500 {
+  color: #64748B !important;
+}
+
+/* Keep primary buttons and badges with white text */
+html.light .btn-primary,
+html.light .btn-primary *,
+html.light .bg-indigo-600,
+html.light .bg-indigo-600 *,
+html.light .bg-gradient-to-br.from-indigo-500.to-violet-600 *,
+html.light [class*="bg-indigo-600"] * {
+  color: #FFFFFF !important;
+}
+
+/* Light Mode Secondary Buttons */
+html.light .btn-secondary {
+  background-color: #FFFFFF !important;
+  border-color: #CBD5E1 !important;
+  color: #0F172A !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+html.light .btn-secondary:hover {
+  background-color: #F8FAFC !important;
+  border-color: #94A3B8 !important;
+  color: #0F172A !important;
+}
+
+/* Border Adaptations */
+html.light .border-white\/\[0\.08\],
+html.light .border-white\/\[0\.06\],
+html.light .border-white\/\[0\.07\],
+html.light .border-white\/\[0\.12\],
+html.light .border-white\/5,
+html.light .border-white\/10 {
+  border-color: #E2E8F0 !important;
+}
+
+html.light .border-white\/\[0\.2\] {
+  border-color: #CBD5E1 !important;
+}
+
+/* Subtle backgrounds */
+html.light .bg-white\/\[0\.02\],
+html.light .bg-white\/\[0\.03\],
+html.light .bg-white\/\[0\.04\],
+html.light .bg-white\/\[0\.05\] {
+  background-color: #F1F5F9 !important;
+}
+
+/* Form Inputs & Textareas */
+html.light input,
+html.light textarea {
+  background-color: #FFFFFF !important;
+  border-color: #CBD5E1 !important;
+  color: #0F172A !important;
+}
+
+html.light input:focus,
+html.light textarea:focus {
+  border-color: #6366F1 !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15) !important;
+}
+
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #94A3B8 !important;
+}
+
+/* Navigation & Header in Light Mode */
+html.light header {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+html.light header .text-white {
+  color: #0F172A !important;
+}
+
+html.light header nav {
+  background-color: #F1F5F9 !important;
+  border-color: #E2E8F0 !important;
+}
+
+/* Footer in Light Mode */
+html.light footer {
+  background-color: #F1F5F9 !important;
+  border-color: #E2E8F0 !important;
+}
+
+/* Modal Windows & Overlays in Light Mode */
+html.light .fixed.inset-0.bg-black\/80,
+html.light .fixed.inset-0.bg-black\/85 {
+  background-color: rgba(15, 23, 42, 0.65) !important;
+}
+
+html.light .card-surface.border.border-white\/10 {
+  background-color: #FFFFFF !important;
+  border-color: #CBD5E1 !important;
+}
+
+/* Pills & Filter Tabs in Light Mode */
+html.light button.text-slate-400:hover {
+  background-color: #E2E8F0 !important;
+  color: #0F172A !important;
+}
+

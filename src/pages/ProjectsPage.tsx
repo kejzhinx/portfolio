@@ -22,9 +22,117 @@ interface ProjectItem {
 export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState<'all' | 'apps' | 'security' | 'graphics' | 'web3'>('all');
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+  const [activeModalImage, setActiveModalImage] = useState<string | null>(null);
+
+  const openProjectModal = (project: ProjectItem) => {
+    setSelectedProject(project);
+    setActiveModalImage(project.image);
+  };
 
   const projects: ProjectItem[] = [
     // Applications & Software
+    {
+      id: 'katrina-regalado-portfolio',
+      title: 'Katrina Regalado Portfolio',
+      category: 'apps',
+      categoryLabel: 'Portfolio Website',
+      tags: ['Portfolio Website', 'React', 'Vercel', 'Responsive UI'],
+      description: 'A modern, responsive virtual assistant and executive support portfolio showcasing administrative expertise, client services, and case studies.',
+      longDescription: 'Designed and engineered an executive portfolio website for Katrina Regalado, featuring modern typographic hierarchy, smooth animations, interactive case study showcases, responsive mobile layout, and direct client inquiry integration.',
+      image: '/image/katrina_laptop.png',
+      liveUrl: 'https://katrinaregalado.vercel.app/',
+      features: [
+        'Responsive single-page architecture deployed on Vercel',
+        'Clean typographic styling, interactive contact channels, and portfolio showcase',
+        'Mobile-first responsive layouts optimized for fast load performance',
+        'Executive support capabilities, client reviews, and services breakdown'
+      ],
+      highlights: 'Virtual Assistant Portfolio Website • Deployed on Vercel'
+    },
+    {
+      id: 'jw-webmail',
+      title: 'JW Summit Mail Server',
+      category: 'apps',
+      categoryLabel: 'Webmail & Server',
+      tags: ['Webmail Client', 'Corporate Mail', 'TypeScript', 'Dark & Light Mode', 'IMAP/SMTP'],
+      description: 'Secure corporate webmail client and mail server portal for JW Summit Group Inc. featuring responsive authentication, team chat, admin console, and dark mode.',
+      longDescription: 'Designed and developed an enterprise webmail client and administrative portal for JW Summit Group Inc. Engineered with end-to-end TLS handling, inbox filters, real-time message synchronization, corporate messaging room, dark/light theme switching, and multi-user storage quota management.',
+      image: '/image/jw_mockup.jpg',
+      galleryImages: [
+        '/image/jw_mockup.jpg',
+        '/image/jw_dark.jpg',
+        '/image/jw_inbox.jpg',
+        '/image/jw_chat.jpg',
+        '/image/jw_admin.jpg'
+      ],
+      githubUrl: 'https://github.com/kejzhin/Jw-Webmail',
+      liveUrl: 'https://github.com/kejzhin/Jw-Webmail',
+      features: [
+        'Responsive dark & light mode corporate authentication portal',
+        'Multi-pane webmail inbox, message reader, and quick response composer',
+        'JW Messenger team channels with real-time company room broadcasts',
+        'Enterprise Admin Console for mailbox provisioning and storage allocation (2.0 GB quota)',
+        'Custom IMAP and SMTP mail server TLS 1.3 encrypted protocol support'
+      ],
+      highlights: 'Enterprise Webmail Client & Admin Console • Dark & Light Themes'
+    },
+    {
+      id: 'riaminder',
+      title: 'Riaminder',
+      category: 'apps',
+      categoryLabel: 'Productivity App',
+      tags: ['Reminder App', 'React', 'Desktop Notifications', 'Vercel'],
+      description: 'An elegant mobile-first reminder application for birthdays and life milestones with desktop push notifications and real-time syncing.',
+      longDescription: 'A sleek, mobile-optimized birthday and anniversary tracker built with modern React. Features custom notification scheduling, offline support, category filters, and calendar export capabilities.',
+      image: '/image/riaminder.png',
+      githubUrl: 'https://github.com/kejzhin/riaminder',
+      liveUrl: 'https://github.com/kejzhin/riaminder',
+      features: [
+        'Mobile-first responsive interface with birthday countdown timers',
+        'System desktop push notifications for upcoming events',
+        'Offline data persistence and quick entry modal',
+        'Interactive event categorization and search'
+      ],
+      highlights: 'Mobile-First Event & Birthday Tracker • GitHub Repository'
+    },
+    {
+      id: 'serena-heart-crystals',
+      title: 'Serena Heart Crystals',
+      category: 'apps',
+      categoryLabel: 'E-Commerce Studio',
+      tags: ['E-Commerce', 'GCash & Bank Transfer', 'Admin Studio', 'TypeScript'],
+      description: 'Serena Heart Crystals e-commerce studio featuring handcrafted stone and sculptural homewares with custom checkout and complete Admin Studio.',
+      longDescription: 'A full-fledged luxury homewares e-commerce experience. Includes dynamic product catalog, shopping bag state management, GCash and bank transfer manual payment proof verification, and an administrative order management studio.',
+      image: '/image/serena.jpg',
+      githubUrl: 'https://github.com/kejzhin/Serena-Heart-Crystals',
+      liveUrl: 'https://github.com/kejzhin/Serena-Heart-Crystals',
+      features: [
+        'Sculptural stone homewares product catalog with multi-angle galleries',
+        'Seamless checkout flow with local Philippine payment gateways (GCash & BDO/BPI)',
+        'Complete administrative studio for inventory and order fulfillment',
+        'Responsive luxury aesthetics and high-performance asset loading'
+      ],
+      highlights: 'Luxury Homewares E-Commerce Studio • GitHub Repository'
+    },
+    {
+      id: 'mocamesh',
+      title: 'Mocamesh Paystack Voucher Gateway',
+      category: 'apps',
+      categoryLabel: 'Payment Gateway',
+      tags: ['Payment Gateway', 'Paystack API', 'PHP', 'MySQL'],
+      description: 'An automated Paystack payment gateway integration and voucher code distribution system built with PHP and MySQL.',
+      longDescription: 'Engineered an automated voucher issuance system interfacing with the Paystack payment gateway. Upon verified transaction callbacks, system automatically generates, stores, and sends digital voucher codes with webhook validation.',
+      image: '/image/mocamesh.png',
+      githubUrl: 'https://github.com/kejzhin/Mocamesh',
+      liveUrl: 'https://github.com/kejzhin/Mocamesh',
+      features: [
+        'Automated Paystack transaction callback and webhook verification',
+        'Secure voucher database schema with transaction logging and unique token generation',
+        'Error-handling routines for failed or pending payment states',
+        'Lightweight PHP backend designed for rapid deployment'
+      ],
+      highlights: 'Automated Payment & Voucher Gateway • GitHub Repository'
+    },
     {
       id: 'calendar-journal',
       title: 'Calendar Journal',
@@ -376,7 +484,7 @@ export default function ProjectsPage() {
               <div>
                 {/* Project Image Preview Box */}
                 <div
-                  onClick={() => setSelectedProject(project)}
+                  onClick={() => openProjectModal(project)}
                   className="aspect-video w-full bg-[#080D1A] relative overflow-hidden flex items-center justify-center cursor-pointer border-b border-white/[0.06] p-4"
                 >
                   <img
@@ -393,7 +501,7 @@ export default function ProjectsPage() {
                   {project.galleryImages && project.galleryImages.length > 1 && (
                     <span className="absolute top-3 right-3 px-2 py-0.5 rounded-md bg-black/70 backdrop-blur-md text-[10px] font-mono font-semibold text-white border border-white/10 flex items-center gap-1">
                       <Eye size={11} />
-                      <span>{project.galleryImages.length} Assets</span>
+                      <span>{project.galleryImages.length} Screenshots</span>
                     </span>
                   )}
                 </div>
@@ -402,7 +510,7 @@ export default function ProjectsPage() {
                 <div className="p-5 sm:p-6 space-y-3 sm:space-y-4">
                   <div>
                     <h3
-                      onClick={() => setSelectedProject(project)}
+                      onClick={() => openProjectModal(project)}
                       className="text-base sm:text-lg font-bold text-white group-hover:text-indigo-300 transition-colors cursor-pointer"
                     >
                       {project.title}
@@ -430,7 +538,7 @@ export default function ProjectsPage() {
               {/* Card Footer with Action Links */}
               <div className="p-5 sm:p-6 pt-0 border-t border-white/[0.04] mt-2 flex items-center justify-between text-xs font-semibold">
                 <button
-                  onClick={() => setSelectedProject(project)}
+                  onClick={() => openProjectModal(project)}
                   className="inline-flex items-center gap-1.5 text-indigo-400 hover:text-indigo-300 transition-colors cursor-pointer"
                 >
                   <span>View Details</span>
@@ -512,13 +620,43 @@ export default function ProjectsPage() {
 
               <div className="overflow-y-auto flex-1">
                 {/* Modal Image Header */}
-                <div className="w-full aspect-video bg-[#070B14] p-6 flex items-center justify-center relative border-b border-white/[0.08]">
-                  <img
-                    src={selectedProject.image}
+                <div className="w-full aspect-video bg-[#070B14] p-4 sm:p-6 flex items-center justify-center relative border-b border-white/[0.08] overflow-hidden">
+                  <motion.img
+                    key={activeModalImage || selectedProject.image}
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.2 }}
+                    src={activeModalImage || selectedProject.image}
                     alt={selectedProject.title}
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain rounded-lg"
                     referrerPolicy="no-referrer"
                   />
+                  {(activeModalImage || selectedProject.image).includes('dark') && (
+                    <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                      🌙 Dark Mode View
+                    </span>
+                  )}
+                  {(activeModalImage || selectedProject.image).includes('mockup') && (
+                    <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-indigo-300 border border-indigo-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg">
+                      💻 Laptop Mockup Display
+                    </span>
+                  )}
+                  {(activeModalImage || selectedProject.image).includes('inbox') && (
+                    <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-blue-300 border border-blue-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg">
+                      📬 Corporate Webmail Inbox
+                    </span>
+                  )}
+                  {(activeModalImage || selectedProject.image).includes('chat') && (
+                    <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-emerald-300 border border-emerald-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg">
+                      💬 Messenger & Company Chat
+                    </span>
+                  )}
+                  {(activeModalImage || selectedProject.image).includes('admin') && (
+                    <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-violet-300 border border-violet-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg">
+                      ⚙️ Enterprise Admin Console
+                    </span>
+                  )}
                 </div>
 
                 {/* Modal Content */}
@@ -544,26 +682,61 @@ export default function ProjectsPage() {
                     {selectedProject.longDescription}
                   </p>
 
-                  {/* Gallery of multiple assets (if present) */}
+                  {/* Gallery of developed site screenshots (with dark mode and developed pages) */}
                   {selectedProject.galleryImages && selectedProject.galleryImages.length > 1 && (
                     <div className="space-y-3 pt-2">
-                      <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-400">
-                        Design Assets & Gallery ({selectedProject.galleryImages.length} items)
-                      </h4>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                        {selectedProject.galleryImages.map((img, i) => (
-                          <div
-                            key={i}
-                            className="aspect-square rounded-xl bg-[#070B14] p-3 flex items-center justify-center border border-white/[0.08] overflow-hidden"
-                          >
-                            <img
-                              src={img}
-                              alt={`${selectedProject.title} asset ${i + 1}`}
-                              className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
-                              referrerPolicy="no-referrer"
-                            />
-                          </div>
-                        ))}
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                        <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-400">
+                          Developed Site Screenshots & Views ({selectedProject.galleryImages.length} screens)
+                        </h4>
+                        <span className="text-[11px] text-slate-400">Click any thumbnail below to preview it above</span>
+                      </div>
+                      <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+                        {selectedProject.galleryImages.map((img, i) => {
+                          const isDark = img.includes('dark');
+                          const isMockup = img.includes('mockup');
+                          const isInbox = img.includes('inbox');
+                          const isChat = img.includes('chat');
+                          const isAdmin = img.includes('admin');
+                          const label = isDark
+                            ? 'Dark Mode'
+                            : isMockup
+                            ? 'Portal Mockup'
+                            : isInbox
+                            ? 'Webmail Inbox'
+                            : isChat
+                            ? 'Messenger'
+                            : isAdmin
+                            ? 'Admin Console'
+                            : `View ${i + 1}`;
+
+                          const isCurrent = (activeModalImage || selectedProject.image) === img;
+
+                          return (
+                            <button
+                              key={i}
+                              type="button"
+                              onClick={() => setActiveModalImage(img)}
+                              className={`group relative aspect-video rounded-xl bg-[#070B14] p-1 flex flex-col items-center justify-center border transition-all cursor-pointer overflow-hidden ${
+                                isCurrent
+                                  ? 'border-indigo-400 ring-2 ring-indigo-500/50 shadow-lg shadow-indigo-500/25'
+                                  : 'border-white/[0.08] hover:border-white/30'
+                              }`}
+                            >
+                              <img
+                                src={img}
+                                alt={label}
+                                className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
+                                referrerPolicy="no-referrer"
+                              />
+                              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-3 pb-1 px-1 text-center">
+                                <span className={`text-[10px] font-semibold block truncate ${isDark ? 'text-amber-300' : 'text-slate-200'}`}>
+                                  {isDark ? '🌙 ' + label : label}
+                                </span>
+                              </div>
+                            </button>
+                          );
+                        })}
                       </div>
                     </div>
                   )}

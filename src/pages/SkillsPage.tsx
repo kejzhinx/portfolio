@@ -1,6 +1,22 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Sparkles, Terminal, Shield, Palette, Database, Code2, Cpu, Wrench, Search } from 'lucide-react';
+import {
+  Sparkles,
+  Terminal,
+  Shield,
+  Palette,
+  Database,
+  Code2,
+  Cpu,
+  Search,
+  Radar,
+  ShieldAlert,
+  FolderSearch,
+  Video,
+  Layers,
+  Network,
+  type LucideIcon
+} from 'lucide-react';
 
 interface SkillItem {
   name: string;
@@ -10,7 +26,26 @@ interface SkillItem {
   iconBg: string;
   textColor: string;
   iconUrl?: string;
+  fallbackIcon: LucideIcon;
   description: string;
+}
+
+function SkillIconRenderer({ skill }: { skill: SkillItem }) {
+  const [imgError, setImgError] = useState(false);
+  const FallbackIcon = skill.fallbackIcon;
+
+  if (skill.iconUrl && !imgError) {
+    return (
+      <img
+        src={skill.iconUrl}
+        alt={skill.name}
+        className="w-full h-full object-contain filter brightness-95 group-hover:brightness-100 transition-all"
+        onError={() => setImgError(true)}
+      />
+    );
+  }
+
+  return <FallbackIcon size={22} className={skill.textColor} />;
 }
 
 export default function SkillsPage() {
@@ -18,7 +53,7 @@ export default function SkillsPage() {
   const [searchQuery, setSearchQuery] = useState('');
 
   const skills: SkillItem[] = [
-    // Development Stack (Matching screenshot)
+    // Development Stack
     {
       name: 'Java',
       category: 'dev',
@@ -27,6 +62,7 @@ export default function SkillsPage() {
       iconBg: 'bg-[#EA2D2E]/10 border-[#EA2D2E]/30',
       textColor: 'text-[#EA2D2E]',
       iconUrl: 'https://cdn.simpleicons.org/openjdk/white',
+      fallbackIcon: Code2,
       description: 'Robust backend development, object-oriented programming, and native Android applications.'
     },
     {
@@ -37,6 +73,7 @@ export default function SkillsPage() {
       iconBg: 'bg-[#7F52FF]/10 border-[#7F52FF]/30',
       textColor: 'text-[#7F52FF]',
       iconUrl: 'https://cdn.simpleicons.org/kotlin/white',
+      fallbackIcon: Code2,
       description: 'Modern Android architecture, Jetpack Compose UI, coroutines, and declarative design.'
     },
     {
@@ -47,6 +84,7 @@ export default function SkillsPage() {
       iconBg: 'bg-[#3DDC84]/10 border-[#3DDC84]/30',
       textColor: 'text-[#3DDC84]',
       iconUrl: 'https://cdn.simpleicons.org/androidstudio/white',
+      fallbackIcon: Cpu,
       description: 'Full mobile app lifecycle management, profiling, layout debugging, and APK deployment.'
     },
     {
@@ -57,6 +95,7 @@ export default function SkillsPage() {
       iconBg: 'bg-[#777BB4]/10 border-[#777BB4]/30',
       textColor: 'text-[#777BB4]',
       iconUrl: 'https://cdn.simpleicons.org/php/white',
+      fallbackIcon: Code2,
       description: 'Dynamic web backend engineering, API development, session security, and MVC architectures.'
     },
     {
@@ -67,6 +106,7 @@ export default function SkillsPage() {
       iconBg: 'bg-[#4479A1]/10 border-[#4479A1]/30',
       textColor: 'text-[#4479A1]',
       iconUrl: 'https://cdn.simpleicons.org/mysql/white',
+      fallbackIcon: Database,
       description: 'Relational schema design, complex query optimization, transactions, and database security.'
     },
     {
@@ -77,6 +117,7 @@ export default function SkillsPage() {
       iconBg: 'bg-[#F7DF1E]/10 border-[#F7DF1E]/30',
       textColor: 'text-[#F7DF1E]',
       iconUrl: 'https://cdn.simpleicons.org/javascript/white',
+      fallbackIcon: Code2,
       description: 'Interactive frontends, asynchronous DOM handling, modern ES6+ paradigms, and APIs.'
     },
     {
@@ -86,7 +127,8 @@ export default function SkillsPage() {
       role: 'Semantic Markup',
       iconBg: 'bg-[#E34F26]/10 border-[#E34F26]/30',
       textColor: 'text-[#E34F26]',
-      iconUrl: 'https://cdn.simpleicons.org/html5/white',
+      iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-plain.svg',
+      fallbackIcon: Code2,
       description: 'Accessible semantic structures, SEO compliance, modern web forms, and media integration.'
     },
     {
@@ -96,7 +138,8 @@ export default function SkillsPage() {
       role: 'Modern Layouts',
       iconBg: 'bg-[#1572B6]/10 border-[#1572B6]/30',
       textColor: 'text-[#1572B6]',
-      iconUrl: 'https://cdn.simpleicons.org/css3/white',
+      iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-plain.svg',
+      fallbackIcon: Palette,
       description: 'Responsive flexbox/grid architectures, keyframe animations, custom properties, and UI styling.'
     },
     {
@@ -107,6 +150,7 @@ export default function SkillsPage() {
       iconBg: 'bg-[#06B6D4]/10 border-[#06B6D4]/30',
       textColor: 'text-[#06B6D4]',
       iconUrl: 'https://cdn.simpleicons.org/tailwindcss/white',
+      fallbackIcon: Palette,
       description: 'Rapid, component-driven responsive interfaces with custom design systems and micro-utilities.'
     },
     {
@@ -117,6 +161,7 @@ export default function SkillsPage() {
       iconBg: 'bg-[#F05032]/10 border-[#F05032]/30',
       textColor: 'text-[#F05032]',
       iconUrl: 'https://cdn.simpleicons.org/git/white',
+      fallbackIcon: Terminal,
       description: 'Branch workflows, repository management, collaborative code review, and CI/CD pipelines.'
     },
     {
@@ -127,6 +172,7 @@ export default function SkillsPage() {
       iconBg: 'bg-[#3776AB]/10 border-[#3776AB]/30',
       textColor: 'text-[#3776AB]',
       iconUrl: 'https://cdn.simpleicons.org/python/white',
+      fallbackIcon: Code2,
       description: 'Security scripting, automated penetration testing utilities, data processing, and backends.'
     },
     {
@@ -137,6 +183,7 @@ export default function SkillsPage() {
       iconBg: 'bg-[#61DAFB]/10 border-[#61DAFB]/30',
       textColor: 'text-[#61DAFB]',
       iconUrl: 'https://cdn.simpleicons.org/react/white',
+      fallbackIcon: Layers,
       description: 'Single-page applications, custom React hooks, declarative state orchestration, and performance.'
     },
 
@@ -149,6 +196,7 @@ export default function SkillsPage() {
       iconBg: 'bg-[#557C93]/10 border-[#557C93]/30',
       textColor: 'text-[#557C93]',
       iconUrl: 'https://cdn.simpleicons.org/kalilinux/white',
+      fallbackIcon: Terminal,
       description: 'Primary operating system environment for comprehensive ethical hacking and vulnerability audits.'
     },
     {
@@ -159,6 +207,7 @@ export default function SkillsPage() {
       iconBg: 'bg-[#FF6633]/10 border-[#FF6633]/30',
       textColor: 'text-[#FF6633]',
       iconUrl: 'https://cdn.simpleicons.org/burpsuite/white',
+      fallbackIcon: Shield,
       description: 'HTTP proxy interceptor, vulnerability scanning, CSRF/XSS testing, and API security auditing.'
     },
     {
@@ -169,6 +218,7 @@ export default function SkillsPage() {
       iconBg: 'bg-[#294E80]/10 border-[#294E80]/30',
       textColor: 'text-[#294E80]',
       iconUrl: 'https://cdn.simpleicons.org/metasploit/white',
+      fallbackIcon: Terminal,
       description: 'Testing system resistance against known CVE vulnerabilities and payload verification.'
     },
     {
@@ -178,7 +228,7 @@ export default function SkillsPage() {
       role: 'Network Scanner',
       iconBg: 'bg-[#00B4D8]/10 border-[#00B4D8]/30',
       textColor: 'text-[#00B4D8]',
-      iconUrl: 'https://cdn.simpleicons.org/nmap/white',
+      fallbackIcon: Radar,
       description: 'Port scanning, service discovery, host detection, and network perimeter mapping.'
     },
     {
@@ -189,6 +239,7 @@ export default function SkillsPage() {
       iconBg: 'bg-[#1679A7]/10 border-[#1679A7]/30',
       textColor: 'text-[#1679A7]',
       iconUrl: 'https://cdn.simpleicons.org/wireshark/white',
+      fallbackIcon: Network,
       description: 'Deep packet inspection, network protocol analysis, and unencrypted traffic detection.'
     },
     {
@@ -198,6 +249,7 @@ export default function SkillsPage() {
       role: 'SQL Injection Audit',
       iconBg: 'bg-[#E63946]/10 border-[#E63946]/30',
       textColor: 'text-[#E63946]',
+      fallbackIcon: Database,
       description: 'Automated detection and auditing of database injection vulnerabilities across web servers.'
     },
     {
@@ -207,6 +259,7 @@ export default function SkillsPage() {
       role: 'Vulnerability Scanner',
       iconBg: 'bg-[#4361EE]/10 border-[#4361EE]/30',
       textColor: 'text-[#4361EE]',
+      fallbackIcon: ShieldAlert,
       description: 'Enterprise web vulnerability scanning, OWASP Top 10 compliance audits, and bug mitigation.'
     },
     {
@@ -216,6 +269,7 @@ export default function SkillsPage() {
       role: 'Directory Bruteforce',
       iconBg: 'bg-[#06D6A0]/10 border-[#06D6A0]/30',
       textColor: 'text-[#06D6A0]',
+      fallbackIcon: FolderSearch,
       description: 'High-speed URI and DNS subdomain enumeration to discover exposed sensitive endpoints.'
     },
 
@@ -227,7 +281,8 @@ export default function SkillsPage() {
       role: 'Raster Editing & Apparel',
       iconBg: 'bg-[#31A8FF]/10 border-[#31A8FF]/30',
       textColor: 'text-[#31A8FF]',
-      iconUrl: 'https://cdn.simpleicons.org/adobephotoshop/white',
+      iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/photoshop/photoshop-plain.svg',
+      fallbackIcon: Palette,
       description: 'Custom anime streetwear illustrations, photo manipulation, and print-ready apparel layouts.'
     },
     {
@@ -237,7 +292,8 @@ export default function SkillsPage() {
       role: 'Layout & Marketing',
       iconBg: 'bg-[#00C4CC]/10 border-[#00C4CC]/30',
       textColor: 'text-[#00C4CC]',
-      iconUrl: 'https://cdn.simpleicons.org/canva/white',
+      iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/canva/canva-original.svg',
+      fallbackIcon: Palette,
       description: 'High-converting social marketing banners, corporate presentations, and quick layout prototypes.'
     },
     {
@@ -248,6 +304,7 @@ export default function SkillsPage() {
       iconBg: 'bg-[#F24E1E]/10 border-[#F24E1E]/30',
       textColor: 'text-[#F24E1E]',
       iconUrl: 'https://cdn.simpleicons.org/figma/white',
+      fallbackIcon: Layers,
       description: 'Interactive wireframing, high-fidelity app interfaces, design systems, and vector components.'
     },
     {
@@ -257,7 +314,8 @@ export default function SkillsPage() {
       role: 'Motion & Video',
       iconBg: 'bg-[#9999FF]/10 border-[#9999FF]/30',
       textColor: 'text-[#9999FF]',
-      iconUrl: 'https://cdn.simpleicons.org/adobeaftereffects/white',
+      iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/aftereffects/aftereffects-plain.svg',
+      fallbackIcon: Video,
       description: 'Video editing, keyframe motion graphics, promotional showcases, and cinematic reels.'
     },
   ];
@@ -273,7 +331,7 @@ export default function SkillsPage() {
 
   return (
     <div className="pt-24 pb-20 px-6 sm:px-8 max-w-7xl mx-auto">
-      {/* Header matching screenshot */}
+      {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -332,7 +390,7 @@ export default function SkillsPage() {
         </div>
       </div>
 
-      {/* Skills Grid matching screenshot aesthetic */}
+      {/* Skills Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
         <AnimatePresence mode="popLayout">
           {filteredSkills.map((skill, idx) => (
@@ -349,21 +407,10 @@ export default function SkillsPage() {
                 {/* Icon & Category */}
                 <div className="flex items-center justify-between">
                   <div className={`w-12 h-12 rounded-2xl flex items-center justify-center p-2.5 border ${skill.iconBg} group-hover:scale-110 transition-transform`}>
-                    {skill.iconUrl ? (
-                      <img
-                        src={skill.iconUrl}
-                        alt={skill.name}
-                        className="w-full h-full object-contain filter brightness-90 group-hover:brightness-100 transition-all"
-                        onError={(e) => {
-                          (e.target as HTMLElement).style.display = 'none';
-                        }}
-                      />
-                    ) : (
-                      <Terminal size={20} className={skill.textColor} />
-                    )}
+                    <SkillIconRenderer skill={skill} />
                   </div>
 
-                  <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-slate-500 bg-white/[0.03] px-2.5 py-1 rounded-md border border-white/[0.06]">
+                  <span className="text-[10px] font-mono font-semibold uppercase tracking-wider text-slate-400 bg-white/[0.03] px-2.5 py-1 rounded-md border border-white/[0.06]">
                     {skill.categoryLabel}
                   </span>
                 </div>
@@ -383,21 +430,6 @@ export default function SkillsPage() {
           ))}
         </AnimatePresence>
       </div>
-
-      {filteredSkills.length === 0 && (
-        <div className="text-center py-16 card-surface">
-          <p className="text-sm text-slate-400">No technologies found matching your search query.</p>
-          <button
-            onClick={() => {
-              setActiveTab('all');
-              setSearchQuery('');
-            }}
-            className="mt-4 px-4 py-2 text-xs font-semibold text-indigo-400 bg-indigo-500/10 rounded-lg hover:bg-indigo-500/20 transition-colors"
-          >
-            Clear Filters
-          </button>
-        </div>
-      )}
     </div>
   );
 }

@@ -1,5 +1,22 @@
 import { motion } from 'motion/react';
-import { MapPin, Mail, GraduationCap, ArrowRight, Download, Briefcase, Award, CheckCircle2, Shield, Sparkles, Copy, Check } from 'lucide-react';
+import {
+  MapPin,
+  Mail,
+  GraduationCap,
+  ArrowRight,
+  Download,
+  Briefcase,
+  Sparkles,
+  Copy,
+  Check,
+  Building2,
+  Calendar,
+  ShieldCheck,
+  Database,
+  Server,
+  Palette,
+  CheckCircle2
+} from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -41,40 +58,88 @@ export default function AboutPage() {
       company: 'American Technologies Inc.',
       role: 'Data Management Staff',
       period: '2025',
-      description: 'Reviewing and managing incoming enterprise assets using M-Files, Oracle database encoding, and developing Python scripts for automated data validation.',
+      isCurrent: true,
+      employmentType: 'Enterprise Contract',
       badge: 'Database & Scripting',
+      badgeColor: 'text-indigo-400 bg-indigo-500/10 border-indigo-500/25',
+      icon: Database,
+      iconColor: 'text-indigo-400',
+      iconBg: 'bg-indigo-500/10 border-indigo-500/30',
+      description: 'Reviewing and managing incoming enterprise assets using M-Files, Oracle database encoding, and developing Python scripts for automated data validation.',
+      responsibilities: [
+        'Automated enterprise data ingestion workflows using custom Python validation scripts',
+        'Managed structured asset registries and digital archives via M-Files enterprise software',
+        'Executed secure data entry, query verification, and record reconciliation in Oracle DB'
+      ],
+      technologies: ['Python', 'Oracle DB', 'M-Files', 'Data Validation', 'Enterprise Archiving']
     },
     {
       company: 'Gentech IT Solutions Corp.',
       role: 'I.T Technician & Web Administrator',
       period: '2023 - 2025',
-      description: 'Web administration, online technical support, graphic design for marketing, and hardware technical maintenance including network setup and system configuration.',
+      isCurrent: false,
+      employmentType: 'Full-Time Position',
       badge: 'Infrastructure & Support',
+      badgeColor: 'text-blue-400 bg-blue-500/10 border-blue-500/25',
+      icon: Server,
+      iconColor: 'text-blue-400',
+      iconBg: 'bg-blue-500/10 border-blue-500/30',
+      description: 'Web administration, online technical support, graphic design for marketing, and hardware technical maintenance including network setup and system configuration.',
+      responsibilities: [
+        'Maintained web portals, server uptime, DNS configurations, and customer support channels',
+        'Installed and configured enterprise networking hardware, workstations, and security switches',
+        'Produced high-resolution digital marketing collateral and technical documentation'
+      ],
+      technologies: ['Web Administration', 'Network Routing', 'Hardware Diagnostics', 'Technical Support', 'Graphic Design']
     },
     {
       company: 'Jaslink Trading',
       role: 'Graphics Designer & E-Commerce Lead',
       period: '2023',
-      description: 'Creating high-impact advertising layouts, managing e-commerce storefronts (Lazada/Shopee), and designing custom promotional merchandise.',
+      isCurrent: false,
+      employmentType: 'Creative & Operations',
       badge: 'Branding & E-Commerce',
+      badgeColor: 'text-violet-400 bg-violet-500/10 border-violet-500/25',
+      icon: Palette,
+      iconColor: 'text-violet-400',
+      iconBg: 'bg-violet-500/10 border-violet-500/30',
+      description: 'Creating high-impact advertising layouts, managing e-commerce storefronts (Lazada/Shopee), and designing custom promotional merchandise.',
+      responsibilities: [
+        'Designed high-converting store banners, product hero mockups, and promotional apparel',
+        'Managed product catalog listings, inventory synchronization, and customer fulfillment campaigns',
+        'Engineered visual branding assets for physical merchandise and packaging'
+      ],
+      technologies: ['Adobe Photoshop', 'Canva', 'E-Commerce (Lazada/Shopee)', 'Print Apparel', 'Brand Identity']
     },
     {
       company: 'Socialsend.net (Freelance)',
       role: 'Information Security / Vulnerability Analyst',
       period: '2019 - 2022',
-      description: 'Performing comprehensive penetration tests on production websites, analyzing potential attack vectors, and securing cryptocurrency transaction infrastructure.',
+      isCurrent: false,
+      employmentType: 'Cybersecurity Engagement',
       badge: 'Cybersecurity Audit',
+      badgeColor: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/25',
+      icon: ShieldCheck,
+      iconColor: 'text-emerald-400',
+      iconBg: 'bg-emerald-500/10 border-emerald-500/30',
+      description: 'Performing comprehensive penetration tests on production websites, analyzing potential attack vectors, and securing cryptocurrency transaction infrastructure.',
+      responsibilities: [
+        'Executed black-box and grey-box web application penetration tests against OWASP Top 10 vectors',
+        'Inspected crypto transaction APIs and authentication flows for token leakage and race conditions',
+        'Authored remediation reports with reproducible proof-of-concept exploits for developer mitigation'
+      ],
+      technologies: ['Kali Linux', 'Burp Suite', 'OWASP Top 10', 'Penetration Testing', 'Cryptocurrency Security', 'Vulnerability Assessment']
     },
   ];
 
   return (
-    <div className="pt-24 pb-20 px-6 sm:px-8 max-w-7xl mx-auto">
-      {/* Top Banner / Intro matching screenshot */}
+    <div className="pt-24 pb-20 px-6 sm:px-8 max-w-7xl mx-auto space-y-16">
+      {/* Top Banner / Intro */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="space-y-4 mb-14"
+        className="space-y-4"
       >
         <div className="badge-pill">
           <Sparkles size={14} className="text-indigo-400" />
@@ -115,7 +180,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          {/* Right Bento Info Card matching screenshot */}
+          {/* Right Bento Info Card */}
           <div className="lg:col-span-5 card-surface p-6 sm:p-8 space-y-6">
             <h2 className="text-lg font-bold text-white border-b border-white/[0.08] pb-4 flex items-center justify-between">
               <span>Quick Overview</span>
@@ -172,9 +237,133 @@ export default function AboutPage() {
         </div>
       </motion.div>
 
+      {/* Redesigned Experience & Career Section */}
+      <section className="space-y-8">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-white/[0.08]">
+          <div className="space-y-1">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+                <Briefcase size={18} />
+              </div>
+              <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Experience & Career</h2>
+            </div>
+            <p className="text-xs sm:text-sm text-slate-400">
+              Professional positions, penetration testing audits, and technical systems administration
+            </p>
+          </div>
+
+          <span className="text-xs font-mono text-slate-400 bg-white/[0.03] border border-white/[0.08] px-3.5 py-1.5 rounded-full self-start sm:self-auto">
+            4 Milestones • 2019 - Present
+          </span>
+        </div>
+
+        {/* Timeline Container */}
+        <div className="relative pl-0 sm:pl-4 space-y-6">
+          {/* Subtle vertical connection beam on desktop/tablet */}
+          <div className="hidden sm:block absolute left-9 top-8 bottom-8 w-0.5 bg-gradient-to-b from-indigo-500/50 via-violet-500/30 to-indigo-500/10 pointer-events-none" />
+
+          {workExperience.map((exp, idx) => {
+            const IconComponent = exp.icon;
+            return (
+              <motion.div
+                key={exp.company}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                className="relative flex flex-col sm:flex-row items-start gap-4 sm:gap-6 group"
+              >
+                {/* Timeline Node Badge */}
+                <div className="hidden sm:flex relative z-10 shrink-0 w-11 h-11 rounded-2xl bg-[#0B1120] border border-white/[0.12] group-hover:border-indigo-400/60 group-hover:shadow-[0_0_20px_rgba(99,102,241,0.35)] items-center justify-center transition-all duration-300">
+                  <IconComponent size={20} className={exp.iconColor} />
+                  {exp.isCurrent && (
+                    <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                    </span>
+                  )}
+                </div>
+
+                {/* Experience Card */}
+                <div className="card-surface p-6 sm:p-7 flex-1 w-full space-y-5 group-hover:border-indigo-500/35 transition-all">
+                  {/* Card Header */}
+                  <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 border-b border-white/[0.06] pb-4">
+                    <div className="space-y-1">
+                      <div className="flex flex-wrap items-center gap-2.5">
+                        <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-indigo-300 transition-colors">
+                          {exp.role}
+                        </h3>
+                        {exp.isCurrent && (
+                          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/25">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                            Recent
+                          </span>
+                        )}
+                      </div>
+
+                      <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-slate-300 font-medium">
+                        <span className="flex items-center gap-1.5 text-indigo-300 font-semibold">
+                          <Building2 size={14} className="text-indigo-400" />
+                          {exp.company}
+                        </span>
+                        <span className="text-slate-600">•</span>
+                        <span className="text-slate-400">{exp.employmentType}</span>
+                      </div>
+                    </div>
+
+                    {/* Period & Category Badges */}
+                    <div className="flex flex-wrap items-center gap-2 self-start lg:self-center">
+                      <span className="inline-flex items-center gap-1 text-xs font-mono text-slate-300 bg-white/[0.05] px-3 py-1 rounded-full border border-white/[0.08]">
+                        <Calendar size={13} className="text-indigo-400" />
+                        {exp.period}
+                      </span>
+                      <span className={`text-xs font-semibold px-3 py-1 rounded-full border ${exp.badgeColor}`}>
+                        {exp.badge}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Summary Description */}
+                  <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                    {exp.description}
+                  </p>
+
+                  {/* Responsibilities Bullets */}
+                  <div className="space-y-2 pt-1">
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 font-semibold block">
+                      Key Highlights & Impact:
+                    </span>
+                    <ul className="space-y-1.5">
+                      {exp.responsibilities.map((resp, i) => (
+                        <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-400">
+                          <CheckCircle2 size={15} className="text-indigo-400 shrink-0 mt-0.5" />
+                          <span>{resp}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Tech Stack Tags */}
+                  <div className="pt-2 flex flex-wrap items-center gap-1.5">
+                    {exp.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="text-[11px] font-medium text-slate-300 bg-white/[0.04] hover:bg-white/[0.08] hover:text-white border border-white/[0.06] px-2.5 py-0.5 rounded-md transition-colors"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </section>
+
       {/* Education Record Section */}
-      <section className="mb-16">
-        <div className="flex items-center justify-between mb-8 pb-3 border-b border-white/[0.08]">
+      <section className="space-y-8">
+        <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
           <div className="space-y-1">
             <h2 className="text-2xl font-bold text-white">Education History</h2>
             <p className="text-xs text-slate-400">Academic journey and foundational learning</p>
@@ -217,49 +406,6 @@ export default function AboutPage() {
 
                 <p className="text-xs text-slate-400 leading-relaxed">{edu.notes}</p>
               </div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Work & Security Experience Section */}
-      <section>
-        <div className="flex items-center justify-between mb-8 pb-3 border-b border-white/[0.08]">
-          <div className="space-y-1">
-            <h2 className="text-2xl font-bold text-white">Experience & Career</h2>
-            <p className="text-xs text-slate-400">Professional positions, pentesting audits, and technical leadership</p>
-          </div>
-          <Briefcase className="text-indigo-400" size={24} />
-        </div>
-
-        <div className="space-y-6">
-          {workExperience.map((exp, idx) => (
-            <motion.div
-              key={exp.company}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: idx * 0.1, duration: 0.5 }}
-              className="card-surface p-6 sm:p-8 relative group hover:border-indigo-500/30"
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-indigo-300 transition-colors">
-                    {exp.role}
-                  </h3>
-                  <p className="text-sm font-semibold text-slate-300">{exp.company}</p>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-mono text-slate-400 bg-white/[0.04] px-3 py-1 rounded-full border border-white/[0.08]">
-                    {exp.period}
-                  </span>
-                  <span className="text-xs font-semibold text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">
-                    {exp.badge}
-                  </span>
-                </div>
-              </div>
-
-              <p className="text-slate-400 text-sm leading-relaxed mt-2">{exp.description}</p>
             </motion.div>
           ))}
         </div>

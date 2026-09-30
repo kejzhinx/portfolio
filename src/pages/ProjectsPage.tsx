@@ -116,9 +116,11 @@ export default function ProjectsPage() {
       galleryImages: [
         '/image/serena_homepage.svg',
         '/image/serena_catalog.svg',
-        '/image/serena_detail.svg',
+        '/image/serena_bag.svg',
         '/image/serena_checkout.svg',
-        '/image/serena_admin.svg'
+        '/image/serena_admin.svg',
+        '/image/serena_orders.svg',
+        '/image/serena_payments.svg'
       ],
       githubUrl: 'https://github.com/kejzhin/Serena-Heart-Crystals',
       liveUrl: 'https://serena-heart-crystals.vercel.app',
@@ -733,7 +735,7 @@ export default function ProjectsPage() {
                     )}
                     {((activeModalImage || selectedProject.image) === '/image/serena_homepage.svg') && (
                       <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-amber-950/90 text-amber-200 border border-amber-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                        ✦ Storefront Homepage (Sculptural Stone Architecture)
+                        ✦ Storefront Homepage (The Solis Sandstone Vessel)
                       </span>
                     )}
                     {(activeModalImage || selectedProject.image).includes('serena_catalog') && (
@@ -741,19 +743,29 @@ export default function ProjectsPage() {
                         🛍 Curated Collection & Category Tabs
                       </span>
                     )}
-                    {(activeModalImage || selectedProject.image).includes('serena_detail') && (
+                    {(activeModalImage || selectedProject.image).includes('serena_bag') && (
                       <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-amber-300 border border-amber-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                        🔎 Product Detail & Raw Stone Specs
+                        🛍 Shopping Bag Drawer (₱6,450 Total)
                       </span>
                     )}
                     {(activeModalImage || selectedProject.image).includes('serena_checkout') && (
                       <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-sky-950/90 text-sky-300 border border-sky-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                        💳 Bag & GCash / BPI Checkout
+                        💳 Custom Checkout & GCash / Maya Gateways
                       </span>
                     )}
                     {(activeModalImage || selectedProject.image).includes('serena_admin') && (
+                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-amber-200 border border-amber-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
+                        ⚙️ Studio Admin Dashboard (Sales Tracking Curve)
+                      </span>
+                    )}
+                    {(activeModalImage || selectedProject.image).includes('serena_orders') && (
                       <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-emerald-300 border border-emerald-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
-                        ⚙️ Admin Studio & Order Pipeline
+                        📦 Order Management & Customer Fulfillment
+                      </span>
+                    )}
+                    {(activeModalImage || selectedProject.image).includes('serena_payments') && (
+                      <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-stone-900/90 text-sky-300 border border-sky-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg flex items-center gap-1.5">
+                        ⚙️ Payment Options & Store Configuration
                       </span>
                     )}
                     {(activeModalImage || selectedProject.image).includes('jw_dark_login') && (
@@ -783,7 +795,7 @@ export default function ProjectsPage() {
                         💬 Messenger & Company Chat
                       </span>
                     )}
-                    {(activeModalImage || selectedProject.image).includes('admin') && (
+                    {((activeModalImage || selectedProject.image).includes('jw_admin') || (activeModalImage || selectedProject.image).includes('webmail_admin')) && (
                       <span className="absolute top-4 left-4 text-xs font-mono font-bold bg-slate-950/90 text-violet-300 border border-violet-500/30 px-3 py-1 rounded-full backdrop-blur-md shadow-lg">
                         ⚙️ Enterprise Admin Console
                       </span>
@@ -834,9 +846,11 @@ export default function ProjectsPage() {
 
                           const isSerenaHome = img.includes('serena_homepage');
                           const isSerenaCatalog = img.includes('serena_catalog');
-                          const isSerenaDetail = img.includes('serena_detail');
+                          const isSerenaBag = img.includes('serena_bag');
                           const isSerenaCheckout = img.includes('serena_checkout');
                           const isSerenaAdmin = img.includes('serena_admin');
+                          const isSerenaOrders = img.includes('serena_orders');
+                          const isSerenaPayments = img.includes('serena_payments');
 
                           const isDarkLogin = img.includes('dark_login');
                           const isDarkInbox = img.includes('dark_inbox');
@@ -859,15 +873,19 @@ export default function ProjectsPage() {
                             : isKatrinaContact
                             ? 'Contact Info'
                             : isSerenaHome
-                            ? 'Storefront Hero'
+                            ? 'Storefront'
                             : isSerenaCatalog
-                            ? 'Collection Grid'
-                            : isSerenaDetail
-                            ? 'Product Specs'
+                            ? 'Collection'
+                            : isSerenaBag
+                            ? 'Shopping Bag'
                             : isSerenaCheckout
-                            ? 'GCash Checkout'
+                            ? 'Checkout'
                             : isSerenaAdmin
-                            ? 'Admin Studio'
+                            ? 'Admin Dashboard'
+                            : isSerenaOrders
+                            ? 'Orders & Status'
+                            : isSerenaPayments
+                            ? 'Payment Config'
                             : isDarkLogin
                             ? 'Dark Sign In'
                             : isDarkInbox

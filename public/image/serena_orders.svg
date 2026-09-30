@@ -1,0 +1,202 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 960" width="1920" height="960">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@1,500;1,600&amp;display=swap');
+      text { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+      .serif { font-family: 'Playfair Display', Georgia, serif; }
+    </style>
+  </defs>
+
+  <rect width="1920" height="960" fill="#faf8f5"/>
+
+  <!-- SIDEBAR (w: 260px) -->
+  <g transform="translate(0, 0)">
+    <rect width="260" height="960" fill="#faf8f5"/>
+    <line x1="260" y1="0" x2="260" y2="960" stroke="#ede5db" stroke-width="1"/>
+
+    <!-- Brand -->
+    <g transform="translate(36, 44)">
+      <text x="0" y="24" class="serif" font-size="28" font-style="italic" font-weight="600" fill="#1e1814" letter-spacing="-0.5">Serena Heart</text>
+      <text x="0" y="52" class="serif" font-size="28" font-style="italic" font-weight="600" fill="#1e1814" letter-spacing="-0.5">Crystals</text>
+      <text x="0" y="74" font-size="8.5" font-weight="700" fill="#a48a6d" letter-spacing="2">STUDIO ADMIN PORTAL</text>
+    </g>
+
+    <!-- Nav Items -->
+    <g transform="translate(24, 150)">
+      <g transform="translate(0, 0)">
+        <text x="38" y="26" font-size="11" font-weight="600" fill="#665e54" letter-spacing="1.5">DASHBOARD</text>
+      </g>
+      <g transform="translate(0, 52)">
+        <text x="38" y="26" font-size="11" font-weight="600" fill="#665e54" letter-spacing="1.5">PRODUCTS</text>
+      </g>
+
+      <!-- ORDERS (Active) -->
+      <g transform="translate(0, 104)">
+        <rect width="212" height="42" rx="4" fill="#1c1c1c"/>
+        <g transform="translate(14, 13)">
+          <path d="M2 4 L13 4 L11 14 L4 14 Z" fill="none" stroke="#e8ce9e" stroke-width="1.5"/>
+          <path d="M5 4 Q7.5 1 10 4" fill="none" stroke="#e8ce9e" stroke-width="1.5"/>
+        </g>
+        <text x="38" y="26" font-size="11" font-weight="700" fill="#ffffff" letter-spacing="1.5">ORDERS</text>
+      </g>
+
+      <g transform="translate(0, 156)">
+        <text x="38" y="26" font-size="11" font-weight="600" fill="#665e54" letter-spacing="1.5">SALES TRACKING</text>
+      </g>
+      <g transform="translate(0, 208)">
+        <text x="38" y="26" font-size="11" font-weight="600" fill="#665e54" letter-spacing="1.5">PAYMENT OPTIONS</text>
+      </g>
+      <line x1="0" y1="262" x2="212" y2="262" stroke="#ede5db"/>
+      <g transform="translate(0, 276)">
+        <text x="38" y="26" font-size="11" font-weight="700" fill="#b93b3b" letter-spacing="1.5">LOGOUT</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- MAIN AREA (x: 290) -->
+  <g transform="translate(290, 0)">
+    <g transform="translate(10, 42)">
+      <text x="0" y="0" font-size="11" font-weight="700" fill="#1c1c1c" letter-spacing="2">SERENA HEART CRYSTALS STUDIO</text>
+      <text x="280" y="0" font-size="11" font-weight="600" fill="#b39268" letter-spacing="1">/  Orders</text>
+    </g>
+    <line x1="0" y1="68" x2="1600" y2="68" stroke="#ede5db"/>
+
+    <!-- Order Management Header -->
+    <g transform="translate(10, 105)">
+      <div>
+        <text x="0" y="22" class="serif" font-size="30" font-weight="500" fill="#1c1c1c">Order Management &amp; Fulfillment</text>
+        <text x="0" y="46" font-size="12" fill="#665e54">Review customer shipping addresses, verify GCash and Bank Transfer payment references, and update order status.</text>
+      </div>
+
+      <!-- Total Orders Pill -->
+      <g transform="translate(1440, 10)">
+        <rect width="140" height="34" rx="4" fill="#faf8f5" stroke="#e8e2db"/>
+        <text x="70" y="22" text-anchor="middle" font-size="11" font-weight="700" fill="#a48a6d">📦 Total Orders: 8</text>
+      </g>
+    </g>
+
+    <!-- 5 Status Filters Grid matching Image 3 -->
+    <g transform="translate(10, 190)">
+      <g transform="translate(0, 0)">
+        <rect width="295" height="85" fill="#faf8f5" stroke="#e8e2db"/>
+        <text x="20" y="26" font-size="10" font-weight="700" fill="#8c8273" letter-spacing="1">PENDING</text>
+        <text x="20" y="65" class="serif" font-size="32" font-weight="500" fill="#1c1c1c">0</text>
+      </g>
+      <g transform="translate(315, 0)">
+        <rect width="295" height="85" fill="#faf8f5" stroke="#e8e2db"/>
+        <text x="20" y="26" font-size="10" font-weight="700" fill="#8c8273" letter-spacing="1">PROCESSING</text>
+        <text x="20" y="65" class="serif" font-size="32" font-weight="500" fill="#1c1c1c">0</text>
+      </g>
+      <g transform="translate(630, 0)">
+        <rect width="295" height="85" fill="#faf8f5" stroke="#e8e2db"/>
+        <text x="20" y="26" font-size="10" font-weight="700" fill="#8c8273" letter-spacing="1">SHIPPED</text>
+        <text x="20" y="65" class="serif" font-size="32" font-weight="500" fill="#1c1c1c">2</text>
+      </g>
+      <g transform="translate(945, 0)">
+        <rect width="295" height="85" fill="#faf8f5" stroke="#e8e2db"/>
+        <text x="20" y="26" font-size="10" font-weight="700" fill="#8c8273" letter-spacing="1">DELIVERED</text>
+        <text x="20" y="65" class="serif" font-size="32" font-weight="500" fill="#1c1c1c">0</text>
+      </g>
+      <g transform="translate(1260, 0)">
+        <rect width="320" height="85" fill="#faf8f5" stroke="#e8e2db"/>
+        <text x="20" y="26" font-size="10" font-weight="700" fill="#8c8273" letter-spacing="1">CANCELLED</text>
+        <text x="20" y="65" class="serif" font-size="32" font-weight="500" fill="#1c1c1c">1</text>
+      </g>
+    </g>
+
+    <!-- Search Input Bar -->
+    <g transform="translate(10, 295)">
+      <rect width="360" height="42" fill="#f4f1ee" stroke="#e8e2db"/>
+      <text x="18" y="26" font-size="12" fill="#8c8273">🔍 Search Order ID, Customer, Phone, Ref #...</text>
+      <text x="1575" y="26" text-anchor="end" font-size="12" fill="#8c8273">Showing 8 of 8</text>
+    </g>
+
+    <!-- Order Card #LS-4525 matching Image 3 -->
+    <g transform="translate(10, 360)">
+      <rect width="1580" height="440" fill="#ffffff" stroke="#e8e2db"/>
+
+      <!-- Card Top Bar -->
+      <g transform="translate(24, 30)">
+        <text x="0" y="16" class="serif" font-size="24" font-weight="700" fill="#1c1c1c">#LS-4525</text>
+        <!-- Copy icon -->
+        <g transform="translate(120, 2)">
+          <rect width="12" height="12" fill="none" stroke="#8c8273"/>
+          <path d="M4 16 L16 16 L16 4" fill="none" stroke="#8c8273"/>
+        </g>
+
+        <!-- Status Badges -->
+        <rect x="150" y="-3" width="180" height="30" rx="3" fill="#f4f1ee" stroke="#e8e2db"/>
+        <text x="240" y="17" text-anchor="middle" font-size="11" font-weight="700" fill="#1c1c1c">🕒 PENDING PAYMENT</text>
+
+        <rect x="345" y="-3" width="95" height="30" rx="3" fill="#eaf4ff" stroke="#bae6fd"/>
+        <text x="392" y="17" text-anchor="middle" font-size="11" font-weight="700" fill="#007cff">📱 GCash</text>
+
+        <text x="1530" y="17" text-anchor="end" font-size="12" fill="#8c8273">📅 Sep 11, 2026, 11:00 PM</text>
+      </g>
+      <line x1="24" y1="65" x2="1556" y2="65" stroke="#ede5db"/>
+
+      <!-- Left Column: Customer info -->
+      <g transform="translate(24, 90)">
+        <!-- CUSTOMER CONTACT -->
+        <g transform="translate(0, 0)">
+          <rect width="730" height="120" fill="#faf8f5" stroke="#ede5db"/>
+          <text x="20" y="24" font-size="10" font-weight="700" fill="#a48a6d" letter-spacing="1">👤 CUSTOMER CONTACT</text>
+          <text x="20" y="54" class="serif" font-size="20" font-weight="700" fill="#1c1c1c">jeric</text>
+          <g transform="translate(20, 68)">
+            <rect width="120" height="28" fill="#ffffff" stroke="#e8e2db"/>
+            <text x="60" y="18" text-anchor="middle" font-size="11" fill="#665e54">📞 0000000000</text>
+
+            <rect x="135" width="240" height="28" fill="#ffffff" stroke="#e8e2db"/>
+            <text x="255" y="18" text-anchor="middle" font-size="11" fill="#665e54">✉ jericdelosreyes127001@gmail.com</text>
+          </g>
+        </g>
+
+        <!-- SHIPPING DESTINATION -->
+        <g transform="translate(0, 135)">
+          <rect width="730" height="85" fill="#faf8f5" stroke="#ede5db"/>
+          <text x="20" y="24" font-size="10" font-weight="700" fill="#a48a6d" letter-spacing="1">📍 SHIPPING DESTINATION</text>
+          <text x="20" y="54" font-size="13" fill="#1c1c1c">Test address</text>
+        </g>
+      </g>
+
+      <!-- Right Column: Ordered Items & Total Box -->
+      <g transform="translate(780, 90)">
+        <text x="0" y="0" font-size="10" font-weight="700" fill="#a48a6d" letter-spacing="1">ORDERED SCULPTURES</text>
+        <text x="770" y="0" text-anchor="end" font-size="10" font-weight="700" fill="#8c8273">2 ITEM(S)</text>
+
+        <!-- Item 1: Calama Bowl -->
+        <g transform="translate(0, 15)">
+          <rect width="775" height="55" fill="#faf8f5" stroke="#ede5db"/>
+          <rect x="10" y="8" width="40" height="40" fill="#f4f1ee"/>
+          <text x="60" y="24" font-size="13" font-weight="700" fill="#1c1c1c">The Calama Curved Bowl</text>
+          <text x="60" y="40" font-size="10" fill="#8c8273">QTY: 1 • ₱4,100 EA</text>
+          <text x="750" y="32" text-anchor="end" class="serif" font-size="15" font-weight="700" fill="#1c1c1c">₱4,100</text>
+        </g>
+
+        <!-- Item 2: Fluted Tray -->
+        <g transform="translate(0, 80)">
+          <rect width="775" height="55" fill="#faf8f5" stroke="#ede5db"/>
+          <rect x="10" y="8" width="40" height="40" fill="#f4f1ee"/>
+          <text x="60" y="24" font-size="13" font-weight="700" fill="#1c1c1c">The Monolith Fluted Tray</text>
+          <text x="60" y="40" font-size="10" fill="#8c8273">QTY: 1 • ₱3,600 EA</text>
+          <text x="750" y="32" text-anchor="end" class="serif" font-size="15" font-weight="700" fill="#1c1c1c">₱3,600</text>
+        </g>
+
+        <!-- Total Black Box matching Image 3 -->
+        <g transform="translate(0, 150)">
+          <rect width="775" height="110" fill="#1c1c1c"/>
+          <g transform="translate(24, 28)">
+            <text x="0" y="0" font-size="12" fill="#8c8273">Subtotal:</text>
+            <text x="725" y="0" text-anchor="end" font-size="12" fill="#ffffff">₱7,950</text>
+
+            <text x="0" y="26" font-size="12" fill="#8c8273">Delivery Fee:</text>
+            <text x="725" y="26" text-anchor="end" font-size="12" fill="#34d399">Complimentary</text>
+
+            <text x="0" y="62" font-size="12" font-weight="700" fill="#ffffff" letter-spacing="1">TOTAL PAID (PHP):</text>
+            <text x="725" y="64" text-anchor="end" class="serif" font-size="28" font-weight="700" fill="#ffffff">₱7,950</text>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

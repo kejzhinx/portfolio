@@ -86,25 +86,6 @@ export default function ProjectsPage() {
       highlights: 'Enterprise Webmail Client & Admin Console • Dark & Light Themes'
     },
     {
-      id: 'riaminder',
-      title: 'Riaminder',
-      category: 'apps',
-      categoryLabel: 'Productivity App',
-      tags: ['Reminder App', 'React', 'Desktop Notifications', 'Vercel'],
-      description: 'An elegant mobile-first reminder application for birthdays and life milestones with desktop push notifications and real-time syncing.',
-      longDescription: 'A sleek, mobile-optimized birthday and anniversary tracker built with modern React. Features custom notification scheduling, offline support, category filters, and calendar export capabilities.',
-      image: '/image/riaminder.png',
-      githubUrl: 'https://github.com/kejzhin/riaminder',
-      liveUrl: 'https://github.com/kejzhin/riaminder',
-      features: [
-        'Mobile-first responsive interface with birthday countdown timers',
-        'System desktop push notifications for upcoming events',
-        'Offline data persistence and quick entry modal',
-        'Interactive event categorization and search'
-      ],
-      highlights: 'Mobile-First Event & Birthday Tracker • GitHub Repository'
-    },
-    {
       id: 'serena-heart-crystals',
       title: 'Serena Heart Crystals',
       category: 'apps',
@@ -150,83 +131,6 @@ export default function ProjectsPage() {
         'Lightweight PHP backend designed for rapid deployment'
       ],
       highlights: 'Automated Payment & Voucher Gateway • GitHub Repository'
-    },
-    {
-      id: 'calendar-journal',
-      title: 'Calendar Journal',
-      category: 'apps',
-      categoryLabel: 'Mobile Application',
-      tags: ['Android App', 'Java', 'Firebase'],
-      description: 'A journal and calendar app to help users track their mood and daily activities with automated cloud backups.',
-      longDescription: 'Built with native Java on Android Studio with Firebase Realtime Database integration. Features daily emotion logging, visual calendar summaries, biometric lock protection, and exportable weekly mood insights.',
-      image: '/src/assets/images/project_calendar_journal_1790673946235.jpg',
-      githubUrl: 'https://github.com/kejzhin',
-      liveUrl: 'https://github.com/kejzhin',
-      playStoreUrl: 'https://play.google.com',
-      features: [
-        'Interactive calendar interface with color-coded mood indicators',
-        'Firebase Realtime Database synchronization and offline caching',
-        'Secure user authentication and encrypted note storage',
-        'Automated monthly emotional well-being analytics charts'
-      ],
-      highlights: 'Native Java & Firebase Realtime Cloud Sync'
-    },
-    {
-      id: 'inventory-system',
-      title: 'Inventory Management System',
-      category: 'apps',
-      categoryLabel: 'Full-Stack Web App',
-      tags: ['Web App', 'PHP', 'MySQL'],
-      description: 'A web-based system for managing inventory, products, and sales with an easy-to-use interface and reporting.',
-      longDescription: 'Engineered a full-featured PHP and MySQL inventory control suite for retail businesses. Includes barcode scanning integration, automated low-stock warnings, multi-tier user permissions, and CSV ledger reporting.',
-      image: '/src/assets/images/project_inventory_system_1790673963029.jpg',
-      githubUrl: 'https://github.com/kejzhin',
-      liveUrl: 'https://github.com/kejzhin',
-      features: [
-        'Real-time stock level monitoring with automatic threshold alerts',
-        'Comprehensive sales ledger, invoicing, and PDF report generator',
-        'Role-Based Access Control (Admin, Warehouse Manager, Cashier)',
-        'Optimized MySQL queries handling tens of thousands of SKU records'
-      ],
-      highlights: 'Enterprise PHP MVC & MySQL Transactions'
-    },
-    {
-      id: 'mood-tracker',
-      title: 'Mood Tracker',
-      category: 'apps',
-      categoryLabel: 'Mobile Application',
-      tags: ['Android App', 'Kotlin', 'Jetpack Compose'],
-      description: 'A simple and clean mood tracking app to help you understand your emotions through intuitive daily check-ins.',
-      longDescription: 'Designed from the ground up utilizing Kotlin and Jetpack Compose. Boasts smooth Material 3 animations, customized wellness streaks, journaling prompts, and privacy-first local storage architecture.',
-      image: '/src/assets/images/project_mood_tracker_1790673978055.jpg',
-      githubUrl: 'https://github.com/kejzhin',
-      liveUrl: 'https://github.com/kejzhin',
-      playStoreUrl: 'https://play.google.com',
-      features: [
-        'Declarative modern UI built exclusively with Jetpack Compose',
-        'Local SQLite / Room Database ensuring 100% user privacy',
-        'Custom interactive mood graphs and streak tracking',
-        'Dark and Light theme support with dynamic accent palettes'
-      ],
-      highlights: 'Modern Android Kotlin & Jetpack Compose'
-    },
-    {
-      id: 'portfolio-website',
-      title: 'Portfolio Website',
-      category: 'apps',
-      categoryLabel: 'Full-Stack Web App',
-      tags: ['React 19', 'Vite', 'TypeScript', 'Tailwind'],
-      description: 'A high-performance modern portfolio featuring dark aesthetic, interactive project showcases, and responsive design.',
-      longDescription: 'Custom-built responsive single page application showcasing penetration testing and graphic design deliverables. Features client-side routing, touch-friendly mobile layouts, and responsive media galleries.',
-      image: '/public/image/cs.png',
-      githubUrl: 'https://github.com/kejzhin/portfolio',
-      liveUrl: 'https://github.com/kejzhin',
-      features: [
-        'Responsive layout optimized for smartphones, tablets, and desktops',
-        'Modular filterable project and security audit directory',
-        'Interactive graphics preview gallery modal with zero layout shift'
-      ],
-      highlights: 'Modern React SPA with Tailwind CSS'
     },
 
     // Graphics & Visual Design
@@ -519,15 +423,11 @@ export default function ProjectsPage() {
                   </div>
 
                   {/* Full Bleed Homepage Mockup Display */}
-                  <div className="aspect-[16/10] w-full relative overflow-hidden bg-slate-950 flex items-start justify-center">
+                  <div className="aspect-[16/10] w-full relative overflow-hidden bg-slate-950 flex items-center justify-center p-2">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className={`w-full h-full ${
-                        project.category === 'apps' || project.category === 'security'
-                          ? 'object-cover object-top'
-                          : 'object-contain p-2'
-                      } group-hover:scale-105 transition-transform duration-500`}
+                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                       referrerPolicy="no-referrer"
                       onError={(e) => {
                         (e.target as HTMLElement).style.display = 'none';
@@ -687,20 +587,16 @@ export default function ProjectsPage() {
                     </div>
                   </div>
 
-                  {/* Viewport Canvas */}
-                  <div className="w-full aspect-[16/10] sm:aspect-video bg-[#070B14] flex items-start justify-center relative overflow-hidden">
+                  {/* Viewport Canvas - Fits the whole mockup completely without cutting anything off */}
+                  <div className="w-full min-h-[380px] sm:min-h-[480px] max-h-[72vh] sm:max-h-[78vh] bg-[#070B14] flex items-center justify-center relative overflow-hidden p-3 sm:p-6">
                     <motion.img
                       key={activeModalImage || selectedProject.image}
-                      initial={{ opacity: 0, scale: 0.99 }}
+                      initial={{ opacity: 0, scale: 0.98 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.2 }}
                       src={activeModalImage || selectedProject.image}
                       alt={selectedProject.title}
-                      className={`w-full h-full ${
-                        selectedProject.category === 'apps' || selectedProject.category === 'security'
-                          ? 'object-cover object-top'
-                          : 'object-contain p-4'
-                      }`}
+                      className="max-h-[66vh] sm:max-h-[72vh] max-w-full w-auto object-contain mx-auto rounded-lg shadow-2xl transition-all"
                       referrerPolicy="no-referrer"
                     />
                     {((activeModalImage || selectedProject.image) === '/image/katrina_screenshot.png') && (
@@ -916,7 +812,7 @@ export default function ProjectsPage() {
                               <img
                                 src={img}
                                 alt={label}
-                                className="w-full h-full object-cover rounded-lg group-hover:scale-105 transition-transform duration-300"
+                                className="w-full h-full object-contain p-0.5 rounded-lg group-hover:scale-105 transition-transform duration-300"
                                 referrerPolicy="no-referrer"
                               />
                               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-3 pb-1 px-1 text-center">

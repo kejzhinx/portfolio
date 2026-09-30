@@ -13,7 +13,8 @@ export default defineConfig(({mode}) => {
       },
     },
     server: {
-      hmr: true,
+      host: '0.0.0.0',
+      port: 3000,
     },
   };
 });

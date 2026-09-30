@@ -43,7 +43,7 @@ export default function Resume() {
             <p className="text-brand-purple font-mono text-xs tracking-[0.3em] uppercase font-bold px-4 py-1.5 bg-brand-purple/5 border border-brand-purple/10 rounded-full w-fit">Information Technology</p>
           </div>
           <a 
-            href="https://raw.githubusercontent.com/kejzhin/portfolio/main/Jeric.pdf" 
+            href="/Jeric.pdf" 
             download="Jeric_Resume.pdf"
             target="_blank" 
             rel="noopener noreferrer"

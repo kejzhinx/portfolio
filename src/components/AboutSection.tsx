@@ -63,7 +63,7 @@ export default function AboutSection() {
           <h3 className="text-base md:text-lg font-bold">Aurora A. Elementary</h3>
         </div>
         <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-xl flex items-center justify-center p-2 shrink-0">
-          <img src="https://raw.githubusercontent.com/kejzhin/portfolio/main/image/auro.png" alt="Aurora A. Logo" className="w-full h-full object-contain" />
+          <img src="/image/auro.png" alt="Aurora A. Logo" className="w-full h-full object-contain" />
         </div>
       </motion.div>
 
@@ -81,7 +81,7 @@ export default function AboutSection() {
           <h3 className="text-base md:text-lg font-bold">Carlos L. Albert High School</h3>
         </div>
         <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-xl flex items-center justify-center p-2 shrink-0">
-          <img src="https://raw.githubusercontent.com/kejzhin/portfolio/main/image/carlos.png" alt="Carlos L. Logo" className="w-full h-full object-contain" />
+          <img src="/image/carlos.png" alt="Carlos L. Logo" className="w-full h-full object-contain" />
         </div>
       </motion.div>
 
@@ -99,7 +99,7 @@ export default function AboutSection() {
           <h3 className="text-base md:text-lg font-bold">AMA University & College</h3>
         </div>
         <div className="w-12 h-12 md:w-16 md:h-16 bg-white rounded-xl flex items-center justify-center p-2 shrink-0">
-          <img src="https://raw.githubusercontent.com/kejzhin/portfolio/main/image/ama.png" alt="AMA Logo" className="w-full h-full object-contain" />
+          <img src="/image/ama.png" alt="AMA Logo" className="w-full h-full object-contain" />
         </div>
       </motion.div>
 

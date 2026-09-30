@@ -22,7 +22,7 @@ export default function SubPageBackground() {
 
       {/* Floating Technical Elements - Optimized for higher detail on desktop */}
       <div className="absolute inset-0">
-        {[...Array(window.innerWidth > 768 ? 12 : 6)].map((_, i) => (
+        {[...Array(typeof window !== 'undefined' && window.innerWidth > 768 ? 12 : 6)].map((_, i) => (
           <motion.div
             key={i}
             initial={{ 

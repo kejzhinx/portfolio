@@ -31,7 +31,7 @@ export default function ProjectSection() {
       description: "One-stop Ecosystem for Crypto Assets.",
       longDescription: "Automated staking, masternode hosting, and integrated exchange. Served as a Security consultant and Penetration Tester.",
       tags: ["Crypto Ecosystem"],
-      image: "https://raw.githubusercontent.com/kejzhin/portfolio/main/image/sc.png",
+      image: "/image/sc.png",
       link: "https://stakecube.net",
       icon: Database,
       color: "#2C3E50"
@@ -41,7 +41,7 @@ export default function ProjectSection() {
       description: "Blockchain-based Social Payment Gateway.",
       longDescription: "Information Security Analyzer (2019-2022). Performed security tests of the website before deployment, preventing malicious attacks and identifying critical bugs.",
       tags: ["Social Gateway"],
-      image: "https://raw.githubusercontent.com/kejzhin/portfolio/main/image/ss.png",
+      image: "/image/ss.png",
       link: "https://socialsend.io",
       icon: Shield,
       color: "#3498DB"
@@ -51,7 +51,7 @@ export default function ProjectSection() {
       description: "Social Rewards Blockchain Platform.",
       longDescription: "Penetration Tester and Information Security.",
       tags: ["Rewards Platform"],
-      image: "https://raw.githubusercontent.com/kejzhin/portfolio/main/image/vitae.png",
+      image: "/image/vitae.png",
       link: "https://vitae.co",
       icon: Zap,
       color: "#F1C40F"
@@ -61,7 +61,7 @@ export default function ProjectSection() {
       description: "Digital Currency built on Proof-of-Stake.",
       longDescription: "Penetration Tester & Information Security.",
       tags: ["Digital Currency"],
-      image: "https://raw.githubusercontent.com/kejzhin/portfolio/main/image/metrix.png",
+      image: "/image/metrix.png",
       link: "https://metrixcoin.com",
       icon: Cpu,
       color: "#27AE60"
@@ -71,7 +71,7 @@ export default function ProjectSection() {
       description: "Secure Encryption & Communication Hub.",
       longDescription: "Performed penetration testing for Aercrypt's end-to-end encrypted messaging services.",
       tags: ["Encryption Hub"],
-      image: "https://raw.githubusercontent.com/kejzhin/portfolio/main/image/aer.jpg",
+      image: "/image/aer.jpg",
       link: "https://aercrypt.net",
       icon: Lock,
       color: "#E74C3C"
@@ -81,7 +81,7 @@ export default function ProjectSection() {
       description: "Automated Staking & Masternodes platform.",
       longDescription: "Collaborated on platform security audits to provide a seamless user experience for crypto-asset staking.",
       tags: ["Staking Platform"],
-      image: "https://raw.githubusercontent.com/kejzhin/portfolio/main/image/sos.png",
+      image: "/image/sos.png",
       link: "https://stackofstake.com",
       icon: Database,
       color: "#8E44AD"
@@ -91,7 +91,7 @@ export default function ProjectSection() {
       description: "Blockchain Technical Services Provider.",
       longDescription: "Penetration Tester & security advisor and system vulnerability assessments.",
       tags: ["Tech Services"],
-      image: "https://raw.githubusercontent.com/kejzhin/portfolio/main/image/cs.png",
+      image: "/image/cs.png",
       link: "https://cryptech.services",
       icon: Shield,
       color: "#95A5A6"
@@ -101,7 +101,7 @@ export default function ProjectSection() {
       description: "The Original Meme Coin Ecosystem.",
       longDescription: "Performed Penetration to Floppygame PEPE and Vulnerability Assessments",
       tags: ["Meme Ecosystem"],
-      image: "https://raw.githubusercontent.com/kejzhin/portfolio/main/image/pepe.png",
+      image: "/image/pepe.png",
       link: "https://pepecoin.org",
       icon: Globe,
       color: "#1ABC9C"
@@ -112,51 +112,50 @@ export default function ProjectSection() {
     {
       title: "T-Shirt Design",
       description: "Anime-inspired illustrations and custom streetwear concepts featuring iconic characters.",
-      image: "https://raw.githubusercontent.com/kejzhin/portfolio/main/image/zoro-t.jpg",
+      image: "/image/zoro-t.jpg",
       galleryImages: [
-        "https://raw.githubusercontent.com/kejzhin/portfolio/main/image/luffy-t.png?auto=format&fit=crop&q=80&w=800",
-        "https://raw.githubusercontent.com/kejzhin/portfolio/main/image/zoro-t.png?auto=format&fit=crop&q=80&w=800",
-        "https://raw.githubusercontent.com/kejzhin/portfolio/main/image/vs.png?auto=format&fit=crop&q=80&w=800",
-        "https://raw.githubusercontent.com/kejzhin/portfolio/main/image/ng.png?auto=format&fit=crop&q=80&w=800",
-        "https://raw.githubusercontent.com/kejzhin/portfolio/main/image/shanks.png?auto=format&fit=crop&q=80&w=800"
+        "/image/luffy-t.png",
+        "/image/zoro-t.png",
+        "/image/vs.png",
+        "/image/ng.png",
+        "/image/shanks.png"
       ],
       category: "Merchandise"
     },
     {
       title: "Logo Design",
       description: "Minimalist and impactful brand identities for tech startups and blockchain projects.",
-      image: "https://raw.githubusercontent.com/kejzhin/portfolio/main/image/logo.png?auto=format&fit=crop&q=80&w=800",
+      image: "/image/logo.png",
       galleryImages: [
-        "https://raw.githubusercontent.com/kejzhin/portfolio/main/image/db.png?auto=format&fit=crop&q=80&w=800",
-        "https://raw.githubusercontent.com/kejzhin/portfolio/main/image/logo.png?auto=format&fit=crop&q=80&w=80"
-
+        "/image/db.png",
+        "/image/logo.png"
       ],
       category: "Identity"
     },
     {
       title: "E-book",
       description: "Professional digital publication layouts and cover designs for technical guides.",
-      image: "https://raw.githubusercontent.com/kejzhin/portfolio/main/image/chester.png?auto=format&fit=crop&q=80&w=800",
+      image: "/image/chester.png",
       galleryImages: [
-        "https://raw.githubusercontent.com/kejzhin/portfolio/main/image/duck.png?auto=format&fit=crop&q=80&w=800"
+        "/image/duck.png"
       ],
       category: "Editorial"
     },
     {
       title: "ID Lace / Lanyard",
       description: "Custom event and corporate identity accessories designed for international conferences.",
-      image: "https://raw.githubusercontent.com/kejzhin/portfolio/main/image/lace.png",
+      image: "/image/lace.png",
       galleryImages: [
-        "https://raw.githubusercontent.com/kejzhin/portfolio/main/image/lace.png"
+        "/image/lace.png"
       ],
       category: "Corporate"
     },
     {
       title: "E-Commerce",
       description: "Digital storefront concepts and visual assets for online retail platforms.",
-      image: "https://raw.githubusercontent.com/kejzhin/portfolio/refs/heads/main/image/nec.jpg?auto=format&fit=crop&q=80&w=800",
+      image: "/image/nec.jpg",
       galleryImages: [
-        "https://raw.githubusercontent.com/kejzhin/portfolio/refs/heads/main/image/nec.jpg?auto=format&fit=crop&q=80&w=800"
+        "/image/nec.jpg"
       ],
       category: "E-Commerce"
     }

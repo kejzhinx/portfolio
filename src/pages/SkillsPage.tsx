@@ -112,6 +112,17 @@ export default function SkillsPage() {
       description: 'Relational schema design, complex query optimization, transactions, and database security.'
     },
     {
+      name: 'SQLite',
+      category: 'db',
+      categoryLabel: 'Database',
+      role: 'Embedded Relational DB',
+      iconBg: 'bg-[#003B57]/10 border-[#003B57]/30',
+      textColor: 'text-[#008ACF]',
+      iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/sqlite/sqlite-original.svg',
+      fallbackIcon: Database,
+      description: 'Lightweight embedded database storage, mobile local persistence, and client-side structured querying.'
+    },
+    {
       name: 'JavaScript',
       category: 'dev',
       categoryLabel: 'Development',

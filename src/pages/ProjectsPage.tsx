@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ExternalLink, Github, Sparkles, X, Shield, ArrowUpRight, Play, Palette, CheckCircle2, Eye } from 'lucide-react';
+import { ExternalLink, Github, Sparkles, X, Shield, ArrowUpRight, Play, Palette, CheckCircle2 } from 'lucide-react';
 
 interface ProjectItem {
   id: string;
@@ -438,13 +438,6 @@ export default function ProjectsPage() {
                       }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0D1424]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-
-                    {project.galleryImages && project.galleryImages.length > 1 && (
-                      <span className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md text-[10px] font-mono font-semibold text-white border border-white/10 flex items-center gap-1 shadow-lg z-20">
-                        <Eye size={11} />
-                        <span>{project.galleryImages.length} Screens</span>
-                      </span>
-                    )}
                   </div>
                 </div>
 

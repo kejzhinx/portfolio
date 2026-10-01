@@ -5,7 +5,7 @@ import { ExternalLink, Github, Sparkles, X, Shield, ArrowUpRight, Play, Palette,
 interface ProjectItem {
   id: string;
   title: string;
-  category: 'apps' | 'security' | 'graphics' | 'web3';
+  category: 'apps' | 'security' | 'graphics';
   categoryLabel: string;
   tags: string[];
   description: string;
@@ -20,7 +20,7 @@ interface ProjectItem {
 }
 
 export default function ProjectsPage() {
-  const [activeFilter, setActiveFilter] = useState<'all' | 'apps' | 'security' | 'graphics' | 'web3'>('all');
+  const [activeFilter, setActiveFilter] = useState<'all' | 'apps' | 'security' | 'graphics'>('all');
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [activeModalImage, setActiveModalImage] = useState<string | null>(null);
 
@@ -291,13 +291,13 @@ export default function ProjectsPage() {
       highlights: 'Encrypted Communication Penetration Test'
     },
 
-    // Blockchain & Web3
+    // Cybersecurity & Audits
     {
       id: 'vitae-token',
       title: 'Vitae Token Platform',
-      category: 'web3',
-      categoryLabel: 'Rewards Platform',
-      tags: ['Penetration Testing', 'Web3', 'Security'],
+      category: 'security',
+      categoryLabel: 'Security Audit',
+      tags: ['Penetration Testing', 'Web3 Security', 'Auditing'],
       description: 'Social Rewards Blockchain Platform security audits and system vulnerability assessments.',
       longDescription: 'Conducted penetration testing on social reward distribution contracts and user portal frontends to prevent automated reward exploitation.',
       image: '/image/vitae.png',
@@ -311,8 +311,8 @@ export default function ProjectsPage() {
     {
       id: 'metrixcoin',
       title: 'Metrixcoin.com',
-      category: 'web3',
-      categoryLabel: 'Digital Currency',
+      category: 'security',
+      categoryLabel: 'Security Audit',
       tags: ['PoS Currency', 'Infosec', 'Penetration Testing'],
       description: 'Penetration Tester and Information Security advisor for Proof-of-Stake cryptocurrency platform.',
       longDescription: 'Conducted web penetration testing on wallet download portals, explorer APIs, and governance voting interfaces to guarantee platform integrity.',
@@ -327,8 +327,8 @@ export default function ProjectsPage() {
     {
       id: 'pepecoin',
       title: 'Pepecoin.org',
-      category: 'web3',
-      categoryLabel: 'Meme Ecosystem',
+      category: 'security',
+      categoryLabel: 'Security Audit',
       tags: ['Floppygame PEPE', 'Vulnerability Assessment'],
       description: 'Performed penetration testing and vulnerability assessments for the Floppygame PEPE ecosystem.',
       longDescription: 'Evaluated web game client-server communication security to prevent score manipulation, token theft, and leaderboard spoofing.',
@@ -366,7 +366,7 @@ export default function ProjectsPage() {
             Featured <span className="text-gradient">Projects & Works</span>
           </h1>
           <p className="text-slate-400 text-sm sm:text-base lg:text-lg max-w-2xl leading-relaxed mt-2 mx-auto sm:mx-0">
-            A comprehensive showcase of applications, cybersecurity audits, web3 platforms, and creative apparel design assets.
+            A comprehensive showcase of applications, cybersecurity audits, and creative graphics & design assets.
           </p>
         </div>
       </motion.div>
@@ -378,7 +378,6 @@ export default function ProjectsPage() {
           { id: 'apps', label: 'Apps & Software' },
           { id: 'security', label: 'Cybersecurity & Audits' },
           { id: 'graphics', label: 'Graphics & Design' },
-          { id: 'web3', label: 'Blockchain & Web3' },
         ].map((tab) => (
           <button
             key={tab.id}

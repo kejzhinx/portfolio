@@ -71,14 +71,6 @@ export default function ContactPage() {
       href: 'https://facebook.com/kejzhin',
       sub: 'Direct Message',
       action: 'Connect'
-    },
-    {
-      icon: Github,
-      label: 'GitHub',
-      value: 'github.com/kejzhin',
-      href: 'https://github.com/kejzhin',
-      sub: 'Open Source Repositories',
-      action: 'Follow'
     }
   ];
 

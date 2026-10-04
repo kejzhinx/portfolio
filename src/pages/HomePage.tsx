@@ -57,8 +57,8 @@ export default function HomePage() {
             <p className={`text-lg sm:text-2xl lg:text-3xl font-bold tracking-tight leading-snug ${
               isDark ? 'text-slate-200' : 'text-slate-800'
             }`}>
-              <span className="text-gradient">Penetration Tester</span> &{' '}
-              <span className="text-gradient">Graphics Designer</span>
+              <span className="text-gradient">Cybersecurity</span> &{' '}
+              <span className="text-gradient">Creative Technology Specialist</span>
             </p>
           </div>
 

@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&amp;display=swap');
+      text { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+      .brand-title { font-size: 15px; font-weight: 800; letter-spacing: 0.08em; fill: #1a365d; }
+      .nav-link { font-size: 13px; font-weight: 600; fill: #4a5568; }
+      .tools-title { font-size: 42px; font-weight: 900; fill: #1a365d; letter-spacing: -0.02em; }
+    </style>
+    
+    <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#0e6ba8" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#f8fafc"/>
+
+  <!-- Top Navigation Bar -->
+  <g transform="translate(140, 36)">
+    <rect x="0" y="0" width="38" height="38" rx="10" fill="#0e6ba8"/>
+    <text x="19" y="24" text-anchor="middle" font-size="16" font-weight="900" fill="#ffffff">MB</text>
+    <text x="52" y="19" class="brand-title">MARIA BERNADETTE ESTRADA</text>
+    <text x="52" y="34" font-size="11" font-weight="700" fill="#0e6ba8" letter-spacing="0.05em">HEALTHCARE VIRTUAL ASSISTANT</text>
+    
+    <g transform="translate(940, 24)">
+      <text x="0" y="0" class="nav-link">Home</text>
+      <text x="65" y="0" class="nav-link">About</text>
+      <text x="140" y="0" class="nav-link">How I Work</text>
+      <text x="250" y="0" class="nav-link">Background</text>
+      <text x="370" y="0" font-size="14" font-weight="700" fill="#0e6ba8">Skills &amp; Portals</text>
+      <circle cx="420" cy="9" r="2.5" fill="#0e6ba8"/>
+      <text x="490" y="0" class="nav-link">Services</text>
+    </g>
+
+    <rect x="1500" y="2" width="140" height="42" rx="21" fill="#0e6ba8"/>
+    <text x="1570" y="28" text-anchor="middle" font-size="12" font-weight="800" fill="#ffffff" letter-spacing="0.06em">VIEW RESUME</text>
+  </g>
+
+  <line x1="140" y1="92" x2="1780" y2="92" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Header -->
+  <g transform="translate(140, 140)">
+    <rect width="260" height="32" rx="16" fill="#f0fdfa" stroke="#ccfbf1" stroke-width="1"/>
+    <text x="130" y="21" text-anchor="middle" font-size="11" font-weight="800" fill="#0f766e" letter-spacing="0.08em">EHR SYSTEMS &amp; PAYER PORTALS</text>
+    <text x="0" y="80" class="tools-title">Clinical Software &amp; Insurance Networks</text>
+    <text x="0" y="115" font-size="17" fill="#64748b" font-weight="400">Deep operational proficiency across major U.S. Electronic Health Records, telehealth tools, and insurance clearinghouses.</text>
+  </g>
+
+  <!-- 6 Feature Cards Grid -->
+  <g transform="translate(140, 290)">
+    
+    <!-- Card 1: AdvancedMD EHR -->
+    <g transform="translate(0, 0)" filter="url(#card-shadow)">
+      <rect width="520" height="280" rx="20" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+      <g transform="translate(32, 40)">
+        <rect width="48" height="48" rx="12" fill="#eff6ff"/>
+        <text x="24" y="32" text-anchor="middle" font-size="20">🏥</text>
+        <text x="0" y="84" font-size="20" font-weight="800" fill="#1a365d">AdvancedMD EHR</text>
+        <text x="0" y="108" font-size="12" font-weight="700" fill="#0e6ba8">PRIMARY PRACTICE EHR SYSTEM</text>
+        <text x="0" y="140" font-size="14" fill="#475569">
+          <tspan x="0" dy="0">Extensive experience managing clinical charts, provider</tspan>
+          <tspan x="0" dy="24">schedule templates, clinical notes, patient intake queue,</tspan>
+          <tspan x="0" dy="24">and integrated billing documentation.</tspan>
+        </text>
+      </g>
+    </g>
+
+    <!-- Card 2: Availity Essentials -->
+    <g transform="translate(560, 0)" filter="url(#card-shadow)">
+      <rect width="520" height="280" rx="20" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+      <g transform="translate(32, 40)">
+        <rect width="48" height="48" rx="12" fill="#f0fdfa"/>
+        <text x="24" y="32" text-anchor="middle" font-size="20">🌐</text>
+        <text x="0" y="84" font-size="20" font-weight="800" fill="#1a365d">Availity Essentials</text>
+        <text x="0" y="108" font-size="12" font-weight="700" fill="#0d9488">CLEARINGHOUSE &amp; ELIGIBILITY</text>
+        <text x="0" y="140" font-size="14" fill="#475569">
+          <tspan x="0" dy="0">Real-time health plan eligibility verifications, co-pay</tspan>
+          <tspan x="0" dy="24">and deductible inquiries, prior auth requirement lookups,</tspan>
+          <tspan x="0" dy="24">and electronic claim status monitoring.</tspan>
+        </text>
+      </g>
+    </g>
+
+    <!-- Card 3: Medi-Cal & Medicare Portals -->
+    <g transform="translate(1120, 0)" filter="url(#card-shadow)">
+      <rect width="520" height="280" rx="20" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+      <g transform="translate(32, 40)">
+        <rect width="48" height="48" rx="12" fill="#eff6ff"/>
+        <text x="24" y="32" text-anchor="middle" font-size="20">🏛️</text>
+        <text x="0" y="84" font-size="20" font-weight="800" fill="#1a365d">Medi-Cal &amp; Medicare</text>
+        <text x="0" y="108" font-size="12" font-weight="700" fill="#2563eb">GOVERNMENT PAYER SYSTEMS</text>
+        <text x="0" y="140" font-size="14" fill="#475569">
+          <tspan x="0" dy="0">Comprehensive handling of Medicare Part B and Medi-Cal</tspan>
+          <tspan x="0" dy="24">TAR (Treatment Authorization Requests), eligibility check,</tspan>
+          <tspan x="0" dy="24">and state-specific compliance guidelines.</tspan>
+        </text>
+      </g>
+    </g>
+
+    <!-- Row 2 -->
+    <!-- Card 4: Nextiva VoIP System -->
+    <g transform="translate(0, 310)" filter="url(#card-shadow)">
+      <rect width="520" height="280" rx="20" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+      <g transform="translate(32, 40)">
+        <rect width="48" height="48" rx="12" fill="#fdf2f8"/>
+        <text x="24" y="32" text-anchor="middle" font-size="20">📞</text>
+        <text x="0" y="84" font-size="20" font-weight="800" fill="#1a365d">Nextiva VoIP Telephony</text>
+        <text x="0" y="108" font-size="12" font-weight="700" fill="#db2777">VIRTUAL FRONT DESK PHONE</text>
+        <text x="0" y="140" font-size="14" fill="#475569">
+          <tspan x="0" dy="0">High-volume call triage, patient call logging, HIPAA</tspan>
+          <tspan x="0" dy="24">voicemail management, and direct warm transfers</tspan>
+          <tspan x="0" dy="24">to attending medical staff and pharmacies.</tspan>
+        </text>
+      </g>
+    </g>
+
+    <!-- Card 5: Optum & Commercial Payers -->
+    <g transform="translate(560, 310)" filter="url(#card-shadow)">
+      <rect width="520" height="280" rx="20" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+      <g transform="translate(32, 40)">
+        <rect width="48" height="48" rx="12" fill="#fff7ed"/>
+        <text x="24" y="32" text-anchor="middle" font-size="20">🏢</text>
+        <text x="0" y="84" font-size="20" font-weight="800" fill="#1a365d">Optum, Blue Shield &amp; IPAs</text>
+        <text x="0" y="108" font-size="12" font-weight="700" fill="#ea580c">COMMERCIAL PAYER PORTALS</text>
+        <text x="0" y="140" font-size="14" fill="#475569">
+          <tspan x="0" dy="0">Submitting authorizations across UnitedHealthcare, Optum,</tspan>
+          <tspan x="0" dy="24">Blue Shield of California, Regal Medical Group, and</tspan>
+          <tspan x="0" dy="24">Preferred IPA network channels.</tspan>
+        </text>
+      </g>
+    </g>
+
+    <!-- Card 6: Telehealth & Huddle Tools -->
+    <g transform="translate(1120, 310)" filter="url(#card-shadow)">
+      <rect width="520" height="280" rx="20" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+      <g transform="translate(32, 40)">
+        <rect width="48" height="48" rx="12" fill="#f5f3ff"/>
+        <text x="24" y="32" text-anchor="middle" font-size="20">💻</text>
+        <text x="0" y="84" font-size="20" font-weight="800" fill="#1a365d">Doxy.me, Zoom &amp; Teams</text>
+        <text x="0" y="108" font-size="12" font-weight="700" fill="#7c3aed">TELEHEALTH &amp; PROVIDER HUDDLE</text>
+        <text x="0" y="140" font-size="14" fill="#475569">
+          <tspan x="0" dy="0">Patient telehealth waiting room management, Doxy.me</tspan>
+          <tspan x="0" dy="24">link dispatching, and daily morning huddles with clinic</tspan>
+          <tspan x="0" dy="24">physicians via Microsoft Teams and Zoom.</tspan>
+        </text>
+      </g>
+    </g>
+
+  </g>
+</svg>

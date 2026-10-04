@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&amp;display=swap');
+      text { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+      .brand-title { font-size: 15px; font-weight: 800; letter-spacing: 0.08em; fill: #1a365d; }
+      .nav-link { font-size: 13px; font-weight: 600; fill: #4a5568; }
+      .svc-title { font-size: 42px; font-weight: 900; fill: #1a365d; letter-spacing: -0.02em; }
+    </style>
+    
+    <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#0e6ba8" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#f8fafc"/>
+
+  <!-- Top Navigation Bar -->
+  <g transform="translate(140, 36)">
+    <rect x="0" y="0" width="38" height="38" rx="10" fill="#0e6ba8"/>
+    <text x="19" y="24" text-anchor="middle" font-size="16" font-weight="900" fill="#ffffff">MB</text>
+    <text x="52" y="19" class="brand-title">MARIA BERNADETTE ESTRADA</text>
+    <text x="52" y="34" font-size="11" font-weight="700" fill="#0e6ba8" letter-spacing="0.05em">HEALTHCARE VIRTUAL ASSISTANT</text>
+    
+    <g transform="translate(940, 24)">
+      <text x="0" y="0" class="nav-link">Home</text>
+      <text x="65" y="0" class="nav-link">About</text>
+      <text x="140" y="0" class="nav-link">How I Work</text>
+      <text x="250" y="0" class="nav-link">Background</text>
+      <text x="370" y="0" class="nav-link">Skills</text>
+      <text x="445" y="0" font-size="14" font-weight="700" fill="#0e6ba8">Services</text>
+      <circle cx="474" cy="9" r="2.5" fill="#0e6ba8"/>
+    </g>
+
+    <rect x="1500" y="2" width="140" height="42" rx="21" fill="#0e6ba8"/>
+    <text x="1570" y="28" text-anchor="middle" font-size="12" font-weight="800" fill="#ffffff" letter-spacing="0.06em">VIEW RESUME</text>
+  </g>
+
+  <line x1="140" y1="92" x2="1780" y2="92" stroke="#e2e8f0" stroke-width="1"/>
+
+  <!-- Services Section Header -->
+  <g transform="translate(140, 140)">
+    <rect width="210" height="32" rx="16" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+    <text x="105" y="21" text-anchor="middle" font-size="11" font-weight="800" fill="#1d4ed8" letter-spacing="0.08em">HEALTHCARE SERVICES</text>
+    <text x="0" y="80" class="svc-title">Comprehensive Clinical Virtual Assistance</text>
+    <text x="0" y="115" font-size="17" fill="#64748b" font-weight="400">Tailored administrative solutions to streamline daily practice operations and eliminate prior authorization delays.</text>
+  </g>
+
+  <!-- Services Grid (7 Structured Cards matching website) -->
+  <g transform="translate(140, 290)">
+    
+    <!-- Row 1: 3 Cards -->
+    <!-- Card 1: Prior Authorization & Insurance Verification -->
+    <g transform="translate(0, 0)" filter="url(#card-shadow)">
+      <rect width="520" height="280" rx="20" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+      <rect width="520" height="6" rx="3" fill="#0e6ba8"/>
+      <g transform="translate(32, 40)">
+        <rect width="48" height="48" rx="12" fill="#eff6ff"/>
+        <text x="24" y="32" text-anchor="middle" font-size="22">🛡️</text>
+        <text x="0" y="84" font-size="19" font-weight="800" fill="#1a365d">Insurance Verification &amp; Prior Auth</text>
+        <text x="0" y="118" font-size="14" fill="#475569" line-height="1.5">
+          <tspan x="0" dy="0">Real-time 270/271 eligibility verification, CPT/ICD-10</tspan>
+          <tspan x="0" dy="24">matching, and urgent prior authorization submissions</tspan>
+          <tspan x="0" dy="24">across commercial and government payer portals.</tspan>
+        </text>
+        <rect x="0" y="180" width="160" height="26" rx="6" fill="#f0fdfa"/>
+        <text x="80" y="197" text-anchor="middle" font-size="11" font-weight="700" fill="#0f766e">✓ Real-Time 270/271</text>
+      </g>
+    </g>
+
+    <!-- Card 2: Patient Intake & Scheduling -->
+    <g transform="translate(560, 0)" filter="url(#card-shadow)">
+      <rect width="520" height="280" rx="20" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+      <rect width="520" height="6" rx="3" fill="#0d9488"/>
+      <g transform="translate(32, 40)">
+        <rect width="48" height="48" rx="12" fill="#f0fdfa"/>
+        <text x="24" y="32" text-anchor="middle" font-size="22">📅</text>
+        <text x="0" y="84" font-size="19" font-weight="800" fill="#1a365d">Patient Intake &amp; Scheduling</text>
+        <text x="0" y="118" font-size="14" fill="#475569">
+          <tspan x="0" dy="0">Coordinating provider calendars, new patient registration,</tspan>
+          <tspan x="0" dy="24">collecting demographic data, medical history consent,</tspan>
+          <tspan x="0" dy="24">and reminder automation to minimize no-shows.</tspan>
+        </text>
+        <rect x="0" y="180" width="160" height="26" rx="6" fill="#eff6ff"/>
+        <text x="80" y="197" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">✓ Calendar Optimization</text>
+      </g>
+    </g>
+
+    <!-- Card 3: Small Inbox Management -->
+    <g transform="translate(1120, 0)" filter="url(#card-shadow)">
+      <rect width="520" height="280" rx="20" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+      <rect width="520" height="6" rx="3" fill="#3b82f6"/>
+      <g transform="translate(32, 40)">
+        <rect width="48" height="48" rx="12" fill="#f8fafc"/>
+        <text x="24" y="32" text-anchor="middle" font-size="22">✉️</text>
+        <text x="0" y="84" font-size="19" font-weight="800" fill="#1a365d">EHR Inbox &amp; E-Fax Triage</text>
+        <text x="0" y="118" font-size="14" fill="#475569">
+          <tspan x="0" dy="0">Processing patient portal communications, lab reports,</tspan>
+          <tspan x="0" dy="24">pharmacy refill requests, and incoming e-faxes</tspan>
+          <tspan x="0" dy="24">with strict HIPAA encryption protocols.</tspan>
+        </text>
+        <rect x="0" y="180" width="170" height="26" rx="6" fill="#f1f5f9"/>
+        <text x="85" y="197" text-anchor="middle" font-size="11" font-weight="700" fill="#334155">✓ Encrypted Portal Triage</text>
+      </g>
+    </g>
+
+    <!-- Row 2: 3 Cards -->
+    <!-- Card 4: Inbound & Outbound Communication -->
+    <g transform="translate(0, 310)" filter="url(#card-shadow)">
+      <rect width="520" height="280" rx="20" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+      <rect width="520" height="6" rx="3" fill="#8b5cf6"/>
+      <g transform="translate(32, 40)">
+        <rect width="48" height="48" rx="12" fill="#f5f3ff"/>
+        <text x="24" y="32" text-anchor="middle" font-size="22">📞</text>
+        <text x="0" y="84" font-size="19" font-weight="800" fill="#1a365d">Inbound &amp; Outbound Calls</text>
+        <text x="0" y="118" font-size="14" fill="#475569">
+          <tspan x="0" dy="0">Dedicated Nextiva VoIP phone triage handling incoming</tspan>
+          <tspan x="0" dy="24">patient inquiries, provider call routing, and direct</tspan>
+          <tspan x="0" dy="24">outbound communications with insurance adjusters.</tspan>
+        </text>
+        <rect x="0" y="180" width="150" height="26" rx="6" fill="#faf5ff"/>
+        <text x="75" y="197" text-anchor="middle" font-size="11" font-weight="700" fill="#7c3aed">✓ Nextiva VoIP System</text>
+      </g>
+    </g>
+
+    <!-- Card 5: Virtual Support for Providers -->
+    <g transform="translate(560, 310)" filter="url(#card-shadow)">
+      <rect width="520" height="280" rx="20" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+      <rect width="520" height="6" rx="3" fill="#f59e0b"/>
+      <g transform="translate(32, 40)">
+        <rect width="48" height="48" rx="12" fill="#fffbeb"/>
+        <text x="24" y="32" text-anchor="middle" font-size="22">👥</text>
+        <text x="0" y="84" font-size="19" font-weight="800" fill="#1a365d">Virtual Support for Providers</text>
+        <text x="0" y="118" font-size="14" fill="#475569">
+          <tspan x="0" dy="0">Specialized administrative backing for ENT and Allergy</tspan>
+          <tspan x="0" dy="24">specialists. Chart preparation, documentation follow-ups,</tspan>
+          <tspan x="0" dy="24">and coordinating surgical clearance records.</tspan>
+        </text>
+        <rect x="0" y="180" width="150" height="26" rx="6" fill="#fef3c7"/>
+        <text x="75" y="197" text-anchor="middle" font-size="11" font-weight="700" fill="#b45309">✓ ENT &amp; Allergy Focus</text>
+      </g>
+    </g>
+
+    <!-- Card 6: Medical Coding & A/R Follow-ups -->
+    <g transform="translate(1120, 310)" filter="url(#card-shadow)">
+      <rect width="520" height="280" rx="20" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+      <rect width="520" height="6" rx="3" fill="#10b981"/>
+      <g transform="translate(32, 40)">
+        <rect width="48" height="48" rx="12" fill="#ecfdf5"/>
+        <text x="24" y="32" text-anchor="middle" font-size="22">📊</text>
+        <text x="0" y="84" font-size="19" font-weight="800" fill="#1a365d">Medical Coding &amp; A/R Claims</text>
+        <text x="0" y="118" font-size="14" fill="#475569">
+          <tspan x="0" dy="0">Accurate CPT &amp; ICD-10 diagnostic code entry, claim</tspan>
+          <tspan x="0" dy="24">tracking, appeal letter drafting for denied claims,</tspan>
+          <tspan x="0" dy="24">and accounts receivable reconciliation.</tspan>
+        </text>
+        <rect x="0" y="180" width="170" height="26" rx="6" fill="#ecfdf5"/>
+        <text x="85" y="197" text-anchor="middle" font-size="11" font-weight="700" fill="#047857">✓ Denial Appeal Protocol</text>
+      </g>
+    </g>
+
+  </g>
+</svg>

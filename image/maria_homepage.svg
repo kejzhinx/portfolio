@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&amp;display=swap');
+      text { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+      .brand-title { font-size: 15px; font-weight: 800; letter-spacing: 0.08em; fill: #1a365d; }
+      .nav-link { font-size: 13px; font-weight: 600; fill: #4a5568; }
+      .hero-h1 { font-size: 52px; font-weight: 900; line-height: 1.15; fill: #1a365d; letter-spacing: -0.025em; }
+      .hero-p { font-size: 19px; line-height: 1.6; fill: #334155; font-weight: 400; }
+    </style>
+    
+    <filter id="soft-shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#0e6ba8" flood-opacity="0.08"/>
+    </filter>
+    <filter id="badge-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#000000" flood-opacity="0.18"/>
+    </filter>
+    <filter id="card-shadow" x="-8%" y="-8%" width="116%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="24" flood-color="#0e6ba8" flood-opacity="0.12"/>
+    </filter>
+
+    <clipPath id="avatar-clip">
+      <circle cx="1520" cy="530" r="210"/>
+    </clipPath>
+    <clipPath id="screen-clip">
+      <rect x="0" y="44" width="1920" height="1036" rx="0"/>
+    </clipPath>
+  </defs>
+
+  <!-- Browser Window Frame -->
+  <rect width="1920" height="1080" fill="#f8fafc"/>
+  
+  <!-- Browser Chrome Bar -->
+  <rect width="1920" height="44" fill="#0f172a"/>
+  <circle cx="28" cy="22" r="6" fill="#ef4444"/>
+  <circle cx="48" cy="22" r="6" fill="#f59e0b"/>
+  <circle cx="68" cy="22" r="6" fill="#10b981"/>
+  
+  <!-- Browser Address URL Bar -->
+  <rect x="140" y="8" width="560" height="28" rx="6" fill="#1e293b"/>
+  <text x="160" y="27" font-size="12" fill="#94a3b8" font-family="'Plus Jakarta Sans', monospace">🔒 https://mariabernadette.vercel.app</text>
+
+  <!-- Inner Content Area -->
+  <g clip-path="url(#screen-clip)">
+    <!-- Subtle Background Ambient Gradients -->
+    <rect y="44" width="1920" height="1036" fill="#ffffff"/>
+    <circle cx="1600" cy="480" r="460" fill="#e0f2fe" opacity="0.45" filter="blur(60px)"/>
+    <circle cx="300" cy="700" r="420" fill="#f0fdfa" opacity="0.6" filter="blur(70px)"/>
+
+    <!-- Top Navigation Bar -->
+    <g transform="translate(140, 75)">
+      <!-- Logo & Subtitle -->
+      <g transform="translate(0, 8)">
+        <rect x="0" y="0" width="38" height="38" rx="10" fill="#0e6ba8"/>
+        <text x="19" y="24" text-anchor="middle" font-size="16" font-weight="900" fill="#ffffff">MB</text>
+        <text x="52" y="19" class="brand-title">MARIA BERNADETTE ESTRADA</text>
+        <text x="52" y="34" font-size="11" font-weight="700" fill="#0e6ba8" letter-spacing="0.05em">HEALTHCARE VIRTUAL ASSISTANT</text>
+      </g>
+
+      <!-- Nav Links -->
+      <g transform="translate(940, 24)">
+        <text x="0" y="0" font-size="14" font-weight="700" fill="#0e6ba8">Home</text>
+        <circle cx="18" cy="9" r="2.5" fill="#0e6ba8"/>
+        <text x="65" y="0" class="nav-link">About</text>
+        <text x="140" y="0" class="nav-link">How I Work</text>
+        <text x="250" y="0" class="nav-link">Background</text>
+        <text x="370" y="0" class="nav-link">Skills</text>
+        <text x="445" y="0" class="nav-link">Services</text>
+      </g>
+
+      <!-- Contact / Resume Button -->
+      <rect x="1500" y="2" width="140" height="42" rx="21" fill="#0e6ba8"/>
+      <text x="1570" y="28" text-anchor="middle" font-size="12" font-weight="800" fill="#ffffff" letter-spacing="0.06em">VIEW RESUME</text>
+    </g>
+
+    <!-- Dividing Line -->
+    <line x1="140" y1="145" x2="1780" y2="145" stroke="#e2e8f0" stroke-width="1"/>
+
+    <!-- Hero Content Grid -->
+    <g transform="translate(140, 200)">
+      
+      <!-- Left Column: Typography & CTAs -->
+      <g transform="translate(0, 40)">
+        
+        <!-- Badge Pill -->
+        <g transform="translate(0, 0)">
+          <rect width="360" height="34" rx="17" fill="#f0fdfa" stroke="#ccfbf1" stroke-width="1.5"/>
+          <circle cx="20" cy="17" r="5" fill="#0d9488"/>
+          <text x="35" y="22" font-size="12" font-weight="800" fill="#0f766e" letter-spacing="0.05em">HIPAA-COMPLIANT CLINICAL SUPPORT</text>
+        </g>
+
+        <!-- Main H1 Headline -->
+        <g transform="translate(0, 65)">
+          <text x="0" y="44" class="hero-h1">Prior Authorization Specialist</text>
+          <text x="0" y="104" class="hero-h1" fill="#0e6ba8">&amp; Virtual Assistance for</text>
+          <text x="0" y="164" class="hero-h1">Healthcare Professionals</text>
+        </g>
+
+        <!-- Lead Paragraph -->
+        <g transform="translate(0, 260)">
+          <text x="0" y="0" class="hero-p">With over <tspan font-weight="700" fill="#0e6ba8">4 years of experience</tspan> and <tspan font-weight="700" fill="#0f766e">HIPAA Certification</tspan>, I help</text>
+          <text x="0" y="32" class="hero-p">Healthcare Providers streamline their practice by handling prior authorization,</text>
+          <text x="0" y="64" class="hero-p">customer service, and administrative tasks—so you can focus on patient care.</text>
+        </g>
+
+        <!-- CTA Buttons -->
+        <g transform="translate(0, 390)">
+          <!-- View Services (Outlined) -->
+          <rect x="0" y="0" width="180" height="52" rx="26" fill="#ffffff" stroke="#0e6ba8" stroke-width="2.5" filter="url(#soft-shadow)"/>
+          <text x="90" y="32" text-anchor="middle" font-size="13" font-weight="800" fill="#0e6ba8" letter-spacing="0.06em">VIEW SERVICES</text>
+
+          <!-- Know More About Me (Filled) -->
+          <rect x="204" y="0" width="230" height="52" rx="26" fill="#0e6ba8" filter="url(#card-shadow)"/>
+          <text x="319" y="32" text-anchor="middle" font-size="13" font-weight="800" fill="#ffffff" letter-spacing="0.06em">KNOW MORE ABOUT ME</text>
+        </g>
+
+        <!-- Key Competency Highlights Pills -->
+        <g transform="translate(0, 485)">
+          <rect x="0" y="0" width="760" height="60" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+          
+          <g transform="translate(24, 35)">
+            <circle cx="6" cy="-4" r="4" fill="#0e6ba8"/>
+            <text x="18" y="0" font-size="13" font-weight="700" fill="#1e293b">4+ Yrs U.S. Healthcare</text>
+            
+            <circle cx="215" cy="-4" r="4" fill="#0d9488"/>
+            <text x="227" y="0" font-size="13" font-weight="700" fill="#1e293b">ENT &amp; Allergy Specialty</text>
+            
+            <circle cx="435" cy="-4" r="4" fill="#3b82f6"/>
+            <text x="447" y="0" font-size="13" font-weight="700" fill="#1e293b">AdvancedMD EHR</text>
+            
+            <circle cx="625" cy="-4" r="4" fill="#10b981"/>
+            <text x="637" y="0" font-size="13" font-weight="700" fill="#1e293b">Availity &amp; Portals</text>
+          </g>
+        </g>
+
+      </g>
+
+      <!-- Right Column: Maria's Circular Profile Portrait & HIPAA Badge -->
+      <g transform="translate(940, -10)">
+        
+        <!-- Outer Glowing Accent Rings -->
+        <circle cx="440" cy="340" r="235" fill="none" stroke="#bae6fd" stroke-width="2" stroke-dasharray="8 8"/>
+        <circle cx="440" cy="340" r="222" fill="#ffffff" filter="url(#card-shadow)"/>
+
+        <!-- Profile Image with Circular Clip Path -->
+        <g>
+          <clipPath id="maria-hero-circle">
+            <circle cx="440" cy="340" r="210"/>
+          </clipPath>
+          <image href="/image/maria_profile.png" x="210" y="100" width="460" height="500" preserveAspectRatio="xMidYMin slice" clip-path="url(#maria-hero-circle)"/>
+        </g>
+        
+        <!-- Circular Border Overlay -->
+        <circle cx="440" cy="340" r="210" fill="none" stroke="#ffffff" stroke-width="6"/>
+
+        <!-- Overlapping Rotated HIPAA Badge (from maria repo /badge.png) -->
+        <g transform="translate(560, 310) rotate(-6)" filter="url(#badge-shadow)">
+          <image href="/image/maria_badge.png" x="0" y="0" width="160" height="160" preserveAspectRatio="xMidYMid meet"/>
+        </g>
+
+        <!-- Floating Verified Card -->
+        <g transform="translate(180, 480)" filter="url(#badge-shadow)">
+          <rect width="260" height="76" rx="18" fill="#ffffff" stroke="#e0f2fe" stroke-width="1.5"/>
+          <circle cx="38" cy="38" r="20" fill="#ecfdf5"/>
+          <path d="M30 38 L36 44 L47 32" stroke="#059669" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="68" y="32" font-size="13" font-weight="800" fill="#0f172a">Verified Specialist</text>
+          <text x="68" y="50" font-size="11" font-weight="600" fill="#059669">Prior Authorization &amp; EHR</text>
+        </g>
+
+      </g>
+
+    </g>
+  </g>
+</svg>

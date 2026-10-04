@@ -1,0 +1,209 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&amp;display=swap');
+      text { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif; }
+      .nav-text { font-size: 17px; font-weight: 600; fill: #334155; }
+      .skills-h1 { font-size: 58px; font-weight: 900; fill: #1a365d; letter-spacing: -0.025em; text-anchor: middle; }
+      .skills-kicker { font-size: 15px; font-weight: 800; fill: #0e6ba8; letter-spacing: 0.12em; text-anchor: middle; }
+      .card-cat-title { font-size: 24px; font-weight: 800; fill: #0f172a; }
+      .subcard-title { font-size: 17px; font-weight: 800; fill: #0f172a; }
+      .subcard-desc { font-size: 13px; font-weight: 500; fill: #64748b; }
+    </style>
+    <filter id="big-card-shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="8" stdDeviation="18" flood-color="#0e6ba8" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <rect width="1920" height="1080" fill="#f8fafc"/>
+
+  <!-- Top Navigation Bar -->
+  <g transform="translate(140, 42)">
+    <g transform="translate(0, 4)">
+      <path d="M22 6 C16 0 6 2 2 12 C-4 26 12 40 22 50 C32 40 48 26 42 12 C38 2 28 0 22 6 Z" fill="#1a365d" transform="scale(0.9)"/>
+      <path d="M5 21 L12 21 L16 11 L22 31 L27 16 L31 24 L35 21 L40 21" stroke="#ffffff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="scale(0.9)"/>
+    </g>
+
+    <g transform="translate(680, 26)">
+      <text x="0" y="0" class="nav-text">Home</text>
+      <text x="110" y="0" class="nav-text">About</text>
+      <text x="210" y="0" class="nav-text">Services</text>
+      <text x="325" y="0" class="nav-text">Contact</text>
+    </g>
+
+    <rect x="1420" y="4" width="220" height="50" rx="25" fill="#0e6ba8"/>
+    <text x="1530" y="35" text-anchor="middle" font-size="13" font-weight="800" fill="#ffffff" letter-spacing="0.05em">LET'S WORK TOGETHER</text>
+  </g>
+
+  <!-- Section Header -->
+  <g transform="translate(960, 135)">
+    <text x="0" y="45" class="skills-h1">Skills &amp; Technical Proficiency</text>
+    <text x="0" y="85" class="skills-kicker">HANDS-ON MASTERY WITH U.S. HEALTHCARE PORTALS, TELEHEALTH, EHR &amp; INSURANCE NETWORKS</text>
+  </g>
+
+  <!-- 2 Large Container Cards Side-by-Side -->
+  <g transform="translate(140, 265)">
+    
+    <!-- Left Big Card: Health Insurance Portals -->
+    <g transform="translate(0, 0)" filter="url(#big-card-shadow)">
+      <rect width="795" height="580" rx="28" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+      
+      <!-- Category Header -->
+      <g transform="translate(40, 48)">
+        <circle cx="16" cy="0" r="16" fill="#f0fdfa"/>
+        <text x="16" y="6" text-anchor="middle" font-size="16">🌐</text>
+        <text x="48" y="7" class="card-cat-title">Health Insurance Portals</text>
+      </g>
+
+      <!-- 6 Grid Sub-items (2 cols x 3 rows) -->
+      <g transform="translate(40, 100)">
+        
+        <!-- Sub 1: Medpoint Management -->
+        <g transform="translate(0, 0)">
+          <rect width="345" height="115" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+          <rect x="16" y="26" width="56" height="56" rx="12" fill="#eff6ff"/>
+          <text x="44" y="62" text-anchor="middle" font-size="12" font-weight="900" fill="#0284c7">Med</text>
+          <text x="88" y="48" class="subcard-title">Medpoint Management</text>
+          <text x="88" y="72" class="subcard-desc">California IPA &amp; MSO Portal</text>
+        </g>
+
+        <!-- Sub 2: Preferred IPA -->
+        <g transform="translate(370, 0)">
+          <rect width="345" height="115" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+          <rect x="16" y="26" width="56" height="56" rx="12" fill="#fef2f2"/>
+          <text x="44" y="62" text-anchor="middle" font-size="12" font-weight="900" fill="#dc2626">IPA</text>
+          <text x="88" y="48" class="subcard-title">Preferred IPA</text>
+          <text x="88" y="72" class="subcard-desc">Preferred IPA of California Portal</text>
+        </g>
+
+        <!-- Sub 3: Optum Provider Portal -->
+        <g transform="translate(0, 140)">
+          <rect width="345" height="115" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+          <rect x="16" y="26" width="56" height="56" rx="12" fill="#fff7ed"/>
+          <text x="44" y="62" text-anchor="middle" font-size="18">🏢</text>
+          <text x="88" y="48" class="subcard-title">Optum Provider Portal</text>
+          <text x="88" y="72" class="subcard-desc">Optum / OptumPay Ecosystem</text>
+        </g>
+
+        <!-- Sub 4: Astrana Health -->
+        <g transform="translate(370, 140)">
+          <rect width="345" height="115" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+          <rect x="16" y="26" width="56" height="56" rx="12" fill="#faf5ff"/>
+          <text x="44" y="62" text-anchor="middle" font-size="18">✨</text>
+          <text x="88" y="48" class="subcard-title">Astrana Health</text>
+          <text x="88" y="72" class="subcard-desc">Formerly ApolloMed / Network</text>
+        </g>
+
+        <!-- Sub 5: Regal / Lakeside -->
+        <g transform="translate(0, 280)">
+          <rect width="345" height="115" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+          <rect x="16" y="26" width="56" height="56" rx="12" fill="#eff6ff"/>
+          <text x="44" y="62" text-anchor="middle" font-size="18">✚</text>
+          <text x="88" y="44" class="subcard-title">Regal / Lakeside</text>
+          <text x="88" y="68" class="subcard-desc">Regal Medical Group &amp; Lakeside</text>
+        </g>
+
+        <!-- Sub 6: Availity Essentials -->
+        <g transform="translate(370, 280)">
+          <rect width="345" height="115" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+          <rect x="16" y="26" width="56" height="56" rx="12" fill="#fffbeb"/>
+          <text x="44" y="62" text-anchor="middle" font-size="18">🔗</text>
+          <text x="88" y="48" class="subcard-title">Availity Essentials</text>
+          <text x="88" y="72" class="subcard-desc">National Payer Clearinghouse</text>
+        </g>
+
+      </g>
+    </g>
+
+    <!-- Right Big Card: Communication Tools -->
+    <g transform="translate(845, 0)" filter="url(#big-card-shadow)">
+      <rect width="795" height="580" rx="28" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+      
+      <!-- Category Header -->
+      <g transform="translate(40, 48)">
+        <circle cx="16" cy="0" r="16" fill="#eff6ff"/>
+        <text x="16" y="6" text-anchor="middle" font-size="16">💬</text>
+        <text x="48" y="7" class="card-cat-title">Communication Tools</text>
+      </g>
+
+      <!-- 6 Grid Sub-items (2 cols x 3 rows) -->
+      <g transform="translate(40, 100)">
+        
+        <!-- Sub 1: Doxy.me -->
+        <g transform="translate(0, 0)">
+          <rect width="345" height="115" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+          <rect x="16" y="26" width="56" height="56" rx="12" fill="#f0fdfa"/>
+          <text x="44" y="62" text-anchor="middle" font-size="18">🩺</text>
+          <text x="88" y="48" class="subcard-title">Doxy.me</text>
+          <text x="88" y="72" class="subcard-desc">HIPAA-Compliant Telehealth</text>
+        </g>
+
+        <!-- Sub 2: Nextiva -->
+        <g transform="translate(370, 0)">
+          <rect width="345" height="115" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+          <rect x="16" y="26" width="56" height="56" rx="12" fill="#fff7ed"/>
+          <text x="44" y="62" text-anchor="middle" font-size="18">📞</text>
+          <text x="88" y="48" class="subcard-title">Nextiva</text>
+          <text x="88" y="72" class="subcard-desc">Cloud VoIP &amp; Call Routing</text>
+        </g>
+
+        <!-- Sub 3: Google Meet -->
+        <g transform="translate(0, 140)">
+          <rect width="345" height="115" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+          <rect x="16" y="26" width="56" height="56" rx="12" fill="#eff6ff"/>
+          <text x="44" y="62" text-anchor="middle" font-size="18">📹</text>
+          <text x="88" y="48" class="subcard-title">Google Meet</text>
+          <text x="88" y="72" class="subcard-desc">Clinical Sync &amp; Provider Briefings</text>
+        </g>
+
+        <!-- Sub 4: Microsoft Teams -->
+        <g transform="translate(370, 140)">
+          <rect width="345" height="115" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+          <rect x="16" y="26" width="56" height="56" rx="12" fill="#eef2ff"/>
+          <text x="44" y="62" text-anchor="middle" font-size="18">👥</text>
+          <text x="88" y="48" class="subcard-title">Microsoft Teams</text>
+          <text x="88" y="72" class="subcard-desc">Practice Collaboration Hub</text>
+        </g>
+
+        <!-- Sub 5: Zoom -->
+        <g transform="translate(0, 280)">
+          <rect width="345" height="115" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+          <rect x="16" y="26" width="56" height="56" rx="12" fill="#eff6ff"/>
+          <text x="44" y="62" text-anchor="middle" font-size="18">💻</text>
+          <text x="88" y="48" class="subcard-title">Zoom</text>
+          <text x="88" y="72" class="subcard-desc">Video Conferencing &amp; Webinars</text>
+        </g>
+
+        <!-- Sub 6: Discord -->
+        <g transform="translate(370, 280)">
+          <rect width="345" height="115" rx="16" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+          <rect x="16" y="26" width="56" height="56" rx="12" fill="#f5f3ff"/>
+          <text x="44" y="62" text-anchor="middle" font-size="18">🎮</text>
+          <text x="88" y="48" class="subcard-title">Discord</text>
+          <text x="88" y="72" class="subcard-desc">Fast-Paced VA Coordination</text>
+        </g>
+
+      </g>
+    </g>
+
+  </g>
+
+  <!-- Bottom Row Teasers matching screenshot -->
+  <g transform="translate(140, 880)">
+    <rect width="795" height="150" rx="24" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+    <g transform="translate(40, 50)">
+      <circle cx="16" cy="0" r="16" fill="#ecfdf5"/>
+      <text x="16" y="6" text-anchor="middle" font-size="16">🛡️</text>
+      <text x="48" y="7" class="card-cat-title">Insurance Networks</text>
+    </g>
+
+    <g transform="translate(845, 0)">
+      <rect width="795" height="150" rx="24" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+      <g transform="translate(40, 50)">
+        <circle cx="16" cy="0" r="16" fill="#eff6ff"/>
+        <text x="16" y="6" text-anchor="middle" font-size="16">🗄️</text>
+        <text x="48" y="7" class="card-cat-title">EHR &amp; Practice Management</text>
+      </g>
+    </g>
+  </g>
+</svg>

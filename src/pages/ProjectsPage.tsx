@@ -32,11 +32,39 @@ export default function ProjectsPage() {
   const projects: ProjectItem[] = [
     // Applications & Software
     {
+      id: 'maria-bernadette-portfolio',
+      title: 'Maria Bernadette VA Portfolio',
+      category: 'apps',
+      categoryLabel: 'Healthcare VA Portfolio',
+      tags: ['Virtual Assistant', 'Healthcare VA', 'Prior Authorization', 'React', 'Vercel', 'HIPAA Compliant', 'AdvancedMD EHR'],
+      description: 'A modern, professional healthcare virtual assistant portfolio for Maria Bernadette Estrada, highlighting 4+ years of U.S. clinical support, prior authorization, and EHR administration.',
+      longDescription: 'Designed and developed a specialized healthcare virtual assistant portfolio for Maria Bernadette Estrada. Showcases over 4 years of clinical support experience in ENT and Allergy, HIPAA compliance certification, real-time insurance eligibility (270/271), Electronic Health Records (AdvancedMD), Nextiva VoIP phone triage, and interactive services breakdown.',
+      image: '/image/maria_1_home.svg',
+      galleryImages: [
+        '/image/maria_1_home.svg',
+        '/image/maria_2_about.svg',
+        '/image/maria_3_background.svg',
+        '/image/maria_4_skills.svg',
+        '/image/maria_5_services.svg',
+        '/image/maria_6_contact.svg'
+      ],
+      githubUrl: 'https://github.com/kejzhin/maria',
+      liveUrl: 'https://mariabernadette.vercel.app/',
+      features: [
+        'Responsive single-page application built with React, Tailwind CSS, and Motion, deployed on Vercel',
+        'Official HIPAA Awareness Certificate preview with interactive modal enlargement',
+        'Comprehensive clinical services catalog covering Prior Authorization, Patient Intake, and A/R Follow-ups',
+        'Interactive showcase of specialized EHR systems (AdvancedMD) and insurance clearinghouses (Availity, Medi-Cal, Medicare, Optum)',
+        'Direct consultation booking and modern healthcare aesthetic optimized for U.S. medical practices'
+      ],
+      highlights: 'Healthcare Virtual Assistant Portfolio • Live on Vercel • Open Source on GitHub'
+    },
+    {
       id: 'katrina-regalado-portfolio',
-      title: 'Katrina Portfolio',
+      title: 'Katrina VA Portfolio',
       category: 'apps',
       categoryLabel: 'Portfolio Website',
-      tags: ['Portfolio Website', 'React', 'Vercel', 'Responsive UI', 'Executive Support'],
+      tags: ['Virtual Assistant', 'Portfolio Website', 'React', 'Vercel', 'Responsive UI', 'Executive Support'],
       description: 'A modern, responsive virtual assistant and executive support portfolio showcasing administrative expertise, client services, and case studies.',
       longDescription: 'Designed and engineered an executive portfolio website for Katrina Regalado, featuring modern typographic hierarchy, smooth animations, interactive case study showcases, responsive mobile layout, and direct client inquiry integration.',
       image: '/image/katrina_screenshot.png',
@@ -632,6 +660,13 @@ export default function ProjectsPage() {
                       </div>
                       <div className="grid grid-cols-2 sm:grid-cols-6 gap-2.5">
                         {selectedProject.galleryImages.map((img, i) => {
+                          const isMariaHome = img.includes('maria_1_home') || img.includes('maria_homepage');
+                          const isMariaAbout = img.includes('maria_2_about') || img.includes('maria_about');
+                          const isMariaBackground = img.includes('maria_3_background');
+                          const isMariaSkills = img.includes('maria_4_skills');
+                          const isMariaServices = img.includes('maria_5_services');
+                          const isMariaContact = img.includes('maria_6_contact');
+
                           const isKatrinaHome = img.includes('katrina_screenshot');
                           const isKatrinaAbout = img.includes('katrina_about');
                           const isKatrinaSkills = img.includes('katrina_skills');
@@ -655,7 +690,19 @@ export default function ProjectsPage() {
                           const isAdmin = img.includes('admin');
                           const isDark = isDarkLogin || isDarkInbox || img.includes('dark');
 
-                          const label = isKatrinaHome
+                          const label = isMariaHome
+                            ? 'Homepage Hero'
+                            : isMariaAbout
+                            ? 'About & Bio'
+                            : isMariaBackground
+                            ? 'Background & Clinics'
+                            : isMariaSkills
+                            ? 'Skills & Portals'
+                            : isMariaServices
+                            ? 'Services Provided'
+                            : isMariaContact
+                            ? 'Contact & Footer'
+                            : isKatrinaHome
                             ? 'Homepage Hero'
                             : isKatrinaAbout
                             ? 'About Me'

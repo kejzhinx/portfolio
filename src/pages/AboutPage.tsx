@@ -28,8 +28,8 @@ export default function AboutPage() {
 
   const resumeSkills = [
     { name: 'Web Development', icon: Globe, color: 'text-indigo-400 bg-indigo-500/10 border-indigo-500/20' },
-    { name: 'Penetration Tester', icon: ShieldCheck, color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' },
-    { name: 'Graphics Designing', icon: Palette, color: 'text-violet-400 bg-violet-500/10 border-violet-500/20' },
+    { name: 'Cybersecurity Specialist', icon: ShieldCheck, color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' },
+    { name: 'Creative Technology', icon: Palette, color: 'text-violet-400 bg-violet-500/10 border-violet-500/20' },
     { name: 'Linux', icon: Terminal, color: 'text-amber-400 bg-amber-500/10 border-amber-500/20' },
     { name: 'Hardware / Software Troubleshooting', icon: Cpu, color: 'text-blue-400 bg-blue-500/10 border-blue-500/20' },
     { name: 'Computer Repair', icon: Wrench, color: 'text-teal-400 bg-teal-500/10 border-teal-500/20' },
@@ -261,7 +261,7 @@ export default function AboutPage() {
             <p className={`text-base sm:text-lg leading-relaxed ${
               isDark ? 'text-slate-300' : 'text-slate-700'
             }`}>
-              I'm a dedicated <span className={`font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Penetration Tester & Graphics Designer</span> with over 8 years of hands-on experience in vulnerability assessment, web security audits, and visual brand identity. I specialize in protecting digital infrastructures while crafting compelling, high-converting digital designs.
+              I'm a dedicated <span className={`font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Cybersecurity & Creative Technology Specialist</span> with over 8 years of hands-on experience in vulnerability assessment, web security audits, and visual brand identity. I specialize in protecting digital infrastructures while crafting compelling, high-converting digital designs.
             </p>
 
             <p className={`text-sm sm:text-base leading-relaxed ${

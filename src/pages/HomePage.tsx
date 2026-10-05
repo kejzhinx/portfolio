@@ -179,8 +179,10 @@ export default function HomePage() {
             {/* Cutout Portrait Image */}
             <div className="relative z-10 w-full h-full flex items-end justify-center overflow-visible">
               <img
-                src="/profile.png"
+                src="/profile.webp"
                 alt="Jeric M. De Los Reyes"
+                fetchPriority="high"
+                decoding="async"
                 className={`w-full h-full object-contain object-bottom select-none ${
                   isDark ? 'drop-shadow-[0_20px_45px_rgba(0,0,0,0.85)]' : 'drop-shadow-[0_20px_35px_rgba(30,27,75,0.4)]'
                 }`}

@@ -42,21 +42,21 @@ export default function AboutPage() {
       institution: 'AMA University & College',
       period: '2020 - 2021',
       degree: 'BS Computer Science / Information Technology',
-      logo: '/image/ama.png',
+      logo: '/image/ama.webp',
       notes: 'Focused on algorithms, software engineering, databases, and network fundamentals.',
     },
     {
       institution: 'Carlos L. Albert High School',
       period: '2018 - 2020',
       degree: 'Information & Communications Technology Strand',
-      logo: '/image/carlos.png',
+      logo: '/image/carlos.webp',
       notes: 'Graduated with honors in technical computer hardware and programming fundamentals.',
     },
     {
       institution: 'Aurora A. Elementary',
       period: '2007 - 2014',
       degree: 'Primary Education',
-      logo: '/image/auro.png',
+      logo: '/image/auro.webp',
       notes: 'Early passion for computing, logic puzzles, and visual arts.',
     },
   ];
@@ -538,6 +538,8 @@ export default function AboutPage() {
                     <img
                       src={edu.logo}
                       alt={edu.institution}
+                      loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-contain"
                       onError={(e) => {
                         (e.target as HTMLElement).style.display = 'none';

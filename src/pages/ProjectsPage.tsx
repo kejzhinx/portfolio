@@ -19,6 +19,37 @@ interface ProjectItem {
   highlights?: string;
 }
 
+function CardImage({ src, alt }: { src: string; alt: string }) {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <div className="aspect-[16/10] w-full relative overflow-hidden bg-[#080D1A] flex items-center justify-center p-2">
+      {!loaded && (
+        <div className="absolute inset-0 bg-slate-900/80 animate-pulse flex items-center justify-center">
+          <div className="w-7 h-7 rounded-lg bg-indigo-500/15 border border-indigo-500/25 flex items-center justify-center">
+            <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-ping" />
+          </div>
+        </div>
+      )}
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        onLoad={() => setLoaded(true)}
+        className={`w-full h-full object-contain group-hover:scale-105 transition-all duration-300 ${
+          loaded ? 'opacity-100' : 'opacity-0'
+        }`}
+        referrerPolicy="no-referrer"
+        onError={(e) => {
+          (e.target as HTMLElement).style.display = 'none';
+        }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0D1424]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+    </div>
+  );
+}
+
 export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState<'all' | 'apps' | 'security' | 'graphics'>('all');
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
@@ -39,10 +70,10 @@ export default function ProjectsPage() {
       tags: ['Virtual Assistant', 'Healthcare VA', 'Prior Authorization', 'React', 'Vercel', 'HIPAA Compliant', 'AdvancedMD EHR'],
       description: 'A modern, professional healthcare virtual assistant portfolio for Maria Bernadette Estrada, highlighting 4+ years of U.S. clinical support, prior authorization, and EHR administration.',
       longDescription: 'Designed and developed a specialized healthcare virtual assistant portfolio for Maria Bernadette Estrada. Showcases over 4 years of clinical support experience in ENT and Allergy, HIPAA compliance certification, real-time insurance eligibility (270/271), Electronic Health Records (AdvancedMD), Nextiva VoIP phone triage, and interactive services breakdown.',
-      image: '/image/maria_1_home.svg',
+      image: '/image/maria_1_home.webp',
       galleryImages: [
-        '/image/maria_1_home.svg',
-        '/image/maria_2_about.svg',
+        '/image/maria_1_home.webp',
+        '/image/maria_2_about.webp',
         '/image/maria_3_background.svg',
         '/image/maria_4_skills.svg',
         '/image/maria_5_services.svg',
@@ -67,9 +98,9 @@ export default function ProjectsPage() {
       tags: ['Virtual Assistant', 'Portfolio Website', 'React', 'Vercel', 'Responsive UI', 'Executive Support'],
       description: 'A modern, responsive virtual assistant and executive support portfolio showcasing administrative expertise, client services, and case studies.',
       longDescription: 'Designed and engineered an executive portfolio website for Katrina Regalado, featuring modern typographic hierarchy, smooth animations, interactive case study showcases, responsive mobile layout, and direct client inquiry integration.',
-      image: '/image/katrina_screenshot.png',
+      image: '/image/katrina_screenshot.webp',
       galleryImages: [
-        '/image/katrina_screenshot.png',
+        '/image/katrina_screenshot.webp',
         '/image/katrina_about.svg',
         '/image/katrina_skills.svg',
         '/image/katrina_experience.svg',
@@ -124,7 +155,7 @@ export default function ProjectsPage() {
       image: '/image/serena_homepage.svg',
       galleryImages: [
         '/image/serena_homepage.svg',
-        '/image/serena_catalog.svg',
+        '/image/serena_catalog.webp',
         '/image/serena_bag.svg',
         '/image/serena_checkout.svg',
         '/image/serena_admin.svg',
@@ -174,14 +205,13 @@ export default function ProjectsPage() {
       tags: ['Apparel Design', 'Streetwear', 'Vector Illustration'],
       description: 'High-impact anime-inspired illustrations, custom apparel concepts, and vector streetwear graphics engineered for screen printing.',
       longDescription: 'A complete graphic apparel line combining high-contrast monochrome and neon manga aesthetics. Prepared production-ready vector color separations for silk-screen garment printing.',
-      image: '/image/zoro-t.jpg',
+      image: '/image/zoro-t.webp',
       galleryImages: [
-        '/image/zoro-t.jpg',
-        '/image/luffy-t.png',
-        '/image/zoro-t.png',
-        '/image/vs.png',
-        '/image/ng.png',
-        '/image/shanks.png'
+        '/image/zoro-t.webp',
+        '/image/luffy-t.webp',
+        '/image/vs.webp',
+        '/image/ng.webp',
+        '/image/shanks.webp'
       ],
       features: [
         'Original vector character illustrations optimized for apparel print',
@@ -198,10 +228,10 @@ export default function ProjectsPage() {
       tags: ['Gaming Logo', '3D Design', 'Esports Branding', 'Typography'],
       description: 'Custom 3D metallic blue gaming insignia, geometric monogram emblem, and futuristic typography tailored for gaming clans, esports teams, and content creators.',
       longDescription: 'Designed a high-impact 3D metallic blue gaming logo and custom geometric monogram. Features clean metallic facets, studio lighting highlights, and futuristic typography optimized for streaming overlays, team jerseys, avatars, and community merchandise.',
-      image: '/image/logo.png',
+      image: '/image/logo.webp',
       galleryImages: [
-        '/image/logo.png',
-        '/image/db.png'
+        '/image/logo.webp',
+        '/image/db.webp'
       ],
       features: [
         '3D metallic chrome finish with precision bevels and studio lighting accents',
@@ -218,10 +248,10 @@ export default function ProjectsPage() {
       tags: ['Editorial', 'Cover Art', 'Digital Books'],
       description: 'Digital publication cover art, technical typography systems, and editorial layout designs for manuals and e-books.',
       longDescription: 'Engineered visually compelling book cover art and layout structures tailored for tech and security documentation, prioritizing legibility and visual rhythm.',
-      image: '/image/chester.png',
+      image: '/image/chester.webp',
       galleryImages: [
-        '/image/chester.png',
-        '/image/duck.png'
+        '/image/chester.webp',
+        '/image/duck.webp'
       ],
       features: [
         'Dynamic digital cover art designed for high-resolution distribution',
@@ -238,9 +268,9 @@ export default function ProjectsPage() {
       tags: ['Print Design', 'Merchandise', 'Event Branding'],
       description: 'Custom event credentials, lanyard typography, and corporate identity accessories created for tech summits.',
       longDescription: 'Created physical event merchandise, sublimated woven lanyard patterns, and badge credentials ensuring maximum durability and brand visibility.',
-      image: '/image/lace.png',
+      image: '/image/lace.webp',
       galleryImages: [
-        '/image/lace.png'
+        '/image/lace.webp'
       ],
       features: [
         'Sublimated textile pattern design for wearable credentials',
@@ -256,9 +286,9 @@ export default function ProjectsPage() {
       tags: ['E-Commerce', 'Promotional Graphics', 'Visual Assets'],
       description: 'Digital storefront visual assets, promotional graphics, and conversion-focused product merchandising.',
       longDescription: 'Designed high-converting banner placements, hero banners, and promotional product tiles engineered to increase engagement and brand recognition.',
-      image: '/image/nec.jpg',
+      image: '/image/nec.webp',
       galleryImages: [
-        '/image/nec.jpg'
+        '/image/nec.webp'
       ],
       features: [
         'High-resolution promotional banners optimized for web loading speed',
@@ -276,7 +306,7 @@ export default function ProjectsPage() {
       tags: ['Security Audit', 'Staking', 'API Pentest'],
       description: 'Automated staking, masternode hosting, and integrated crypto exchange security assessment.',
       longDescription: 'Served as an Information Security Consultant and Web Penetration Tester for Stakecube. Conducted deep vulnerability scanning on trading API endpoints, cold storage gateway routines, and web transaction safety.',
-      image: '/image/sc.png',
+      image: '/image/sc.webp',
       liveUrl: 'https://stakecube.net',
       features: [
         'Comprehensive Web Application Penetration Testing (OWASP Top 10)',
@@ -293,7 +323,7 @@ export default function ProjectsPage() {
       tags: ['InfoSec Analyst', 'Crypto', 'Web Security'],
       description: 'Performed pre-deployment security testing to prevent malicious exploits and secure social transaction channels.',
       longDescription: 'Information Security Analyzer (2019–2022). Tested all website deployments, patched business logic vulnerabilities, and verified API cryptographic authentication.',
-      image: '/image/ss.png',
+      image: '/image/ss.webp',
       liveUrl: 'https://socialsend.io',
       features: [
         'Pre-production automated and manual vulnerability assessment',
@@ -310,7 +340,7 @@ export default function ProjectsPage() {
       tags: ['Encryption', 'End-to-End', 'Penetration Testing'],
       description: 'Security testing for Aercrypt end-to-end encrypted messaging services and confidential communication hubs.',
       longDescription: 'Audited end-to-end cryptographic handshakes, TLS session parameters, and server-side ephemeral message deletion routines.',
-      image: '/image/aer.jpg',
+      image: '/image/aer.webp',
       liveUrl: 'https://aercrypt.net',
       features: [
         'Cryptographic protocol audit and eavesdropping prevention',
@@ -328,7 +358,7 @@ export default function ProjectsPage() {
       tags: ['Penetration Testing', 'Web3 Security', 'Auditing'],
       description: 'Social Rewards Blockchain Platform security audits and system vulnerability assessments.',
       longDescription: 'Conducted penetration testing on social reward distribution contracts and user portal frontends to prevent automated reward exploitation.',
-      image: '/image/vitae.png',
+      image: '/image/vitae.webp',
       liveUrl: 'https://vitae.co',
       features: [
         'Auditing social reward claim endpoints against sybil attacks',
@@ -344,7 +374,7 @@ export default function ProjectsPage() {
       tags: ['PoS Currency', 'Infosec', 'Penetration Testing'],
       description: 'Penetration Tester and Information Security advisor for Proof-of-Stake cryptocurrency platform.',
       longDescription: 'Conducted web penetration testing on wallet download portals, explorer APIs, and governance voting interfaces to guarantee platform integrity.',
-      image: '/image/metrix.png',
+      image: '/image/metrix.webp',
       liveUrl: 'https://metrixcoin.com',
       features: [
         'Explorer API stress testing and SQL injection prevention',
@@ -360,7 +390,7 @@ export default function ProjectsPage() {
       tags: ['Floppygame PEPE', 'Vulnerability Assessment'],
       description: 'Performed penetration testing and vulnerability assessments for the Floppygame PEPE ecosystem.',
       longDescription: 'Evaluated web game client-server communication security to prevent score manipulation, token theft, and leaderboard spoofing.',
-      image: '/image/pepe.png',
+      image: '/image/pepe.webp',
       liveUrl: 'https://pepecoin.org',
       features: [
         'Game client websocket packet inspection and validation',
@@ -453,19 +483,8 @@ export default function ProjectsPage() {
                     <div className="w-6" />
                   </div>
 
-                  {/* Full Bleed Homepage Mockup Display */}
-                  <div className="aspect-[16/10] w-full relative overflow-hidden bg-slate-950 flex items-center justify-center p-2">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                      referrerPolicy="no-referrer"
-                      onError={(e) => {
-                        (e.target as HTMLElement).style.display = 'none';
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0D1424]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-                  </div>
+                  {/* Card Image Display */}
+                  <CardImage src={project.image} alt={project.title} />
                 </div>
 
                 {/* Project Content */}
@@ -575,38 +594,42 @@ export default function ProjectsPage() {
               {/* Close Button */}
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-4 right-4 sm:top-5 sm:right-5 w-9 h-9 rounded-full bg-white/[0.08] hover:bg-white/[0.15] text-slate-300 hover:text-white flex items-center justify-center transition-colors z-20 cursor-pointer"
+                className="absolute top-1.5 right-2 sm:top-2 sm:right-3 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-900/90 hover:bg-slate-800 text-slate-300 hover:text-white border border-white/20 flex items-center justify-center transition-all z-30 cursor-pointer shadow-lg backdrop-blur-sm"
+                aria-label="Close modal"
               >
-                <X size={18} />
+                <X size={15} />
               </button>
 
               <div className="overflow-y-auto flex-1">
                 {/* Modal Image Header with Clean Browser Mockup Frame */}
                 <div className="w-full bg-[#080D1A] border-b border-white/[0.08] flex flex-col">
                   {/* Browser Chrome Bar */}
-                  <div className="h-8 bg-[#0D1527] border-b border-white/[0.08] px-4 flex items-center justify-between shrink-0 z-10">
-                    <div className="flex items-center gap-2">
-                      <span className="w-3 h-3 rounded-full bg-[#FF5F56]" />
-                      <span className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
-                      <span className="w-3 h-3 rounded-full bg-[#27C93F]" />
+                  <div className="min-h-9 bg-[#0D1527] border-b border-white/[0.08] px-3 sm:px-4 py-1.5 flex items-center justify-between gap-2 shrink-0 z-10 pr-11 sm:pr-14">
+                    <div className="flex items-center gap-1.5 shrink-0">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
                     </div>
-                    <div className="flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#080D1A] border border-white/[0.08] text-xs font-mono text-slate-300 max-w-[340px] truncate shadow-inner">
-                      <span className="text-emerald-400 text-[10px]">🔒</span>
-                      <span className="truncate">{selectedProject.liveUrl || `https://${selectedProject.id}.app`}</span>
+
+                    <div className="flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-[#080D1A] border border-white/[0.08] text-[11px] sm:text-xs font-mono text-slate-300 min-w-0 max-w-[170px] sm:max-w-[320px] shadow-inner">
+                      <span className="text-emerald-400 text-[10px] shrink-0">🔒</span>
+                      <span className="truncate">{selectedProject.liveUrl ? selectedProject.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '') : `${selectedProject.id}.app`}</span>
                     </div>
-                    <div>
+
+                    <div className="flex items-center shrink-0">
                       {selectedProject.liveUrl ? (
                         <a
                           href={selectedProject.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="hover:text-indigo-300 text-slate-400 flex items-center gap-1 text-[11px] font-sans font-semibold transition-colors"
+                          className="hover:text-indigo-300 text-slate-300 hover:bg-white/[0.08] px-2 py-0.5 rounded-md flex items-center gap-1 text-[11px] font-sans font-semibold transition-colors whitespace-nowrap"
                         >
-                          <span>Visit Site</span>
-                          <ExternalLink size={12} />
+                          <span className="hidden sm:inline">Visit Site</span>
+                          <span className="sm:hidden text-[10px]">Open</span>
+                          <ExternalLink size={12} className="shrink-0" />
                         </a>
                       ) : (
-                        <div className="w-12" />
+                        <div className="w-6" />
                       )}
                     </div>
                   </div>
@@ -620,6 +643,7 @@ export default function ProjectsPage() {
                       transition={{ duration: 0.2 }}
                       src={activeModalImage || selectedProject.image}
                       alt={selectedProject.title}
+                      decoding="async"
                       className="max-h-[66vh] sm:max-h-[72vh] max-w-full w-auto object-contain mx-auto rounded-lg shadow-2xl transition-all"
                       referrerPolicy="no-referrer"
                     />
@@ -758,6 +782,8 @@ export default function ProjectsPage() {
                               <img
                                 src={img}
                                 alt={label}
+                                loading="lazy"
+                                decoding="async"
                                 className="w-full h-full object-contain p-0.5 rounded-lg group-hover:scale-105 transition-transform duration-300"
                                 referrerPolicy="no-referrer"
                               />

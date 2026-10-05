@@ -102,7 +102,7 @@ export default function AboutPage() {
     },
     {
       company: 'Pepecoin.org (Remote)',
-      role: 'Gaming & Ecosystem Security Tester',
+      role: 'Penetration Tester',
       period: '2023 - 2024',
       isCurrent: false,
       employmentType: 'Cybersecurity Engagement',
@@ -121,7 +121,7 @@ export default function AboutPage() {
     },
     {
       company: 'Stakecube.net (Remote)',
-      role: 'Information Security Consultant & Pentester',
+      role: 'Information Security & Pentester',
       period: '2020 - 2023',
       isCurrent: false,
       employmentType: 'Cybersecurity Engagement',
@@ -140,7 +140,7 @@ export default function AboutPage() {
     },
     {
       company: 'Aercrypt.net (Remote)',
-      role: 'Security Researcher & Cryptographic Auditor',
+      role: 'Penetration Tester',
       period: '2021 - 2023',
       isCurrent: false,
       employmentType: 'Cybersecurity Engagement',
@@ -197,7 +197,7 @@ export default function AboutPage() {
     },
     {
       company: 'Metrixcoin.com (Remote)',
-      role: 'Information Security Advisor & Pentester',
+      role: 'Information Security & Pentester',
       period: '2019 - 2022',
       isCurrent: false,
       employmentType: 'Cybersecurity Engagement',
@@ -236,7 +236,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="pt-24 pb-20 px-6 sm:px-8 max-w-7xl mx-auto space-y-16">
+    <div className="pt-24 pb-20 px-4 sm:px-8 max-w-7xl mx-auto space-y-16">
       {/* Top Banner / Intro */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -311,14 +311,9 @@ export default function AboutPage() {
                   </span>
                 </div>
               </div>
-              <span className={`text-[11px] font-mono px-2.5 py-0.5 rounded-full border ${
-                isDark ? 'text-indigo-400 bg-indigo-500/10 border-indigo-500/20' : 'text-indigo-600 bg-indigo-50 border-indigo-200 font-semibold'
-              }`}>
-                {resumeSkills.length} Skills
-              </span>
             </div>
 
-            {/* Redesigned 2-Column Clean Skill Tiles */}
+            {/* Skill Tiles */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
               {resumeSkills.map((skill, index) => {
                 const Icon = skill.icon;
@@ -350,7 +345,7 @@ export default function AboutPage() {
         </div>
       </motion.div>
 
-      {/* Redesigned Experience & Career Section */}
+      {/* Experience Section */}
       <section className="space-y-8">
         <div className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b ${
           isDark ? 'border-white/[0.08]' : 'border-slate-200'
@@ -408,7 +403,7 @@ export default function AboutPage() {
                 </div>
 
                 {/* Experience Card */}
-                <div className={`p-6 sm:p-7 flex-1 w-full space-y-5 rounded-3xl border transition-all ${
+                <div className={`p-4 sm:p-7 flex-1 w-full space-y-5 rounded-3xl border transition-all ${
                   isDark
                     ? 'bg-[#0D1424] border-white/[0.08] group-hover:border-indigo-500/40'
                     : 'bg-white border-slate-200 shadow-sm group-hover:border-indigo-400 group-hover:shadow-md'
@@ -417,33 +412,36 @@ export default function AboutPage() {
                   <div className={`flex flex-col lg:flex-row lg:items-center justify-between gap-3 border-b pb-4 ${
                     isDark ? 'border-white/[0.06]' : 'border-slate-100'
                   }`}>
-                    <div className="space-y-1">
-                      <div className="flex flex-wrap items-center gap-2.5">
-                        <h3 className={`text-lg sm:text-xl font-bold transition-colors ${
+                    <div className="space-y-1.5 w-full lg:w-auto">
+                      <div className="flex items-center justify-between sm:justify-start gap-2 sm:gap-2.5">
+                        <h3 className={`text-[15px] sm:text-xl font-bold transition-colors leading-snug ${
                           isDark ? 'text-white group-hover:text-indigo-300' : 'text-slate-900 group-hover:text-indigo-600'
                         }`}>
                           {exp.role}
                         </h3>
                         {exp.isCurrent && (
-                          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-600 border border-emerald-500/25">
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                          <span className="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/10 text-emerald-600 border border-emerald-500/25 whitespace-nowrap">
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
                             Recent
                           </span>
                         )}
                       </div>
 
-                      <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-medium">
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-0.5 sm:gap-2 text-xs sm:text-sm font-medium">
                         <span className={`flex items-center gap-1.5 font-semibold ${isDark ? 'text-indigo-300' : 'text-indigo-600'}`}>
-                          <Building2 size={14} className="text-indigo-500" />
-                          {exp.company}
+                          <Building2 size={14} className="hidden sm:inline-block text-indigo-500 shrink-0" />
+                          <span>{exp.company}</span>
+                          <Building2 size={13} className="sm:hidden text-indigo-400 shrink-0" />
                         </span>
-                        <span className={isDark ? 'text-slate-600' : 'text-slate-300'}>•</span>
-                        <span className={isDark ? 'text-slate-400' : 'text-slate-600'}>{exp.employmentType}</span>
+                        <span className={`hidden sm:inline ${isDark ? 'text-slate-600' : 'text-slate-300'}`}>•</span>
+                        <span className={`text-[11px] sm:text-xs font-normal sm:font-medium ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                          {exp.employmentType}
+                        </span>
                       </div>
                     </div>
 
                     {/* Period & Category Badges */}
-                    <div className="flex flex-wrap items-center gap-2 self-start lg:self-center">
+                    <div className="flex flex-wrap items-center gap-2 pt-0.5 sm:pt-0 self-start lg:self-center">
                       <span className={`inline-flex items-center gap-1 text-xs font-mono px-3 py-1 rounded-full border ${
                         isDark ? 'text-slate-300 bg-white/[0.05] border-white/[0.08]' : 'text-slate-700 bg-slate-100 border-slate-200'
                       }`}>
@@ -483,11 +481,11 @@ export default function AboutPage() {
                   </div>
 
                   {/* Tech Stack Tags */}
-                  <div className="pt-2 flex flex-wrap items-center gap-1.5">
+                  <div className="pt-2 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:items-center sm:gap-1.5">
                     {exp.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className={`text-[11px] font-medium border px-2.5 py-0.5 rounded-md transition-colors ${
+                        className={`text-[11px] font-medium border px-2.5 py-1.5 sm:py-0.5 rounded-lg sm:rounded-md transition-colors flex items-center justify-center text-center last:odd:col-span-2 sm:last:odd:col-span-1 min-h-[30px] sm:min-h-0 sm:w-auto leading-tight ${
                           isDark
                             ? 'text-slate-300 bg-white/[0.04] hover:bg-white/[0.08] hover:text-white border-white/[0.06]'
                             : 'text-slate-700 bg-slate-100 hover:bg-slate-200 border-slate-200'

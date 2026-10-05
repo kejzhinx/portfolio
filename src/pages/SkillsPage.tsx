@@ -376,7 +376,7 @@ export default function SkillsPage() {
         isDark ? 'border-white/[0.08]' : 'border-slate-200'
       }`}>
         {/* Category Tabs */}
-        <div className={`flex flex-wrap items-center gap-2 p-1.5 rounded-2xl backdrop-blur-md ${
+        <div className={`flex items-center overflow-x-auto no-scrollbar scroll-smooth gap-1.5 sm:gap-2 p-1.5 rounded-2xl backdrop-blur-md sm:flex-wrap w-full sm:w-auto max-w-full ${
           isDark ? 'bg-white/[0.03] border border-white/[0.08]' : 'bg-slate-100 border border-slate-200 shadow-sm'
         }`}>
           {[
@@ -389,7 +389,7 @@ export default function SkillsPage() {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as any)}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold tracking-wide transition-all cursor-pointer ${
+              className={`shrink-0 whitespace-nowrap px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs font-semibold tracking-wide transition-all cursor-pointer ${
                 activeTab === tab.id
                   ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
                   : isDark

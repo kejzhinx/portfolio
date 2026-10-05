@@ -40,10 +40,10 @@ export default function ContactPage() {
         setStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
-        setStatus('success'); // Fallback graceful success for UI feedback
+        setStatus('error');
       }
     } catch {
-      setStatus('success'); // Ensure user gets reassurance
+      setStatus('error');
     }
   };
 
@@ -76,7 +76,7 @@ export default function ContactPage() {
 
   return (
     <div className="pt-24 pb-20 px-6 sm:px-8 max-w-7xl mx-auto space-y-12">
-      {/* Top Hero Banner matching screenshot bottom banner */}
+      {/* Top Banner */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

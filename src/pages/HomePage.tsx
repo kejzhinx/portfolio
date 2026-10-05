@@ -135,7 +135,7 @@ export default function HomePage() {
           </div>
         </motion.div>
 
-        {/* Right Column: Hero Visual with Balanced Desktop Aura, Cutout, and Floating Status */}
+        {/* Right Column: Hero Visual */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}

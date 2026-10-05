@@ -399,7 +399,7 @@ export default function ProjectsPage() {
         </div>
       </motion.div>
 
-      {/* Filter Tabs - Responsive wrapping and clean pill styling */}
+      {/* Filter Tabs */}
       <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-10 pb-4 border-b border-white/[0.08]">
         {[
           { id: 'all', label: 'All Projects' },
@@ -435,12 +435,12 @@ export default function ProjectsPage() {
               className="card-surface overflow-hidden flex flex-col justify-between group hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-950/40 transition-all duration-300 h-full"
             >
               <div>
-                {/* Project Image Preview Box - Clean Browser Mockup Frame */}
+                {/* Project Image Preview */}
                 <div
                   onClick={() => openProjectModal(project)}
                   className="w-full bg-[#080D1A] relative overflow-hidden cursor-pointer border-b border-white/[0.08] flex flex-col group/thumb"
                 >
-                  {/* Browser Mockup Header Bar for Web & App Projects */}
+                  {/* Browser Header Bar */}
                   <div className="h-6 bg-[#0E1628] border-b border-white/[0.06] px-3 flex items-center justify-between z-10 shrink-0">
                     <div className="flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full bg-[#FF5F56]/80" />
@@ -611,7 +611,7 @@ export default function ProjectsPage() {
                     </div>
                   </div>
 
-                  {/* Viewport Canvas - Fits the whole mockup completely without cutting anything off */}
+                  {/* Viewport Canvas */}
                   <div className="w-full min-h-[380px] sm:min-h-[480px] max-h-[72vh] sm:max-h-[78vh] bg-[#070B14] flex items-center justify-center relative overflow-hidden p-3 sm:p-6">
                     <motion.img
                       key={activeModalImage || selectedProject.image}
@@ -649,7 +649,7 @@ export default function ProjectsPage() {
                     {selectedProject.longDescription}
                   </p>
 
-                  {/* Gallery of developed site screenshots (with dark mode and developed pages) */}
+                  {/* Gallery */}
                   {selectedProject.galleryImages && selectedProject.galleryImages.length > 1 && (
                     <div className="space-y-3 pt-2">
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">

@@ -22,26 +22,14 @@ interface ProjectItem {
 }
 
 function CardImage({ src, alt }: { src: string; alt: string }) {
-  const [loaded, setLoaded] = useState(false);
-
   return (
     <div className="aspect-[16/10] w-full relative overflow-hidden bg-[#080D1A] flex items-center justify-center p-2">
-      {!loaded && (
-        <div className="absolute inset-0 bg-slate-900/80 animate-pulse flex items-center justify-center">
-          <div className="w-7 h-7 rounded-lg bg-indigo-500/15 border border-indigo-500/25 flex items-center justify-center">
-            <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-ping" />
-          </div>
-        </div>
-      )}
       <img
         src={src}
         alt={alt}
-        loading="lazy"
+        loading="eager"
         decoding="async"
-        onLoad={() => setLoaded(true)}
-        className={`w-full h-full object-contain group-hover:scale-105 transition-all duration-300 ${
-          loaded ? 'opacity-100' : 'opacity-0'
-        }`}
+        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
         referrerPolicy="no-referrer"
         onError={(e) => {
           (e.target as HTMLElement).style.display = 'none';
@@ -578,12 +566,7 @@ export default function ProjectsPage() {
   return (
     <div className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="space-y-4 mb-8 sm:mb-10 text-center sm:text-left"
-      >
+      <div className="space-y-4 mb-8 sm:mb-10 text-center sm:text-left">
         <div className="badge-pill self-center sm:self-start">
           <Sparkles size={14} className="text-indigo-400" />
           <span>My Projects</span>
@@ -597,7 +580,7 @@ export default function ProjectsPage() {
             A comprehensive showcase of applications, cybersecurity audits, and creative graphics & design assets.
           </p>
         </div>
-      </motion.div>
+      </div>
 
       {/* Filter Tabs */}
       <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-10 pb-4 border-b border-white/[0.08]">
@@ -623,18 +606,11 @@ export default function ProjectsPage() {
 
       {/* 3-Column Card Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-        <AnimatePresence mode="popLayout">
-          {filteredProjects.map((project, idx) => (
-            <motion.div
-              key={project.id}
-              layout
-              initial={{ opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-20px' }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.4, delay: idx * 0.03, ease: 'easeOut' }}
-              className="card-surface overflow-hidden flex flex-col justify-between group hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-950/40 transition-all duration-300 h-full"
-            >
+        {filteredProjects.map((project) => (
+          <div
+            key={project.id}
+            className="card-surface overflow-hidden flex flex-col justify-between group hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-950/40 transition-all duration-300 h-full"
+          >
               <div>
                 {/* Project Image Preview */}
                 <div
@@ -744,9 +720,8 @@ export default function ProjectsPage() {
                   )}
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </AnimatePresence>
       </div>
 
       {/* Project Details Modal */}
@@ -766,48 +741,44 @@ export default function ProjectsPage() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.3 }}
-              className="relative w-full max-w-3xl bg-[#0D1424] border border-white/[0.12] rounded-3xl shadow-2xl overflow-hidden z-10 my-8 max-h-[90vh] flex flex-col"
+              className="relative w-full max-w-3xl bg-[#0D1424] border border-white/[0.12] rounded-3xl shadow-2xl z-10 mt-14 mb-4 sm:my-8 max-h-[84vh] sm:max-h-[90vh] flex flex-col overflow-hidden"
             >
-              {/* Close Button */}
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="absolute top-1.5 right-2 sm:top-2 sm:right-3 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-slate-900/90 hover:bg-slate-800 text-slate-300 hover:text-white border border-white/20 flex items-center justify-center transition-all z-30 cursor-pointer shadow-lg backdrop-blur-sm"
-                aria-label="Close modal"
-              >
-                <X size={15} />
-              </button>
-
-              <div className="overflow-y-auto flex-1">
+              <div className="overflow-y-auto flex-1 rounded-3xl">
                 {/* Modal Image Header with Clean Browser Mockup Frame */}
                 <div className="w-full bg-[#080D1A] border-b border-white/[0.08] flex flex-col">
                   {/* Browser Chrome Bar */}
-                  <div className="min-h-9 bg-[#0D1527] border-b border-white/[0.08] px-3 sm:px-4 py-1.5 flex items-center justify-between gap-2 shrink-0 z-10 pr-11 sm:pr-14">
+                  <div className="min-h-10 bg-[#0D1527] border-b border-white/[0.08] px-3 sm:px-4 py-2 flex items-center justify-between gap-2 shrink-0 z-10">
                     <div className="flex items-center gap-1.5 shrink-0">
                       <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
                       <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
                       <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
                     </div>
 
-                    <div className="flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-[#080D1A] border border-white/[0.08] text-[11px] sm:text-xs font-mono text-slate-300 min-w-0 max-w-[170px] sm:max-w-[320px] shadow-inner">
+                    <div className="flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-[#080D1A] border border-white/[0.08] text-[11px] sm:text-xs font-mono text-slate-300 min-w-0 max-w-[150px] sm:max-w-[320px] shadow-inner truncate">
                       <span className="text-emerald-400 text-[10px] shrink-0">🔒</span>
                       <span className="truncate">{selectedProject.liveUrl ? selectedProject.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '') : `${selectedProject.id}.app`}</span>
                     </div>
 
-                    <div className="flex items-center shrink-0">
-                      {selectedProject.liveUrl ? (
+                    <div className="flex items-center gap-2 shrink-0">
+                      {selectedProject.liveUrl && (
                         <a
                           href={selectedProject.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="hover:text-indigo-300 text-slate-300 hover:bg-white/[0.08] px-2 py-0.5 rounded-md flex items-center gap-1 text-[11px] font-sans font-semibold transition-colors whitespace-nowrap"
+                          className="hover:text-indigo-300 text-slate-300 hover:bg-white/[0.08] px-2 py-1 rounded-md flex items-center gap-1 text-[11px] font-sans font-semibold transition-colors whitespace-nowrap"
                         >
                           <span className="hidden sm:inline">Visit Site</span>
                           <span className="sm:hidden text-[10px]">Open</span>
                           <ExternalLink size={12} className="shrink-0" />
                         </a>
-                      ) : (
-                        <div className="w-6" />
                       )}
+                      <button
+                        onClick={() => setSelectedProject(null)}
+                        className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer shadow-md"
+                        aria-label="Close modal"
+                      >
+                        <X size={16} />
+                      </button>
                     </div>
                   </div>
 

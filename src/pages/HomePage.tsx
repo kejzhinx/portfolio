@@ -103,12 +103,7 @@ export default function HomePage() {
 
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 xl:gap-16 items-center relative z-10 py-6 lg:py-12">
         {/* Left Column: Text & Call-To-Actions */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 sm:space-y-6 w-full order-2 lg:order-1"
-        >
+        <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 sm:space-y-6 w-full order-2 lg:order-1">
           {/* Greeting Badge */}
           <div className="badge-pill">
             <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
@@ -201,15 +196,10 @@ export default function HomePage() {
               </a>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Right Column: Hero Visual */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="lg:col-span-5 flex flex-col items-center justify-center w-full order-1 lg:order-2"
-        >
+        <div className="lg:col-span-5 flex flex-col items-center justify-center w-full order-1 lg:order-2">
           {/* Main Visual Frame */}
           <div className="relative w-full max-w-[280px] sm:max-w-[380px] lg:max-w-[460px] xl:max-w-[500px] aspect-[4/5] lg:aspect-[3/4] flex items-center justify-center mx-auto">
             {/* Outer Ambient Glow Capsule */}
@@ -585,7 +575,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );

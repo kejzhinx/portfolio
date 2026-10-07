@@ -347,12 +347,7 @@ export default function SkillsPage() {
   return (
     <div className="pt-24 pb-20 px-6 sm:px-8 max-w-7xl mx-auto">
       {/* Header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="space-y-4 mb-10"
-      >
+      <div className="space-y-4 mb-10">
         <div className="badge-pill">
           <Sparkles size={14} className="text-indigo-400" />
           <span>My Skills</span>
@@ -369,7 +364,7 @@ export default function SkillsPage() {
         }`}>
           A combination of modern programming languages, security assessment utilities, and creative design tools to build responsive, secure, and visually appealing applications.
         </p>
-      </motion.div>
+      </div>
 
       {/* Filter Tabs & Search Bar */}
       <div className={`flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-10 pb-6 border-b ${
@@ -423,22 +418,15 @@ export default function SkillsPage() {
 
       {/* Skills Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
-        <AnimatePresence mode="popLayout">
-          {filteredSkills.map((skill, idx) => (
-            <motion.div
-              key={skill.name}
-              layout
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-20px' }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.4, delay: idx * 0.02, ease: 'easeOut' }}
-              className={`p-5 flex flex-col justify-between group hover:-translate-y-1 transition-all h-full rounded-2xl border ${
-                isDark
-                  ? 'bg-[#0D1424] border-white/[0.08] hover:border-indigo-500/40'
-                  : 'bg-white border-slate-200 shadow-sm hover:shadow-md hover:border-indigo-400'
-              }`}
-            >
+        {filteredSkills.map((skill) => (
+          <div
+            key={skill.name}
+            className={`p-5 flex flex-col justify-between group hover:-translate-y-1 transition-all h-full rounded-2xl border ${
+              isDark
+                ? 'bg-[#0D1424] border-white/[0.08] hover:border-indigo-500/40'
+                : 'bg-white border-slate-200 shadow-sm hover:shadow-md hover:border-indigo-400'
+            }`}
+          >
               <div className="space-y-4">
                 {/* Icon & Category */}
                 <div className="flex items-center justify-between">
@@ -474,9 +462,8 @@ export default function SkillsPage() {
                   isDark ? 'text-slate-400' : 'text-slate-600'
                 }`}>{skill.description}</p>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </AnimatePresence>
       </div>
     </div>
   );

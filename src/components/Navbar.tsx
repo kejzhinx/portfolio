@@ -78,14 +78,12 @@ export default function Navbar() {
                 <>
                   <span className="relative z-10">{item.label}</span>
                   {isActive && (
-                    <motion.div
-                      layoutId="activeNavPill"
+                    <div
                       className={`absolute inset-0 rounded-full shadow-sm ${
                         isDark 
                           ? 'bg-indigo-600/30 border border-indigo-500/40 shadow-indigo-500/20' 
                           : 'bg-white border border-slate-300/80 shadow-slate-200'
                       }`}
-                      transition={{ type: 'spring', bounce: 0.2, duration: 0.5 }}
                     />
                   )}
                 </>

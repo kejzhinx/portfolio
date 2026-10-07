@@ -238,12 +238,7 @@ export default function AboutPage() {
   return (
     <div className="pt-24 pb-20 px-4 sm:px-8 max-w-7xl mx-auto space-y-16">
       {/* Top Banner / Intro */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="space-y-4"
-      >
+      <div className="space-y-4">
         <div className="badge-pill">
           <Sparkles size={14} className="text-indigo-400" />
           <span>About Me</span>
@@ -315,14 +310,11 @@ export default function AboutPage() {
 
             {/* Skill Tiles */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              {resumeSkills.map((skill, index) => {
+              {resumeSkills.map((skill) => {
                 const Icon = skill.icon;
                 return (
-                  <motion.div
+                  <div
                     key={skill.name}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.03, duration: 0.25 }}
                     className={`flex items-center gap-2.5 p-3 rounded-2xl border transition-all group ${
                       isDark
                         ? 'bg-[#080D1A]/80 border-white/[0.06] hover:bg-[#0B1224] hover:border-indigo-500/40'
@@ -337,13 +329,13 @@ export default function AboutPage() {
                     }`}>
                       {skill.name}
                     </span>
-                  </motion.div>
+                  </div>
                 );
               })}
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Experience Section */}
       <section className="space-y-8">

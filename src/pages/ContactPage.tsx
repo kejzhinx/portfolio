@@ -77,10 +77,7 @@ export default function ContactPage() {
   return (
     <div className="pt-24 pb-20 px-6 sm:px-8 max-w-7xl mx-auto space-y-12">
       {/* Top Banner */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+      <div
         className={`relative overflow-hidden rounded-[2.5rem] p-8 sm:p-12 transition-all ${
           isDark
             ? 'bg-gradient-to-r from-indigo-950/80 via-[#0D1424] to-violet-950/70 border border-indigo-500/30 shadow-2xl'
@@ -152,15 +149,12 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Main Grid: Form & Channels */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Contact Form */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+        <div
           className={`lg:col-span-7 p-6 sm:p-10 rounded-3xl border transition-all ${
             isDark ? 'bg-[#0D1424] border-white/[0.08]' : 'bg-white border-slate-200 shadow-sm'
           }`}
@@ -278,7 +272,7 @@ export default function ContactPage() {
               </p>
             )}
           </form>
-        </motion.div>
+        </div>
 
         {/* Direct Channels Cards */}
         <div className="lg:col-span-5 space-y-4">

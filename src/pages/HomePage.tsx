@@ -202,32 +202,188 @@ export default function HomePage() {
         <div className="lg:col-span-5 flex flex-col items-center justify-center w-full order-1 lg:order-2">
           {/* Main Visual Frame */}
           <div className="relative w-full max-w-[280px] sm:max-w-[380px] lg:max-w-[460px] xl:max-w-[500px] aspect-[4/5] lg:aspect-[3/4] flex items-center justify-center mx-auto">
-            {/* Outer Ambient Glow Capsule */}
+            {/* Electric Blue Mystical Portal Outer Radiance */}
             <div
-              className={`absolute w-[88%] h-[92%] rounded-[140px] sm:rounded-[190px] lg:rounded-[210px] pointer-events-none transition-all duration-300 blur-[35px] ${
-                isDark
-                  ? 'bg-gradient-to-b from-indigo-500/35 via-violet-600/30 to-indigo-500/35'
-                  : 'bg-gradient-to-b from-indigo-500/50 via-violet-500/45 to-indigo-600/45'
-              }`}
+              className="absolute w-[86%] sm:w-[84%] h-[92%] sm:h-[90%] rounded-[140px] sm:rounded-[185px] lg:rounded-[205px] pointer-events-none blur-[28px] sm:blur-[38px] opacity-85 z-0"
+              style={{
+                background: 'radial-gradient(ellipse at center, rgba(0, 240, 255, 0.3) 0%, rgba(99, 102, 241, 0.55) 60%, rgba(59, 130, 246, 0.7) 100%)',
+              }}
             />
 
-            {/* Glowing Backdrop Capsule Shape */}
+            {/* Electric Blue Portal Rim (Whole perimeter continuous glowing mystical energy) */}
             <div
-              className={`absolute w-[80%] sm:w-[78%] h-[88%] sm:h-[86%] rounded-[130px] sm:rounded-[170px] lg:rounded-[190px] pointer-events-none transition-all duration-300 overflow-hidden ${
-                isDark
-                  ? 'bg-gradient-to-b from-[#3730A3] via-[#4338CA] to-[#2C2475] border-2 border-indigo-400/50'
-                  : 'bg-gradient-to-b from-[#4338CA] via-[#4F46E5] to-[#3730A3] border-2 border-indigo-300/80 ring-1 ring-white/60'
-              }`}
+              className="absolute w-[80%] sm:w-[78%] h-[88%] sm:h-[86%] rounded-[130px] sm:rounded-[170px] lg:rounded-[190px] pointer-events-none p-[3px] sm:p-[3.5px] overflow-hidden z-0"
               style={{
-                boxShadow: isDark
-                  ? '0 0 60px rgba(99, 102, 241, 0.5), 0 0 100px rgba(139, 92, 246, 0.3), inset 0 0 30px rgba(165, 180, 252, 0.35)'
-                  : '0 0 45px rgba(99, 102, 241, 0.65), 0 20px 50px -10px rgba(30, 27, 75, 0.45), 0 0 80px rgba(129, 140, 248, 0.4), inset 0 0 30px rgba(255, 255, 255, 0.5), inset 0 0 50px rgba(99, 102, 241, 0.3)',
+                boxShadow: '0 0 30px rgba(0, 240, 255, 0.8), 0 0 65px rgba(99, 102, 241, 0.6), 0 0 95px rgba(59, 130, 246, 0.4), inset 0 0 25px rgba(99, 102, 241, 0.5)',
               }}
             >
-              {/* Inner Gradient Lighting & Shine */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/[0.08] to-white/20 pointer-events-none" />
-              <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/20 to-transparent pointer-events-none" />
+              {/* Electric Plasma Layer 1: Clockwise Swirling Cyan & Indigo Energy */}
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+                className="absolute inset-[-160%] pointer-events-none"
+                style={{
+                  background: `conic-gradient(
+                    from 0deg,
+                    #00F0FF 0deg,
+                    #3B82F6 25deg,
+                    #E0E7FF 50deg,
+                    #6366F1 75deg,
+                    #38BDF8 100deg,
+                    #818CF8 130deg,
+                    #FFFFFF 160deg,
+                    #2563EB 190deg,
+                    #00F0FF 220deg,
+                    #6366F1 250deg,
+                    #E0F2FE 280deg,
+                    #1D4ED8 310deg,
+                    #38BDF8 335deg,
+                    #00F0FF 360deg
+                  )`,
+                  opacity: 0.95,
+                }}
+              />
+
+              {/* Electric Plasma Layer 2: Counter-Clockwise Crackling White-Hot Lightning Arcs */}
+              <motion.div
+                animate={{ rotate: -360 }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: 'linear' }}
+                className="absolute inset-[-160%] pointer-events-none mix-blend-screen"
+                style={{
+                  background: `conic-gradient(
+                    from 30deg,
+                    #FFFFFF 0deg,
+                    rgba(0, 240, 255, 0.3) 25deg,
+                    #6366F1 55deg,
+                    #FFFFFF 85deg,
+                    rgba(59, 130, 246, 0.25) 115deg,
+                    #00F0FF 145deg,
+                    #818CF8 175deg,
+                    #FFFFFF 205deg,
+                    rgba(147, 197, 253, 0.25) 235deg,
+                    #38BDF8 265deg,
+                    #FFFFFF 295deg,
+                    #6366F1 325deg,
+                    #FFFFFF 360deg
+                  )`,
+                  opacity: 0.9,
+                }}
+              />
+
+              {/* Inner Portal Gateway (Deep Theme Navy/Indigo Chamber) */}
+              <div
+                className={`relative w-full h-full rounded-[127px] sm:rounded-[167px] lg:rounded-[187px] overflow-hidden ${
+                  isDark
+                    ? 'bg-gradient-to-b from-[#1E1B4B] via-[#2E2875] to-[#17133D]'
+                    : 'bg-gradient-to-b from-[#312E81] via-[#3730A3] to-[#1E1B4B]'
+                }`}
+                style={{
+                  boxShadow: 'inset 0 0 35px rgba(0, 240, 255, 0.4), inset 0 0 70px rgba(99, 102, 241, 0.35)',
+                }}
+              >
+                {/* Inner Ambient Glow & Cosmic Light */}
+                <div className="absolute inset-0 bg-radial from-cyan-400/15 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-cyan-200/[0.08] to-indigo-400/20 pointer-events-none" />
+                <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-cyan-300/15 to-transparent pointer-events-none" />
+              </div>
             </div>
+
+            {/* Circling Electric Doctor Strange Spark Animation */}
+            <svg
+              className="absolute w-[80%] sm:w-[78%] h-[88%] sm:h-[86%] pointer-events-none overflow-visible z-20"
+              viewBox="0 0 300 380"
+              preserveAspectRatio="none"
+            >
+              <defs>
+                {/* Intense Electric Cyan & White Spark Glow Filter */}
+                <filter id="portalSparkGlow" x="-60%" y="-60%" width="220%" height="220%">
+                  <feGaussianBlur stdDeviation="3.5" result="glow1" />
+                  <feGaussianBlur stdDeviation="9" result="glow2" />
+                  <feMerge>
+                    <feMergeNode in="glow2" />
+                    <feMergeNode in="glow1" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+
+              {/* Circling Spark - Wide Cyan Diffuse Energy Aura */}
+              <motion.rect
+                x="3"
+                y="3"
+                width="294"
+                height="374"
+                rx="130"
+                ry="130"
+                fill="none"
+                stroke="#00F0FF"
+                strokeWidth="10"
+                strokeLinecap="round"
+                strokeOpacity="0.55"
+                pathLength="100"
+                strokeDasharray="22 78"
+                animate={{ strokeDashoffset: [0, -100] }}
+                transition={{ duration: 3.2, repeat: Infinity, ease: 'linear' }}
+                style={{ filter: 'blur(5px)' }}
+              />
+
+              {/* Circling Spark - Electric Blue Comet Tail */}
+              <motion.rect
+                x="3"
+                y="3"
+                width="294"
+                height="374"
+                rx="130"
+                ry="130"
+                fill="none"
+                stroke="#38BDF8"
+                strokeWidth="4.5"
+                strokeLinecap="round"
+                pathLength="100"
+                strokeDasharray="16 84"
+                animate={{ strokeDashoffset: [0, -100] }}
+                transition={{ duration: 3.2, repeat: Infinity, ease: 'linear' }}
+                filter="url(#portalSparkGlow)"
+              />
+
+              {/* Circling Spark - White-Hot Blazing Spark Core */}
+              <motion.rect
+                x="3"
+                y="3"
+                width="294"
+                height="374"
+                rx="130"
+                ry="130"
+                fill="none"
+                stroke="#FFFFFF"
+                strokeWidth="5.5"
+                strokeLinecap="round"
+                pathLength="100"
+                strokeDasharray="5 95"
+                animate={{ strokeDashoffset: [0, -100] }}
+                transition={{ duration: 3.2, repeat: Infinity, ease: 'linear' }}
+                filter="url(#portalSparkGlow)"
+              />
+
+              {/* Trailing Crackling Spark Ember (Secondary sparklet chasing closely behind) */}
+              <motion.rect
+                x="3"
+                y="3"
+                width="294"
+                height="374"
+                rx="130"
+                ry="130"
+                fill="none"
+                stroke="#00F0FF"
+                strokeWidth="3.5"
+                strokeLinecap="round"
+                pathLength="100"
+                strokeDasharray="2 98"
+                animate={{ strokeDashoffset: [7, -93] }}
+                transition={{ duration: 3.2, repeat: Infinity, ease: 'linear' }}
+                filter="url(#portalSparkGlow)"
+              />
+            </svg>
 
             {/* Grounding Floor Shadow */}
             <div className={`absolute bottom-1 left-1/2 -translate-x-1/2 w-3/4 h-6 blur-md rounded-full pointer-events-none z-0 ${

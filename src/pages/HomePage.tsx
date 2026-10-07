@@ -1,10 +1,78 @@
-import { motion } from 'motion/react';
+import { useState, type MouseEvent } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, Mail, Github, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 
 export default function HomePage() {
   const { isDark } = useTheme();
+  const [activeClickId, setActiveClickId] = useState<string | null>(null);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
+  const [clickFeedback, setClickFeedback] = useState<{ id: string; text: string } | null>(null);
+
+  // Synthesized delightful pop sound using Web Audio API
+  const playPopSound = (pitch = 440) => {
+    try {
+      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(pitch, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(pitch * 1.55, ctx.currentTime + 0.11);
+      gain.gain.setValueAtTime(0.14, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.13);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.13);
+    } catch {
+      // AudioContext unavailable or muted - safely ignore
+    }
+  };
+
+  const handleIconClick = (
+    e: MouseEvent,
+    id: string,
+    actionLabel: string,
+    pitch: number,
+    href?: string
+  ) => {
+    playPopSound(pitch);
+    setActiveClickId(id);
+    setClickFeedback({ id, text: actionLabel });
+
+    if (id === 'discord') {
+      try {
+        navigator.clipboard?.writeText('kejzhin');
+      } catch {
+        // clipboard fallback
+      }
+    }
+
+    if (id === 'gmail') {
+      e.preventDefault();
+      try {
+        navigator.clipboard?.writeText('jericdelosreyes127001@gmail.com');
+      } catch {
+        // clipboard fallback
+      }
+      setTimeout(() => {
+        if (href) {
+          window.location.href = href;
+        }
+      }, 650);
+    }
+
+    setTimeout(() => {
+      setActiveClickId((prev) => (prev === id ? null : prev));
+    }, 800);
+
+    setTimeout(() => {
+      setClickFeedback((prev) => (prev?.id === id ? null : prev));
+    }, 2400);
+  };
 
   return (
     <div className={`relative min-h-[calc(100vh-76px)] flex items-center justify-center pt-24 sm:pt-28 lg:pt-0 pb-12 lg:pb-0 px-4 sm:px-6 lg:px-10 overflow-x-hidden transition-colors duration-300 ${
@@ -189,6 +257,288 @@ export default function HomePage() {
                 referrerPolicy="no-referrer"
               />
 
+              {/* Floating Social Media & Tech Icons Scattered (Sabog-Sabog) Organic Constellation */}
+              {[
+                {
+                  id: 'discord',
+                  name: 'Discord',
+                  actionLabel: '💬 Discord @kejzhin Copied!',
+                  category: 'Community',
+                  x: '2%',
+                  y: '68%',
+                  rot: -7,
+                  floatY: 5,
+                  floatX: 3,
+                  duration: 5.2,
+                  delay: 0.1,
+                  pitch: 340,
+                  accentColor: '#5865F2',
+                  bg: 'bg-[#5865F2]',
+                  border: 'border border-[#7289DA]/50',
+                  rounded: 'rounded-2xl',
+                  icon: (
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="white">
+                      <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
+                    </svg>
+                  ),
+                },
+                {
+                  id: 'github',
+                  name: 'GitHub',
+                  actionLabel: '🚀 Opening GitHub @kejzhin...',
+                  category: 'Code',
+                  href: 'https://github.com/kejzhin',
+                  x: '10%',
+                  y: '44%',
+                  rot: 5,
+                  floatY: 4,
+                  floatX: 2,
+                  duration: 4.1,
+                  delay: 0.6,
+                  pitch: 390,
+                  accentColor: '#E6EDF3',
+                  bg: 'bg-[#181717]',
+                  border: 'border border-white/20',
+                  rounded: 'rounded-full',
+                  icon: (
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="white">
+                      <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017C2 16.446 4.87 20.198 8.84 21.52C9.34 21.61 9.53 21.3 9.53 21.03C9.53 20.79 9.52 19.99 9.52 19.14C6.73 19.75 6.14 17.8 6.14 17.8C5.68 16.64 5.03 16.33 5.03 16.33C4.12 15.71 5.1 15.72 5.1 15.72C6.1 15.79 6.63 16.76 6.63 16.76C7.52 18.29 8.97 17.85 9.54 17.59C9.63 16.94 9.89 16.5 10.18 16.25C7.95 16 5.6 15.14 5.6 11.31C5.6 10.22 5.99 9.32 6.63 8.63C6.53 8.38 6.18 7.36 6.73 5.99C6.73 5.99 7.57 5.72 9.48 7.01C10.28 6.79 11.13 6.68 11.98 6.68C12.83 6.68 13.68 6.79 14.48 7.01C16.39 5.72 17.23 5.99 17.23 5.99C17.78 7.36 17.43 8.38 17.33 8.63C17.97 9.32 18.36 10.22 18.36 11.31C18.36 15.15 16 16 13.77 16.25C14.13 16.56 14.46 17.18 14.46 18.13C14.46 19.49 14.45 20.59 14.45 20.92C14.45 21.19 14.64 21.51 15.15 21.41C19.13 20.08 22 16.34 22 11.917C22 6.484 17.522 2 12 2Z" />
+                    </svg>
+                  ),
+                },
+                {
+                  id: 'upwork',
+                  name: 'Upwork',
+                  actionLabel: '💼 Upwork • Hire @kejzhin',
+                  category: 'Freelance',
+                  href: 'https://www.upwork.com',
+                  x: '2%',
+                  y: '20%',
+                  rot: -4,
+                  floatY: 6,
+                  floatX: 3,
+                  duration: 5.4,
+                  delay: 1.0,
+                  pitch: 440,
+                  accentColor: '#14A800',
+                  bg: 'bg-[#14A800]',
+                  border: 'border border-emerald-400/40',
+                  rounded: 'rounded-xl',
+                  icon: (
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="white">
+                      <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-3.13 0-5.467 2.122-6.284 5.372-1.745-2.28-2.617-4.887-2.923-7.39H6.35c.348 3.526 1.635 6.953 3.791 9.771l-1.396 6.578H5.74V7h-3v12.35h3.004l1.196-5.636c1.17 1.054 2.61 1.768 4.225 1.954l-1.29 6.074h3.053l1.248-5.882c.983.313 2.052.484 3.197.484 3.737 0 6.776-3.04 6.776-6.776 0-3.734-3.04-6.748-6.776-6.748z" />
+                    </svg>
+                  ),
+                },
+                {
+                  id: 'fiverr',
+                  name: 'Fiverr',
+                  actionLabel: '✨ Fiverr • Order Gigs @kejzhin',
+                  category: 'Freelance',
+                  href: 'https://www.fiverr.com',
+                  x: '28%',
+                  y: '7%',
+                  rot: 6,
+                  floatY: 5,
+                  floatX: 2,
+                  duration: 4.4,
+                  delay: 0.3,
+                  pitch: 490,
+                  accentColor: '#1DBF73',
+                  bg: 'bg-[#1DBF73]',
+                  border: 'border border-emerald-300/40',
+                  rounded: 'rounded-xl',
+                  icon: (
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="white">
+                      <path d="M4 11.5h2.5V8.5h3v3h2.5v2.5H9.5V20H6.5v-6H4v-2.5z" />
+                      <circle cx="8" cy="5.5" r="1.5" />
+                      <path d="M19 14h-4.5c0 1.2.7 1.8 1.8 1.8.8 0 1.4-.4 1.7-.9h1.9c-.4 1.6-1.8 2.6-3.6 2.6-2.4 0-3.8-1.6-3.8-4.2s1.4-4.3 3.8-4.3c2.3 0 3.7 1.7 3.7 4.2v.8zm-2-1.5c0-1-.6-1.6-1.6-1.6s-1.6.6-1.6 1.6h3.2z" />
+                      <circle cx="21" cy="17" r="1.2" />
+                    </svg>
+                  ),
+                },
+                {
+                  id: 'linkedin',
+                  name: 'LinkedIn',
+                  actionLabel: '💼 Opening LinkedIn Profile...',
+                  category: 'Career',
+                  href: 'https://linkedin.com',
+                  x: '72%',
+                  y: '7%',
+                  rot: 5,
+                  floatY: 5,
+                  floatX: 2,
+                  duration: 4.2,
+                  delay: 0.4,
+                  pitch: 590,
+                  accentColor: '#0A66C2',
+                  bg: 'bg-[#0A66C2]',
+                  rounded: 'rounded-xl',
+                  icon: (
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="white">
+                      <path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M18.5 18.5V13.2C18.5 10.62 17.11 9.42 15.27 9.42C13.79 9.42 13.13 10.23 12.76 10.8V9.63H10.08V18.5H12.76V13.88C12.76 12.66 13 11.48 14.5 11.48C16 11.48 16.03 12.87 16.03 13.96V18.5H18.5M6.88 8.56A1.68 1.68 0 0 0 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19A1.69 1.69 0 0 0 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56M8.27 18.5V9.63H5.49V18.5H8.27Z" />
+                    </svg>
+                  ),
+                },
+                {
+                  id: 'gmail',
+                  name: 'Gmail',
+                  actionLabel: '📋 Email Copied! Opening Mail...',
+                  category: 'Contact',
+                  href: 'mailto:jericdelosreyes127001@gmail.com',
+                  x: '94%',
+                  y: '22%',
+                  rot: -5,
+                  floatY: 6,
+                  floatX: 3,
+                  duration: 5.3,
+                  delay: 0.8,
+                  pitch: 650,
+                  accentColor: '#EA4335',
+                  bg: 'bg-white',
+                  border: 'border border-slate-200/90',
+                  rounded: 'rounded-full',
+                  icon: (
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 48 48">
+                      <path fill="#4caf50" d="M45,16.2l-5,2.75v19.05c0,2.21-1.79,4-4,4h-4V22.5L45,16.2z" />
+                      <path fill="#1e88e5" d="M3,16.2l5,2.75v19.05c0,2.21,1.79,4,4,4h4V22.5L3,16.2z" />
+                      <path fill="#e53935" d="M35,11.2l-11,8.3l-11-8.3v-2.7c0-2.21,1.79-4,4-4h14c2.21,0,4,1.79,4,4V11.2z" />
+                      <path fill="#c62828" d="M35,8.5v2.7l10,5V11.2c0-2.21-1.79-4-4-4h-6" />
+                      <path fill="#fbc02d" d="M13,8.5v2.7l-10,5V11.2c0-2.21,1.79-4,4-4h6" />
+                    </svg>
+                  ),
+                },
+                {
+                  id: 'facebook',
+                  name: 'Facebook',
+                  actionLabel: '🌐 Opening Facebook @kejzhin...',
+                  category: 'Social',
+                  href: 'https://facebook.com/kejzhin',
+                  x: '96%',
+                  y: '68%',
+                  rot: -6,
+                  floatY: 5,
+                  floatX: 3,
+                  duration: 4.8,
+                  delay: 0.5,
+                  pitch: 780,
+                  accentColor: '#1877F2',
+                  bg: 'bg-[#1877F2]',
+                  rounded: 'rounded-full',
+                  icon: (
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="white">
+                      <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24V15.563H7.078V12.073H10.125V9.413C10.125 6.387 11.917 4.715 14.658 4.715C15.97 4.715 17.344 4.952 17.344 4.952V7.931H15.83C14.34 7.931 13.875 8.863 13.875 9.821V12.073H17.203L16.671 15.563H13.875V24C19.612 23.094 24 18.1 24 12.073Z" />
+                    </svg>
+                  ),
+                },
+              ].map((item) => {
+                const isClicked = activeClickId === item.id;
+                const isHovered = hoveredId === item.id;
+                const Component = item.href ? motion.a : motion.button;
+                const componentProps = item.href
+                  ? {
+                      href: item.href,
+                      target: item.id === 'gmail' ? undefined : '_blank',
+                      rel: item.id === 'gmail' ? undefined : 'noopener noreferrer',
+                    }
+                  : {
+                      type: 'button' as const,
+                    };
+
+                return (
+                  <Component
+                    key={item.id}
+                    {...componentProps}
+                    style={{
+                      left: item.x,
+                      top: item.y,
+                      boxShadow: isClicked
+                        ? `0 0 20px ${item.accentColor}, 0 6px 16px rgba(0,0,0,0.4)`
+                        : isHovered
+                        ? `0 0 18px ${item.accentColor}90, 0 4px 12px rgba(0,0,0,0.3)`
+                        : undefined,
+                    }}
+                    animate={
+                      isClicked
+                        ? {
+                            scale: [1, 0.94, 1],
+                            rotate: [item.rot, item.rot + 360],
+                          }
+                        : isHovered
+                        ? {
+                            scale: 1,
+                            y: [0, -7, 1, -4, 0],
+                            rotate: [item.rot, item.rot - 8, item.rot + 8, item.rot - 4, item.rot + 4, item.rot],
+                          }
+                        : {
+                            scale: 1,
+                            y: [-item.floatY, item.floatY, -item.floatY],
+                            x: [-item.floatX, item.floatX, -item.floatX],
+                            rotate: [item.rot - 1.5, item.rot + 1.5, item.rot - 1.5],
+                          }
+                    }
+                    transition={
+                      isClicked
+                        ? { duration: 0.4, ease: 'easeOut' }
+                        : isHovered
+                        ? { duration: 0.85, repeat: Infinity, ease: 'easeInOut' }
+                        : { duration: item.duration, repeat: Infinity, ease: 'easeInOut', delay: item.delay }
+                    }
+                    onMouseEnter={() => setHoveredId(item.id)}
+                    onMouseLeave={() => setHoveredId((prev) => (prev === item.id ? null : prev))}
+                    onClick={(e) => handleIconClick(e, item.id, item.actionLabel, item.pitch, item.href)}
+                    className={`group absolute -translate-x-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-11 h-11 sm:w-11 sm:h-11 ${item.rounded} ${item.bg} ${item.border || ''} shadow-lg shadow-black/40 cursor-pointer select-none transition-shadow`}
+                    aria-label={item.name}
+                  >
+                    {/* Glowing Perimeter Wave Pulse on Cursor Hover (No scaling big) */}
+                    {isHovered && (
+                      <motion.div
+                        initial={{ opacity: 0.4 }}
+                        animate={{ opacity: [0.4, 0.9, 0.4] }}
+                        transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+                        style={{
+                          borderColor: item.accentColor,
+                          boxShadow: `0 0 12px ${item.accentColor}60`,
+                        }}
+                        className={`absolute -inset-1 ${item.rounded} border border-dashed pointer-events-none`}
+                      />
+                    )}
+
+                    {/* Icon SVG with real authentic colors */}
+                    {item.icon}
+
+                    {/* Hover Tooltip (when not clicked) */}
+                    {!isClicked && (
+                      <span className={`absolute ${
+                        parseInt(item.y) <= 12 ? 'top-full mt-2.5' : 'bottom-full mb-2.5'
+                      } left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-md text-[10px] sm:text-[11px] font-semibold tracking-wide whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl bg-slate-900/95 text-white border border-slate-700/80 z-40`}>
+                        {item.name}
+                      </span>
+                    )}
+
+                    {/* Click Feedback Toast Chip */}
+                    <AnimatePresence>
+                      {clickFeedback?.id === item.id && (
+                        <motion.div
+                          initial={{ opacity: 0, y: parseInt(item.y) <= 12 ? -6 : 6, scale: 0.9 }}
+                          animate={{ opacity: 1, y: parseInt(item.y) <= 12 ? 14 : -14, scale: 1 }}
+                          exit={{ opacity: 0, y: parseInt(item.y) <= 12 ? 20 : -20, scale: 0.9 }}
+                          transition={{ type: 'spring', stiffness: 450, damping: 25 }}
+                          style={{
+                            top: parseInt(item.y) <= 12 ? '100%' : undefined,
+                            bottom: parseInt(item.y) <= 12 ? undefined : '100%',
+                          }}
+                          className="absolute left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-slate-950/95 text-white text-[10px] sm:text-xs font-bold shadow-2xl border border-indigo-400/60 whitespace-nowrap z-50 flex items-center gap-1.5 pointer-events-none"
+                        >
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                          {clickFeedback.text}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </Component>
+                );
+              })}
+
               {/* Floating "Available for Work" Status Badge on Picture */}
               <div className={`absolute bottom-6 sm:bottom-8 left-1 sm:-left-3 lg:-left-6 z-20 flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full backdrop-blur-md border text-[11px] sm:text-xs font-semibold select-none hover:scale-105 transition-all ${
                 isDark
@@ -203,7 +553,7 @@ export default function HomePage() {
               </div>
 
               {/* Handwritten Floating Text Badge */}
-              <div className="absolute top-1 sm:top-3 right-0 sm:right-2 lg:-right-2 z-20 pointer-events-none select-none text-right">
+              <div className="absolute -top-4 sm:-top-6 right-[-2px] sm:right-[-6px] lg:right-[-10px] z-10 pointer-events-none select-none text-right">
                 <div className="flex flex-col items-end rotate-6">
                   <span className={`font-['Caveat',cursive] text-2xl sm:text-4xl lg:text-5xl font-bold tracking-wide ${
                     isDark

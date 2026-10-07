@@ -12,6 +12,7 @@ interface ProjectItem {
   longDescription: string;
   image: string;
   galleryImages?: string[];
+  galleryLabels?: string[];
   githubUrl?: string;
   liveUrl?: string;
   playStoreUrl?: string;
@@ -63,6 +64,86 @@ export default function ProjectsPage() {
   const projects: ProjectItem[] = [
     // Applications & Software
     {
+      id: 'valerie-cacananta-portfolio',
+      title: 'Valerie Cacananta VA Portfolio',
+      category: 'apps',
+      categoryLabel: 'Virtual Assistant & A/R Portfolio',
+      tags: ['Virtual Assistant', 'Accounts Receivable', 'Invoicing & Billing', 'Payroll Management', 'Bank Reconciliation', 'React', 'Tailwind CSS', 'Vercel'],
+      description: 'A comprehensive virtual assistant and accounts receivable specialist portfolio for Valerie Cacananta, showcasing 15+ years of billing, payroll administration, ledger reconciliation, and administrative operations.',
+      longDescription: 'Designed and developed an executive virtual assistant and accounts receivable portfolio for Valerie Cacananta. Features end-to-end billing workflows, client follow-up protocols, ACH/wire payment postings, payroll and statutory filings (SSS, Pag-IBIG, PhilHealth), and verified corporate track records across international education (Happy Family School Singapore) and enterprise management.',
+      image: '/image/val1.png',
+      galleryImages: [
+        '/image/val1.png',
+        '/image/val2.png',
+        '/image/val3.png',
+        '/image/val4.png',
+        '/image/val5.png',
+        '/image/val6.png',
+        '/image/val7.png',
+        '/image/val8.png',
+        '/image/val9.png',
+        '/image/val10.png'
+      ],
+      galleryLabels: [
+        'Homepage Hero',
+        'About & Bio',
+        'Certifications',
+        'Services Provided',
+        'Experience & Career',
+        'Skills & Tools',
+        'Education',
+        'References',
+        'Resume & PDF',
+        'Contact Hub'
+      ],
+      githubUrl: 'https://github.com/kejzhin/Valerie-Portfolio',
+      liveUrl: 'https://valeriecacananta.vercel.app/',
+      features: [
+        'Interactive single-page portfolio built with React, TypeScript, Tailwind CSS, and Motion, deployed on Vercel',
+        'Specialized Accounts Receivable (A/R) & Billing showcase covering invoice generation, aging tracking, and dispute management',
+        'Demonstrated corporate experience across international institutions and 15+ years of administrative management',
+        'Core accounting competencies in bank reconciliation, payroll computation, and statutory compliance',
+        'Dynamic resume PDF generator and direct client inquiry hub'
+      ],
+      highlights: 'Virtual Assistant & A/R Specialist Portfolio • Live on Vercel • Open Source on GitHub'
+    },
+    {
+      id: 'ivy-sayongan-portfolio',
+      title: 'Ivy Sayongan VA Portfolio',
+      category: 'apps',
+      categoryLabel: 'Web Admin & VA Portfolio',
+      tags: ['Virtual Assistant', 'Web Administration', 'Technical Support', 'cPanel & WHM', 'WordPress CMS', 'DNS Management', 'React', 'Tailwind CSS', 'Vercel'],
+      description: 'A modern, high-precision executive portfolio for Ivy A. Sayongan highlighting 6+ years of web hosting administration, DNS management, WordPress CMS troubleshooting, customer care, and executive assistance.',
+      longDescription: 'Designed and engineered an executive web administrator and virtual assistant portfolio for Ivy A. Sayongan. Features modern typographic hierarchy, responsive layouts, smooth parallax and motion animations, comprehensive technical specializations (cPanel/WHM, DNS routing, email deliverability, WordPress diagnostics), verified track record across Concentrix and Alorica, and direct booking hub.',
+      image: '/image/ivy_1_home.webp',
+      galleryImages: [
+        '/image/ivy_1_home.webp',
+        '/image/ivy1.png',
+        '/image/ivy2.png',
+        '/image/ivy3.png',
+        '/image/ivy5.png',
+        '/image/ivy6.png'
+      ],
+      galleryLabels: [
+        'Homepage Hero',
+        'Overview & About',
+        'Specializations',
+        'Experience',
+        'Education',
+        'Contact Hub'
+      ],
+      githubUrl: 'https://github.com/kejzhin/ivyportfolio',
+      liveUrl: 'https://ivysayongan.vercel.app',
+      features: [
+        'Single-page architecture built with React, TypeScript, Tailwind CSS, and Motion, deployed on Vercel',
+        'Interactive technical specializations covering cPanel & WHM, DNS Zone Editor (A, CNAME, MX, TXT, SPF, DKIM), and WordPress CMS',
+        'Verified corporate track record across Concentrix (Web Advisor & Travel Advisor) and Alorica with 95% CSAT resolution metrics',
+        'Systems & toolset showcase featuring MySQL/phpMyAdmin, Google Workspace, Microsoft 365, and Zendesk CRM',
+        'Direct consultation booking hub, downloadable CV modal, and mobile-first responsive layout'
+      ],
+      highlights: 'Web Administrator & Virtual Assistant Portfolio • Live on Vercel • Open Source on GitHub'
+    },
+    {
       id: 'maria-bernadette-portfolio',
       title: 'Maria Bernadette VA Portfolio',
       category: 'apps',
@@ -78,6 +159,14 @@ export default function ProjectsPage() {
         '/image/maria_4_skills.svg',
         '/image/maria_5_services.svg',
         '/image/maria_6_contact.svg'
+      ],
+      galleryLabels: [
+        'Homepage Hero',
+        'About & Bio',
+        'Background & Clinics',
+        'Skills & Portals',
+        'Services Provided',
+        'Contact & Footer'
       ],
       githubUrl: 'https://github.com/kejzhin/maria',
       liveUrl: 'https://mariabernadette.vercel.app/',
@@ -106,6 +195,14 @@ export default function ProjectsPage() {
         '/image/katrina_experience.svg',
         '/image/katrina_tools.svg',
         '/image/katrina_contact.svg'
+      ],
+      galleryLabels: [
+        'Homepage Hero',
+        'About Me',
+        'Core Skills',
+        'Experience',
+        'Tools & Stack',
+        'Contact Info'
       ],
       liveUrl: 'https://katrinaregalado.vercel.app/',
       features: [
@@ -682,8 +779,26 @@ export default function ProjectsPage() {
                         </h4>
                         <span className="text-[11px] text-slate-400">Click any thumbnail below to preview it above</span>
                       </div>
-                      <div className="grid grid-cols-2 sm:grid-cols-6 gap-2.5">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2.5">
                         {selectedProject.galleryImages.map((img, i) => {
+                          const isVal1 = img.includes('val1');
+                          const isVal2 = img.includes('val2');
+                          const isVal3 = img.includes('val3');
+                          const isVal4 = img.includes('val4');
+                          const isVal5 = img.includes('val5');
+                          const isVal6 = img.includes('val6');
+                          const isVal7 = img.includes('val7');
+                          const isVal8 = img.includes('val8');
+                          const isVal9 = img.includes('val9');
+                          const isVal10 = img.includes('val10');
+
+                          const isIvyHome = img.includes('ivy_1_home');
+                          const isIvy1 = img.includes('ivy1.png') || img.includes('ivy_2_specializations');
+                          const isIvy2 = img.includes('ivy2.png') || img.includes('ivy_3_experience');
+                          const isIvy3 = img.includes('ivy3.png') || img.includes('ivy_4_tools');
+                          const isIvy5 = img.includes('ivy5.png') || img.includes('ivy_5_education');
+                          const isIvy6 = img.includes('ivy6.png') || img.includes('ivy_6_contact');
+
                           const isMariaHome = img.includes('maria_1_home') || img.includes('maria_homepage');
                           const isMariaAbout = img.includes('maria_2_about') || img.includes('maria_about');
                           const isMariaBackground = img.includes('maria_3_background');
@@ -714,7 +829,41 @@ export default function ProjectsPage() {
                           const isAdmin = img.includes('admin');
                           const isDark = isDarkLogin || isDarkInbox || img.includes('dark');
 
-                          const label = isMariaHome
+                          const label = selectedProject.galleryLabels && selectedProject.galleryLabels[i]
+                            ? selectedProject.galleryLabels[i]
+                            : isVal1
+                            ? 'Homepage Hero'
+                            : isVal2
+                            ? 'About & Bio'
+                            : isVal3
+                            ? 'Core A/R & Billing'
+                            : isVal4
+                            ? 'Experience & Career'
+                            : isVal5
+                            ? 'Skills & Tools'
+                            : isVal6
+                            ? 'Education & Certs'
+                            : isVal7
+                            ? 'References'
+                            : isVal8
+                            ? 'Resume & PDF'
+                            : isVal9
+                            ? 'Services Details'
+                            : isVal10
+                            ? 'Contact Hub'
+                            : isIvyHome
+                            ? 'Homepage Hero'
+                            : isIvy1
+                            ? 'Overview & About'
+                            : isIvy2
+                            ? 'Specializations'
+                            : isIvy3
+                            ? 'Experience'
+                            : isIvy5
+                            ? 'Education'
+                            : isIvy6
+                            ? 'Contact Hub'
+                            : isMariaHome
                             ? 'Homepage Hero'
                             : isMariaAbout
                             ? 'About & Bio'

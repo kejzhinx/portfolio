@@ -443,22 +443,22 @@ export default function HomePage() {
                       left: item.x,
                       top: item.y,
                       boxShadow: isClicked
-                        ? `0 0 20px ${item.accentColor}, 0 6px 16px rgba(0,0,0,0.4)`
+                        ? `0 0 28px ${item.accentColor}, 0 10px 24px rgba(0,0,0,0.5)`
                         : isHovered
-                        ? `0 0 18px ${item.accentColor}90, 0 4px 12px rgba(0,0,0,0.3)`
+                        ? `0 12px 28px -4px ${item.accentColor}90, 0 0 20px ${item.accentColor}60`
                         : undefined,
                     }}
                     animate={
                       isClicked
                         ? {
-                            scale: [1, 0.94, 1],
-                            rotate: [item.rot, item.rot + 360],
+                            scale: [1, 0.85, 1.22, 1],
+                            rotate: [item.rot, item.rot - 12, item.rot + 8, item.rot],
                           }
                         : isHovered
                         ? {
-                            scale: 1,
-                            y: [0, -7, 1, -4, 0],
-                            rotate: [item.rot, item.rot - 8, item.rot + 8, item.rot - 4, item.rot + 4, item.rot],
+                            scale: 1.18,
+                            y: -8,
+                            rotate: item.rot,
                           }
                         : {
                             scale: 1,
@@ -469,9 +469,9 @@ export default function HomePage() {
                     }
                     transition={
                       isClicked
-                        ? { duration: 0.4, ease: 'easeOut' }
+                        ? { duration: 0.45, ease: [0.34, 1.56, 0.64, 1] }
                         : isHovered
-                        ? { duration: 0.85, repeat: Infinity, ease: 'easeInOut' }
+                        ? { type: 'spring', stiffness: 450, damping: 18 }
                         : { duration: item.duration, repeat: Infinity, ease: 'easeInOut', delay: item.delay }
                     }
                     onMouseEnter={() => setHoveredId(item.id)}
@@ -480,30 +480,46 @@ export default function HomePage() {
                     className={`group absolute -translate-x-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-11 h-11 sm:w-11 sm:h-11 ${item.rounded} ${item.bg} ${item.border || ''} shadow-lg shadow-black/40 cursor-pointer select-none transition-shadow`}
                     aria-label={item.name}
                   >
-                    {/* Glowing Perimeter Wave Pulse on Cursor Hover (No scaling big) */}
-                    {isHovered && (
+                    {/* Expanding Ripple Shockwave on Click */}
+                    {isClicked && (
+                      <motion.span
+                        key="click-ripple"
+                        initial={{ scale: 0.8, opacity: 0.85 }}
+                        animate={{ scale: 2.2, opacity: 0 }}
+                        transition={{ duration: 0.55, ease: 'easeOut' }}
+                        style={{ borderColor: item.accentColor }}
+                        className={`absolute inset-0 ${item.rounded} border-2 pointer-events-none`}
+                      />
+                    )}
+
+                    {/* Smooth Radiant Aura on Hover (Replaces the distracting dashed border) */}
+                    {isHovered && !isClicked && (
                       <motion.div
-                        initial={{ opacity: 0.4 }}
-                        animate={{ opacity: [0.4, 0.9, 0.4] }}
-                        transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut' }}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1.12 }}
+                        exit={{ opacity: 0, scale: 0.9 }}
+                        transition={{ duration: 0.2 }}
                         style={{
-                          borderColor: item.accentColor,
-                          boxShadow: `0 0 12px ${item.accentColor}60`,
+                          background: `radial-gradient(circle, ${item.accentColor}40 0%, transparent 75%)`,
+                          boxShadow: `0 0 20px ${item.accentColor}60`,
                         }}
-                        className={`absolute -inset-1 ${item.rounded} border border-dashed pointer-events-none`}
+                        className={`absolute -inset-1.5 ${item.rounded} pointer-events-none`}
                       />
                     )}
 
                     {/* Icon SVG with real authentic colors */}
-                    {item.icon}
+                    <span className="relative z-10 flex items-center justify-center">
+                      {item.icon}
+                    </span>
 
                     {/* Hover Tooltip (when not clicked) */}
                     {!isClicked && (
-                      <span className={`absolute ${
+                      <div className={`absolute ${
                         parseInt(item.y) <= 12 ? 'top-full mt-2.5' : 'bottom-full mb-2.5'
-                      } left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-md text-[10px] sm:text-[11px] font-semibold tracking-wide whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl bg-slate-900/95 text-white border border-slate-700/80 z-40`}>
-                        {item.name}
-                      </span>
+                      } left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg text-[10px] sm:text-[11px] font-semibold tracking-wide whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-2xl bg-slate-950/95 text-white border border-white/10 z-40 flex items-center gap-1.5`}>
+                        <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: item.accentColor }} />
+                        <span>{item.name}</span>
+                      </div>
                     )}
 
                     {/* Click Feedback Toast Chip */}

@@ -428,10 +428,11 @@ export default function SkillsPage() {
             <motion.div
               key={skill.name}
               layout
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-20px' }}
               exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.3, delay: idx * 0.03 }}
+              transition={{ duration: 0.4, delay: idx * 0.02, ease: 'easeOut' }}
               className={`p-5 flex flex-col justify-between group hover:-translate-y-1 transition-all h-full rounded-2xl border ${
                 isDark
                   ? 'bg-[#0D1424] border-white/[0.08] hover:border-indigo-500/40'

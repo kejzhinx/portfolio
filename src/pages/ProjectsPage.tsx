@@ -18,6 +18,7 @@ interface ProjectItem {
   playStoreUrl?: string;
   features?: string[];
   highlights?: string;
+  developmentOngoing?: boolean;
 }
 
 function CardImage({ src, alt }: { src: string; alt: string }) {
@@ -64,6 +65,78 @@ export default function ProjectsPage() {
   const projects: ProjectItem[] = [
     // Applications & Software
     {
+      id: 'real-estate-portfolio',
+      title: 'Real Estate Portfolio+Listings',
+      category: 'apps',
+      categoryLabel: 'Real Estate Web App',
+      tags: ['Real Estate', 'Property Listings', 'React', 'Tailwind CSS', 'Vercel'],
+      description: 'A modern real estate portfolio and property listing web application featuring advanced property search, interactive maps, agent profile, and client inquiry workflows.',
+      longDescription: 'Designed and developed a comprehensive real estate portfolio and property listing platform. Features dynamic property cards, advanced filtering by location and price, property detail modals, mortgage calculator, agent bio, and direct tour scheduling.',
+      image: '/image/axl1.png',
+      galleryImages: [
+        '/image/axl1.png',
+        '/image/axl2.png',
+        '/image/axl3.png',
+        '/image/axl4.png',
+        '/image/axl5.png',
+        '/image/axl6.png',
+        '/image/axl7.png',
+        '/image/axl8.png',
+        '/image/axl9.png'
+      ],
+      galleryLabels: [
+        'Homepage Hero',
+        'Property Listings',
+        'Search & Filter',
+        'Property Details',
+        'Agent Profile',
+        'Mortgage Calculator',
+        'Client Reviews',
+        'Neighborhood Guide',
+        'Contact Hub'
+      ],
+      developmentOngoing: true,
+      features: [
+        'Interactive real estate property catalog with high-resolution image galleries',
+        'Advanced location, price range, and property type filtering',
+        'Detailed property view with mortgage calculation tools and agent contact form',
+        'Responsive mobile-first design optimized for property buyers and sellers'
+      ],
+      highlights: 'Real Estate Portfolio + Listings • Web Application • Active Development'
+    },
+    {
+      id: 'hook-project',
+      title: 'Coaching Website',
+      category: 'apps',
+      categoryLabel: 'Web Application',
+      tags: ['React', 'TypeScript', 'Tailwind CSS', 'Web App'],
+      description: 'A cutting-edge coaching web platform featuring modern UI components, real-time client scheduling, and responsive architecture.',
+      longDescription: 'A dynamic, feature-rich coaching web application currently in active development. Features a modular component architecture, responsive layouts, interactive scheduling flows, and client resource libraries.',
+      image: '/image/hook1.png',
+      galleryImages: [
+        '/image/hook1.png',
+        '/image/hook2.png',
+        '/image/hook3.png',
+        '/image/hook4.png',
+        '/image/hook5.png',
+        '/image/hook6.png',
+        '/image/hook7.png',
+        '/image/hook8.png'
+      ],
+      galleryLabels: [
+        'Dashboard Home',
+        'Analytics View',
+        'User Management',
+        'Workflow Builder',
+        'Settings & Config',
+        'Integration Hub',
+        'Reports & Logs',
+        'Support Portal'
+      ],
+      developmentOngoing: true,
+      highlights: 'Coaching Platform • React & TypeScript • Web Application'
+    },
+    {
       id: 'valerie-cacananta-portfolio',
       title: 'Valerie Cacananta VA Portfolio',
       category: 'apps',
@@ -90,10 +163,10 @@ export default function ProjectsPage() {
         'Certifications',
         'Services Provided',
         'Experience & Career',
-        'Skills & Tools',
-        'Education',
+        'Skills & Education',
         'References',
         'Resume & PDF',
+        'Services Details',
         'Contact Hub'
       ],
       githubUrl: 'https://github.com/kejzhin/Valerie-Portfolio',
@@ -555,10 +628,11 @@ export default function ProjectsPage() {
             <motion.div
               key={project.id}
               layout
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 35 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-20px' }}
               exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.4, delay: idx * 0.04 }}
+              transition={{ duration: 0.4, delay: idx * 0.03, ease: 'easeOut' }}
               className="card-surface overflow-hidden flex flex-col justify-between group hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-950/40 transition-all duration-300 h-full"
             >
               <div>
@@ -582,6 +656,12 @@ export default function ProjectsPage() {
 
                   {/* Card Image Display */}
                   <CardImage src={project.image} alt={project.title} />
+                  {project.developmentOngoing && (
+                    <div className="absolute top-8 right-3 z-25 flex items-center gap-1.5 bg-emerald-950/95 border border-emerald-500/50 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold text-emerald-400 shadow-xl backdrop-blur-md pointer-events-none">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping shrink-0" />
+                      <span>Development Ongoing</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Project Content */}
@@ -733,6 +813,12 @@ export default function ProjectsPage() {
 
                   {/* Viewport Canvas */}
                   <div className="w-full min-h-[380px] sm:min-h-[480px] max-h-[72vh] sm:max-h-[78vh] bg-[#070B14] flex items-center justify-center relative overflow-hidden p-3 sm:p-6">
+                    {selectedProject.developmentOngoing && (
+                      <div className="absolute top-4 right-4 z-25 flex items-center gap-2 bg-emerald-950/95 border border-emerald-500/50 px-3 py-1.5 rounded-full text-xs font-mono font-bold text-emerald-400 shadow-2xl backdrop-blur-md pointer-events-none">
+                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping shrink-0" />
+                        <span>Development Ongoing</span>
+                      </div>
+                    )}
                     <motion.img
                       key={activeModalImage || selectedProject.image}
                       initial={{ opacity: 0, scale: 0.98 }}

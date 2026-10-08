@@ -19,6 +19,7 @@ interface ProjectItem {
   features?: string[];
   highlights?: string;
   developmentOngoing?: boolean;
+  underDevelopment?: boolean;
 }
 
 function CardImage({ src, alt }: { src: string; alt: string }) {
@@ -41,7 +42,7 @@ function CardImage({ src, alt }: { src: string; alt: string }) {
 }
 
 export default function ProjectsPage() {
-  const [activeFilter, setActiveFilter] = useState<'all' | 'apps' | 'security' | 'graphics'>('all');
+  const [activeFilter, setActiveFilter] = useState<'all' | 'development' | 'apps' | 'security' | 'graphics'>('all');
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [activeModalImage, setActiveModalImage] = useState<string | null>(null);
 
@@ -57,10 +58,13 @@ export default function ProjectsPage() {
       title: 'Real Estate Portfolio+Listings',
       category: 'apps',
       categoryLabel: 'Real Estate Web App',
+      underDevelopment: true,
+      developmentOngoing: true,
       tags: ['Real Estate', 'Property Listings', 'React', 'Tailwind CSS', 'Vercel'],
       description: 'A modern real estate portfolio and property listing web application featuring advanced property search, interactive maps, agent profile, and client inquiry workflows.',
       longDescription: 'Designed and developed a comprehensive real estate portfolio and property listing platform. Features dynamic property cards, advanced filtering by location and price, property detail modals, mortgage calculator, agent bio, and direct tour scheduling.',
       image: '/image/axl1.png',
+      liveUrl: 'https://jamesbroker.vercel.app/',
       galleryImages: [
         '/image/axl1.png',
         '/image/axl2.png',
@@ -83,24 +87,26 @@ export default function ProjectsPage() {
         'Neighborhood Guide',
         'Contact Hub'
       ],
-      developmentOngoing: true,
       features: [
         'Interactive real estate property catalog with high-resolution image galleries',
         'Advanced location, price range, and property type filtering',
         'Detailed property view with mortgage calculation tools and agent contact form',
         'Responsive mobile-first design optimized for property buyers and sellers'
       ],
-      highlights: 'Real Estate Portfolio + Listings • Web Application • Active Development'
+      highlights: 'Real Estate Portfolio + Listings • Web Application • Live Platform • Under Development'
     },
     {
       id: 'hook-project',
-      title: 'Coaching Website',
+      title: 'Hookverse',
       category: 'apps',
-      categoryLabel: 'Web Application',
-      tags: ['React', 'TypeScript', 'Tailwind CSS', 'Web App'],
+      categoryLabel: 'Coaching Web Application',
+      underDevelopment: true,
+      developmentOngoing: true,
+      tags: ['Hookverse', 'Coaching', 'React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
       description: 'A cutting-edge coaching web platform featuring modern UI components, real-time client scheduling, and responsive architecture.',
-      longDescription: 'A dynamic, feature-rich coaching web application currently in active development. Features a modular component architecture, responsive layouts, interactive scheduling flows, and client resource libraries.',
+      longDescription: 'A dynamic, feature-rich coaching web application. Features a modular component architecture, responsive layouts, interactive scheduling flows, client resource libraries, and dedicated coaching program dashboards.',
       image: '/image/hook1.png',
+      liveUrl: 'https://hookverse.vercel.app/',
       galleryImages: [
         '/image/hook1.png',
         '/image/hook2.png',
@@ -121,8 +127,7 @@ export default function ProjectsPage() {
         'Reports & Logs',
         'Support Portal'
       ],
-      developmentOngoing: true,
-      highlights: 'Coaching Platform • React & TypeScript • Web Application'
+      highlights: 'Hookverse • Coaching Platform • Live Platform • Under Development'
     },
     {
       id: 'valerie-cacananta-portfolio',
@@ -560,6 +565,7 @@ export default function ProjectsPage() {
 
   const filteredProjects = projects.filter((p) => {
     if (activeFilter === 'all') return true;
+    if (activeFilter === 'development') return Boolean(p.underDevelopment || p.developmentOngoing);
     return p.category === activeFilter;
   });
 
@@ -586,6 +592,7 @@ export default function ProjectsPage() {
       <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-10 pb-4 border-b border-white/[0.08]">
         {[
           { id: 'all', label: 'All Projects' },
+          { id: 'development', label: 'Under Development' },
           { id: 'apps', label: 'Apps & Software' },
           { id: 'security', label: 'Cybersecurity & Audits' },
           { id: 'graphics', label: 'Graphics & Design' },
@@ -632,10 +639,13 @@ export default function ProjectsPage() {
 
                   {/* Card Image Display */}
                   <CardImage src={project.image} alt={project.title} />
-                  {project.developmentOngoing && (
-                    <div className="absolute top-8 right-3 z-25 flex items-center gap-1.5 bg-emerald-950/95 border border-emerald-500/50 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold text-emerald-400 shadow-xl backdrop-blur-md pointer-events-none">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping shrink-0" />
-                      <span>Development Ongoing</span>
+                  {(project.underDevelopment || project.developmentOngoing) && (
+                    <div className="absolute top-8 right-3 z-20 flex items-center gap-1.5 bg-emerald-950/95 border border-emerald-500/60 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold text-emerald-400 shadow-xl backdrop-blur-md pointer-events-none">
+                      <span className="relative flex h-2 w-2 shrink-0">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                      </span>
+                      <span>Under Development</span>
                     </div>
                   )}
                 </div>
@@ -651,7 +661,16 @@ export default function ProjectsPage() {
                     </h3>
 
                     {/* Tags */}
-                    <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-2">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-2 items-center">
+                      {(project.underDevelopment || project.developmentOngoing) && (
+                        <span className="inline-flex items-center gap-1 px-2 sm:px-2.5 py-0.5 rounded-md text-[10px] font-mono font-bold text-emerald-400 bg-emerald-500/15 border border-emerald-500/35">
+                          <span className="relative flex h-1.5 w-1.5 shrink-0">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
+                          </span>
+                          Under Development
+                        </span>
+                      )}
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
@@ -784,10 +803,13 @@ export default function ProjectsPage() {
 
                   {/* Viewport Canvas */}
                   <div className="w-full min-h-[380px] sm:min-h-[480px] max-h-[72vh] sm:max-h-[78vh] bg-[#070B14] flex items-center justify-center relative overflow-hidden p-3 sm:p-6">
-                    {selectedProject.developmentOngoing && (
-                      <div className="absolute top-4 right-4 z-25 flex items-center gap-2 bg-emerald-950/95 border border-emerald-500/50 px-3 py-1.5 rounded-full text-xs font-mono font-bold text-emerald-400 shadow-2xl backdrop-blur-md pointer-events-none">
-                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping shrink-0" />
-                        <span>Development Ongoing</span>
+                    {(selectedProject.underDevelopment || selectedProject.developmentOngoing) && (
+                      <div className="absolute top-4 right-4 z-20 flex items-center gap-2 bg-emerald-950/95 border border-emerald-500/60 px-3 py-1.5 rounded-full text-xs font-mono font-bold text-emerald-400 shadow-2xl backdrop-blur-md pointer-events-none">
+                        <span className="relative flex h-2.5 w-2.5 shrink-0">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+                        </span>
+                        <span>Under Development</span>
                       </div>
                     )}
                     <motion.img
@@ -807,7 +829,16 @@ export default function ProjectsPage() {
                 {/* Modal Content */}
                 <div className="p-6 sm:p-8 space-y-6">
                   <div>
-                    <div className="flex flex-wrap gap-2 mb-2">
+                    <div className="flex flex-wrap gap-2 mb-2 items-center">
+                      {(selectedProject.underDevelopment || selectedProject.developmentOngoing) && (
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-mono font-bold text-emerald-400 bg-emerald-500/15 border border-emerald-500/35">
+                          <span className="relative flex h-2 w-2 shrink-0">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                          </span>
+                          Under Development
+                        </span>
+                      )}
                       {selectedProject.tags.map((tag) => (
                         <span
                           key={tag}

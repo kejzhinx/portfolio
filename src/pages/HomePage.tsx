@@ -27,6 +27,13 @@ export default function HomePage() {
       gain.connect(ctx.destination);
       osc.start();
       osc.stop(ctx.currentTime + 0.13);
+      setTimeout(() => {
+        try {
+          ctx.close().catch(() => {});
+        } catch {
+          // ignore
+        }
+      }, 250);
     } catch {
       // AudioContext unavailable or muted - safely ignore
     }

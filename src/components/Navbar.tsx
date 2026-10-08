@@ -93,7 +93,7 @@ export default function Navbar() {
         </nav>
 
         {/* Right Actions */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5 sm:gap-3">
           {/* Light / Dark Mode Toggle Button */}
           <button
             onClick={toggleTheme}
@@ -185,7 +185,7 @@ export default function Navbar() {
                   </NavLink>
                 ))}
 
-                <div className="pt-2 mt-1 border-t border-slate-200/60 dark:border-white/[0.08]">
+                <div className="pt-2 mt-1 border-t border-slate-200/60 dark:border-white/[0.08] flex flex-col gap-1.5">
                   <a
                     href="https://github.com/kejzhin"
                     target="_blank"

@@ -1,4 +1,6 @@
+import { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { AnimatePresence } from 'motion/react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -7,7 +9,7 @@ import AboutPage from './pages/AboutPage';
 import SkillsPage from './pages/SkillsPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ContactPage from './pages/ContactPage';
-import { motion, AnimatePresence } from 'motion/react';
+import DoctorStrangeWelcomePortal from './components/DoctorStrangeWelcomePortal';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 
 function AnimatedRoutes() {
@@ -33,6 +35,12 @@ function AnimatedRoutes() {
 
 function MainLayout() {
   const { isDark } = useTheme();
+  // Always trigger the Doctor Strange portal welcome screen automatically when opened / refreshed
+  const [showPortal, setShowPortal] = useState(true);
+
+  const handlePortalComplete = () => {
+    setShowPortal(false);
+  };
 
   return (
     <div
@@ -42,6 +50,13 @@ function MainLayout() {
           : 'bg-[#F8FAFC] text-slate-900 selection:bg-indigo-500/20 selection:text-indigo-900'
       }`}
     >
+      {/* Doctor Strange Initial Welcome Portal Screen */}
+      <AnimatePresence mode="wait">
+        {showPortal && (
+          <DoctorStrangeWelcomePortal key="welcome-portal" onComplete={handlePortalComplete} />
+        )}
+      </AnimatePresence>
+
       {/* Dynamic ambient background glows */}
       <div className={`absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[500px] lg:w-[600px] h-[280px] sm:h-[500px] lg:h-[600px] rounded-full blur-[100px] sm:blur-[140px] pointer-events-none ${
         isDark ? 'bg-indigo-600/10' : 'bg-indigo-500/15'

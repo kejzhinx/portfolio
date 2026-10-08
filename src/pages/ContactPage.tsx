@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
 import { useTheme } from '../context/ThemeContext';
 import { Mail, Phone, Facebook, Github, Linkedin, Send, Sparkles, MapPin, CheckCircle2, ArrowRight, Copy, Check } from 'lucide-react';
 

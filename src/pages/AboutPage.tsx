@@ -17,8 +17,7 @@ import {
   Smartphone,
   Cpu,
   Wrench,
-  Keyboard,
-  Shield
+  Keyboard
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';

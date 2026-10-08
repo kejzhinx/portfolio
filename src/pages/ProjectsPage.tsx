@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ExternalLink, Github, Sparkles, X, Shield, ArrowUpRight, Play, Palette, CheckCircle2 } from 'lucide-react';
+import { ExternalLink, Github, Sparkles, X, ArrowUpRight, Play, CheckCircle2 } from 'lucide-react';
 
 interface ProjectItem {
   id: string;

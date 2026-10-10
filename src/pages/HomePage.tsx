@@ -82,7 +82,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className={`relative min-h-[calc(100vh-76px)] flex items-center justify-center pt-24 sm:pt-28 lg:pt-28 pb-12 lg:pb-12 px-4 sm:px-6 lg:px-10 overflow-x-hidden transition-colors duration-300 ${
+    <div className={`relative min-h-[calc(100vh-76px)] flex items-center justify-center pt-24 sm:pt-28 lg:pt-32 pb-12 lg:pb-12 px-4 sm:px-6 lg:px-10 overflow-x-hidden transition-colors duration-300 ${
       isDark ? 'bg-[#070B14]' : 'bg-[#F8FAFC]'
     }`}>
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 xl:gap-16 items-center relative z-10 py-4 sm:py-6 lg:py-8">
@@ -542,8 +542,8 @@ export default function HomePage() {
                   actionLabel: '📋 Email Copied! Opening Mail...',
                   category: 'Contact',
                   href: 'mailto:jericdelosreyes127001@gmail.com',
-                  x: '94%',
-                  y: '28%',
+                  x: '93%',
+                  y: '24%',
                   rot: -5,
                   floatY: 6,
                   floatX: 3,
@@ -570,8 +570,8 @@ export default function HomePage() {
                   actionLabel: '🌐 Opening Facebook @kejzhin...',
                   category: 'Social',
                   href: 'https://facebook.com/kejzhin',
-                  x: '96%',
-                  y: '68%',
+                  x: '95%',
+                  y: '56%',
                   rot: -6,
                   floatY: 5,
                   floatX: 3,
@@ -726,31 +726,31 @@ export default function HomePage() {
                 <span>Available for Work</span>
               </div>
 
-              {/* Handwritten Floating Text Badge */}
-              <div className="absolute top-2 sm:top-3 lg:top-4 right-0 sm:right-1 lg:right-0 z-10 pointer-events-none select-none text-right">
+              {/* Handwritten Floating Text Badge (Positioned at bottom-right of visual, completely clear of top navbar/View GitHub) */}
+              <div className="absolute bottom-4 sm:bottom-6 lg:bottom-8 right-1 sm:right-2 lg:right-1 z-10 pointer-events-none select-none text-right">
                 <div className="flex flex-col items-end rotate-6">
-                  <span className={`font-['Caveat',cursive] text-2xl sm:text-3xl lg:text-4xl font-bold tracking-wide ${
+                  <span className={`font-['Caveat',cursive] text-2xl sm:text-3xl lg:text-3xl font-bold tracking-wide ${
                     isDark
                       ? 'text-indigo-300 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]'
                       : 'text-indigo-600 drop-shadow-[0_2px_8px_rgba(255,255,255,0.95)]'
                   }`}>
                     Code
                   </span>
-                  <span className={`font-['Caveat',cursive] text-2xl sm:text-3xl lg:text-4xl font-bold -mt-1 sm:-mt-1.5 tracking-wide ${
+                  <span className={`font-['Caveat',cursive] text-2xl sm:text-3xl lg:text-3xl font-bold -mt-1 sm:-mt-1.5 tracking-wide ${
                     isDark
                       ? 'text-violet-300 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]'
                       : 'text-violet-600 drop-shadow-[0_2px_8px_rgba(255,255,255,0.95)]'
                   }`}>
                     Design
                   </span>
-                  <span className={`font-['Caveat',cursive] text-2xl sm:text-3xl lg:text-4xl font-bold -mt-1 sm:-mt-1.5 tracking-wide ${
+                  <span className={`font-['Caveat',cursive] text-2xl sm:text-3xl lg:text-3xl font-bold -mt-1 sm:-mt-1.5 tracking-wide ${
                     isDark
                       ? 'text-blue-300 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]'
                       : 'text-blue-600 drop-shadow-[0_2px_8px_rgba(255,255,255,0.95)]'
                   }`}>
                     Build
                   </span>
-                  <svg className={`w-14 sm:w-16 lg:w-20 h-2.5 sm:h-3 lg:h-3.5 mt-0.5 sm:mt-1 ${
+                  <svg className={`w-14 sm:w-16 lg:w-18 h-2.5 sm:h-3 lg:h-3 mt-0.5 sm:mt-1 ${
                     isDark ? 'text-indigo-400' : 'text-indigo-600'
                   }`} viewBox="0 0 100 20" fill="none">
                     <path d="M5 10 Q 50 18, 95 6" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />

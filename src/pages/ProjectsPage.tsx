@@ -18,17 +18,18 @@ interface ProjectItem {
   playStoreUrl?: string;
   features?: string[];
   highlights?: string;
-  developmentOngoing?: boolean;
   underDevelopment?: boolean;
+  developmentOngoing?: boolean;
 }
 
-function CardImage({ src, alt }: { src: string; alt: string }) {
+function CardImage({ src, alt, priority }: { src: string; alt: string; priority?: boolean }) {
   return (
     <div className="aspect-[16/10] w-full relative overflow-hidden bg-[#080D1A] flex items-center justify-center p-2">
       <img
         src={src}
         alt={alt}
-        loading="eager"
+        loading={priority ? 'eager' : 'lazy'}
+        fetchPriority={priority ? 'high' : 'low'}
         decoding="async"
         className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
         referrerPolicy="no-referrer"
@@ -93,16 +94,16 @@ export default function ProjectsPage() {
         'Detailed property view with mortgage calculation tools and agent contact form',
         'Responsive mobile-first design optimized for property buyers and sellers'
       ],
-      highlights: 'Real Estate Portfolio + Listings • Web Application • Live Platform • Under Development'
+      highlights: 'Real Estate Portfolio + Listings • Web Application • Live Platform'
     },
     {
       id: 'hook-project',
-      title: 'Hookverse',
+      title: 'Coaching Website',
       category: 'apps',
       categoryLabel: 'Coaching Web Application',
       underDevelopment: true,
       developmentOngoing: true,
-      tags: ['Hookverse', 'Coaching', 'React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+      tags: ['Coaching Website', 'Coaching', 'React', 'TypeScript', 'Tailwind CSS', 'Vercel'],
       description: 'A cutting-edge coaching web platform featuring modern UI components, real-time client scheduling, and responsive architecture.',
       longDescription: 'A dynamic, feature-rich coaching web application. Features a modular component architecture, responsive layouts, interactive scheduling flows, client resource libraries, and dedicated coaching program dashboards.',
       image: '/image/hook1.png',
@@ -127,7 +128,7 @@ export default function ProjectsPage() {
         'Reports & Logs',
         'Support Portal'
       ],
-      highlights: 'Hookverse • Coaching Platform • Live Platform • Under Development'
+      highlights: 'Coaching Website • Coaching Platform • Live Platform'
     },
     {
       id: 'valerie-cacananta-portfolio',
@@ -592,7 +593,7 @@ export default function ProjectsPage() {
       <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2 mb-10 pb-4 border-b border-white/[0.08]">
         {[
           { id: 'all', label: 'All Projects' },
-          { id: 'development', label: 'Under Development' },
+          { id: 'development', label: '⚡ Under Development' },
           { id: 'apps', label: 'Apps & Software' },
           { id: 'security', label: 'Cybersecurity & Audits' },
           { id: 'graphics', label: 'Graphics & Design' },
@@ -613,7 +614,7 @@ export default function ProjectsPage() {
 
       {/* 3-Column Card Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-        {filteredProjects.map((project) => (
+        {filteredProjects.map((project, idx) => (
           <div
             key={project.id}
             className="card-surface overflow-hidden flex flex-col justify-between group hover:border-indigo-500/50 hover:shadow-2xl hover:shadow-indigo-950/40 transition-all duration-300 h-full"
@@ -638,12 +639,12 @@ export default function ProjectsPage() {
                   </div>
 
                   {/* Card Image Display */}
-                  <CardImage src={project.image} alt={project.title} />
+                  <CardImage src={project.image} alt={project.title} priority={idx < 3} />
                   {(project.underDevelopment || project.developmentOngoing) && (
-                    <div className="absolute top-8 right-3 z-20 flex items-center gap-1.5 bg-emerald-950/95 border border-emerald-500/60 px-2.5 py-1 rounded-full text-[10px] font-mono font-bold text-emerald-400 shadow-xl backdrop-blur-md pointer-events-none">
-                      <span className="relative flex h-2 w-2 shrink-0">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                    <div className="absolute top-8 right-3 z-20 flex items-center gap-1.5 bg-emerald-950/95 border border-emerald-500/60 px-2.5 py-1 rounded-full text-[10px] font-bold text-emerald-300 shadow-lg shadow-emerald-950/50 backdrop-blur-sm">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                       </span>
                       <span>Under Development</span>
                     </div>
@@ -662,15 +663,6 @@ export default function ProjectsPage() {
 
                     {/* Tags */}
                     <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-2 items-center">
-                      {(project.underDevelopment || project.developmentOngoing) && (
-                        <span className="inline-flex items-center gap-1 px-2 sm:px-2.5 py-0.5 rounded-md text-[10px] font-mono font-bold text-emerald-400 bg-emerald-500/15 border border-emerald-500/35">
-                          <span className="relative flex h-1.5 w-1.5 shrink-0">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
-                          </span>
-                          Under Development
-                        </span>
-                      )}
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
@@ -804,10 +796,10 @@ export default function ProjectsPage() {
                   {/* Viewport Canvas */}
                   <div className="w-full min-h-[380px] sm:min-h-[480px] max-h-[72vh] sm:max-h-[78vh] bg-[#070B14] flex items-center justify-center relative overflow-hidden p-3 sm:p-6">
                     {(selectedProject.underDevelopment || selectedProject.developmentOngoing) && (
-                      <div className="absolute top-4 right-4 z-20 flex items-center gap-2 bg-emerald-950/95 border border-emerald-500/60 px-3 py-1.5 rounded-full text-xs font-mono font-bold text-emerald-400 shadow-2xl backdrop-blur-md pointer-events-none">
-                        <span className="relative flex h-2.5 w-2.5 shrink-0">
-                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+                      <div className="absolute top-3 sm:top-5 right-3 sm:right-5 z-20 flex items-center gap-1.5 bg-emerald-950/95 border border-emerald-500/60 px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold text-emerald-300 shadow-xl backdrop-blur-md">
+                        <span className="relative flex h-2 w-2">
+                          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
                         </span>
                         <span>Under Development</span>
                       </div>
@@ -830,15 +822,6 @@ export default function ProjectsPage() {
                 <div className="p-6 sm:p-8 space-y-6">
                   <div>
                     <div className="flex flex-wrap gap-2 mb-2 items-center">
-                      {(selectedProject.underDevelopment || selectedProject.developmentOngoing) && (
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-mono font-bold text-emerald-400 bg-emerald-500/15 border border-emerald-500/35">
-                          <span className="relative flex h-2 w-2 shrink-0">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-                          </span>
-                          Under Development
-                        </span>
-                      )}
                       {selectedProject.tags.map((tag) => (
                         <span
                           key={tag}

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useLayoutEffect, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 
 interface PortalWelcomeProps {
@@ -47,7 +47,7 @@ export default function DoctorStrangeWelcomePortal({ onComplete }: PortalWelcome
     onCompleteRef.current = onComplete;
   }, [onComplete]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -92,7 +92,7 @@ export default function DoctorStrangeWelcomePortal({ onComplete }: PortalWelcome
     let rotationAngle = 0;
 
     // Particle pool sized for solid 60fps performance on all devices
-    const MAX_SPARKS = isMobile ? 180 : 320;
+    const MAX_SPARKS = isMobile ? 120 : 220;
     const sparks: MetalSpark[] = [];
 
     // Preallocated color buckets for batched draw calls (reduces draw calls from 1000+ to <10)
@@ -194,8 +194,8 @@ export default function DoctorStrangeWelcomePortal({ onComplete }: PortalWelcome
       // Spawn rate: balanced for smooth 60fps
       const isExpanding = elapsed >= SMALL_CIRCLE_DELAY || isAcceleratingRef.current;
       const spawnCount = isExpanding
-        ? (isMobile ? 12 : 18)
-        : (isMobile ? 8 : 14);
+        ? (isMobile ? 8 : 14)
+        : (isMobile ? 5 : 10);
 
       spawnSparks(cx, cy, currentRadius, spawnCount);
 
@@ -354,24 +354,18 @@ export default function DoctorStrangeWelcomePortal({ onComplete }: PortalWelcome
       animId = requestAnimationFrame(render);
     };
 
-    animId = requestAnimationFrame(render);
-
-    const handleInteraction = () => {
-      isAcceleratingRef.current = true;
-    };
-
-    window.addEventListener('keydown', handleInteraction, { once: true });
+    // Paint initial dark veil & portal frame, then schedule next frame
+    render(startTime);
+    animId = requestAnimationFrame((t) => {
+      lastTime = t;
+      render(t);
+    });
 
     return () => {
       cancelAnimationFrame(animId);
       window.removeEventListener('resize', resize);
-      window.removeEventListener('keydown', handleInteraction);
     };
   }, []);
-
-  const handleClickFastForward = () => {
-    isAcceleratingRef.current = true;
-  };
 
   return (
     <motion.div
@@ -379,14 +373,15 @@ export default function DoctorStrangeWelcomePortal({ onComplete }: PortalWelcome
       initial={{ opacity: 1 }}
       exit={{
         opacity: 0,
-        transition: { duration: 0.3, ease: 'easeOut' },
+        transition: { duration: 0.28, ease: 'easeOut' },
       }}
-      className="fixed inset-0 z-[9999] overflow-hidden select-none"
-      onClick={handleClickFastForward}
+      style={{ willChange: 'opacity', transform: 'translateZ(0)' }}
+      className="fixed inset-0 z-[9999] overflow-hidden select-none pointer-events-none"
     >
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 block w-full h-full pointer-events-auto"
+        style={{ willChange: 'transform', transform: 'translateZ(0)' }}
+        className="absolute inset-0 block w-full h-full pointer-events-none"
       />
     </motion.div>
   );

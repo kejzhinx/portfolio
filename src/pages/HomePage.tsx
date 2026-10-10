@@ -85,29 +85,6 @@ export default function HomePage() {
     <div className={`relative min-h-[calc(100vh-76px)] flex items-center justify-center pt-24 sm:pt-28 lg:pt-0 pb-12 lg:pb-0 px-4 sm:px-6 lg:px-10 overflow-x-hidden transition-colors duration-300 ${
       isDark ? 'bg-[#070B14]' : 'bg-[#F8FAFC]'
     }`}>
-      {/* Dynamic ambient background glows */}
-      <div className={`absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[500px] lg:w-[600px] h-[280px] sm:h-[500px] lg:h-[600px] rounded-full blur-[100px] sm:blur-[140px] pointer-events-none ${
-        isDark ? 'bg-indigo-600/10' : 'bg-indigo-500/15'
-      }`} />
-      <div className={`absolute top-1/3 right-1/4 w-[300px] sm:w-[550px] lg:w-[650px] h-[300px] sm:h-[550px] lg:h-[650px] rounded-full blur-[100px] sm:blur-[150px] pointer-events-none ${
-        isDark ? 'bg-violet-600/15' : 'bg-violet-500/15'
-      }`} />
-      <div className={`absolute bottom-5 left-1/2 -translate-x-1/2 w-[380px] sm:w-[700px] lg:w-[800px] h-[160px] sm:h-[260px] rounded-full blur-[110px] sm:blur-[160px] pointer-events-none ${
-        isDark ? 'bg-blue-600/5' : 'bg-blue-500/10'
-      }`} />
-
-      {/* Subtle background tech grid */}
-      <div
-        className={`absolute inset-0 pointer-events-none transition-opacity ${
-          isDark ? 'opacity-[0.025]' : 'opacity-[0.04]'
-        }`}
-        style={{
-          backgroundImage: `linear-gradient(to right, rgba(99, 102, 241, 0.2) 1px, transparent 1px),
-                            linear-gradient(to bottom, rgba(99, 102, 241, 0.2) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px',
-        }}
-      />
-
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 xl:gap-16 items-center relative z-10 py-6 lg:py-12">
         {/* Left Column: Text & Call-To-Actions */}
         <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 sm:space-y-6 w-full order-2 lg:order-1">
@@ -230,6 +207,8 @@ export default function HomePage() {
                 transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
                 className="absolute inset-[-160%] pointer-events-none"
                 style={{
+                  willChange: 'transform',
+                  transform: 'translateZ(0)',
                   background: `conic-gradient(
                     from 0deg,
                     #00F0FF 0deg,
@@ -257,6 +236,8 @@ export default function HomePage() {
                 transition={{ duration: 4.2, repeat: Infinity, ease: 'linear' }}
                 className="absolute inset-[-160%] pointer-events-none mix-blend-screen"
                 style={{
+                  willChange: 'transform',
+                  transform: 'translateZ(0)',
                   background: `conic-gradient(
                     from 30deg,
                     #FFFFFF 0deg,
@@ -300,15 +281,17 @@ export default function HomePage() {
               className="absolute w-[80%] sm:w-[78%] h-[88%] sm:h-[86%] pointer-events-none overflow-visible z-20"
               viewBox="0 0 300 380"
               preserveAspectRatio="none"
+              style={{
+                willChange: 'transform',
+                transform: 'translateZ(0)',
+              }}
             >
               <defs>
-                {/* Intense Electric Cyan & White Spark Glow Filter */}
-                <filter id="portalSparkGlow" x="-60%" y="-60%" width="220%" height="220%">
-                  <feGaussianBlur stdDeviation="3.5" result="glow1" />
-                  <feGaussianBlur stdDeviation="9" result="glow2" />
+                {/* Optimized Electric Spark Glow Filter */}
+                <filter id="portalSparkGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="2.5" result="glow" />
                   <feMerge>
-                    <feMergeNode in="glow2" />
-                    <feMergeNode in="glow1" />
+                    <feMergeNode in="glow" />
                     <feMergeNode in="SourceGraphic" />
                   </feMerge>
                 </filter>
@@ -324,14 +307,13 @@ export default function HomePage() {
                 ry="130"
                 fill="none"
                 stroke="#00F0FF"
-                strokeWidth="10"
+                strokeWidth="7"
                 strokeLinecap="round"
-                strokeOpacity="0.55"
+                strokeOpacity="0.45"
                 pathLength="100"
                 strokeDasharray="22 78"
                 animate={{ strokeDashoffset: [0, -100] }}
                 transition={{ duration: 3.2, repeat: Infinity, ease: 'linear' }}
-                style={{ filter: 'blur(5px)' }}
               />
 
               {/* Circling Spark - Electric Blue Comet Tail */}
@@ -344,7 +326,7 @@ export default function HomePage() {
                 ry="130"
                 fill="none"
                 stroke="#38BDF8"
-                strokeWidth="4.5"
+                strokeWidth="4"
                 strokeLinecap="round"
                 pathLength="100"
                 strokeDasharray="16 84"
@@ -363,7 +345,7 @@ export default function HomePage() {
                 ry="130"
                 fill="none"
                 stroke="#FFFFFF"
-                strokeWidth="5.5"
+                strokeWidth="5"
                 strokeLinecap="round"
                 pathLength="100"
                 strokeDasharray="5 95"
@@ -382,7 +364,7 @@ export default function HomePage() {
                 ry="130"
                 fill="none"
                 stroke="#00F0FF"
-                strokeWidth="3.5"
+                strokeWidth="3"
                 strokeLinecap="round"
                 pathLength="100"
                 strokeDasharray="2 98"
@@ -605,6 +587,8 @@ export default function HomePage() {
                     style={{
                       left: item.x,
                       top: item.y,
+                      willChange: 'transform',
+                      transform: 'translateZ(0)',
                       boxShadow: isClicked
                         ? `0 0 28px ${item.accentColor}, 0 10px 24px rgba(0,0,0,0.5)`
                         : isHovered

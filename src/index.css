@@ -16,17 +16,31 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+  }
+
   body {
     background-color: var(--color-bg-canvas);
     color: #F8FAFC;
     font-family: var(--font-sans);
-    antialiased: true;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    touch-action: manipulation;
   }
 
   ::selection {
     background-color: rgba(99, 102, 241, 0.35);
     color: #FFFFFF;
+  }
+
+  /* GPU accelerated compositing helpers */
+  img, svg, canvas {
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
 }
 
@@ -51,12 +65,20 @@
     background-color: #0D1424;
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 1.25rem;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateZ(0);
+    contain: paint;
   }
 
   .card-surface:hover {
     background-color: #121B30;
     border-color: rgba(99, 102, 241, 0.3);
+  }
+
+  .gpu-layer {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
   }
 
   .badge-pill {

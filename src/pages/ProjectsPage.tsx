@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { ExternalLink, Github, Sparkles, X, ArrowUpRight, Play, CheckCircle2 } from 'lucide-react';
 
@@ -51,6 +52,21 @@ export default function ProjectsPage() {
     setSelectedProject(project);
     setActiveModalImage(project.image);
   };
+
+  // Lock body scroll and allow ESC key to close modal
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = 'hidden';
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') setSelectedProject(null);
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.style.overflow = '';
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    }
+  }, [selectedProject]);
 
   const projects: ProjectItem[] = [
     // Applications & Software
@@ -735,38 +751,40 @@ export default function ProjectsPage() {
           ))}
       </div>
 
-      {/* Project Details Modal */}
-      <AnimatePresence>
-        {selectedProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+      {/* Project Details Modal rendered directly to document.body via Portal to escape all stacking contexts */}
+      {typeof document !== 'undefined' &&
+        createPortal(
+          <AnimatePresence>
+            {selectedProject && (
+              <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-5 lg:p-6 overflow-y-auto">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setSelectedProject(null)}
-              className="fixed inset-0 bg-black/80 backdrop-blur-md"
+              className="fixed inset-0 bg-black/85 backdrop-blur-md z-0"
             />
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              initial={{ opacity: 0, scale: 0.96, y: 16 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              transition={{ duration: 0.3 }}
-              className="relative w-full max-w-3xl bg-[#0D1424] border border-white/[0.12] rounded-3xl shadow-2xl z-10 mt-14 mb-4 sm:my-8 max-h-[84vh] sm:max-h-[90vh] flex flex-col overflow-hidden"
+              exit={{ opacity: 0, scale: 0.96, y: 16 }}
+              transition={{ duration: 0.25 }}
+              className="relative w-full max-w-2xl lg:max-w-[680px] bg-[#0D1424] border border-white/[0.12] rounded-2xl shadow-2xl shadow-black/80 z-10 my-auto max-h-[82vh] flex flex-col overflow-hidden"
             >
-              <div className="overflow-y-auto flex-1 rounded-3xl">
+              <div className="overflow-y-auto flex-1 rounded-2xl">
                 {/* Modal Image Header with Clean Browser Mockup Frame */}
                 <div className="w-full bg-[#080D1A] border-b border-white/[0.08] flex flex-col">
-                  {/* Browser Chrome Bar */}
-                  <div className="min-h-10 bg-[#0D1527] border-b border-white/[0.08] px-3 sm:px-4 py-2 flex items-center justify-between gap-2 shrink-0 z-10">
+                  {/* Sticky Browser Chrome Bar */}
+                  <div className="sticky top-0 min-h-9 bg-[#0D1527]/95 backdrop-blur-md border-b border-white/[0.08] px-3 sm:px-4 py-1.5 flex items-center justify-between gap-2 shrink-0 z-30">
                     <div className="flex items-center gap-1.5 shrink-0">
                       <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
                       <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
                       <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
                     </div>
 
-                    <div className="flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-[#080D1A] border border-white/[0.08] text-[11px] sm:text-xs font-mono text-slate-300 min-w-0 max-w-[150px] sm:max-w-[320px] shadow-inner truncate">
-                      <span className="text-emerald-400 text-[10px] shrink-0">🔒</span>
+                    <div className="flex items-center gap-1 px-2.5 py-0.5 rounded-md bg-[#080D1A] border border-white/[0.08] text-[10px] sm:text-[11px] font-mono text-slate-300 min-w-0 max-w-[140px] sm:max-w-[280px] shadow-inner truncate">
+                      <span className="text-emerald-400 text-[9px] shrink-0">🔒</span>
                       <span className="truncate">{selectedProject.liveUrl ? selectedProject.liveUrl.replace(/^https?:\/\//, '').replace(/\/$/, '') : `${selectedProject.id}.app`}</span>
                     </div>
 
@@ -776,27 +794,27 @@ export default function ProjectsPage() {
                           href={selectedProject.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="hover:text-indigo-300 text-slate-300 hover:bg-white/[0.08] px-2 py-1 rounded-md flex items-center gap-1 text-[11px] font-sans font-semibold transition-colors whitespace-nowrap"
+                          className="hover:text-indigo-300 text-slate-300 hover:bg-white/[0.08] px-2 py-0.5 rounded-md flex items-center gap-1 text-[11px] font-sans font-semibold transition-colors whitespace-nowrap"
                         >
                           <span className="hidden sm:inline">Visit Site</span>
                           <span className="sm:hidden text-[10px]">Open</span>
-                          <ExternalLink size={12} className="shrink-0" />
+                          <ExternalLink size={11} className="shrink-0" />
                         </a>
                       )}
                       <button
                         onClick={() => setSelectedProject(null)}
-                        className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer shadow-md"
+                        className="w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors cursor-pointer shadow-md"
                         aria-label="Close modal"
                       >
-                        <X size={16} />
+                        <X size={15} />
                       </button>
                     </div>
                   </div>
 
                   {/* Viewport Canvas */}
-                  <div className="w-full min-h-[380px] sm:min-h-[480px] max-h-[72vh] sm:max-h-[78vh] bg-[#070B14] flex items-center justify-center relative overflow-hidden p-3 sm:p-6">
+                  <div className="w-full min-h-[180px] sm:min-h-[220px] max-h-[30vh] sm:max-h-[34vh] bg-[#070B14] flex items-center justify-center relative overflow-hidden p-2.5 sm:p-4">
                     {(selectedProject.underDevelopment || selectedProject.developmentOngoing) && (
-                      <div className="absolute top-3 sm:top-5 right-3 sm:right-5 z-20 flex items-center gap-1.5 bg-emerald-950/95 border border-emerald-500/60 px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold text-emerald-300 shadow-xl backdrop-blur-md">
+                      <div className="absolute top-2.5 sm:top-3.5 right-2.5 sm:right-3.5 z-20 flex items-center gap-1.5 bg-emerald-950/95 border border-emerald-500/60 px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-bold text-emerald-300 shadow-xl backdrop-blur-md">
                         <span className="relative flex h-2 w-2">
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                           <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -812,32 +830,32 @@ export default function ProjectsPage() {
                       src={activeModalImage || selectedProject.image}
                       alt={selectedProject.title}
                       decoding="async"
-                      className="max-h-[66vh] sm:max-h-[72vh] max-w-full w-auto object-contain mx-auto rounded-lg shadow-2xl transition-all"
+                      className="max-h-[26vh] sm:max-h-[30vh] max-w-full w-auto object-contain mx-auto rounded-lg shadow-xl transition-all"
                       referrerPolicy="no-referrer"
                     />
                   </div>
                 </div>
 
                 {/* Modal Content */}
-                <div className="p-6 sm:p-8 space-y-6">
+                <div className="p-4 sm:p-6 space-y-4 sm:space-y-5">
                   <div>
-                    <div className="flex flex-wrap gap-2 mb-2 items-center">
+                    <div className="flex flex-wrap gap-1.5 mb-1.5 items-center">
                       {selectedProject.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2.5 py-1 rounded-md text-[11px] font-semibold text-indigo-300 bg-indigo-500/10 border border-indigo-500/20"
+                          className="px-2 py-0.5 rounded-md text-[10px] sm:text-[11px] font-semibold text-indigo-300 bg-indigo-500/10 border border-indigo-500/20"
                         >
                           {tag}
                         </span>
                       ))}
                     </div>
 
-                    <h2 className="text-2xl sm:text-3xl font-bold text-white mt-1">
+                    <h2 className="text-xl sm:text-2xl font-bold text-white mt-1">
                       {selectedProject.title}
                     </h2>
                   </div>
 
-                  <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
                     {selectedProject.longDescription}
                   </p>
 
@@ -1079,7 +1097,9 @@ export default function ProjectsPage() {
             </motion.div>
           </div>
         )}
-      </AnimatePresence>
+      </AnimatePresence>,
+      document.body
+    )}
     </div>
   );
 }

@@ -121,7 +121,7 @@ function MainLayout() {
       />
 
       <Navbar />
-      <main className="flex-1 flex flex-col relative z-10">
+      <main className="flex-1 flex flex-col relative">
         <AnimatedRoutes />
       </main>
       <Footer />

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { BrowserRouter, Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import { AnimatePresence } from 'motion/react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -11,6 +11,46 @@ import ProjectsPage from './pages/ProjectsPage';
 import ContactPage from './pages/ContactPage';
 import DoctorStrangeWelcomePortal from './components/DoctorStrangeWelcomePortal';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
+
+function ReloadToHome() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const hasMountedRef = useRef(false);
+
+  useEffect(() => {
+    // When the browser is refreshed or page unloads, prepare URL to reset to home
+    const handleBeforeUnload = () => {
+      try {
+        window.history.replaceState(null, '', '/');
+      } catch {
+        // ignore
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    window.addEventListener('pagehide', handleBeforeUnload);
+
+    // On initial page load / refresh: if not on home, reset back into the Home page
+    if (!hasMountedRef.current) {
+      hasMountedRef.current = true;
+      if (location.pathname !== '/' || window.location.hash) {
+        try {
+          window.history.replaceState(null, '', '/');
+        } catch {
+          // ignore
+        }
+        navigate('/', { replace: true });
+      }
+    }
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener('pagehide', handleBeforeUnload);
+    };
+  }, [navigate, location.pathname]);
+
+  return null;
+}
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -93,6 +133,7 @@ export default function App() {
   return (
     <ThemeProvider>
       <BrowserRouter>
+        <ReloadToHome />
         <ScrollToTop />
         <MainLayout />
       </BrowserRouter>

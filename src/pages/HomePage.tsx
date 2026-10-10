@@ -380,16 +380,37 @@ export default function HomePage() {
             }`} />
 
             {/* Cutout Portrait Image */}
-            <div className="relative z-10 w-full h-full flex items-end justify-center overflow-visible">
+            <div
+              className="absolute inset-0 z-10 flex items-end justify-center overflow-visible pointer-events-none"
+              style={{
+                transform: 'translateZ(0)',
+                willChange: 'transform',
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
+              }}
+            >
               <img
                 src="/profile.webp"
                 alt="Jeric M. De Los Reyes"
                 fetchPriority="high"
-                decoding="async"
-                className={`w-full h-full object-contain object-bottom select-none ${
+                decoding="sync"
+                loading="eager"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.dataset.retried) {
+                    target.dataset.retried = 'true';
+                    target.src = '/profile.webp?retry=' + Date.now();
+                  }
+                }}
+                className={`w-full h-full object-contain object-bottom select-none pointer-events-none ${
                   isDark ? 'drop-shadow-[0_20px_45px_rgba(0,0,0,0.85)]' : 'drop-shadow-[0_20px_35px_rgba(30,27,75,0.4)]'
                 }`}
-                referrerPolicy="no-referrer"
+                style={{
+                  transform: 'translateZ(0)',
+                  willChange: 'transform',
+                  backfaceVisibility: 'hidden',
+                  WebkitBackfaceVisibility: 'hidden',
+                }}
               />
 
               {/* Floating Social Media & Tech Icons Scattered (Sabog-Sabog) Organic Constellation */}
@@ -624,7 +645,7 @@ export default function HomePage() {
                     onMouseEnter={() => setHoveredId(item.id)}
                     onMouseLeave={() => setHoveredId((prev) => (prev === item.id ? null : prev))}
                     onClick={(e) => handleIconClick(e, item.id, item.actionLabel, item.pitch, item.href)}
-                    className={`group absolute -translate-x-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-11 h-11 sm:w-11 sm:h-11 ${item.rounded} ${item.bg} ${item.border || ''} shadow-lg shadow-black/40 cursor-pointer select-none transition-shadow`}
+                    className={`group absolute -translate-x-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-11 h-11 sm:w-11 sm:h-11 ${item.rounded} ${item.bg} ${item.border || ''} shadow-lg shadow-black/40 cursor-pointer select-none pointer-events-auto transition-shadow`}
                     aria-label={item.name}
                   >
                     {/* Expanding Ripple Shockwave on Click */}

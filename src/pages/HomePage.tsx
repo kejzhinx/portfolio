@@ -725,38 +725,6 @@ export default function HomePage() {
                 </span>
                 <span>Available for Work</span>
               </div>
-
-              {/* Handwritten Floating Text Badge */}
-              <div className="absolute -top-4 sm:-top-6 right-[-2px] sm:right-[-6px] lg:right-[-10px] z-10 pointer-events-none select-none text-right">
-                <div className="flex flex-col items-end rotate-6">
-                  <span className={`font-['Caveat',cursive] text-2xl sm:text-4xl lg:text-5xl font-bold tracking-wide ${
-                    isDark
-                      ? 'text-indigo-300 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]'
-                      : 'text-indigo-600 drop-shadow-[0_2px_8px_rgba(255,255,255,0.95)]'
-                  }`}>
-                    Code
-                  </span>
-                  <span className={`font-['Caveat',cursive] text-2xl sm:text-4xl lg:text-5xl font-bold -mt-1 sm:-mt-2 tracking-wide ${
-                    isDark
-                      ? 'text-violet-300 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]'
-                      : 'text-violet-600 drop-shadow-[0_2px_8px_rgba(255,255,255,0.95)]'
-                  }`}>
-                    Design
-                  </span>
-                  <span className={`font-['Caveat',cursive] text-2xl sm:text-4xl lg:text-5xl font-bold -mt-1 sm:-mt-2 tracking-wide ${
-                    isDark
-                      ? 'text-blue-300 drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]'
-                      : 'text-blue-600 drop-shadow-[0_2px_8px_rgba(255,255,255,0.95)]'
-                  }`}>
-                    Build
-                  </span>
-                  <svg className={`w-14 sm:w-20 lg:w-24 h-3 sm:h-4 mt-0.5 sm:mt-1 ${
-                    isDark ? 'text-indigo-400' : 'text-indigo-600'
-                  }`} viewBox="0 0 100 20" fill="none">
-                    <path d="M5 10 Q 50 18, 95 6" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-                  </svg>
-                </div>
-              </div>
             </div>
           </div>
         </div>

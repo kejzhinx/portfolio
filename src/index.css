@@ -22,27 +22,14 @@
     text-rendering: optimizeLegibility;
   }
 
-  html, body {
-    overflow-x: hidden;
-    overflow-x: clip;
-    max-width: 100vw;
-    width: 100%;
-  }
-
   body {
     background-color: var(--color-bg-canvas);
     color: #F8FAFC;
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    touch-action: manipulation;
-  }
-
-  #root {
     overflow-x: hidden;
-    overflow-x: clip;
-    max-width: 100vw;
-    width: 100%;
+    touch-action: manipulation;
   }
 
   ::selection {

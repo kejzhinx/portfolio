@@ -66,12 +66,9 @@ export default function HomePage() {
         // clipboard fallback
       }
       setTimeout(() => {
-        const targetUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=jericdelosreyes127001@gmail.com';
-        const a = document.createElement('a');
-        a.href = targetUrl;
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
-        a.click();
+        if (href) {
+          window.location.href = href;
+        }
       }, 650);
     }
 
@@ -494,9 +491,9 @@ export default function HomePage() {
                 {
                   id: 'gmail',
                   name: 'Gmail',
-                  actionLabel: '📋 Email Copied! Opening Gmail...',
+                  actionLabel: '📋 Email Copied! Opening Mail...',
                   category: 'Contact',
-                  href: 'https://mail.google.com/mail/?view=cm&fs=1&to=jericdelosreyes127001@gmail.com',
+                  href: 'mailto:jericdelosreyes127001@gmail.com',
                   x: '94%',
                   y: '22%',
                   rot: -5,

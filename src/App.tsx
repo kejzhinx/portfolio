@@ -52,92 +52,52 @@ function ReloadToHome() {
   return null;
 }
 
-const routeOrder = ['/', '/about', '/skills', '/projects', '/contact'];
-
 function AnimatedRoutes() {
   const location = useLocation();
-  const prevPathRef = useRef(location.pathname);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  const prevIndex = routeOrder.indexOf(prevPathRef.current);
-  const currentIndex = routeOrder.indexOf(location.pathname);
-  const direction = (currentIndex !== -1 && prevIndex !== -1 && currentIndex < prevIndex) ? -1 : 1;
-
-  useEffect(() => {
-    if (prevPathRef.current !== location.pathname) {
-      setIsTransitioning(true);
-      prevPathRef.current = location.pathname;
-    }
-  }, [location.pathname]);
-
-  const pageVariants = {
-    initial: (dir: number) => ({
-      opacity: 0,
-      rotateY: dir > 0 ? 12 : -12,
-      rotateX: 1.5,
-      z: -80,
-      scale: 0.97,
-      filter: 'blur(3px)',
-    }),
-    animate: {
-      opacity: 1,
-      rotateY: 0,
-      rotateX: 0,
-      z: 0,
-      scale: 1,
-      filter: 'blur(0px)',
-      transition: {
-        duration: 0.38,
-        ease: [0.16, 1, 0.3, 1],
-      },
-    },
-    exit: (dir: number) => ({
-      opacity: 0,
-      rotateY: dir > 0 ? -12 : 12,
-      rotateX: -1.5,
-      z: -80,
-      scale: 0.97,
-      filter: 'blur(3px)',
-      transition: {
-        duration: 0.3,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    }),
-  };
 
   return (
-    <div
-      className="w-full flex-1 relative"
-      style={isTransitioning ? { perspective: 1200, perspectiveOrigin: '50% 25%', overflow: 'hidden' } : undefined}
-    >
-      {/* 3D Cyber Dimensional Scan Sweep */}
+    <div className="w-full flex-1 relative">
+      {/* High-speed Cyber Dimensional Sweep Beam */}
       <AnimatePresence mode="wait">
-        {isTransitioning && (
-          <motion.div
-            key={`beam-${location.pathname}`}
-            initial={{ scaleX: 0, x: direction > 0 ? '-100%' : '100%', opacity: 0 }}
-            animate={{
-              scaleX: [0, 1.25, 0.4, 0],
-              x: direction > 0 ? ['-100%', '-20%', '50%', '110%'] : ['100%', '20%', '-50%', '-110%'],
-              opacity: [0, 1, 1, 0],
-            }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed top-0 left-0 right-0 h-[2.5px] z-50 pointer-events-none bg-gradient-to-r from-transparent via-cyan-400 to-indigo-500 shadow-[0_0_16px_#00F0FF,0_0_28px_#6366F1]"
-          />
-        )}
+        <motion.div
+          key={`beam-${location.pathname}`}
+          initial={{ scaleX: 0, x: '-100%', opacity: 0 }}
+          animate={{
+            scaleX: [0, 1.2, 0.4, 0],
+            x: ['-100%', '-20%', '60%', '110%'],
+            opacity: [0, 1, 1, 0],
+          }}
+          transition={{ duration: 0.52, ease: [0.16, 1, 0.3, 1] }}
+          className="fixed top-0 left-0 right-0 h-[2.5px] z-50 pointer-events-none bg-gradient-to-r from-transparent via-cyan-400 to-indigo-500 shadow-[0_0_14px_#00F0FF,0_0_28px_#6366F1]"
+        />
       </AnimatePresence>
 
-      {/* 3D Spatial Perspective Transition */}
-      <AnimatePresence mode="wait" initial={false} custom={direction}>
+      {/* Unique Portal Dimensional Page Transition */}
+      <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={location.pathname}
-          custom={direction}
-          variants={pageVariants}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          onAnimationComplete={() => setIsTransitioning(false)}
-          style={isTransitioning ? { transformOrigin: '50% 50%', willChange: 'transform, opacity' } : undefined}
+          initial={{
+            opacity: 0,
+            y: 18,
+            scale: 0.985,
+            filter: 'blur(8px)',
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            filter: 'blur(0px)',
+          }}
+          exit={{
+            opacity: 0,
+            y: -16,
+            scale: 1.015,
+            filter: 'blur(8px)',
+          }}
+          transition={{
+            duration: 0.34,
+            ease: [0.22, 1, 0.36, 1],
+          }}
           className="w-full flex-1 flex flex-col"
         >
           <Routes location={location}>

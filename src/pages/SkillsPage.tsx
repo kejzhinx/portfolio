@@ -345,7 +345,7 @@ export default function SkillsPage() {
   });
 
   return (
-    <div className="pt-24 pb-20 px-6 sm:px-8 max-w-7xl mx-auto">
+    <div className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
       {/* Header */}
       <div className="space-y-4 mb-10">
         <div className="badge-pill">
@@ -353,7 +353,7 @@ export default function SkillsPage() {
           <span>My Skills</span>
         </div>
 
-        <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight ${
+        <h1 className={`text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight break-words ${
           isDark ? 'text-white' : 'text-slate-900'
         }`}>
           Technologies I <span className="text-gradient">Work With</span>

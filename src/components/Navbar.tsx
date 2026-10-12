@@ -78,11 +78,13 @@ export default function Navbar() {
                 <>
                   <span className="relative z-10">{item.label}</span>
                   {isActive && (
-                    <div
-                      className={`absolute inset-0 rounded-full shadow-sm ${
+                    <motion.div
+                      layoutId="navbar-active-pill"
+                      transition={{ type: 'spring', stiffness: 420, damping: 30 }}
+                      className={`absolute inset-0 rounded-full ${
                         isDark 
-                          ? 'bg-indigo-600/30 border border-indigo-500/40 shadow-indigo-500/20' 
-                          : 'bg-white border border-slate-300/80 shadow-slate-200'
+                          ? 'bg-gradient-to-r from-indigo-600/40 via-violet-600/35 to-cyan-500/25 border border-indigo-400/50 shadow-md shadow-indigo-500/25' 
+                          : 'bg-white border border-slate-300 shadow-sm shadow-indigo-950/10'
                       }`}
                     />
                   )}

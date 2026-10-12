@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowRight, Mail, Github, Linkedin } from 'lucide-react';
+import { ArrowRight, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 
@@ -66,9 +66,12 @@ export default function HomePage() {
         // clipboard fallback
       }
       setTimeout(() => {
-        if (href) {
-          window.location.href = href;
-        }
+        const targetUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=jericdelosreyes127001@gmail.com';
+        const a = document.createElement('a');
+        a.href = targetUrl;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.click();
       }, 650);
     }
 
@@ -133,52 +136,6 @@ export default function HomePage() {
               <Mail size={16} className="text-indigo-500 group-hover:text-indigo-600 dark:text-indigo-400 dark:group-hover:text-indigo-300 transition-colors" />
               <span>Contact Me</span>
             </Link>
-          </div>
-
-          {/* Social Links Row */}
-          <div className={`flex items-center justify-center lg:justify-start gap-4 pt-5 border-t w-full max-w-xl ${
-            isDark ? 'border-white/[0.08]' : 'border-slate-200'
-          }`}>
-            <span className="text-xs text-slate-500 font-medium uppercase tracking-wider">Connect:</span>
-            <div className="flex items-center gap-2">
-              <a
-                href="https://github.com/kejzhin"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-105 ${
-                  isDark
-                    ? 'bg-white/[0.04] border border-white/[0.08] hover:border-indigo-500/60 hover:bg-white/[0.08] text-slate-300 hover:text-white'
-                    : 'bg-white border border-slate-300 hover:border-indigo-500 hover:text-indigo-600 text-slate-700 shadow-sm'
-                }`}
-              >
-                <Github size={16} />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-105 ${
-                  isDark
-                    ? 'bg-white/[0.04] border border-white/[0.08] hover:border-indigo-500/60 hover:bg-white/[0.08] text-slate-300 hover:text-white'
-                    : 'bg-white border border-slate-300 hover:border-indigo-500 hover:text-indigo-600 text-slate-700 shadow-sm'
-                }`}
-              >
-                <Linkedin size={16} />
-              </a>
-              <a
-                href="mailto:jericdelosreyes127001@gmail.com"
-                aria-label="Email"
-                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-105 ${
-                  isDark
-                    ? 'bg-white/[0.04] border border-white/[0.08] hover:border-indigo-500/60 hover:bg-white/[0.08] text-slate-300 hover:text-white'
-                    : 'bg-white border border-slate-300 hover:border-indigo-500 hover:text-indigo-600 text-slate-700 shadow-sm'
-                }`}
-              >
-                <Mail size={16} />
-              </a>
-            </div>
           </div>
         </div>
 
@@ -276,9 +233,9 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Circling Electric Doctor Strange Spark Animation */}
+            {/* Circling Electric Doctor Strange Spark Animation - stays behind picture (z-[5]) */}
             <svg
-              className="absolute w-[80%] sm:w-[78%] h-[88%] sm:h-[86%] pointer-events-none overflow-visible z-20"
+              className="absolute w-[80%] sm:w-[78%] h-[88%] sm:h-[86%] pointer-events-none overflow-visible z-[5]"
               viewBox="0 0 300 380"
               preserveAspectRatio="none"
               style={{
@@ -537,9 +494,9 @@ export default function HomePage() {
                 {
                   id: 'gmail',
                   name: 'Gmail',
-                  actionLabel: '📋 Email Copied! Opening Mail...',
+                  actionLabel: '📋 Email Copied! Opening Gmail...',
                   category: 'Contact',
-                  href: 'mailto:jericdelosreyes127001@gmail.com',
+                  href: 'https://mail.google.com/mail/?view=cm&fs=1&to=jericdelosreyes127001@gmail.com',
                   x: '94%',
                   y: '22%',
                   rot: -5,
@@ -710,19 +667,6 @@ export default function HomePage() {
                   </Component>
                 );
               })}
-
-              {/* Floating "Available for Work" Status Badge on Picture */}
-              <div className={`absolute bottom-6 sm:bottom-8 left-1 sm:-left-3 lg:-left-6 z-20 flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full backdrop-blur-md border text-[11px] sm:text-xs font-semibold select-none hover:scale-105 transition-all ${
-                isDark
-                  ? 'bg-[#0D1424]/90 border-emerald-500/30 text-emerald-400 shadow-2xl shadow-black/80'
-                  : 'bg-white/95 border-emerald-500/40 text-emerald-600 shadow-xl shadow-indigo-900/10'
-              }`}>
-                <span className="relative flex h-2 w-2 sm:h-2.5 sm:w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 sm:h-2.5 sm:w-2.5 bg-emerald-500"></span>
-                </span>
-                <span>Available for Work</span>
-              </div>
             </div>
           </div>
         </div>

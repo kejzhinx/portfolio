@@ -13,7 +13,6 @@ import {
   ArrowRight,
   Copy,
   Check,
-  ExternalLink,
   MessageSquare,
   AlertCircle,
   RefreshCw
@@ -30,7 +29,6 @@ export default function ContactPage() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'activation_pending' | 'fallback'>('idle');
   const [statusMessage, setStatusMessage] = useState<string>('');
   const [copiedEmail, setCopiedEmail] = useState(false);
-  const [copiedMessage, setCopiedMessage] = useState(false);
 
   const getEncodedSubject = () =>
     encodeURIComponent(
@@ -46,12 +44,6 @@ export default function ContactPage() {
     return `https://mail.google.com/mail/?view=cm&fs=1&to=jericdelosreyes127001@gmail.com&su=${su}&body=${body}`;
   };
 
-  const getMailtoUrl = () => {
-    const su = getEncodedSubject();
-    const body = encodeURIComponent(getFormattedMessageText());
-    return `mailto:jericdelosreyes127001@gmail.com?subject=${su}&body=${body}`;
-  };
-
   const getWhatsAppUrl = () => {
     const text = encodeURIComponent(
       `Hello Jeric,\nName: ${formData.name || 'Visitor'} (${formData.email || 'No email'})\nSubject: ${formData.subject || 'Inquiry'}\n\n${formData.message || ''}`
@@ -63,12 +55,6 @@ export default function ContactPage() {
     navigator.clipboard?.writeText(text);
     setCopiedEmail(true);
     setTimeout(() => setCopiedEmail(false), 2000);
-  };
-
-  const handleCopyMessage = () => {
-    navigator.clipboard?.writeText(getFormattedMessageText());
-    setCopiedMessage(true);
-    setTimeout(() => setCopiedMessage(false), 2500);
   };
 
   const openLinkSafely = (url: string) => {
@@ -498,65 +484,6 @@ export default function ContactPage() {
                   </>
                 )}
               </button>
-
-              {/* INSTANT DIRECT DISPATCH BAR */}
-              <div
-                className={`pt-3 border-t flex flex-wrap items-center justify-between gap-3 text-xs ${
-                  isDark ? 'border-white/[0.08] text-slate-400' : 'border-slate-200 text-slate-500'
-                }`}
-              >
-                <span className="text-[11px] font-medium">Or dispatch directly:</span>
-                <div className="flex items-center gap-2 flex-wrap">
-                  <button
-                    type="button"
-                    onClick={() => openLinkSafely(getGmailWebUrl())}
-                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-[11px] font-medium transition-all cursor-pointer ${
-                      isDark
-                        ? 'bg-white/[0.03] border-white/[0.1] hover:border-red-500/50 hover:text-white'
-                        : 'bg-slate-50 border-slate-200 hover:border-red-400 hover:text-slate-900'
-                    }`}
-                    title="Open Gmail with this message prefilled"
-                  >
-                    <Mail size={12} className="text-red-500" />
-                    <span>Gmail Web</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => openLinkSafely(getWhatsAppUrl())}
-                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-[11px] font-medium transition-all cursor-pointer ${
-                      isDark
-                        ? 'bg-white/[0.03] border-white/[0.1] hover:border-emerald-500/50 hover:text-white'
-                        : 'bg-slate-50 border-slate-200 hover:border-emerald-400 hover:text-slate-900'
-                    }`}
-                    title="Send via WhatsApp"
-                  >
-                    <MessageSquare size={12} className="text-emerald-500" />
-                    <span>WhatsApp</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleCopyMessage}
-                    className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-[11px] font-medium transition-all cursor-pointer ${
-                      isDark
-                        ? 'bg-white/[0.03] border-white/[0.1] hover:border-indigo-500/50 hover:text-white'
-                        : 'bg-slate-50 border-slate-200 hover:border-indigo-400 hover:text-slate-900'
-                    }`}
-                    title="Copy formatted message to paste in any app"
-                  >
-                    {copiedMessage ? (
-                      <>
-                        <Check size={12} className="text-emerald-400" />
-                        <span className="text-emerald-400 font-semibold">Copied!</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy size={12} />
-                        <span>Copy Text</span>
-                      </>
-                    )}
-                  </button>
-                </div>
-              </div>
             </form>
           )}
         </div>
@@ -619,58 +546,6 @@ export default function ContactPage() {
                   />
                 </a>
               ))}
-            </div>
-          </div>
-
-          {/* Quick Direct Email Box */}
-          <div
-            className={`p-6 space-y-3 rounded-3xl border transition-all ${
-              isDark ? 'bg-[#0D1424] border-white/[0.08]' : 'bg-white border-slate-200 shadow-sm'
-            }`}
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-mono uppercase font-bold text-indigo-400">
-                Primary Inbox
-              </span>
-              <button
-                type="button"
-                onClick={() => handleCopy('jericdelosreyes127001@gmail.com')}
-                className={`flex items-center gap-1.5 text-xs font-semibold transition-colors cursor-pointer ${
-                  copiedEmail
-                    ? 'text-emerald-400'
-                    : isDark
-                    ? 'text-slate-400 hover:text-white'
-                    : 'text-slate-600 hover:text-slate-900'
-                }`}
-              >
-                {copiedEmail ? <Check size={14} /> : <Copy size={14} />}
-                <span>{copiedEmail ? 'Copied!' : 'Copy'}</span>
-              </button>
-            </div>
-            <p className={`font-mono text-xs sm:text-sm font-bold break-all ${isDark ? 'text-white' : 'text-slate-900'}`}>
-              jericdelosreyes127001@gmail.com
-            </p>
-            <div className="pt-2 flex items-center gap-2">
-              <a
-                href="https://mail.google.com/mail/?view=cm&fs=1&to=jericdelosreyes127001@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-semibold bg-red-600/10 hover:bg-red-600/20 text-red-500 border border-red-500/20 transition-all"
-              >
-                <Mail size={13} />
-                <span>Open in Gmail</span>
-                <ExternalLink size={11} />
-              </a>
-              <a
-                href="https://wa.me/639684431452"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-semibold bg-emerald-600/10 hover:bg-emerald-600/20 text-emerald-500 border border-emerald-500/20 transition-all"
-              >
-                <MessageSquare size={13} />
-                <span>WhatsApp</span>
-                <ExternalLink size={11} />
-              </a>
             </div>
           </div>
 

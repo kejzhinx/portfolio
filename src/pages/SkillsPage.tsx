@@ -345,21 +345,21 @@ export default function SkillsPage() {
   });
 
   return (
-    <div className="pt-24 pb-20 px-6 sm:px-8 max-w-7xl mx-auto">
+    <div className="pt-24 pb-20 px-4 sm:px-8 max-w-7xl mx-auto w-full min-w-0 overflow-x-hidden">
       {/* Header */}
-      <div className="space-y-4 mb-10">
+      <div className="space-y-4 mb-8 sm:mb-10">
         <div className="badge-pill">
           <Sparkles size={14} className="text-indigo-400" />
           <span>My Skills</span>
         </div>
 
-        <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight ${
+        <h1 className={`text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight break-words ${
           isDark ? 'text-white' : 'text-slate-900'
         }`}>
           Technologies I <span className="text-gradient">Work With</span>
         </h1>
 
-        <p className={`text-base sm:text-lg max-w-2xl leading-relaxed ${
+        <p className={`text-sm sm:text-base lg:text-lg max-w-2xl leading-relaxed break-words ${
           isDark ? 'text-slate-400' : 'text-slate-600'
         }`}>
           A combination of modern programming languages, security assessment utilities, and creative design tools to build responsive, secure, and visually appealing applications.
@@ -367,38 +367,54 @@ export default function SkillsPage() {
       </div>
 
       {/* Filter Tabs & Search Bar */}
-      <div className={`flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-10 pb-6 border-b ${
+      <div className={`flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3.5 sm:gap-4 mb-8 sm:mb-10 pb-6 border-b w-full min-w-0 max-w-full ${
         isDark ? 'border-white/[0.08]' : 'border-slate-200'
       }`}>
-        {/* Category Tabs */}
-        <div className={`flex items-center overflow-x-auto no-scrollbar scroll-smooth gap-1.5 sm:gap-2 p-1.5 rounded-2xl backdrop-blur-md sm:flex-wrap w-full sm:w-auto max-w-full ${
-          isDark ? 'bg-white/[0.03] border border-white/[0.08]' : 'bg-slate-100 border border-slate-200 shadow-sm'
-        }`}>
-          {[
-            { id: 'all', label: 'All Skills' },
-            { id: 'dev', label: 'Development' },
-            { id: 'security', label: 'Cybersecurity & Pentest' },
-            { id: 'design', label: 'Design & Graphics' },
-            { id: 'db', label: 'Database & Data' },
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
-              className={`shrink-0 whitespace-nowrap px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs font-semibold tracking-wide transition-all cursor-pointer ${
-                activeTab === tab.id
-                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                  : isDark
-                  ? 'text-slate-400 hover:text-white hover:bg-white/[0.05]'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-white'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
+        {/* Category Tabs: Sleek Horizontal Scrollable Track with Perfect Alignment */}
+        <div className="w-full sm:w-auto min-w-0 max-w-full">
+          <div className={`flex items-center gap-1.5 sm:gap-2 p-1.5 rounded-2xl backdrop-blur-md overflow-x-auto no-scrollbar scroll-smooth w-full min-w-0 ${
+            isDark ? 'bg-white/[0.03] border border-white/[0.08]' : 'bg-slate-100 border border-slate-200 shadow-sm'
+          }`}>
+            {[
+              { id: 'all', label: 'All Skills', icon: Sparkles, count: 26 },
+              { id: 'dev', label: 'Development', icon: Code2, count: 9 },
+              { id: 'security', label: 'Cybersecurity & Pentest', icon: Shield, count: 6 },
+              { id: 'design', label: 'Design & Graphics', icon: Palette, count: 6 },
+              { id: 'db', label: 'Database & Data', icon: Database, count: 5 },
+            ].map((tab) => {
+              const Icon = tab.icon;
+              const isActive = activeTab === tab.id;
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id as any)}
+                  className={`shrink-0 whitespace-nowrap flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 rounded-xl text-xs font-semibold tracking-wide transition-all cursor-pointer select-none active:scale-95 ${
+                    isActive
+                      ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30 font-bold'
+                      : isDark
+                      ? 'text-slate-400 hover:text-white hover:bg-white/[0.06] bg-white/[0.02]'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-white bg-white/60'
+                  }`}
+                >
+                  <Icon size={13} className={isActive ? 'text-white' : 'text-slate-400'} />
+                  <span>{tab.label}</span>
+                  <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-mono ${
+                    isActive
+                      ? 'bg-white/20 text-white font-bold'
+                      : isDark
+                      ? 'bg-white/[0.06] text-slate-400'
+                      : 'bg-slate-200 text-slate-600'
+                  }`}>
+                    {tab.count}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Search */}
-        <div className="relative w-full sm:w-64">
+        <div className="relative w-full sm:w-64 min-w-0 shrink-0">
           <Search size={16} className={`absolute left-3.5 top-1/2 -translate-y-1/2 ${
             isDark ? 'text-slate-500' : 'text-slate-400'
           }`} />
@@ -407,7 +423,7 @@ export default function SkillsPage() {
             placeholder="Search technology..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className={`w-full rounded-xl pl-9 pr-4 py-2 text-xs focus:outline-none transition-colors ${
+            className={`w-full rounded-xl pl-9 pr-4 py-2.5 text-xs focus:outline-none transition-colors ${
               isDark
                 ? 'bg-white/[0.03] border border-white/[0.08] focus:border-indigo-500/50 text-white placeholder:text-slate-500'
                 : 'bg-white border border-slate-300 focus:border-indigo-500 text-slate-900 placeholder:text-slate-400 shadow-sm'
@@ -417,7 +433,7 @@ export default function SkillsPage() {
       </div>
 
       {/* Skills Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5 w-full min-w-0">
         {filteredSkills.map((skill) => (
           <div
             key={skill.name}

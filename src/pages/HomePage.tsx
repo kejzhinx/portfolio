@@ -377,15 +377,12 @@ export default function HomePage() {
                   x: '2%',
                   y: '68%',
                   rot: -7,
-                  floatY: 5,
-                  floatX: 3,
-                  duration: 5.2,
-                  delay: 0.1,
                   pitch: 340,
                   accentColor: '#5865F2',
                   bg: 'bg-[#5865F2]',
                   border: 'border border-[#7289DA]/50',
                   rounded: 'rounded-2xl',
+                  animClass: 'kejzhin-float-1',
                   icon: (
                     <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="white">
                       <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.929 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.893.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/>
@@ -401,15 +398,12 @@ export default function HomePage() {
                   x: '10%',
                   y: '44%',
                   rot: 5,
-                  floatY: 4,
-                  floatX: 2,
-                  duration: 4.1,
-                  delay: 0.6,
                   pitch: 390,
                   accentColor: '#E6EDF3',
                   bg: 'bg-[#181717]',
                   border: 'border border-white/20',
                   rounded: 'rounded-full',
+                  animClass: 'kejzhin-float-2',
                   icon: (
                     <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="white">
                       <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017C2 16.446 4.87 20.198 8.84 21.52C9.34 21.61 9.53 21.3 9.53 21.03C9.53 20.79 9.52 19.99 9.52 19.14C6.73 19.75 6.14 17.8 6.14 17.8C5.68 16.64 5.03 16.33 5.03 16.33C4.12 15.71 5.1 15.72 5.1 15.72C6.1 15.79 6.63 16.76 6.63 16.76C7.52 18.29 8.97 17.85 9.54 17.59C9.63 16.94 9.89 16.5 10.18 16.25C7.95 16 5.6 15.14 5.6 11.31C5.6 10.22 5.99 9.32 6.63 8.63C6.53 8.38 6.18 7.36 6.73 5.99C6.73 5.99 7.57 5.72 9.48 7.01C10.28 6.79 11.13 6.68 11.98 6.68C12.83 6.68 13.68 6.79 14.48 7.01C16.39 5.72 17.23 5.99 17.23 5.99C17.78 7.36 17.43 8.38 17.33 8.63C17.97 9.32 18.36 10.22 18.36 11.31C18.36 15.15 16 16 13.77 16.25C14.13 16.56 14.46 17.18 14.46 18.13C14.46 19.49 14.45 20.59 14.45 20.92C14.45 21.19 14.64 21.51 15.15 21.41C19.13 20.08 22 16.34 22 11.917C22 6.484 17.522 2 12 2Z" />
@@ -425,15 +419,12 @@ export default function HomePage() {
                   x: '2%',
                   y: '20%',
                   rot: -4,
-                  floatY: 6,
-                  floatX: 3,
-                  duration: 5.4,
-                  delay: 1.0,
                   pitch: 440,
                   accentColor: '#14A800',
                   bg: 'bg-[#14A800]',
                   border: 'border border-emerald-400/40',
                   rounded: 'rounded-xl',
+                  animClass: 'kejzhin-float-3',
                   icon: (
                     <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="white">
                       <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-3.13 0-5.467 2.122-6.284 5.372-1.745-2.28-2.617-4.887-2.923-7.39H6.35c.348 3.526 1.635 6.953 3.791 9.771l-1.396 6.578H5.74V7h-3v12.35h3.004l1.196-5.636c1.17 1.054 2.61 1.768 4.225 1.954l-1.29 6.074h3.053l1.248-5.882c.983.313 2.052.484 3.197.484 3.737 0 6.776-3.04 6.776-6.776 0-3.734-3.04-6.748-6.776-6.748z" />
@@ -449,17 +440,14 @@ export default function HomePage() {
                   x: '28%',
                   y: '7%',
                   rot: 6,
-                  floatY: 5,
-                  floatX: 2,
-                  duration: 4.4,
-                  delay: 0.3,
                   pitch: 490,
                   accentColor: '#1DBF73',
                   bg: 'bg-[#1DBF73]',
                   border: 'border border-emerald-300/40',
                   rounded: 'rounded-xl',
+                  animClass: 'kejzhin-float-4',
                   icon: (
-                    <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 4 24 16" fill="white">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 16" fill="white">
                       <title>Fiverr</title>
                       <path d="M23.004 15.588a.995.995 0 1 0 .002-1.99.995.995 0 0 0-.002 1.99zm-.996-3.705h-.85c-.546 0-.84.41-.84 1.092v2.466h-1.61v-3.558h-.684c-.547 0-.84.41-.84 1.092v2.466h-1.61v-4.874h1.61v.74c.264-.574.626-.74 1.163-.74h1.972v.74c.264-.574.625-.74 1.162-.74h.527v1.316zm-6.786 1.501h-3.359c.088.546.43.858 1.006.858.43 0 .732-.175.83-.487l1.425.4c-.351.848-1.22 1.364-2.255 1.364-1.748 0-2.549-1.355-2.549-2.515 0-1.14.703-2.505 2.45-2.505 1.856 0 2.471 1.384 2.471 2.408 0 .224-.01.37-.02.477zm-1.562-.945c-.04-.42-.342-.81-.889-.81-.508 0-.81.225-.908.81h1.797zM7.508 15.44h1.416l1.767-4.874h-1.62l-.86 2.837-.878-2.837H5.72l1.787 4.874zm-6.6 0H2.51v-3.558h1.524v3.558h1.591v-4.874H2.51v-.302c0-.332.235-.536.606-.536h.918V8.412H2.85c-1.162 0-1.943.712-1.943 1.755v.4H0v1.316h.908v3.558z" />
                     </svg>
@@ -474,14 +462,11 @@ export default function HomePage() {
                   x: '72%',
                   y: '7%',
                   rot: 5,
-                  floatY: 5,
-                  floatX: 2,
-                  duration: 4.2,
-                  delay: 0.4,
                   pitch: 590,
                   accentColor: '#0A66C2',
                   bg: 'bg-[#0A66C2]',
                   rounded: 'rounded-xl',
+                  animClass: 'kejzhin-float-5',
                   icon: (
                     <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="white">
                       <path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M18.5 18.5V13.2C18.5 10.62 17.11 9.42 15.27 9.42C13.79 9.42 13.13 10.23 12.76 10.8V9.63H10.08V18.5H12.76V13.88C12.76 12.66 13 11.48 14.5 11.48C16 11.48 16.03 12.87 16.03 13.96V18.5H18.5M6.88 8.56A1.68 1.68 0 0 0 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19A1.69 1.69 0 0 0 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56M8.27 18.5V9.63H5.49V18.5H8.27Z" />
@@ -497,15 +482,12 @@ export default function HomePage() {
                   x: '94%',
                   y: '22%',
                   rot: -5,
-                  floatY: 6,
-                  floatX: 3,
-                  duration: 5.3,
-                  delay: 0.8,
                   pitch: 650,
                   accentColor: '#EA4335',
                   bg: 'bg-white',
                   border: 'border border-slate-200/90',
                   rounded: 'rounded-full',
+                  animClass: 'kejzhin-float-6',
                   icon: (
                     <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 48 48">
                       <path fill="#4caf50" d="M45,16.2l-5,2.75v19.05c0,2.21-1.79,4-4,4h-4V22.5L45,16.2z" />
@@ -525,14 +507,11 @@ export default function HomePage() {
                   x: '96%',
                   y: '68%',
                   rot: -6,
-                  floatY: 5,
-                  floatX: 3,
-                  duration: 4.8,
-                  delay: 0.5,
                   pitch: 780,
                   accentColor: '#1877F2',
                   bg: 'bg-[#1877F2]',
                   rounded: 'rounded-full',
+                  animClass: 'kejzhin-float-7',
                   icon: (
                     <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="white">
                       <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24V15.563H7.078V12.073H10.125V9.413C10.125 6.387 11.917 4.715 14.658 4.715C15.97 4.715 17.344 4.952 17.344 4.952V7.931H15.83C14.34 7.931 13.875 8.863 13.875 9.821V12.073H17.203L16.671 15.563H13.875V24C19.612 23.094 24 18.1 24 12.073Z" />
@@ -542,7 +521,7 @@ export default function HomePage() {
               ].map((item) => {
                 const isClicked = activeClickId === item.id;
                 const isHovered = hoveredId === item.id;
-                const Component = item.href ? motion.a : motion.button;
+                const Component = item.href ? 'a' : 'button';
                 const componentProps = item.href
                   ? {
                       href: item.href,
@@ -554,114 +533,88 @@ export default function HomePage() {
                     };
 
                 return (
-                  <Component
+                  <div
                     key={item.id}
-                    {...componentProps}
+                    className={`absolute z-30 pointer-events-auto ${item.animClass}`}
                     style={{
                       left: item.x,
                       top: item.y,
-                      willChange: 'transform',
-                      transform: 'translateZ(0)',
-                      boxShadow: isClicked
-                        ? `0 0 28px ${item.accentColor}, 0 10px 24px rgba(0,0,0,0.5)`
-                        : isHovered
-                        ? `0 12px 28px -4px ${item.accentColor}90, 0 0 20px ${item.accentColor}60`
-                        : undefined,
                     }}
-                    animate={
-                      isClicked
-                        ? {
-                            scale: [1, 0.85, 1.22, 1],
-                            rotate: [item.rot, item.rot - 12, item.rot + 8, item.rot],
-                          }
-                        : isHovered
-                        ? {
-                            scale: 1.18,
-                            y: -8,
-                            rotate: item.rot,
-                          }
-                        : {
-                            scale: 1,
-                            y: [-item.floatY, item.floatY, -item.floatY],
-                            x: [-item.floatX, item.floatX, -item.floatX],
-                            rotate: [item.rot - 1.5, item.rot + 1.5, item.rot - 1.5],
-                          }
-                    }
-                    transition={
-                      isClicked
-                        ? { duration: 0.45, ease: [0.34, 1.56, 0.64, 1] }
-                        : isHovered
-                        ? { type: 'spring', stiffness: 450, damping: 18 }
-                        : { duration: item.duration, repeat: Infinity, ease: 'easeInOut', delay: item.delay }
-                    }
-                    onMouseEnter={() => setHoveredId(item.id)}
-                    onMouseLeave={() => setHoveredId((prev) => (prev === item.id ? null : prev))}
-                    onClick={(e) => handleIconClick(e, item.id, item.actionLabel, item.pitch, item.href)}
-                    className={`group absolute -translate-x-1/2 -translate-y-1/2 z-30 flex items-center justify-center w-11 h-11 sm:w-11 sm:h-11 ${item.rounded} ${item.bg} ${item.border || ''} shadow-lg shadow-black/40 cursor-pointer select-none pointer-events-auto transition-shadow`}
-                    aria-label={item.name}
                   >
-                    {/* Expanding Ripple Shockwave on Click */}
-                    {isClicked && (
-                      <motion.span
-                        key="click-ripple"
-                        initial={{ scale: 0.8, opacity: 0.85 }}
-                        animate={{ scale: 2.2, opacity: 0 }}
-                        transition={{ duration: 0.55, ease: 'easeOut' }}
-                        style={{ borderColor: item.accentColor }}
-                        className={`absolute inset-0 ${item.rounded} border-2 pointer-events-none`}
-                      />
-                    )}
-
-                    {/* Smooth Radiant Aura on Hover (Replaces the distracting dashed border) */}
-                    {isHovered && !isClicked && (
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1.12 }}
-                        exit={{ opacity: 0, scale: 0.9 }}
-                        transition={{ duration: 0.2 }}
-                        style={{
-                          background: `radial-gradient(circle, ${item.accentColor}40 0%, transparent 75%)`,
-                          boxShadow: `0 0 20px ${item.accentColor}60`,
-                        }}
-                        className={`absolute -inset-1.5 ${item.rounded} pointer-events-none`}
-                      />
-                    )}
-
-                    {/* Icon SVG with real authentic colors */}
-                    <span className="relative z-10 flex items-center justify-center">
-                      {item.icon}
-                    </span>
-
-                    {/* Hover Tooltip (when not clicked) */}
-                    {!isClicked && (
-                      <div className={`absolute ${
-                        parseInt(item.y) <= 12 ? 'top-full mt-2.5' : 'bottom-full mb-2.5'
-                      } left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg text-[10px] sm:text-[11px] font-semibold tracking-wide whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-2xl bg-slate-950/95 text-white border border-white/10 z-40 flex items-center gap-1.5`}>
-                        <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: item.accentColor }} />
-                        <span>{item.name}</span>
-                      </div>
-                    )}
-
-                    {/* Click Feedback Toast Chip */}
-                    <AnimatePresence>
-                      {clickFeedback?.id === item.id && (
-                        <motion.div
-                          initial={{ opacity: 0, y: parseInt(item.y) <= 12 ? -6 : 6, scale: 0.9 }}
-                          animate={{ opacity: 1, y: parseInt(item.y) <= 12 ? 14 : -14, scale: 1 }}
-                          exit={{ opacity: 0, y: parseInt(item.y) <= 12 ? 20 : -20, scale: 0.9 }}
-                          transition={{ type: 'spring', stiffness: 450, damping: 25 }}
-                          style={{
-                            top: parseInt(item.y) <= 12 ? '100%' : undefined,
-                            bottom: parseInt(item.y) <= 12 ? undefined : '100%',
-                          }}
-                          className="absolute left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-slate-950/95 text-white text-[10px] sm:text-xs font-bold shadow-2xl border border-indigo-400/60 whitespace-nowrap z-50 flex items-center gap-1.5 pointer-events-none"
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                          {clickFeedback.text}
-                        </motion.div>
+                    <Component
+                      {...componentProps}
+                      onMouseEnter={() => setHoveredId(item.id)}
+                      onMouseLeave={() => setHoveredId((prev) => (prev === item.id ? null : prev))}
+                      onClick={(e) => handleIconClick(e, item.id, item.actionLabel, item.pitch, item.href)}
+                      className={`group relative flex items-center justify-center w-11 h-11 sm:w-11 sm:h-11 ${item.rounded} ${item.bg} ${item.border || ''} shadow-lg shadow-black/40 cursor-pointer select-none transition-all duration-300 ease-out hover:scale-120 active:scale-90`}
+                      style={{
+                        boxShadow: isClicked
+                          ? `0 0 28px ${item.accentColor}, 0 10px 24px rgba(0,0,0,0.5)`
+                          : isHovered
+                          ? `0 12px 28px -4px ${item.accentColor}90, 0 0 20px ${item.accentColor}60`
+                          : undefined,
+                      }}
+                      aria-label={item.name}
+                    >
+                      {/* Expanding Ripple Shockwave on Click */}
+                      {isClicked && (
+                        <motion.span
+                          key="click-ripple"
+                          initial={{ scale: 0.8, opacity: 0.85 }}
+                          animate={{ scale: 2.2, opacity: 0 }}
+                          transition={{ duration: 0.55, ease: 'easeOut' }}
+                          style={{ borderColor: item.accentColor }}
+                          className={`absolute inset-0 ${item.rounded} border-2 pointer-events-none`}
+                        />
                       )}
-                    </AnimatePresence>
-                  </Component>
+
+                      {/* Smooth Radiant Aura on Hover */}
+                      {isHovered && !isClicked && (
+                        <div
+                          style={{
+                            background: `radial-gradient(circle, ${item.accentColor}40 0%, transparent 75%)`,
+                            boxShadow: `0 0 20px ${item.accentColor}60`,
+                          }}
+                          className={`absolute -inset-1.5 ${item.rounded} pointer-events-none animate-pulse`}
+                        />
+                      )}
+
+                      {/* Icon SVG with authentic colors */}
+                      <span className="relative z-10 flex items-center justify-center pointer-events-none transition-transform duration-200 group-hover:scale-110">
+                        {item.icon}
+                      </span>
+
+                      {/* Hover Tooltip (when not clicked) */}
+                      {!isClicked && (
+                        <div className={`absolute ${
+                          parseInt(item.y) <= 12 ? 'top-full mt-2.5' : 'bottom-full mb-2.5'
+                        } left-1/2 -translate-x-1/2 px-2.5 py-1 rounded-lg text-[10px] sm:text-[11px] font-semibold tracking-wide whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none shadow-2xl bg-slate-950/95 text-white border border-white/10 z-40 flex items-center gap-1.5`}>
+                          <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ backgroundColor: item.accentColor }} />
+                          <span>{item.name}</span>
+                        </div>
+                      )}
+
+                      {/* Click Feedback Toast Chip */}
+                      <AnimatePresence>
+                        {clickFeedback?.id === item.id && (
+                          <motion.div
+                            initial={{ opacity: 0, y: parseInt(item.y) <= 12 ? -6 : 6, scale: 0.9 }}
+                            animate={{ opacity: 1, y: parseInt(item.y) <= 12 ? 14 : -14, scale: 1 }}
+                            exit={{ opacity: 0, y: parseInt(item.y) <= 12 ? 20 : -20, scale: 0.9 }}
+                            transition={{ type: 'spring', stiffness: 450, damping: 25 }}
+                            style={{
+                              top: parseInt(item.y) <= 12 ? '100%' : undefined,
+                              bottom: parseInt(item.y) <= 12 ? undefined : '100%',
+                            }}
+                            className="absolute left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-slate-950/95 text-white text-[10px] sm:text-xs font-bold shadow-2xl border border-indigo-400/60 whitespace-nowrap z-50 flex items-center gap-1.5 pointer-events-none"
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                            {clickFeedback.text}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </Component>
+                  </div>
                 );
               })}
             </div>

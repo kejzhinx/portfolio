@@ -56,7 +56,7 @@ function AnimatedRoutes() {
   const location = useLocation();
 
   return (
-    <div className="w-full flex-1 relative">
+    <div className="w-full flex-1 relative overflow-x-hidden max-w-full">
       {/* High-speed Cyber Dimensional Sweep Beam */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -78,27 +78,24 @@ function AnimatedRoutes() {
           key={location.pathname}
           initial={{
             opacity: 0,
-            y: 18,
-            scale: 0.985,
-            filter: 'blur(8px)',
+            y: 14,
+            scale: 0.99,
           }}
           animate={{
             opacity: 1,
             y: 0,
             scale: 1,
-            filter: 'blur(0px)',
           }}
           exit={{
             opacity: 0,
-            y: -16,
-            scale: 1.015,
-            filter: 'blur(8px)',
+            y: -12,
+            scale: 1.01,
           }}
           transition={{
-            duration: 0.34,
+            duration: 0.3,
             ease: [0.22, 1, 0.36, 1],
           }}
-          className="w-full flex-1 flex flex-col"
+          className="w-full flex-1 flex flex-col min-w-0 max-w-full overflow-x-hidden"
         >
           <Routes location={location}>
             <Route path="/" element={<HomePage />} />
@@ -129,7 +126,7 @@ function MainLayout() {
 
   return (
     <div
-      className={`min-h-screen flex flex-col transition-colors duration-300 relative overflow-hidden ${
+      className={`min-h-screen flex flex-col transition-colors duration-300 relative overflow-x-hidden max-w-full w-full ${
         isDark
           ? 'bg-[#070B14] text-white selection:bg-indigo-600/30 selection:text-indigo-200'
           : 'bg-[#F8FAFC] text-slate-900 selection:bg-indigo-500/20 selection:text-indigo-900'

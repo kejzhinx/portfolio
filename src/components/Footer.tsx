@@ -57,8 +57,27 @@ export default function Footer() {
                 <Linkedin size={15} />
               </a>
               <a
-                href="mailto:jericdelosreyes127001@gmail.com"
+                href="https://www.fiverr.com/kejzhin"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Fiverr"
+                title="Fiverr @kejzhin"
+                className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
+                  isDark
+                    ? 'bg-white/[0.04] border border-white/[0.08] hover:border-[#1DBF73]/50 hover:bg-[#1DBF73]/10 text-slate-300 hover:text-[#1DBF73]'
+                    : 'bg-white border border-slate-300 hover:border-[#1DBF73] hover:bg-emerald-50 text-slate-700 hover:text-[#1DBF73] shadow-sm'
+                }`}
+              >
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5">
+                  <path d="M23.003 13.568c0-.44-.038-.868-.112-1.285h-6.843v2.433h3.901c-.168.905-.678 1.672-1.442 2.185v1.815h2.336c1.367-1.258 2.16-3.111 2.16-5.148zM16.048 20.648c2.029 0 3.73-.672 4.973-1.817l-2.336-1.815c-.673.451-1.534.718-2.637.718-2.027 0-3.743-1.369-4.356-3.212H9.278v1.874c1.238 2.458 3.774 4.252 6.77 4.252zm-4.356-7.868c-.156-.468-.244-.967-.244-1.48s.088-1.012.244-1.48V7.946H9.278C8.777 8.94 8.491 10.065 8.491 11.3s.286 2.36.787 3.354l2.414-1.874zm4.356-4.57c1.104 0 2.096.38 2.876 1.127l2.157-2.157C19.774 5.98 18.073 5.3 16.048 5.3c-2.996 0-5.532 1.794-6.77 4.252l2.414 1.874c.613-1.843 2.329-3.216 4.356-3.216z" />
+                </svg>
+              </a>
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=jericdelosreyes127001@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Email"
+                title="Send Email to jericdelosreyes127001@gmail.com"
                 className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
                   isDark
                     ? 'bg-white/[0.04] border border-white/[0.08] hover:border-indigo-500/50 hover:bg-white/[0.08] text-slate-300 hover:text-white'

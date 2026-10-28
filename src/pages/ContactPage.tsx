@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
+import FloatingCyberObjects from '../components/FloatingCyberObjects';
 import {
   Mail,
   Phone,
@@ -157,7 +158,8 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="pt-24 pb-20 px-6 sm:px-8 max-w-7xl mx-auto space-y-12">
+    <div className="relative py-16 sm:py-24 px-6 sm:px-8 max-w-7xl mx-auto space-y-12 overflow-hidden">
+      <FloatingCyberObjects />
       {/* Top Banner */}
       <div
         className={`relative overflow-hidden rounded-[2.5rem] p-8 sm:p-12 transition-all ${

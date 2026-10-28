@@ -1,22 +1,18 @@
-import { useState, useEffect, useRef } from 'react';
-import { BrowserRouter, Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
-import { AnimatePresence, motion } from 'motion/react';
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { AnimatePresence } from 'motion/react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
 import SkillsPage from './pages/SkillsPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ContactPage from './pages/ContactPage';
 import DoctorStrangeWelcomePortal from './components/DoctorStrangeWelcomePortal';
+import CustomCursor from './components/CustomCursor';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 
 function ReloadToHome() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const hasMountedRef = useRef(false);
-
   useEffect(() => {
     // When the browser is refreshed or page unloads, prepare URL to reset to home
     const handleBeforeUnload = () => {
@@ -30,87 +26,75 @@ function ReloadToHome() {
     window.addEventListener('beforeunload', handleBeforeUnload);
     window.addEventListener('pagehide', handleBeforeUnload);
 
-    // On initial page load / refresh: if not on home, reset back into the Home page
-    if (!hasMountedRef.current) {
-      hasMountedRef.current = true;
-      if (location.pathname !== '/' || window.location.hash) {
-        try {
-          window.history.replaceState(null, '', '/');
-        } catch {
-          // ignore
-        }
-        navigate('/', { replace: true });
-      }
-    }
-
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
       window.removeEventListener('pagehide', handleBeforeUnload);
     };
-  }, [navigate, location.pathname]);
+  }, []);
 
   return null;
 }
 
-function AnimatedRoutes() {
+function SinglePagePortfolio() {
   const location = useLocation();
 
-  return (
-    <div className="w-full flex-1 relative overflow-x-hidden max-w-full">
-      {/* High-speed Cyber Dimensional Sweep Beam */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={`beam-${location.pathname}`}
-          initial={{ scaleX: 0, x: '-100%', opacity: 0 }}
-          animate={{
-            scaleX: [0, 1.2, 0.4, 0],
-            x: ['-100%', '-20%', '60%', '110%'],
-            opacity: [0, 1, 1, 0],
-          }}
-          transition={{ duration: 0.52, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed top-0 left-0 right-0 h-[2.5px] z-50 pointer-events-none bg-gradient-to-r from-transparent via-cyan-400 to-indigo-500 shadow-[0_0_14px_#00F0FF,0_0_28px_#6366F1]"
-        />
-      </AnimatePresence>
+  useEffect(() => {
+    // Check if initial load or direct path points to a specific section
+    const hash = window.location.hash.replace('#', '');
+    const cleanPath = location.pathname.replace(/^\/+/, '');
+    const target = hash || (['about', 'skills', 'projects', 'contact', 'home'].includes(cleanPath) ? cleanPath : '');
 
-      {/* Unique Portal Dimensional Page Transition */}
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.div
-          key={location.pathname}
-          initial={{
-            opacity: 0,
-            y: 14,
-            scale: 0.99,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-            scale: 1,
-          }}
-          exit={{
-            opacity: 0,
-            y: -12,
-            scale: 1.01,
-          }}
-          transition={{
-            duration: 0.3,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className="w-full flex-1 flex flex-col min-w-0 max-w-full overflow-x-hidden"
-        >
-          <Routes location={location}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/skills" element={<SkillsPage />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            {/* Redirect /developed directly to /projects */}
-            <Route path="/developed" element={<Navigate to="/projects" replace />} />
-            <Route path="/project" element={<Navigate to="/projects" replace />} />
-            <Route path="/resume" element={<Navigate to="/about" replace />} />
-            <Route path="*" element={<HomePage />} />
-          </Routes>
-        </motion.div>
-      </AnimatePresence>
+    if (target) {
+      const timer = setTimeout(() => {
+        if (target === 'home') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          const el = document.getElementById(target);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [location.pathname]);
+
+  return (
+    <div className="w-full flex-1 flex flex-col min-w-0 max-w-full overflow-x-hidden">
+      {/* Home Hero Section */}
+      <section id="home" className="scroll-mt-20 sm:scroll-mt-24 w-full">
+        <HomePage />
+      </section>
+
+      {/* Subtle Glow Section Divider */}
+      <div className="max-w-7xl mx-auto w-full px-6 sm:px-8">
+        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
+      </div>
+
+      {/* Projects Section */}
+      <section id="projects" className="scroll-mt-20 sm:scroll-mt-24 w-full">
+        <ProjectsPage />
+      </section>
+
+      {/* Subtle Glow Section Divider */}
+      <div className="max-w-7xl mx-auto w-full px-6 sm:px-8">
+        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent" />
+      </div>
+
+      {/* Skills Section */}
+      <section id="skills" className="scroll-mt-20 sm:scroll-mt-24 w-full">
+        <SkillsPage />
+      </section>
+
+      {/* Subtle Glow Section Divider */}
+      <div className="max-w-7xl mx-auto w-full px-6 sm:px-8">
+        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-violet-500/20 to-transparent" />
+      </div>
+
+      {/* Contact Section */}
+      <section id="contact" className="scroll-mt-20 sm:scroll-mt-24 w-full">
+        <ContactPage />
+      </section>
     </div>
   );
 }
@@ -132,6 +116,9 @@ function MainLayout() {
           : 'bg-[#F8FAFC] text-slate-900 selection:bg-indigo-500/20 selection:text-indigo-900'
       }`}
     >
+      {/* Animated Custom Mouse Cursor */}
+      <CustomCursor />
+
       {/* Doctor Strange Initial Welcome Portal Screen */}
       <AnimatePresence mode="wait">
         {showPortal && (
@@ -164,7 +151,9 @@ function MainLayout() {
 
       <Navbar />
       <main className="flex-1 flex flex-col relative">
-        <AnimatedRoutes />
+        <Routes>
+          <Route path="*" element={<SinglePagePortfolio />} />
+        </Routes>
       </main>
       <Footer />
     </div>

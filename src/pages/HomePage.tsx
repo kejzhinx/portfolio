@@ -1,14 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowRight, Mail } from 'lucide-react';
+import { ArrowRight, Mail, Download } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
+import FloatingCyberObjects from '../components/FloatingCyberObjects';
 
 export default function HomePage() {
   const { isDark } = useTheme();
   const [activeClickId, setActiveClickId] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [clickFeedback, setClickFeedback] = useState<{ id: string; text: string } | null>(null);
+
+  const [isReady, setIsReady] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setIsReady(true), 20);
+    return () => clearTimeout(t);
+  }, []);
 
   // Synthesized delightful pop sound using Web Audio API
   const playPopSound = (pitch = 440) => {
@@ -85,6 +92,9 @@ export default function HomePage() {
     <div className={`relative min-h-[calc(100vh-76px)] flex items-center justify-center pt-24 sm:pt-28 lg:pt-0 pb-12 lg:pb-0 px-4 sm:px-6 lg:px-10 overflow-x-hidden transition-colors duration-300 ${
       isDark ? 'bg-[#070B14]' : 'bg-[#F8FAFC]'
     }`}>
+      {/* Floating Cyber Objects across the home page */}
+      <FloatingCyberObjects />
+
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 xl:gap-16 items-center relative z-10 py-6 lg:py-12">
         {/* Left Column: Text & Call-To-Actions */}
         <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 sm:space-y-6 w-full order-2 lg:order-1">
@@ -118,21 +128,31 @@ export default function HomePage() {
 
           {/* Call to Actions - Responsive side-by-side on desktop */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-1 w-full sm:w-auto">
-            <Link
-              to="/projects"
-              className="btn-primary group w-full sm:w-auto px-7 py-3 text-center justify-center"
+            <a
+              href="/Jeric.pdf"
+              download="Jeric_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary group w-full sm:w-auto px-7 py-3 text-center justify-center cursor-pointer"
             >
-              <span>View My Projects</span>
-              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
+              <Download size={16} />
+              <span>Download Resume CV</span>
+            </a>
 
-            <Link
-              to="/contact"
-              className="btn-secondary group w-full sm:w-auto px-7 py-3 text-center justify-center"
+            <button
+              onClick={() => {
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                try {
+                  window.history.pushState(null, '', '#contact');
+                } catch {
+                  // ignore
+                }
+              }}
+              className="btn-secondary group w-full sm:w-auto px-7 py-3 text-center justify-center cursor-pointer"
             >
               <Mail size={16} className="text-indigo-500 group-hover:text-indigo-600 dark:text-indigo-400 dark:group-hover:text-indigo-300 transition-colors" />
-              <span>Contact Me</span>
-            </Link>
+              <span>Get In Touch</span>
+            </button>
           </div>
         </div>
 
@@ -156,13 +176,9 @@ export default function HomePage() {
               }}
             >
               {/* Electric Plasma Layer 1: Clockwise Swirling Cyan & Indigo Energy */}
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-[-160%] pointer-events-none"
+              <div
+                className="absolute inset-[-160%] pointer-events-none kejzhin-rotate-cw"
                 style={{
-                  willChange: 'transform',
-                  transform: 'translateZ(0)',
                   background: `conic-gradient(
                     from 0deg,
                     #00F0FF 0deg,
@@ -185,13 +201,9 @@ export default function HomePage() {
               />
 
               {/* Electric Plasma Layer 2: Counter-Clockwise Crackling White-Hot Lightning Arcs */}
-              <motion.div
-                animate={{ rotate: -360 }}
-                transition={{ duration: 4.2, repeat: Infinity, ease: 'linear' }}
-                className="absolute inset-[-160%] pointer-events-none mix-blend-screen"
+              <div
+                className="absolute inset-[-160%] pointer-events-none mix-blend-screen kejzhin-rotate-ccw"
                 style={{
-                  willChange: 'transform',
-                  transform: 'translateZ(0)',
                   background: `conic-gradient(
                     from 30deg,
                     #FFFFFF 0deg,
@@ -266,6 +278,7 @@ export default function HomePage() {
                 strokeOpacity="0.45"
                 pathLength="100"
                 strokeDasharray="22 78"
+                className="kejzhin-spark-dash"
                 animate={{ strokeDashoffset: [0, -100] }}
                 transition={{ duration: 3.2, repeat: Infinity, ease: 'linear' }}
               />
@@ -284,6 +297,7 @@ export default function HomePage() {
                 strokeLinecap="round"
                 pathLength="100"
                 strokeDasharray="16 84"
+                className="kejzhin-spark-dash"
                 animate={{ strokeDashoffset: [0, -100] }}
                 transition={{ duration: 3.2, repeat: Infinity, ease: 'linear' }}
                 filter="url(#portalSparkGlow)"
@@ -303,6 +317,7 @@ export default function HomePage() {
                 strokeLinecap="round"
                 pathLength="100"
                 strokeDasharray="5 95"
+                className="kejzhin-spark-dash"
                 animate={{ strokeDashoffset: [0, -100] }}
                 transition={{ duration: 3.2, repeat: Infinity, ease: 'linear' }}
                 filter="url(#portalSparkGlow)"
@@ -322,6 +337,7 @@ export default function HomePage() {
                 strokeLinecap="round"
                 pathLength="100"
                 strokeDasharray="2 98"
+                className="kejzhin-spark-dash-trailer"
                 animate={{ strokeDashoffset: [7, -93] }}
                 transition={{ duration: 3.2, repeat: Infinity, ease: 'linear' }}
                 filter="url(#portalSparkGlow)"

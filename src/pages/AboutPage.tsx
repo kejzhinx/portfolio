@@ -11,30 +11,14 @@ import {
   Database,
   Server,
   Palette,
-  CheckCircle2,
-  Globe,
-  Terminal,
-  Smartphone,
-  Cpu,
-  Wrench,
-  Keyboard
+  CheckCircle2
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
+import FloatingCyberObjects from '../components/FloatingCyberObjects';
 
 export default function AboutPage() {
   const { isDark } = useTheme();
-
-  const resumeSkills = [
-    { name: 'Web Development', icon: Globe, color: 'text-indigo-400 bg-indigo-500/10 border-indigo-500/20' },
-    { name: 'Cybersecurity Specialist', icon: ShieldCheck, color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' },
-    { name: 'Creative Technology', icon: Palette, color: 'text-violet-400 bg-violet-500/10 border-violet-500/20' },
-    { name: 'Linux', icon: Terminal, color: 'text-amber-400 bg-amber-500/10 border-amber-500/20' },
-    { name: 'Hardware / Software Troubleshooting', icon: Cpu, color: 'text-blue-400 bg-blue-500/10 border-blue-500/20' },
-    { name: 'Computer Repair', icon: Wrench, color: 'text-teal-400 bg-teal-500/10 border-teal-500/20' },
-    { name: 'Cellphone / Tablet Repair', icon: Smartphone, color: 'text-sky-400 bg-sky-500/10 border-sky-500/20' },
-    { name: '60–80 WPM Typing Speed', icon: Keyboard, color: 'text-rose-400 bg-rose-500/10 border-rose-500/20' },
-  ];
 
   const educationRecords = [
     {
@@ -235,103 +219,55 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="pt-24 pb-20 px-4 sm:px-8 max-w-7xl mx-auto space-y-16">
+    <div className="relative py-16 sm:py-24 px-4 sm:px-8 max-w-7xl mx-auto space-y-16 overflow-hidden">
+      <FloatingCyberObjects />
       {/* Top Banner / Intro */}
       <div className="space-y-4">
-        <div className="badge-pill">
-          <Sparkles size={14} className="text-indigo-400" />
-          <span>About Me</span>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Left Narrative */}
-          <div className="lg:col-span-7 space-y-6">
-            <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight ${
-              isDark ? 'text-white' : 'text-slate-900'
-            }`}>
-              Turning ideas into <span className="text-gradient">functional digital solutions.</span>
-            </h1>
-
-            <p className={`text-base sm:text-lg leading-relaxed ${
-              isDark ? 'text-slate-300' : 'text-slate-700'
-            }`}>
-              I'm a dedicated <span className={`font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Cybersecurity & Creative Technology Specialist</span> with over 8 years of hands-on experience in vulnerability assessment, web security audits, and visual brand identity. I specialize in protecting digital infrastructures while crafting compelling, high-converting digital designs.
-            </p>
-
-            <p className={`text-sm sm:text-base leading-relaxed ${
-              isDark ? 'text-slate-400' : 'text-slate-600'
-            }`}>
-              From auditing cryptocurrency exchanges and blockchain platforms to engineering native mobile applications and streetwear apparel graphics, I combine rigorous technical defense with creative visual precision.
-            </p>
-
-            <div className="flex flex-wrap gap-4 pt-2">
-              <a
-                href="/Jeric.pdf"
-                download="Jeric_Resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary"
-              >
-                <Download size={16} />
-                <span>Download Resume CV</span>
-              </a>
-
-              <Link to="/contact" className="btn-secondary">
-                <span>Get In Touch</span>
-                <ArrowRight size={16} />
-              </Link>
-            </div>
-          </div>
-
-          {/* Right Bento Skillset Card */}
-          <div className={`lg:col-span-5 p-5 sm:p-6 space-y-4 rounded-3xl border transition-all ${
-            isDark ? 'bg-[#0D1424] border-white/[0.08]' : 'bg-white border-slate-200 shadow-sm'
+        <div className="max-w-4xl space-y-6">
+          <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight ${
+            isDark ? 'text-white' : 'text-slate-900'
           }`}>
-            <div className={`flex items-center justify-between border-b pb-3.5 ${
-              isDark ? 'border-white/[0.08]' : 'border-slate-100'
-            }`}>
-              <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-500">
-                  <Sparkles size={16} />
-                </div>
-                <div>
-                  <h2 className={`text-base sm:text-lg font-bold ${
-                    isDark ? 'text-white' : 'text-slate-900'
-                  }`}>
-                    Technical Skillset
-                  </h2>
-                  <span className={`text-[11px] block ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-                    Core proficiencies & hands-on capabilities
-                  </span>
-                </div>
-              </div>
-            </div>
+            Turning ideas into <span className="text-gradient">functional digital solutions.</span>
+          </h1>
 
-            {/* Skill Tiles */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              {resumeSkills.map((skill) => {
-                const Icon = skill.icon;
-                return (
-                  <div
-                    key={skill.name}
-                    className={`flex items-center gap-2.5 p-3 rounded-2xl border transition-all group ${
-                      isDark
-                        ? 'bg-[#080D1A]/80 border-white/[0.06] hover:bg-[#0B1224] hover:border-indigo-500/40'
-                        : 'bg-slate-50/80 border-slate-200/80 hover:bg-white hover:border-indigo-300 shadow-2xs hover:shadow-sm'
-                    }`}
-                  >
-                    <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 border transition-transform duration-300 group-hover:scale-110 ${skill.color}`}>
-                      <Icon size={16} />
-                    </div>
-                    <span className={`text-xs font-semibold leading-tight transition-colors ${
-                      isDark ? 'text-slate-200 group-hover:text-white' : 'text-slate-800 group-hover:text-indigo-600'
-                    }`}>
-                      {skill.name}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
+          <p className={`text-base sm:text-lg leading-relaxed ${
+            isDark ? 'text-slate-300' : 'text-slate-700'
+          }`}>
+            I'm a dedicated <span className={`font-semibold ${isDark ? 'text-white' : 'text-slate-900'}`}>Cybersecurity & Web Specialist</span> with over 8 years of hands-on experience in vulnerability assessment, web security audits, and technical systems administration. I specialize in protecting digital infrastructures while engineering robust web solutions.
+          </p>
+
+          <p className={`text-sm sm:text-base leading-relaxed ${
+            isDark ? 'text-slate-400' : 'text-slate-600'
+          }`}>
+            From auditing cryptocurrency exchanges and blockchain platforms to engineering native mobile applications and technical system diagnostics, I combine rigorous technical defense with analytical precision.
+          </p>
+
+          <div className="flex flex-wrap gap-4 pt-2">
+            <a
+              href="/Jeric.pdf"
+              download="Jeric_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+            >
+              <Download size={16} />
+              <span>Download Resume CV</span>
+            </a>
+
+            <button
+              onClick={() => {
+                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                try {
+                  window.history.pushState(null, '', '#contact');
+                } catch {
+                  // ignore
+                }
+              }}
+              className="btn-secondary cursor-pointer"
+            >
+              <span>Get In Touch</span>
+              <ArrowRight size={16} />
+            </button>
           </div>
         </div>
       </div>

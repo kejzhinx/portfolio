@@ -1,26 +1,55 @@
-interface FloatingObject {
-  id: number;
-  x: string;
-  y: string;
-  size: number;
-  symbol: string;
-  color: string;
-  animClass: string;
-}
-
-const OBJECTS: FloatingObject[] = [
-  { id: 1, x: '6vw', y: '18vh', size: 22, symbol: '</>', color: '#38BDF8', animClass: 'kejzhin-cyber-float-1' },
-  { id: 2, x: '88vw', y: '25vh', size: 20, symbol: '{}', color: '#818CF8', animClass: 'kejzhin-cyber-float-2' },
-  { id: 3, x: '12vw', y: '72vh', size: 22, symbol: '⚡', color: '#00F0FF', animClass: 'kejzhin-cyber-float-3' },
-  { id: 4, x: '82vw', y: '82vh', size: 24, symbol: '01', color: '#A855F7', animClass: 'kejzhin-cyber-float-4' },
-  { id: 5, x: '48vw', y: '12vh', size: 18, symbol: '#', color: '#38BDF8', animClass: 'kejzhin-cyber-float-1' },
-  { id: 6, x: '94vw', y: '52vh', size: 22, symbol: '</>', color: '#6366F1', animClass: 'kejzhin-cyber-float-2' },
-  { id: 7, x: '4vw', y: '48vh', size: 20, symbol: '{}', color: '#00F0FF', animClass: 'kejzhin-cyber-float-3' },
-  { id: 8, x: '74vw', y: '88vh', size: 22, symbol: '⚡', color: '#818CF8', animClass: 'kejzhin-cyber-float-4' },
-  { id: 9, x: '28vw', y: '85vh', size: 20, symbol: '</>', color: '#00F0FF', animClass: 'kejzhin-cyber-float-2' },
-  { id: 10, x: '62vw', y: '20vh', size: 20, symbol: '{}', color: '#A855F7', animClass: 'kejzhin-cyber-float-3' },
-];
+import { useTheme } from '../context/ThemeContext';
 
 export default function FloatingCyberObjects() {
-  return null;
+  const { isDark } = useTheme();
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 select-none">
+      {isDark ? (
+        <>
+          {/* Dark Mode Aurora / Nebula Ambient Orbs - Hardware Accelerated */}
+          <div 
+            className="absolute top-[-10%] left-[-10%] w-[55vw] h-[55vw] rounded-full blur-[50px] sm:blur-[140px] pointer-events-none transform-gpu will-change-transform bg-indigo-600/15" 
+          />
+          <div 
+            className="absolute top-[40%] right-[-10%] w-[50vw] h-[50vw] rounded-full blur-[50px] sm:blur-[150px] pointer-events-none transform-gpu will-change-transform bg-cyan-500/12" 
+          />
+          <div 
+            className="absolute bottom-[-10%] left-[20%] w-[60vw] h-[60vw] rounded-full blur-[60px] sm:blur-[160px] pointer-events-none transform-gpu will-change-transform bg-purple-600/12" 
+          />
+        </>
+      ) : (
+        <>
+          {/* Light Mode Multi-Tone Aurora Ambient Mesh - Hardware Accelerated */}
+          <div 
+            className="absolute top-[-5%] left-[-8%] w-[50vw] h-[50vw] rounded-full blur-[45px] sm:blur-[130px] pointer-events-none transform-gpu will-change-transform bg-gradient-to-br from-indigo-300/30 via-violet-300/25 to-purple-200/20" 
+          />
+          <div 
+            className="absolute top-[35%] right-[-8%] w-[48vw] h-[48vw] rounded-full blur-[50px] sm:blur-[140px] pointer-events-none transform-gpu will-change-transform bg-gradient-to-bl from-rose-200/25 via-pink-200/20 to-amber-200/20" 
+          />
+          <div 
+            className="absolute bottom-[-8%] left-[15%] w-[55vw] h-[55vw] rounded-full blur-[55px] sm:blur-[150px] pointer-events-none transform-gpu will-change-transform bg-gradient-to-tr from-sky-200/25 via-indigo-200/20 to-teal-100/20" 
+          />
+          <div 
+            className="absolute top-[65%] right-[25%] w-[35vw] h-[35vw] rounded-full blur-[45px] sm:blur-[120px] pointer-events-none transform-gpu will-change-transform bg-gradient-to-r from-violet-200/20 to-fuchsia-200/15" 
+          />
+        </>
+      )}
+
+      {/* Subtle Tech Grid Pattern */}
+      <div
+        className={`absolute inset-0 pointer-events-none transition-opacity ${
+          isDark ? 'opacity-[0.035]' : 'opacity-[0.045]'
+        }`}
+        style={{
+          backgroundImage: isDark
+            ? `linear-gradient(to right, rgba(99, 102, 241, 0.25) 1px, transparent 1px),
+               linear-gradient(to bottom, rgba(99, 102, 241, 0.25) 1px, transparent 1px)`
+            : `linear-gradient(to right, rgba(99, 102, 241, 0.16) 1px, transparent 1px),
+               linear-gradient(to bottom, rgba(99, 102, 241, 0.16) 1px, transparent 1px)`,
+          backgroundSize: '48px 48px',
+        }}
+      />
+    </div>
+  );
 }

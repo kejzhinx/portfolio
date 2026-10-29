@@ -54,6 +54,13 @@
   }
 }
 
+@media (max-width: 768px) {
+  section.scroll-mt-20 {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 750px;
+  }
+}
+
 /* ==========================================================================
    Ultra-Smooth Hardware-Accelerated Floating Orbit Animations
    Guaranteed 60-120fps on all devices, starts on frame 0 with 0 latency
@@ -303,6 +310,13 @@
     -webkit-text-fill-color: transparent;
   }
 
+  html.light .text-gradient {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: #1E1B4B !important;
+    font-weight: 900 !important;
+  }
+
   .text-gradient-purple {
     background: linear-gradient(135deg, #A855F7 0%, #6366F1 100%);
     -webkit-background-clip: text;
@@ -389,6 +403,7 @@
     color: #FFFFFF;
     transform: translateY(-2px);
   }
+
 }
 
 /* ==========================================================================
@@ -458,15 +473,24 @@ html.light .text-slate-500 {
   color: #64748B !important;
 }
 
-/* Preserve crisp white text inside colored buttons, active badges, and active tab pills */
+/* Preserve crisp white text inside colored buttons, active badges, dark video player, dark image preview frames & dark containers */
 html.light .btn-primary,
 html.light .btn-primary *,
 html.light .bg-indigo-600,
 html.light .bg-indigo-600 *,
-html.light [class*="from-indigo-600"] *,
-html.light [class*="bg-gradient-to-"] *,
-html.light button.text-white *,
+html.light .bg-indigo-700,
+html.light .bg-indigo-700 *,
+html.light .bg-black,
+html.light .bg-black *,
+html.light .bg-slate-950,
+html.light .bg-slate-950 *,
+html.light .bg-[#030611],
+html.light .bg-[#030611] *,
+html.light .bg-[#050813],
+html.light .bg-[#050813] *,
+html.light .bg-emerald-600,
 html.light .bg-emerald-600 *,
+html.light .bg-violet-600,
 html.light .bg-violet-600 * {
   color: #FFFFFF !important;
 }

@@ -151,7 +151,7 @@ export default function HomePage() {
               className="btn-secondary group w-full sm:w-auto px-7 py-3 text-center justify-center cursor-pointer"
             >
               <Mail size={16} className="text-indigo-500 group-hover:text-indigo-600 dark:text-indigo-400 dark:group-hover:text-indigo-300 transition-colors" />
-              <span>Get In Touch</span>
+              <span>Get In Touch &gt;</span>
             </button>
           </div>
         </div>

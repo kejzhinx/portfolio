@@ -219,8 +219,11 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="relative py-16 sm:py-24 px-4 sm:px-8 max-w-7xl mx-auto space-y-16 overflow-hidden">
+    <div className={`relative w-full py-16 sm:py-24 px-4 sm:px-8 overflow-hidden transition-colors duration-300 ${
+      isDark ? 'bg-[#070B14]' : 'bg-[#F8FAFC]'
+    }`}>
       <FloatingCyberObjects />
+      <div className="max-w-7xl mx-auto space-y-16 relative z-10">
       {/* Top Banner / Intro */}
       <div className="space-y-4">
         <div className="max-w-4xl space-y-6">
@@ -241,34 +244,6 @@ export default function AboutPage() {
           }`}>
             From auditing cryptocurrency exchanges and blockchain platforms to engineering native mobile applications and technical system diagnostics, I combine rigorous technical defense with analytical precision.
           </p>
-
-          <div className="flex flex-wrap gap-4 pt-2">
-            <a
-              href="/Jeric.pdf"
-              download="Jeric_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-            >
-              <Download size={16} />
-              <span>Download Resume CV</span>
-            </a>
-
-            <button
-              onClick={() => {
-                document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                try {
-                  window.history.pushState(null, '', '#contact');
-                } catch {
-                  // ignore
-                }
-              }}
-              className="btn-secondary cursor-pointer"
-            >
-              <span>Get In Touch</span>
-              <ArrowRight size={16} />
-            </button>
-          </div>
         </div>
       </div>
 
@@ -290,12 +265,6 @@ export default function AboutPage() {
               Professional positions, penetration testing audits, and technical systems administration
             </p>
           </div>
-
-          <span className={`text-xs font-mono px-3.5 py-1.5 rounded-full self-start sm:self-auto border ${
-            isDark ? 'text-slate-400 bg-white/[0.03] border-white/[0.08]' : 'text-slate-600 bg-slate-100 border-slate-200'
-          }`}>
-            {workExperience.length} Milestones • 2019 - Present
-          </span>
         </div>
 
         {/* Timeline Container */}
@@ -438,7 +407,6 @@ export default function AboutPage() {
             <h2 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Education History</h2>
             <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Academic journey and foundational learning</p>
           </div>
-          <GraduationCap className="text-indigo-500" size={24} />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -494,6 +462,7 @@ export default function AboutPage() {
           ))}
         </div>
       </section>
+      </div>
     </div>
   );
 }

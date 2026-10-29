@@ -158,19 +158,22 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="relative py-16 sm:py-24 px-6 sm:px-8 max-w-7xl mx-auto space-y-12 overflow-hidden">
+    <div className={`relative w-full py-16 sm:py-24 px-6 sm:px-8 overflow-hidden transition-colors duration-300 ${
+      isDark ? 'bg-[#070B14]' : 'bg-[#F8FAFC]'
+    }`}>
       <FloatingCyberObjects />
+      <div className="max-w-7xl mx-auto space-y-12 relative z-10">
       {/* Top Banner */}
       <div
         className={`relative overflow-hidden rounded-[2.5rem] p-8 sm:p-12 transition-all ${
           isDark
-            ? 'bg-gradient-to-r from-indigo-950/80 via-[#0D1424] to-violet-950/70 border border-indigo-500/30 shadow-2xl'
-            : 'bg-gradient-to-r from-indigo-50 via-white to-violet-50 border border-indigo-100/80 shadow-xl shadow-indigo-100/40'
+            ? 'bg-gradient-to-r from-indigo-950/80 via-[#0D1424] to-violet-950/70 border border-indigo-500/30 shadow-2xl text-white'
+            : 'bg-white border border-slate-200 shadow-xl shadow-slate-200/50 text-slate-900'
         }`}
       >
         <div
           className={`absolute top-0 right-0 w-96 h-96 blur-[120px] pointer-events-none ${
-            isDark ? 'bg-indigo-500/15' : 'bg-indigo-300/20'
+            isDark ? 'bg-indigo-500/15' : 'bg-indigo-200/40'
           }`}
         />
 
@@ -181,7 +184,7 @@ export default function ContactPage() {
                 isDark ? 'text-indigo-400' : 'text-indigo-600'
               }`}
             >
-              Get In Touch
+              Get In Touch &gt;
             </span>
             <h1
               className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight ${
@@ -191,8 +194,8 @@ export default function ContactPage() {
               Let's Work <span className="text-gradient">Together</span>
             </h1>
             <p
-              className={`text-sm sm:text-base leading-relaxed font-normal ${
-                isDark ? 'text-slate-300' : 'text-slate-600'
+              className={`text-sm sm:text-base leading-relaxed font-medium ${
+                isDark ? 'text-slate-300' : 'text-slate-700'
               }`}
             >
               Have a security audit requirement, custom development project, or creative apparel design in mind? I'd love to hear from you!
@@ -200,15 +203,15 @@ export default function ContactPage() {
           </div>
 
           <div className="flex items-center gap-3 justify-center sm:justify-start w-full lg:w-auto">
-            <div className="flex items-center gap-2 justify-center">
+            <div className="flex items-center gap-2.5 justify-center">
               <a
                 href="https://github.com/kejzhin"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`w-11 h-11 rounded-full flex items-center justify-center transition-all ${
+                className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all ${
                   isDark
                     ? 'bg-white/[0.05] border border-white/[0.12] hover:border-indigo-500 hover:text-white text-slate-300'
-                    : 'bg-white border border-slate-200 hover:border-indigo-500 text-slate-700 hover:text-indigo-600 shadow-sm'
+                    : 'bg-slate-100 border border-slate-300 hover:border-indigo-600 hover:bg-indigo-50 text-slate-800 hover:text-indigo-600 shadow-sm'
                 }`}
                 title="GitHub @kejzhin"
               >
@@ -218,10 +221,10 @@ export default function ContactPage() {
                 href="https://www.fiverr.com/kejzhin"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`w-11 h-11 rounded-full flex items-center justify-center transition-all ${
+                className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all ${
                   isDark
                     ? 'bg-white/[0.05] border border-white/[0.12] hover:border-[#1DBF73] text-slate-300 hover:text-[#1DBF73]'
-                    : 'bg-white border border-slate-200 hover:border-[#1DBF73] text-slate-700 hover:text-[#1DBF73] shadow-sm'
+                    : 'bg-slate-100 border border-slate-300 hover:border-[#1DBF73] hover:bg-emerald-50 text-slate-800 hover:text-[#1DBF73] shadow-sm'
                 }`}
                 title="Fiverr @kejzhin"
               >
@@ -233,10 +236,10 @@ export default function ContactPage() {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`w-11 h-11 rounded-full flex items-center justify-center transition-all ${
+                className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all ${
                   isDark
                     ? 'bg-white/[0.05] border border-white/[0.12] hover:border-indigo-500 hover:text-white text-slate-300'
-                    : 'bg-white border border-slate-200 hover:border-indigo-500 text-slate-700 hover:text-indigo-600 shadow-sm'
+                    : 'bg-slate-100 border border-slate-300 hover:border-indigo-600 hover:bg-indigo-50 text-slate-800 hover:text-indigo-600 shadow-sm'
                 }`}
                 title="LinkedIn"
               >
@@ -244,10 +247,10 @@ export default function ContactPage() {
               </a>
               <button
                 onClick={() => handleCopy('jericdelosreyes127001@gmail.com')}
-                className={`w-11 h-11 rounded-full flex items-center justify-center transition-all cursor-pointer ${
+                className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all cursor-pointer ${
                   isDark
                     ? 'bg-white/[0.05] border border-white/[0.12] hover:border-indigo-500 hover:text-white text-slate-300'
-                    : 'bg-white border border-slate-200 hover:border-indigo-500 text-slate-700 hover:text-indigo-600 shadow-sm'
+                    : 'bg-slate-100 border border-slate-300 hover:border-indigo-600 hover:bg-indigo-50 text-slate-800 hover:text-indigo-600 shadow-sm'
                 }`}
                 title="Copy Email"
               >
@@ -567,6 +570,7 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

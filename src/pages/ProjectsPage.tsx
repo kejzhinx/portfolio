@@ -73,13 +73,35 @@ function ProjectCard3D({
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
-    if (project.videoUrl && videoRef.current) {
-      videoRef.current.play().catch(() => {});
+    const video = videoRef.current;
+    if (!video || !project.videoUrl) return;
+
+    if (!('IntersectionObserver' in window)) {
+      video.play().catch(() => {});
+      return;
     }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(video);
+    return () => {
+      observer.disconnect();
+    };
   }, [project.videoUrl]);
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
+    if (!cardRef.current || (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches)) return;
     const rect = cardRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -400,7 +422,7 @@ export default function ProjectsPage() {
       description: 'An executive operations and administrative virtual assistant web platform for Mark Aldrin Balute Tejadilla, demonstrating aviation procedural rigor, CRM data logging, YouTube and social media scheduling, Canva multimedia, and flight credentials.',
       longDescription: 'Designed and engineered an executive virtual assistant portfolio and operations platform for Mark Aldrin Balute Tejadilla. Built to showcase military-grade aviation procedural discipline, CRM logging, time tracking, YouTube and social media publishing workflows, Canva multimedia assets, and interactive flight seminar certification archives.',
       image: '/image/mark_preview.png',
-      videoUrl: '/assets/aistudio/Screencast_From_2026-10-26_09-00-54_e02c80b5.mp4',
+      videoUrl: '/assets/images/Screencast_From_2026-10-26_09-00-54_e02c80b5.mp4',
       videoDuration: '0:26',
       liveUrl: 'https://markaldrintejadilla.vercel.app',
       githubUrl: 'https://github.com/kejzhin/mark-aldrin-portfolio',
@@ -427,7 +449,7 @@ export default function ProjectsPage() {
       description: 'A modern real estate portfolio and property listing web application featuring advanced property search, interactive maps, agent profile, and client inquiry workflows.',
       longDescription: 'Designed and developed a comprehensive real estate portfolio and property listing platform. Features dynamic property cards, advanced filtering by location and price, property detail modals, mortgage calculator, agent bio, and direct tour scheduling.',
       image: '/image/axl1.png',
-      videoUrl: '/assets/aistudio/jamesbroker.mp4',
+      videoUrl: '/assets/images/jamesbroker.mp4',
       liveUrl: 'https://jamesbroker.vercel.app/',
       features: [
         'Interactive real estate property catalog with high-resolution image galleries',
@@ -448,7 +470,7 @@ export default function ProjectsPage() {
       description: 'A cutting-edge coaching web platform featuring modern UI components, real-time client scheduling, and responsive architecture.',
       longDescription: 'A dynamic, feature-rich coaching web application. Features a modular component architecture, responsive layouts, interactive scheduling flows, client resource libraries, and dedicated coaching program dashboards.',
       image: '/image/hook1.png',
-      videoUrl: '/assets/aistudio/hookverse.mp4',
+      videoUrl: '/assets/images/hookverse.mp4',
       liveUrl: 'https://hookverse.vercel.app/',
       features: [
         'Interactive coaching platform catalog with client scheduling and program dashboards',
@@ -467,7 +489,7 @@ export default function ProjectsPage() {
       description: 'A comprehensive virtual assistant and accounts receivable specialist portfolio for Valerie Cacananta, showcasing 15+ years of billing, payroll administration, ledger reconciliation, and administrative operations.',
       longDescription: 'Designed and developed an executive virtual assistant and accounts receivable portfolio for Valerie Cacananta. Features end-to-end billing workflows, client follow-up protocols, ACH/wire payment postings, payroll and statutory filings (SSS, Pag-IBIG, PhilHealth), and verified corporate track records across international education and enterprise management.',
       image: '/image/val1.png',
-      videoUrl: '/assets/aistudio/valerie.mp4',
+      videoUrl: '/assets/images/valerie.mp4',
       githubUrl: 'https://github.com/kejzhin/Valerie-Portfolio',
       liveUrl: 'https://valeriecacananta.vercel.app/',
       features: [
@@ -488,7 +510,7 @@ export default function ProjectsPage() {
       description: 'A modern, high-precision executive portfolio for Ivy A. Sayongan highlighting 6+ years of web hosting administration, DNS management, WordPress CMS troubleshooting, customer care, and executive assistance.',
       longDescription: 'Designed and engineered an executive web administrator and virtual assistant portfolio for Ivy A. Sayongan. Features modern typographic hierarchy, responsive layouts, smooth parallax and motion animations, comprehensive technical specializations (cPanel/WHM, DNS routing, email deliverability, WordPress diagnostics), verified track record across Concentrix and Alorica, and direct booking hub.',
       image: '/image/ivy_1_home.webp',
-      videoUrl: '/assets/aistudio/ivysayongan.mp4',
+      videoUrl: '/assets/images/ivysayongan.mp4',
       githubUrl: 'https://github.com/kejzhin/ivyportfolio',
       liveUrl: 'https://ivysayongan.vercel.app',
       features: [
@@ -509,7 +531,7 @@ export default function ProjectsPage() {
       description: 'A modern, professional healthcare virtual assistant portfolio for Maria Bernadette Estrada, highlighting 4+ years of U.S. clinical support, prior authorization, and EHR administration.',
       longDescription: 'Designed and developed a specialized healthcare virtual assistant portfolio for Maria Bernadette Estrada. Showcases over 4 years of clinical support experience in ENT and Allergy, HIPAA compliance certification, real-time insurance eligibility (270/271), Electronic Health Records (AdvancedMD), Nextiva VoIP phone triage, and interactive services breakdown.',
       image: '/image/maria_1_home.webp',
-      videoUrl: '/assets/aistudio/mariabernadette.mp4',
+      videoUrl: '/assets/images/mariabernadette.mp4',
       githubUrl: 'https://github.com/kejzhin/maria',
       liveUrl: 'https://mariabernadette.vercel.app/',
       features: [
@@ -530,7 +552,7 @@ export default function ProjectsPage() {
       description: 'A modern, responsive virtual assistant and executive support portfolio showcasing administrative expertise, client services, and case studies.',
       longDescription: 'Designed and engineered an executive portfolio website for Katrina Regalado, featuring modern typographic hierarchy, smooth animations, interactive case study showcases, responsive mobile layout, and direct client inquiry integration.',
       image: '/image/katrina_screenshot.webp',
-      videoUrl: '/assets/aistudio/katrinaregalado.mp4',
+      videoUrl: '/assets/images/katrinaregalado.mp4',
       liveUrl: 'https://katrinaregalado.vercel.app/',
       features: [
         'Responsive single-page architecture deployed on Vercel',
@@ -549,7 +571,7 @@ export default function ProjectsPage() {
       description: 'Secure corporate webmail client and mail server portal for JW Summit Group Inc. featuring responsive authentication, team chat, admin console, and dark mode.',
       longDescription: 'Designed and developed an enterprise webmail client and administrative portal for JW Summit Group Inc. Engineered with end-to-end TLS handling, inbox filters, real-time message synchronization, corporate messaging room, dark/light theme switching, and multi-user storage quota management.',
       image: '/image/jw_login.svg',
-      videoUrl: '/assets/aistudio/jwwebmail.mp4',
+      videoUrl: '/assets/images/jwwebmail.mp4',
       githubUrl: 'https://github.com/kejzhin/Jw-Webmail',
       liveUrl: 'https://github.com/kejzhin/Jw-Webmail',
       features: [
@@ -570,7 +592,7 @@ export default function ProjectsPage() {
       description: 'Serena Heart Crystals e-commerce studio featuring handcrafted stone and sculptural homewares with custom checkout and complete Admin Studio.',
       longDescription: 'A full-fledged luxury homewares e-commerce experience. Includes dynamic product catalog, shopping bag state management, GCash and bank transfer manual payment proof verification, and an administrative order management studio.',
       image: '/image/serena_homepage.svg',
-      videoUrl: '/assets/aistudio/serenaheart.mp4',
+      videoUrl: '/assets/images/serenaheart.mp4',
       githubUrl: 'https://github.com/kejzhin/Serena-Heart-Crystals',
       liveUrl: 'https://serena-heart-crystals.vercel.app',
       features: [
@@ -831,9 +853,12 @@ export default function ProjectsPage() {
     : categorySections.filter((s) => s.id === activeFilter);
 
   return (
-    <div className="relative py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
+    <div className={`relative w-full py-12 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden transition-colors duration-300 ${
+      isDark ? 'bg-[#070B14]' : 'bg-[#F8FAFC]'
+    }`}>
       <FloatingCyberObjects />
 
+      <div className="max-w-7xl mx-auto relative z-10">
       {/* Header Section */}
       <div className="space-y-3 mb-8 text-center sm:text-left">
         <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight ${
@@ -856,31 +881,27 @@ export default function ProjectsPage() {
             : 'bg-slate-100/90 border-slate-200/90 shadow-md'
         }`}>
           {[
-            { id: 'all', label: 'All Projects', icon: Layers, count: projects.length },
+            { id: 'all', label: 'All Projects', icon: Layers },
             {
               id: 'development',
               label: 'Under Development',
               icon: Zap,
-              count: projects.filter((p) => p.underDevelopment || p.developmentOngoing).length,
               highlight: true,
             },
             {
               id: 'apps',
               label: 'Web Development',
               icon: Laptop,
-              count: projects.filter((p) => p.category === 'apps').length,
             },
             {
               id: 'security',
               label: 'Cybersecurity',
               icon: ShieldCheck,
-              count: projects.filter((p) => p.category === 'security').length,
             },
             {
               id: 'graphics',
               label: 'Graphics Design',
               icon: Palette,
-              count: projects.filter((p) => p.category === 'graphics').length,
             },
           ].map((tab) => {
             const Icon = tab.icon;
@@ -916,17 +937,6 @@ export default function ProjectsPage() {
                   }
                 />
                 <span>{tab.label}</span>
-                <span
-                  className={`text-[10px] font-mono px-1.5 py-0.5 rounded-md ${
-                    isActive
-                      ? 'bg-white/20 text-white font-bold'
-                      : isDark
-                      ? 'bg-white/[0.06] text-slate-400'
-                      : 'bg-slate-200/80 text-slate-700'
-                  }`}
-                >
-                  {tab.count}
-                </span>
               </button>
             );
           })}
@@ -949,16 +959,11 @@ export default function ProjectsPage() {
                       <SectionIcon size={24} />
                     </div>
                     <div>
-                      <div className="flex flex-wrap items-center gap-2.5">
-                        <h2 className={`text-xl sm:text-2xl font-extrabold tracking-tight ${
-                          isDark ? 'text-white' : 'text-slate-900'
-                        }`}>
-                          {section.title}
-                        </h2>
-                        <span className={`text-xs font-mono font-bold px-2.5 py-0.5 rounded-full border ${section.badgeBg}`}>
-                          {section.projects.length} {section.projects.length === 1 ? 'Project' : 'Projects'}
-                        </span>
-                      </div>
+                      <h2 className={`text-xl sm:text-2xl font-extrabold tracking-tight ${
+                        isDark ? 'text-white' : 'text-slate-900'
+                      }`}>
+                        {section.title}
+                      </h2>
                       <p className={`text-xs sm:text-sm mt-1 max-w-3xl leading-relaxed ${
                         isDark ? 'text-slate-400' : 'text-slate-600'
                       }`}>
@@ -992,6 +997,7 @@ export default function ProjectsPage() {
           })}
         </motion.div>
       </AnimatePresence>
+      </div>
 
       {/* Project Video & Image Theater Modal */}
       {typeof document !== 'undefined' &&

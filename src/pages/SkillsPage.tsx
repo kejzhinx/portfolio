@@ -426,9 +426,12 @@ export default function SkillsPage() {
   };
 
   return (
-    <div className="relative py-16 sm:py-24 px-4 sm:px-8 max-w-7xl mx-auto w-full min-w-0 overflow-hidden">
+    <div className={`relative w-full py-16 sm:py-24 px-4 sm:px-8 overflow-hidden transition-colors duration-300 ${
+      isDark ? 'bg-[#070B14]' : 'bg-[#F8FAFC]'
+    }`}>
       <FloatingCyberObjects />
 
+      <div className="max-w-7xl mx-auto w-full min-w-0 relative z-10">
       {/* Header */}
       <div className="space-y-4 mb-8 sm:mb-10 text-center sm:text-left">
         <div className="badge-pill inline-flex items-center gap-1.5">
@@ -474,11 +477,11 @@ export default function SkillsPage() {
           }`}
         >
           {[
-            { id: 'all', label: 'All Skills', icon: Sparkles, count: SKILLS_DATA.length },
-            { id: 'dev', label: 'Development & Support', icon: Code2, count: SKILLS_DATA.filter(s => s.category === 'dev').length },
-            { id: 'security', label: 'Cybersecurity & Pentest', icon: Shield, count: SKILLS_DATA.filter(s => s.category === 'security').length },
-            { id: 'design', label: 'Design & Graphics', icon: Palette, count: SKILLS_DATA.filter(s => s.category === 'design').length },
-            { id: 'db', label: 'Database & Data', icon: Database, count: SKILLS_DATA.filter(s => s.category === 'db').length },
+            { id: 'all', label: 'All Skills', icon: Sparkles },
+            { id: 'dev', label: 'Development & Support', icon: Code2 },
+            { id: 'security', label: 'Cybersecurity & Pentest', icon: Shield },
+            { id: 'design', label: 'Design & Graphics', icon: Palette },
+            { id: 'db', label: 'Database & Data', icon: Database },
           ].map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -496,15 +499,6 @@ export default function SkillsPage() {
               >
                 <Icon size={13} className={isActive ? 'text-white' : 'text-slate-400'} />
                 <span>{tab.label}</span>
-                <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-mono ${
-                  isActive
-                    ? 'bg-white/20 text-white font-bold'
-                    : isDark
-                    ? 'bg-white/[0.06] text-slate-400'
-                    : 'bg-slate-200 text-slate-600'
-                }`}>
-                  {tab.count}
-                </span>
               </button>
             );
           })}
@@ -602,6 +596,7 @@ export default function SkillsPage() {
           </button>
         </div>
       )}
+      </div>
     </div>
   );
 }

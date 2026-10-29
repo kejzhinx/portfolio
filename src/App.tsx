@@ -5,11 +5,13 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
 import SkillsPage from './pages/SkillsPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ContactPage from './pages/ContactPage';
 import DoctorStrangeWelcomePortal from './components/DoctorStrangeWelcomePortal';
 import CustomCursor from './components/CustomCursor';
+import FloatingCyberObjects from './components/FloatingCyberObjects';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 
 function ReloadToHome() {
@@ -71,6 +73,16 @@ function SinglePagePortfolio() {
         <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
       </div>
 
+      {/* Work Experience & About Section */}
+      <section id="about" className="scroll-mt-20 sm:scroll-mt-24 w-full">
+        <AboutPage />
+      </section>
+
+      {/* Subtle Glow Section Divider */}
+      <div className="max-w-7xl mx-auto w-full px-6 sm:px-8">
+        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent" />
+      </div>
+
       {/* Projects Section */}
       <section id="projects" className="scroll-mt-20 sm:scroll-mt-24 w-full">
         <ProjectsPage />
@@ -78,7 +90,7 @@ function SinglePagePortfolio() {
 
       {/* Subtle Glow Section Divider */}
       <div className="max-w-7xl mx-auto w-full px-6 sm:px-8">
-        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent" />
+        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-violet-500/20 to-transparent" />
       </div>
 
       {/* Skills Section */}
@@ -88,7 +100,7 @@ function SinglePagePortfolio() {
 
       {/* Subtle Glow Section Divider */}
       <div className="max-w-7xl mx-auto w-full px-6 sm:px-8">
-        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-violet-500/20 to-transparent" />
+        <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-emerald-500/20 to-transparent" />
       </div>
 
       {/* Contact Section */}
@@ -119,6 +131,9 @@ function MainLayout() {
       {/* Animated Custom Mouse Cursor */}
       <CustomCursor />
 
+      {/* Interactive Physics Floating Cyber Objects Across All Pages */}
+      <FloatingCyberObjects />
+
       {/* Doctor Strange Initial Welcome Portal Screen */}
       <AnimatePresence mode="wait">
         {showPortal && (
@@ -126,31 +141,8 @@ function MainLayout() {
         )}
       </AnimatePresence>
 
-      {/* Dynamic ambient background glows */}
-      <div className={`absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[500px] lg:w-[600px] h-[280px] sm:h-[500px] lg:h-[600px] rounded-full blur-[100px] sm:blur-[140px] pointer-events-none transform-gpu will-change-transform ${
-        isDark ? 'bg-indigo-600/10' : 'bg-indigo-500/15'
-      }`} />
-      <div className={`absolute top-1/3 right-1/4 w-[300px] sm:w-[550px] lg:w-[650px] h-[300px] sm:h-[550px] lg:h-[650px] rounded-full blur-[100px] sm:blur-[150px] pointer-events-none transform-gpu will-change-transform ${
-        isDark ? 'bg-violet-600/15' : 'bg-violet-500/15'
-      }`} />
-      <div className={`absolute bottom-5 left-1/2 -translate-x-1/2 w-[380px] sm:w-[700px] lg:w-[800px] h-[160px] sm:h-[260px] rounded-full blur-[110px] sm:blur-[160px] pointer-events-none transform-gpu will-change-transform ${
-        isDark ? 'bg-blue-600/5' : 'bg-blue-500/10'
-      }`} />
-
-      {/* Subtle background tech grid */}
-      <div
-        className={`absolute inset-0 pointer-events-none transition-opacity ${
-          isDark ? 'opacity-[0.025]' : 'opacity-[0.04]'
-        }`}
-        style={{
-          backgroundImage: `linear-gradient(to right, rgba(99, 102, 241, 0.2) 1px, transparent 1px),
-                            linear-gradient(to bottom, rgba(99, 102, 241, 0.2) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px',
-        }}
-      />
-
       <Navbar />
-      <main className="flex-1 flex flex-col relative">
+      <main className="flex-1 flex flex-col relative z-20">
         <Routes>
           <Route path="*" element={<SinglePagePortfolio />} />
         </Routes>

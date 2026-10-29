@@ -92,7 +92,7 @@ export default function DoctorStrangeWelcomePortal({ onComplete }: PortalWelcome
     let rotationAngle = 0;
 
     // Particle pool sized for solid 60fps performance on all devices
-    const MAX_SPARKS = isMobile ? 120 : 220;
+    const MAX_SPARKS = isMobile ? 50 : 220;
     const sparks: MetalSpark[] = [];
 
     // Preallocated color buckets for batched draw calls (reduces draw calls from 1000+ to <10)
@@ -194,8 +194,8 @@ export default function DoctorStrangeWelcomePortal({ onComplete }: PortalWelcome
       // Spawn rate: balanced for smooth 60fps
       const isExpanding = elapsed >= SMALL_CIRCLE_DELAY || isAcceleratingRef.current;
       const spawnCount = isExpanding
-        ? (isMobile ? 8 : 14)
-        : (isMobile ? 5 : 10);
+        ? (isMobile ? 3 : 14)
+        : (isMobile ? 2 : 10);
 
       spawnSparks(cx, cy, currentRadius, spawnCount);
 

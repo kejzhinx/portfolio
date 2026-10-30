@@ -3,12 +3,13 @@ import { Github, Menu, X, Sun, Moon } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTheme } from '../context/ThemeContext';
+import ThemeSwitcher from './ThemeSwitcher';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const { isDark, toggleTheme } = useTheme();
+  const { isDark, isHalloween, isChristmas } = useTheme();
 
   const navLinks = [
     { label: 'Home', id: 'home' },
@@ -93,11 +94,29 @@ export default function Navbar() {
           onClick={() => scrollToSection('home')}
           className="flex items-center gap-3 group cursor-pointer text-left focus:outline-none"
         >
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center text-white font-bold text-sm shadow-md shadow-indigo-500/30 group-hover:scale-105 transition-transform">
-            K
+          <div className="relative">
+            <div className={`w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold text-sm shadow-md group-hover:scale-105 transition-all ${
+              isHalloween
+                ? 'bg-gradient-to-br from-orange-500 to-purple-600 shadow-orange-500/30'
+                : isChristmas
+                ? 'bg-gradient-to-br from-red-600 to-emerald-600 shadow-red-500/30'
+                : 'bg-gradient-to-br from-indigo-500 to-violet-600 shadow-indigo-500/30'
+            }`}>
+              K
+            </div>
+            {isHalloween && (
+              <span className="absolute -top-1.5 -right-1.5 text-xs select-none">🎃</span>
+            )}
+            {isChristmas && (
+              <span className="absolute -top-2.5 -right-2 text-xs select-none">🎅</span>
+            )}
           </div>
           <span className={`text-lg font-bold tracking-tight transition-colors ${
-            isDark ? 'text-white group-hover:text-indigo-400' : 'text-slate-900 group-hover:text-indigo-600'
+            isHalloween
+              ? 'text-orange-300 group-hover:text-orange-400'
+              : isChristmas
+              ? 'text-red-300 group-hover:text-red-400'
+              : isDark ? 'text-white group-hover:text-indigo-400' : 'text-slate-900 group-hover:text-indigo-600'
           }`}>
             Kejzhin
           </span>
@@ -142,19 +161,8 @@ export default function Navbar() {
 
         {/* Right Actions */}
         <div className="flex items-center gap-2.5 sm:gap-3">
-          {/* Light / Dark Mode Toggle Button */}
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            className={`w-9 h-9 rounded-full flex items-center justify-center transition-all cursor-pointer ${
-              isDark
-                ? 'bg-white/[0.04] border border-white/[0.08] hover:border-white/[0.2] text-amber-300 hover:text-amber-200 hover:bg-white/[0.08]'
-                : 'bg-slate-100 border border-slate-300 hover:border-indigo-400 text-indigo-600 hover:text-indigo-700 hover:bg-slate-200/70 shadow-sm'
-            }`}
-            title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
-          >
-            {isDark ? <Sun size={17} className="transition-transform hover:rotate-45" /> : <Moon size={17} className="transition-transform hover:-rotate-12" />}
-          </button>
+          {/* Seasonal & Dark/Light Theme Switcher */}
+          <ThemeSwitcher />
 
           {/* GitHub CTA Button */}
           <a
@@ -234,7 +242,11 @@ export default function Navbar() {
                   );
                 })}
 
-                <div className="pt-2 mt-1 border-t border-slate-200/60 dark:border-white/[0.08] flex flex-col gap-1.5">
+                <div className="pt-2 mt-1 border-t border-slate-200/60 dark:border-white/[0.08] flex flex-col gap-2">
+                  <div className="flex items-center justify-between px-2 py-1">
+                    <span className={`text-xs font-semibold ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Theme</span>
+                    <ThemeSwitcher />
+                  </div>
                   <a
                     href="https://github.com/kejzhin"
                     target="_blank"

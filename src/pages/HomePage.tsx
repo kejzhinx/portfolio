@@ -6,7 +6,7 @@ import { useTheme } from '../context/ThemeContext';
 import FloatingCyberObjects from '../components/FloatingCyberObjects';
 
 export default function HomePage() {
-  const { isDark } = useTheme();
+  const { isDark, isHalloween, isChristmas, isRain } = useTheme();
   const [activeClickId, setActiveClickId] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [clickFeedback, setClickFeedback] = useState<{ id: string; text: string } | null>(null);
@@ -90,7 +90,7 @@ export default function HomePage() {
 
   return (
     <div className={`relative min-h-[calc(100vh-76px)] flex items-center justify-center pt-24 sm:pt-28 lg:pt-0 pb-12 lg:pb-0 px-4 sm:px-6 lg:px-10 overflow-x-hidden transition-colors duration-300 ${
-      isDark ? 'bg-[#070B14]' : 'bg-[#F8FAFC]'
+      isRain ? 'bg-[#030C1A]' : isHalloween ? 'bg-[#0A0512]' : isChristmas ? 'bg-[#051120]' : isDark ? 'bg-[#070B14]' : 'bg-[#F8FAFC]'
     }`}>
       {/* Floating Cyber Objects across the home page */}
       <FloatingCyberObjects />
@@ -99,18 +99,39 @@ export default function HomePage() {
         {/* Left Column: Text & Call-To-Actions */}
         <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 sm:space-y-6 w-full order-2 lg:order-1">
           {/* Greeting Badge */}
-          <div className="badge-pill">
-            <span className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
-            <span className="text-indigo-600 dark:text-indigo-300 font-semibold tracking-wide text-xs sm:text-sm">Hello, I'm</span>
+          <div className={`badge-pill ${
+            isRain
+              ? 'border-cyan-500/40 bg-cyan-500/10'
+              : isHalloween
+              ? 'border-orange-500/40 bg-orange-500/10'
+              : isChristmas
+              ? 'border-red-500/40 bg-red-500/10'
+              : ''
+          }`}>
+            <span className={`w-2 h-2 rounded-full animate-pulse ${
+              isRain ? 'bg-cyan-300' : isHalloween ? 'bg-orange-400' : isChristmas ? 'bg-red-400' : 'bg-indigo-400'
+            }`} />
+            <span className={`font-semibold tracking-wide text-xs sm:text-sm ${
+              isRain
+                ? 'text-cyan-200'
+                : isHalloween
+                ? 'text-orange-300'
+                : isChristmas
+                ? 'text-red-300'
+                : 'text-indigo-600 dark:text-indigo-300'
+            }`}>
+              {isRain ? '🌧️ Rainy Greetings' : isHalloween ? '🎃 Spooky Greetings' : isChristmas ? '🎄 Holiday Greetings' : "Hello, I'm"}
+            </span>
           </div>
 
           {/* Headline & Title */}
           <div className="space-y-2 w-full">
-            <h1 className={`text-3xl sm:text-5xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-[1.12] ${
+            <h1 className={`relative inline-block text-3xl sm:text-5xl lg:text-5xl xl:text-6xl font-extrabold tracking-tight leading-[1.12] ${
               isDark ? 'text-white' : 'text-slate-900'
             }`}>
               Jeric M. De Los Reyes
             </h1>
+
             <p className={`text-lg sm:text-2xl lg:text-3xl font-bold tracking-tight leading-snug ${
               isDark ? 'text-slate-200' : 'text-slate-800'
             }`}>
@@ -150,95 +171,221 @@ export default function HomePage() {
               }}
               className="btn-secondary group w-full sm:w-auto px-7 py-3 text-center justify-center cursor-pointer"
             >
-              <Mail size={16} className="text-indigo-500 group-hover:text-indigo-600 dark:text-indigo-400 dark:group-hover:text-indigo-300 transition-colors" />
+              <Mail size={16} className={`transition-colors ${
+                isHalloween
+                  ? 'text-orange-400 group-hover:text-orange-300'
+                  : isChristmas
+                  ? 'text-emerald-400 group-hover:text-emerald-300'
+                  : 'text-indigo-500 group-hover:text-indigo-600 dark:text-indigo-400 dark:group-hover:text-indigo-300'
+              }`} />
               <span>Get In Touch &gt;</span>
             </button>
           </div>
         </div>
 
-        {/* Right Column: Hero Visual */}
+        {/* Right Column: Hero Visual Card (Adapts to Halloween & Christmas Themes) */}
         <div className="lg:col-span-5 flex flex-col items-center justify-center w-full order-1 lg:order-2">
           {/* Main Visual Frame */}
           <div className="relative w-full max-w-[280px] sm:max-w-[380px] lg:max-w-[460px] xl:max-w-[500px] aspect-[4/5] lg:aspect-[3/4] flex items-center justify-center mx-auto">
-            {/* Electric Blue Mystical Portal Outer Radiance */}
+            {/* PHYSICAL HERO CARD FESTIVE DECORATIONS (Sit on top of the Hero Frame) */}
+            {isHalloween && (
+              <>
+
+                {/* Hanging Bat on top center of the Hero Card */}
+                <div className="absolute -top-7 sm:-top-9 left-1/2 -translate-x-1/2 pointer-events-none z-20 flex flex-col items-center">
+                  <div className="w-0.5 h-3 bg-orange-400/50" />
+                  <div className="relative flex items-center justify-center animate-pulse">
+                    <span className="text-2xl sm:text-3xl select-none filter drop-shadow-[0_0_15px_rgba(249,115,22,0.9)]">🦇</span>
+                  </div>
+                </div>
+
+                {/* Perched Glowing Jack-o'-lantern on top-right corner of the Hero Card */}
+                <div className="absolute -top-6 -right-3 sm:-top-8 sm:-right-4 pointer-events-none z-20 animate-bounce flex flex-col items-center">
+                  <span className="text-3xl sm:text-4xl select-none filter drop-shadow-[0_0_20px_rgba(249,115,22,1)]">🎃</span>
+                  <span className="text-[9px] font-mono font-bold text-orange-300 bg-orange-950/90 px-2 py-0.5 rounded-full border border-orange-500/50 -mt-1 shadow-lg">
+                    Spooky!
+                  </span>
+                </div>
+
+                {/* Floating Ghost beside the bottom-left of the Hero Card */}
+                <div className="absolute bottom-6 -left-6 sm:bottom-10 sm:-left-10 pointer-events-none z-20 animate-pulse">
+                  <span className="text-3xl sm:text-4xl select-none filter drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]">👻</span>
+                </div>
+              </>
+            )}
+
+            {isChristmas && (
+              <>
+                {/* Subtle Festive Holly & Bell Accent */}
+                <div className="absolute bottom-6 -right-5 sm:bottom-10 sm:-right-8 pointer-events-none z-20 animate-bounce">
+                  <span className="text-3xl sm:text-4xl select-none filter drop-shadow-[0_0_15px_rgba(245,158,11,0.9)]">🔔</span>
+                </div>
+              </>
+            )}
+
+            {/* Themed Portal Outer Radiance */}
             <div
               className="absolute w-[86%] sm:w-[84%] h-[92%] sm:h-[90%] rounded-[140px] sm:rounded-[185px] lg:rounded-[205px] pointer-events-none blur-[28px] sm:blur-[38px] opacity-85 z-0"
               style={{
-                background: 'radial-gradient(ellipse at center, rgba(0, 240, 255, 0.3) 0%, rgba(99, 102, 241, 0.55) 60%, rgba(59, 130, 246, 0.7) 100%)',
+                background: isHalloween
+                  ? 'radial-gradient(ellipse at center, rgba(249, 115, 22, 0.45) 0%, rgba(168, 85, 247, 0.6) 60%, rgba(234, 88, 12, 0.8) 100%)'
+                  : isChristmas
+                  ? 'radial-gradient(ellipse at center, rgba(239, 68, 68, 0.45) 0%, rgba(16, 185, 129, 0.6) 60%, rgba(245, 158, 11, 0.8) 100%)'
+                  : 'radial-gradient(ellipse at center, rgba(0, 240, 255, 0.3) 0%, rgba(99, 102, 241, 0.55) 60%, rgba(59, 130, 246, 0.7) 100%)',
               }}
             />
 
-            {/* Electric Blue Portal Rim (Whole perimeter continuous glowing mystical energy) */}
+            {/* Themed Portal Rim (Whole perimeter continuous glowing mystical energy) */}
             <div
               className="absolute w-[80%] sm:w-[78%] h-[88%] sm:h-[86%] rounded-[130px] sm:rounded-[170px] lg:rounded-[190px] pointer-events-none p-[3px] sm:p-[3.5px] overflow-hidden z-0"
               style={{
-                boxShadow: '0 0 30px rgba(0, 240, 255, 0.8), 0 0 65px rgba(99, 102, 241, 0.6), 0 0 95px rgba(59, 130, 246, 0.4), inset 0 0 25px rgba(99, 102, 241, 0.5)',
+                boxShadow: isHalloween
+                  ? '0 0 35px rgba(249, 115, 22, 0.9), 0 0 70px rgba(168, 85, 247, 0.7), 0 0 100px rgba(234, 88, 12, 0.5), inset 0 0 25px rgba(249, 115, 22, 0.6)'
+                  : isChristmas
+                  ? '0 0 35px rgba(239, 68, 68, 0.9), 0 0 70px rgba(16, 185, 129, 0.7), 0 0 100px rgba(245, 158, 11, 0.5), inset 0 0 25px rgba(239, 68, 68, 0.6)'
+                  : '0 0 30px rgba(0, 240, 255, 0.8), 0 0 65px rgba(99, 102, 241, 0.6), 0 0 95px rgba(59, 130, 246, 0.4), inset 0 0 25px rgba(99, 102, 241, 0.5)',
               }}
             >
-              {/* Electric Plasma Layer 1: Clockwise Swirling Cyan & Indigo Energy */}
+              {/* Electric Plasma Layer 1: Clockwise Swirling Themed Energy */}
               <div
                 className="absolute inset-[-160%] pointer-events-none kejzhin-rotate-cw"
                 style={{
-                  background: `conic-gradient(
-                    from 0deg,
-                    #00F0FF 0deg,
-                    #3B82F6 25deg,
-                    #E0E7FF 50deg,
-                    #6366F1 75deg,
-                    #38BDF8 100deg,
-                    #818CF8 130deg,
-                    #FFFFFF 160deg,
-                    #2563EB 190deg,
-                    #00F0FF 220deg,
-                    #6366F1 250deg,
-                    #E0F2FE 280deg,
-                    #1D4ED8 310deg,
-                    #38BDF8 335deg,
-                    #00F0FF 360deg
-                  )`,
+                  background: isHalloween
+                    ? `conic-gradient(
+                        from 0deg,
+                        #F97316 0deg,
+                        #EA580C 30deg,
+                        #FDE047 60deg,
+                        #A855F7 90deg,
+                        #7E22CE 125deg,
+                        #FB923C 160deg,
+                        #FFFFFF 190deg,
+                        #F97316 220deg,
+                        #C084FC 255deg,
+                        #FBBF24 290deg,
+                        #EA580C 325deg,
+                        #F97316 360deg
+                      )`
+                    : isChristmas
+                    ? `conic-gradient(
+                        from 0deg,
+                        #EF4444 0deg,
+                        #10B981 30deg,
+                        #F59E0B 60deg,
+                        #38BDF8 90deg,
+                        #FFFFFF 125deg,
+                        #DC2626 160deg,
+                        #059669 190deg,
+                        #FBBF24 220deg,
+                        #EF4444 255deg,
+                        #34D399 290deg,
+                        #DC2626 325deg,
+                        #EF4444 360deg
+                      )`
+                    : `conic-gradient(
+                        from 0deg,
+                        #00F0FF 0deg,
+                        #3B82F6 25deg,
+                        #E0E7FF 50deg,
+                        #6366F1 75deg,
+                        #38BDF8 100deg,
+                        #818CF8 130deg,
+                        #FFFFFF 160deg,
+                        #2563EB 190deg,
+                        #00F0FF 220deg,
+                        #6366F1 250deg,
+                        #E0F2FE 280deg,
+                        #1D4ED8 310deg,
+                        #38BDF8 335deg,
+                        #00F0FF 360deg
+                      )`,
                   opacity: 0.95,
                 }}
               />
 
-              {/* Electric Plasma Layer 2: Counter-Clockwise Crackling White-Hot Lightning Arcs */}
+              {/* Electric Plasma Layer 2: Counter-Clockwise Lightning Arcs */}
               <div
                 className="absolute inset-[-160%] pointer-events-none mix-blend-screen kejzhin-rotate-ccw"
                 style={{
-                  background: `conic-gradient(
-                    from 30deg,
-                    #FFFFFF 0deg,
-                    rgba(0, 240, 255, 0.3) 25deg,
-                    #6366F1 55deg,
-                    #FFFFFF 85deg,
-                    rgba(59, 130, 246, 0.25) 115deg,
-                    #00F0FF 145deg,
-                    #818CF8 175deg,
-                    #FFFFFF 205deg,
-                    rgba(147, 197, 253, 0.25) 235deg,
-                    #38BDF8 265deg,
-                    #FFFFFF 295deg,
-                    #6366F1 325deg,
-                    #FFFFFF 360deg
-                  )`,
+                  background: isHalloween
+                    ? `conic-gradient(
+                        from 30deg,
+                        #FFFFFF 0deg,
+                        rgba(249, 115, 22, 0.4) 30deg,
+                        #A855F7 60deg,
+                        #FFFFFF 90deg,
+                        rgba(234, 88, 12, 0.3) 130deg,
+                        #FBBF24 170deg,
+                        #FFFFFF 210deg,
+                        #7E22CE 260deg,
+                        #FFFFFF 300deg,
+                        #F97316 340deg,
+                        #FFFFFF 360deg
+                      )`
+                    : isChristmas
+                    ? `conic-gradient(
+                        from 30deg,
+                        #FFFFFF 0deg,
+                        rgba(239, 68, 68, 0.4) 30deg,
+                        #10B981 60deg,
+                        #FFFFFF 90deg,
+                        rgba(245, 158, 11, 0.3) 130deg,
+                        #38BDF8 170deg,
+                        #FFFFFF 210deg,
+                        #DC2626 260deg,
+                        #FFFFFF 300deg,
+                        #059669 340deg,
+                        #FFFFFF 360deg
+                      )`
+                    : `conic-gradient(
+                        from 30deg,
+                        #FFFFFF 0deg,
+                        rgba(0, 240, 255, 0.3) 25deg,
+                        #6366F1 55deg,
+                        #FFFFFF 85deg,
+                        rgba(59, 130, 246, 0.25) 115deg,
+                        #00F0FF 145deg,
+                        #818CF8 175deg,
+                        #FFFFFF 205deg,
+                        rgba(147, 197, 253, 0.25) 235deg,
+                        #38BDF8 265deg,
+                        #FFFFFF 295deg,
+                        #6366F1 325deg,
+                        #FFFFFF 360deg
+                      )`,
                   opacity: 0.9,
                 }}
               />
 
-              {/* Inner Portal Gateway (Deep Theme Navy/Indigo Chamber) */}
+              {/* Inner Portal Gateway Chamber */}
               <div
                 className={`relative w-full h-full rounded-[127px] sm:rounded-[167px] lg:rounded-[187px] overflow-hidden ${
-                  isDark
+                  isHalloween
+                    ? 'bg-gradient-to-b from-[#240838] via-[#350A52] to-[#120320]'
+                    : isChristmas
+                    ? 'bg-gradient-to-b from-[#05382B] via-[#032920] to-[#021A14]'
+                    : isDark
                     ? 'bg-gradient-to-b from-[#1E1B4B] via-[#2E2875] to-[#17133D]'
                     : 'bg-gradient-to-b from-[#312E81] via-[#3730A3] to-[#1E1B4B]'
                 }`}
                 style={{
-                  boxShadow: 'inset 0 0 35px rgba(0, 240, 255, 0.4), inset 0 0 70px rgba(99, 102, 241, 0.35)',
+                  boxShadow: isHalloween
+                    ? 'inset 0 0 35px rgba(249, 115, 22, 0.5), inset 0 0 70px rgba(168, 85, 247, 0.4)'
+                    : isChristmas
+                    ? 'inset 0 0 35px rgba(239, 68, 68, 0.5), inset 0 0 70px rgba(16, 185, 129, 0.4)'
+                    : 'inset 0 0 35px rgba(0, 240, 255, 0.4), inset 0 0 70px rgba(99, 102, 241, 0.35)',
                 }}
               >
                 {/* Inner Ambient Glow & Cosmic Light */}
-                <div className="absolute inset-0 bg-radial from-cyan-400/15 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-cyan-200/[0.08] to-indigo-400/20 pointer-events-none" />
-                <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-cyan-300/15 to-transparent pointer-events-none" />
+                <div className={`absolute inset-0 bg-radial ${
+                  isHalloween ? 'from-orange-400/20' : isChristmas ? 'from-red-400/20' : 'from-cyan-400/15'
+                } via-transparent to-transparent pointer-events-none`} />
+                <div className={`absolute inset-0 bg-gradient-to-tr from-transparent ${
+                  isHalloween ? 'via-orange-300/[0.1] to-purple-400/25' : isChristmas ? 'via-emerald-300/[0.1] to-red-400/25' : 'via-cyan-200/[0.08] to-indigo-400/20'
+                } pointer-events-none`} />
+                <div className={`absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b ${
+                  isHalloween ? 'from-orange-300/20' : isChristmas ? 'from-emerald-300/20' : 'from-cyan-300/15'
+                } to-transparent pointer-events-none`} />
               </div>
             </div>
 

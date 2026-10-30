@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import FloatingCyberObjects from '../components/FloatingCyberObjects';
+import CardBorderDecoration from '../components/CardBorderDecoration';
 import {
   Mail,
   Phone,
@@ -20,7 +21,7 @@ import {
 } from 'lucide-react';
 
 export default function ContactPage() {
-  const { isDark } = useTheme();
+  const { isDark, isHalloween, isChristmas } = useTheme();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -159,21 +160,25 @@ export default function ContactPage() {
 
   return (
     <div className={`relative w-full py-16 sm:py-24 px-6 sm:px-8 overflow-hidden transition-colors duration-300 ${
-      isDark ? 'bg-[#070B14]' : 'bg-[#F8FAFC]'
+      isHalloween ? 'bg-[#0A0512]' : isChristmas ? 'bg-[#051120]' : isDark ? 'bg-[#070B14]' : 'bg-[#F8FAFC]'
     }`}>
       <FloatingCyberObjects />
       <div className="max-w-7xl mx-auto space-y-12 relative z-10">
       {/* Top Banner */}
       <div
         className={`relative overflow-hidden rounded-[2.5rem] p-8 sm:p-12 transition-all ${
-          isDark
+          isHalloween
+            ? 'bg-gradient-to-r from-orange-950/85 via-[#150A1E] to-purple-950/75 border border-orange-500/35 shadow-2xl text-white'
+            : isChristmas
+            ? 'bg-gradient-to-r from-red-950/85 via-[#0A1B2A] to-emerald-950/75 border border-red-500/35 shadow-2xl text-white'
+            : isDark
             ? 'bg-gradient-to-r from-indigo-950/80 via-[#0D1424] to-violet-950/70 border border-indigo-500/30 shadow-2xl text-white'
             : 'bg-white border border-slate-200 shadow-xl shadow-slate-200/50 text-slate-900'
         }`}
       >
         <div
           className={`absolute top-0 right-0 w-96 h-96 blur-[120px] pointer-events-none ${
-            isDark ? 'bg-indigo-500/15' : 'bg-indigo-200/40'
+            isHalloween ? 'bg-orange-500/20' : isChristmas ? 'bg-red-500/20' : isDark ? 'bg-indigo-500/15' : 'bg-indigo-200/40'
           }`}
         />
 
@@ -181,10 +186,10 @@ export default function ContactPage() {
           <div className="space-y-3 max-w-2xl">
             <span
               className={`text-xs font-mono font-bold uppercase tracking-widest ${
-                isDark ? 'text-indigo-400' : 'text-indigo-600'
+                isHalloween ? 'text-orange-400' : isChristmas ? 'text-red-300' : isDark ? 'text-indigo-400' : 'text-indigo-600'
               }`}
             >
-              Get In Touch &gt;
+              {isHalloween ? '🎃 Summon Kejzhin >' : isChristmas ? '🎄 Holiday Greetings & Inquiries >' : 'Get In Touch >'}
             </span>
             <h1
               className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight ${
@@ -209,7 +214,11 @@ export default function ContactPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all ${
-                  isDark
+                  isHalloween
+                    ? 'bg-orange-950/30 border border-orange-500/30 hover:border-orange-500 text-orange-200'
+                    : isChristmas
+                    ? 'bg-emerald-950/30 border border-emerald-500/30 hover:border-emerald-500 text-emerald-200'
+                    : isDark
                     ? 'bg-white/[0.05] border border-white/[0.12] hover:border-indigo-500 hover:text-white text-slate-300'
                     : 'bg-slate-100 border border-slate-300 hover:border-indigo-600 hover:bg-indigo-50 text-slate-800 hover:text-indigo-600 shadow-sm'
                 }`}
@@ -222,7 +231,11 @@ export default function ContactPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all ${
-                  isDark
+                  isHalloween
+                    ? 'bg-orange-950/30 border border-orange-500/30 hover:border-[#1DBF73] text-orange-200 hover:text-[#1DBF73]'
+                    : isChristmas
+                    ? 'bg-emerald-950/30 border border-emerald-500/30 hover:border-[#1DBF73] text-emerald-200 hover:text-[#1DBF73]'
+                    : isDark
                     ? 'bg-white/[0.05] border border-white/[0.12] hover:border-[#1DBF73] text-slate-300 hover:text-[#1DBF73]'
                     : 'bg-slate-100 border border-slate-300 hover:border-[#1DBF73] hover:bg-emerald-50 text-slate-800 hover:text-[#1DBF73] shadow-sm'
                 }`}
@@ -237,7 +250,11 @@ export default function ContactPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all ${
-                  isDark
+                  isHalloween
+                    ? 'bg-orange-950/30 border border-orange-500/30 hover:border-orange-500 text-orange-200'
+                    : isChristmas
+                    ? 'bg-emerald-950/30 border border-emerald-500/30 hover:border-emerald-500 text-emerald-200'
+                    : isDark
                     ? 'bg-white/[0.05] border border-white/[0.12] hover:border-indigo-500 hover:text-white text-slate-300'
                     : 'bg-slate-100 border border-slate-300 hover:border-indigo-600 hover:bg-indigo-50 text-slate-800 hover:text-indigo-600 shadow-sm'
                 }`}
@@ -248,7 +265,11 @@ export default function ContactPage() {
               <button
                 onClick={() => handleCopy('jericdelosreyes127001@gmail.com')}
                 className={`w-11 h-11 rounded-xl flex items-center justify-center transition-all cursor-pointer ${
-                  isDark
+                  isHalloween
+                    ? 'bg-orange-950/30 border border-orange-500/30 hover:border-orange-500 text-orange-200'
+                    : isChristmas
+                    ? 'bg-emerald-950/30 border border-emerald-500/30 hover:border-emerald-500 text-emerald-200'
+                    : isDark
                     ? 'bg-white/[0.05] border border-white/[0.12] hover:border-indigo-500 hover:text-white text-slate-300'
                     : 'bg-slate-100 border border-slate-300 hover:border-indigo-600 hover:bg-indigo-50 text-slate-800 hover:text-indigo-600 shadow-sm'
                 }`}
@@ -265,20 +286,27 @@ export default function ContactPage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Contact Form */}
         <div
-          className={`lg:col-span-7 p-6 sm:p-10 rounded-3xl border transition-all ${
-            isDark ? 'bg-[#0D1424] border-white/[0.08]' : 'bg-white border-slate-200 shadow-sm'
+          className={`relative overflow-hidden lg:col-span-7 p-6 sm:p-10 rounded-3xl border transition-all ${
+            isHalloween
+              ? 'bg-[#140A1F]/90 border-orange-500/25 shadow-2xl shadow-orange-950/40'
+              : isChristmas
+              ? 'bg-[#07192B]/90 border-emerald-500/25 shadow-2xl shadow-emerald-950/40'
+              : isDark ? 'bg-[#0D1424] border-white/[0.08]' : 'bg-white border-slate-200 shadow-sm'
           }`}
         >
+          <CardBorderDecoration />
           <div className="space-y-2 mb-8">
             <h2
               className={`text-2xl font-bold flex items-center gap-2.5 ${
                 isDark ? 'text-white' : 'text-slate-900'
               }`}
             >
-              <Send size={20} className="text-indigo-500" />
-              <span>Send a Message</span>
+              <Send size={20} className={isHalloween ? 'text-orange-400' : isChristmas ? 'text-red-400' : 'text-indigo-500'} />
+              <span>
+                {isHalloween ? '🦇 Send a Message 🎃' : isChristmas ? '🎅 Send a Message 🎁' : 'Send a Message'}
+              </span>
             </h2>
-            <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+            <p className={`text-xs ${isHalloween ? 'text-orange-200/70' : isChristmas ? 'text-emerald-200/70' : isDark ? 'text-slate-400' : 'text-slate-600'}`}>
               Fill in the details below and your message will be dispatched directly to Jeric's inbox.
             </p>
           </div>
@@ -315,7 +343,7 @@ export default function ContactPage() {
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="space-y-1.5">
-                  <label className={`text-xs font-semibold ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                  <label className={`text-xs font-semibold ${isHalloween ? 'text-orange-300' : isChristmas ? 'text-emerald-300' : isDark ? 'text-slate-300' : 'text-slate-700'}`}>
                     Your Name
                   </label>
                   <input
@@ -325,7 +353,11 @@ export default function ContactPage() {
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. Alex Rivera"
                     className={`w-full rounded-xl px-4 py-3 text-xs focus:outline-none transition-colors ${
-                      isDark
+                      isHalloween
+                        ? 'bg-[#0E0517] border border-orange-500/30 focus:border-orange-500 focus:bg-[#140824] text-orange-50 placeholder:text-orange-300/30 shadow-inner'
+                        : isChristmas
+                        ? 'bg-[#031321] border border-emerald-500/30 focus:border-emerald-500 focus:bg-[#061D33] text-emerald-50 placeholder:text-emerald-300/30 shadow-inner'
+                        : isDark
                         ? 'bg-[#080D1A] border border-white/[0.08] focus:border-indigo-500 text-white placeholder:text-slate-600'
                         : 'bg-slate-50 border border-slate-300 focus:border-indigo-500 focus:bg-white text-slate-900 placeholder:text-slate-400'
                     }`}
@@ -333,7 +365,7 @@ export default function ContactPage() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className={`text-xs font-semibold ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                  <label className={`text-xs font-semibold ${isHalloween ? 'text-orange-300' : isChristmas ? 'text-emerald-300' : isDark ? 'text-slate-300' : 'text-slate-700'}`}>
                     Email Address
                   </label>
                   <input
@@ -343,7 +375,11 @@ export default function ContactPage() {
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="e.g. alex@company.com"
                     className={`w-full rounded-xl px-4 py-3 text-xs focus:outline-none transition-colors ${
-                      isDark
+                      isHalloween
+                        ? 'bg-[#0E0517] border border-orange-500/30 focus:border-orange-500 focus:bg-[#140824] text-orange-50 placeholder:text-orange-300/30 shadow-inner'
+                        : isChristmas
+                        ? 'bg-[#031321] border border-emerald-500/30 focus:border-emerald-500 focus:bg-[#061D33] text-emerald-50 placeholder:text-emerald-300/30 shadow-inner'
+                        : isDark
                         ? 'bg-[#080D1A] border border-white/[0.08] focus:border-indigo-500 text-white placeholder:text-slate-600'
                         : 'bg-slate-50 border border-slate-300 focus:border-indigo-500 focus:bg-white text-slate-900 placeholder:text-slate-400'
                     }`}
@@ -352,7 +388,7 @@ export default function ContactPage() {
               </div>
 
               <div className="space-y-1.5">
-                <label className={`text-xs font-semibold ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                <label className={`text-xs font-semibold ${isHalloween ? 'text-orange-300' : isChristmas ? 'text-emerald-300' : isDark ? 'text-slate-300' : 'text-slate-700'}`}>
                   Subject / Project Category
                 </label>
                 <input
@@ -362,7 +398,11 @@ export default function ContactPage() {
                   onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                   placeholder="e.g. Web Security Assessment / Mobile App Development / Apparel Design"
                   className={`w-full rounded-xl px-4 py-3 text-xs focus:outline-none transition-colors ${
-                    isDark
+                    isHalloween
+                      ? 'bg-[#0E0517] border border-orange-500/30 focus:border-orange-500 focus:bg-[#140824] text-orange-50 placeholder:text-orange-300/30 shadow-inner'
+                      : isChristmas
+                      ? 'bg-[#031321] border border-emerald-500/30 focus:border-emerald-500 focus:bg-[#061D33] text-emerald-50 placeholder:text-emerald-300/30 shadow-inner'
+                      : isDark
                       ? 'bg-[#080D1A] border border-white/[0.08] focus:border-indigo-500 text-white placeholder:text-slate-600'
                       : 'bg-slate-50 border border-slate-300 focus:border-indigo-500 focus:bg-white text-slate-900 placeholder:text-slate-400'
                   }`}
@@ -370,7 +410,7 @@ export default function ContactPage() {
               </div>
 
               <div className="space-y-1.5">
-                <label className={`text-xs font-semibold ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                <label className={`text-xs font-semibold ${isHalloween ? 'text-orange-300' : isChristmas ? 'text-emerald-300' : isDark ? 'text-slate-300' : 'text-slate-700'}`}>
                   Message
                 </label>
                 <textarea
@@ -380,7 +420,11 @@ export default function ContactPage() {
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Tell me about your project, timeline, scope, or requirements..."
                   className={`w-full rounded-xl px-4 py-3 text-xs focus:outline-none transition-colors resize-none ${
-                    isDark
+                    isHalloween
+                      ? 'bg-[#0E0517] border border-orange-500/30 focus:border-orange-500 focus:bg-[#140824] text-orange-50 placeholder:text-orange-300/30 shadow-inner'
+                      : isChristmas
+                      ? 'bg-[#031321] border border-emerald-500/30 focus:border-emerald-500 focus:bg-[#061D33] text-emerald-50 placeholder:text-emerald-300/30 shadow-inner'
+                      : isDark
                       ? 'bg-[#080D1A] border border-white/[0.08] focus:border-indigo-500 text-white placeholder:text-slate-600'
                       : 'bg-slate-50 border border-slate-300 focus:border-indigo-500 focus:bg-white text-slate-900 placeholder:text-slate-400'
                   }`}
@@ -496,17 +540,28 @@ export default function ContactPage() {
         {/* Direct Channels Cards */}
         <div className="lg:col-span-5 space-y-4">
           <div
-            className={`p-6 space-y-4 rounded-3xl border transition-all ${
-              isDark ? 'bg-[#0D1424] border-white/[0.08]' : 'bg-white border-slate-200 shadow-sm'
+            className={`relative overflow-hidden p-6 space-y-4 rounded-3xl border transition-all ${
+              isHalloween
+                ? 'bg-[#140A1F]/90 border-orange-500/25 shadow-2xl shadow-orange-950/40'
+                : isChristmas
+                ? 'bg-[#07192B]/90 border-emerald-500/25 shadow-2xl shadow-emerald-950/40'
+                : isDark ? 'bg-[#0D1424] border-white/[0.08]' : 'bg-white border-slate-200 shadow-sm'
             }`}
           >
+            <CardBorderDecoration />
             <h3
               className={`text-lg font-bold border-b pb-3 flex items-center justify-between ${
-                isDark ? 'text-white border-white/[0.08]' : 'text-slate-900 border-slate-100'
+                isHalloween
+                  ? 'text-white border-orange-500/20'
+                  : isChristmas
+                  ? 'text-white border-emerald-500/20'
+                  : isDark ? 'text-white border-white/[0.08]' : 'text-slate-900 border-slate-100'
               }`}
             >
-              <span>Direct Channels</span>
-              <Sparkles size={16} className="text-indigo-500" />
+              <span className="flex items-center gap-2">
+                <span>{isHalloween ? '🦇 Direct Channels 🎃' : isChristmas ? '🎁 Direct Channels 🎄' : 'Direct Channels'}</span>
+              </span>
+              <Sparkles size={16} className={isHalloween ? 'text-orange-400' : isChristmas ? 'text-red-400' : 'text-indigo-500'} />
             </h3>
 
             <div className="space-y-3">
@@ -517,29 +572,47 @@ export default function ContactPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`flex items-center justify-between p-3.5 rounded-xl border transition-all group ${
-                    isDark
+                    isHalloween
+                      ? 'bg-orange-950/20 border-orange-500/20 hover:border-orange-500/50 hover:bg-orange-950/40'
+                      : isChristmas
+                      ? 'bg-emerald-950/20 border-emerald-500/20 hover:border-emerald-500/50 hover:bg-emerald-950/40'
+                      : isDark
                       ? 'bg-white/[0.02] border-white/[0.06] hover:border-indigo-500/40 hover:bg-white/[0.05]'
                       : 'bg-slate-50 border-slate-200 hover:border-indigo-400 hover:bg-slate-100 shadow-2xs'
                   }`}
                 >
                   <div className="flex items-center gap-3.5">
-                    <div className="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-500 group-hover:scale-105 transition-transform shrink-0">
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform shrink-0 border ${
+                      isHalloween
+                        ? 'bg-orange-500/15 border-orange-500/30 text-orange-400'
+                        : isChristmas
+                        ? 'bg-red-500/15 border-red-500/30 text-red-400'
+                        : 'bg-indigo-500/10 border-indigo-500/20 text-indigo-500'
+                    }`}>
                       {item.icon ? <item.icon size={18} /> : item.customIcon}
                     </div>
                     <div>
-                      <span className="text-[10px] font-mono uppercase font-bold text-slate-400 block">
+                      <span className={`text-[10px] font-mono uppercase font-bold block ${
+                        isHalloween ? 'text-orange-400/80' : isChristmas ? 'text-emerald-400/80' : 'text-slate-400'
+                      }`}>
                         {item.label}
                       </span>
                       <p
                         className={`text-xs font-bold transition-colors ${
-                          isDark
+                          isHalloween
+                            ? 'text-white group-hover:text-orange-300'
+                            : isChristmas
+                            ? 'text-white group-hover:text-emerald-300'
+                            : isDark
                             ? 'text-white group-hover:text-indigo-300'
                             : 'text-slate-900 group-hover:text-indigo-600'
                         }`}
                       >
                         {item.value}
                       </p>
-                      <span className={`text-[11px] ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
+                      <span className={`text-[11px] ${
+                        isHalloween ? 'text-orange-200/50' : isChristmas ? 'text-emerald-200/50' : isDark ? 'text-slate-500' : 'text-slate-500'
+                      }`}>
                         {item.sub}
                       </span>
                     </div>
@@ -547,7 +620,13 @@ export default function ContactPage() {
 
                   <ArrowRight
                     size={14}
-                    className="text-slate-400 group-hover:text-indigo-500 group-hover:translate-x-0.5 transition-all shrink-0 ml-2"
+                    className={`transition-all shrink-0 ml-2 group-hover:translate-x-0.5 ${
+                      isHalloween
+                        ? 'text-orange-400/60 group-hover:text-orange-400'
+                        : isChristmas
+                        ? 'text-emerald-400/60 group-hover:text-emerald-400'
+                        : 'text-slate-400 group-hover:text-indigo-500'
+                    }`}
                   />
                 </a>
               ))}
@@ -556,17 +635,34 @@ export default function ContactPage() {
 
           {/* Location Badge Card */}
           <div
-            className={`p-6 flex items-center gap-4 rounded-3xl border transition-all ${
-              isDark ? 'bg-[#0D1424] border-white/[0.08]' : 'bg-white border-slate-200 shadow-sm'
+            className={`relative overflow-hidden p-6 flex items-center gap-4 rounded-3xl border transition-all ${
+              isHalloween
+                ? 'bg-[#140A1F]/90 border-orange-500/25 shadow-xl shadow-orange-950/40'
+                : isChristmas
+                ? 'bg-[#07192B]/90 border-emerald-500/25 shadow-xl shadow-emerald-950/40'
+                : isDark ? 'bg-[#0D1424] border-white/[0.08]' : 'bg-white border-slate-200 shadow-sm'
             }`}
           >
-            <div className="w-11 h-11 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-500 shrink-0">
+            <CardBorderDecoration />
+            <div className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 border ${
+              isHalloween
+                ? 'bg-orange-500/15 border-orange-500/30 text-orange-400'
+                : isChristmas
+                ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-400'
+                : 'bg-blue-500/10 border border-blue-500/20 text-blue-500'
+            }`}>
               <MapPin size={20} />
             </div>
             <div>
-              <span className="text-[10px] font-mono uppercase font-bold text-slate-400 block">Current Location</span>
+              <span className={`text-[10px] font-mono uppercase font-bold block ${
+                isHalloween ? 'text-orange-400' : isChristmas ? 'text-emerald-400' : 'text-slate-400'
+              }`}>
+                {isHalloween ? '🕸️ Current Location' : isChristmas ? '❄️ Current Location' : 'Current Location'}
+              </span>
               <p className={`text-sm font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Manila, Philippines (GMT+8)</p>
-              <span className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Available for remote contracts worldwide</span>
+              <span className={`text-xs ${
+                isHalloween ? 'text-orange-200/60' : isChristmas ? 'text-emerald-200/60' : isDark ? 'text-slate-400' : 'text-slate-600'
+              }`}>Available for remote contracts worldwide</span>
             </div>
           </div>
         </div>

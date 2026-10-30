@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import FloatingCyberObjects from '../components/FloatingCyberObjects';
+import CardBorderDecoration from '../components/CardBorderDecoration';
 
 interface ProjectItem {
   id: string;
@@ -60,7 +61,7 @@ function ProjectCard3D({
   priority?: boolean;
   onOpenModal: (project: ProjectItem) => void;
 }) {
-  const { isDark } = useTheme();
+  const { isDark, isHalloween, isChristmas } = useTheme();
   const cardRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [coords, setCoords] = useState({
@@ -152,14 +153,26 @@ function ProjectCard3D({
             : 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
         className={`relative flex flex-col justify-between h-full rounded-2xl sm:rounded-3xl border transition-all duration-300 group will-change-transform cursor-pointer overflow-hidden ${
-          isDark
+          isHalloween
+            ? 'bg-gradient-to-b from-[#1F0C30]/95 via-[#160724]/95 to-[#0E0417]/98 border-orange-500/30 hover:border-orange-400/70 shadow-[0_15px_35px_rgba(249,115,22,0.25)] hover:shadow-[0_25px_60px_-15px_rgba(249,115,22,0.5)] text-white'
+            : isChristmas
+            ? 'bg-gradient-to-b from-[#0A2640]/95 via-[#061B2E]/95 to-[#03111F]/98 border-emerald-500/30 hover:border-emerald-400/70 shadow-[0_15px_35px_rgba(16,185,129,0.25)] hover:shadow-[0_25px_60px_-15px_rgba(16,185,129,0.5)] text-white'
+            : isDark
             ? 'bg-gradient-to-b from-[#0F1733]/95 via-[#0A1024]/95 to-[#060A17]/98 border-white/[0.12] hover:border-indigo-400/60 shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_25px_60px_-15px_rgba(99,102,241,0.45)] text-white'
             : 'bg-white border-slate-300 hover:border-indigo-500/60 shadow-[0_10px_40px_rgba(0,0,0,0.08)] hover:shadow-[0_20px_50px_-10px_rgba(99,102,241,0.25)] text-slate-900'
         }`}
       >
+        {/* Seasonal Corner Web / Snowflake Border Decoration */}
+        <CardBorderDecoration />
         {/* 3D Ambient Neon Underglow */}
         <div
-          className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-indigo-600/30 via-violet-600/20 to-cyan-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 pointer-events-none"
+          className={`absolute -inset-1 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10 pointer-events-none ${
+            isHalloween
+              ? 'bg-gradient-to-r from-orange-600/35 via-purple-600/30 to-amber-500/30'
+              : isChristmas
+              ? 'bg-gradient-to-r from-red-600/35 via-emerald-600/30 to-yellow-500/30'
+              : 'bg-gradient-to-r from-indigo-600/30 via-violet-600/20 to-cyan-500/20'
+          }`}
           style={{ transform: 'translateZ(-20px)' }}
         />
 
@@ -182,6 +195,18 @@ function ProjectCard3D({
           >
             {/* Gloss reflection sheen */}
             <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-white/[0.08] to-transparent pointer-events-none z-10" />
+
+            {/* Seasonal Corner Overlay on Card Viewport */}
+            {isHalloween && (
+              <div className="absolute top-1.5 left-1.5 pointer-events-none z-20 text-orange-400 filter drop-shadow-[0_0_6px_rgba(249,115,22,0.8)]">
+                <span className="text-xs sm:text-sm select-none">🕸️</span>
+              </div>
+            )}
+            {isChristmas && (
+              <div className="absolute top-1.5 left-1.5 pointer-events-none z-20 text-cyan-200 filter drop-shadow-[0_0_6px_rgba(224,242,254,0.8)]">
+                <span className="text-xs sm:text-sm select-none">❄️</span>
+              </div>
+            )}
 
             {project.videoUrl ? (
               <div className="relative w-full h-full">
@@ -355,7 +380,7 @@ function ProjectCard3D({
 // Main ProjectsPage Component
 // ----------------------------------------------------------------------
 export default function ProjectsPage() {
-  const { isDark } = useTheme();
+  const { isDark, isHalloween, isChristmas } = useTheme();
   const [activeFilter, setActiveFilter] = useState<'all' | 'development' | 'apps' | 'security' | 'graphics'>('all');
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [isModalMuted, setIsModalMuted] = useState(true);
@@ -854,20 +879,30 @@ export default function ProjectsPage() {
 
   return (
     <div className={`relative w-full py-12 sm:py-20 px-4 sm:px-6 lg:px-8 overflow-hidden transition-colors duration-300 ${
-      isDark ? 'bg-[#070B14]' : 'bg-[#F8FAFC]'
+      isHalloween ? 'bg-[#0A0512]' : isChristmas ? 'bg-[#051120]' : isDark ? 'bg-[#070B14]' : 'bg-[#F8FAFC]'
     }`}>
       <FloatingCyberObjects />
 
       <div className="max-w-7xl mx-auto relative z-10">
       {/* Header Section */}
       <div className="space-y-3 mb-8 text-center sm:text-left">
+        {isHalloween && (
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-500/15 border border-orange-500/30 text-orange-400 text-xs font-mono mb-1">
+            <span>🎃 Haunted Works & Audited Systems</span>
+          </div>
+        )}
+        {isChristmas && (
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-500/15 border border-red-500/30 text-red-300 text-xs font-mono mb-1">
+            <span>🎄 Holiday Portfolio Showcase</span>
+          </div>
+        )}
         <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight ${
           isDark ? 'text-white' : 'text-slate-900'
         }`}>
           Featured <span className="text-gradient">Projects & Works</span>
         </h1>
         <p className={`text-sm sm:text-base lg:text-lg max-w-2xl leading-relaxed mt-2 ${
-          isDark ? 'text-slate-400' : 'text-slate-600'
+          isHalloween ? 'text-orange-200/70' : isChristmas ? 'text-emerald-200/70' : isDark ? 'text-slate-400' : 'text-slate-600'
         }`}>
           An interactive 3D showcase of web applications, cybersecurity audits, and digital creations.
         </p>
@@ -876,7 +911,11 @@ export default function ProjectsPage() {
       {/* Interactive Filter Dock */}
       <div className="flex flex-wrap items-center gap-4 mb-10">
         <div className={`relative inline-flex items-center gap-1.5 p-1.5 rounded-2xl backdrop-blur-xl border overflow-x-auto styled-scrollbar max-w-full ${
-          isDark
+          isHalloween
+            ? 'bg-[#180A26]/90 border-orange-500/30 shadow-[0_15px_35px_-10px_rgba(249,115,22,0.3)]'
+            : isChristmas
+            ? 'bg-[#082035]/90 border-emerald-500/30 shadow-[0_15px_35px_-10px_rgba(16,185,129,0.3)]'
+            : isDark
             ? 'bg-[#090F21]/90 border-white/[0.12] shadow-[0_15px_35px_-10px_rgba(0,0,0,0.7)]'
             : 'bg-slate-100/90 border-slate-200/90 shadow-md'
         }`}>
@@ -913,6 +952,10 @@ export default function ProjectsPage() {
                 className={`relative px-3.5 sm:px-4 py-2 rounded-xl text-xs font-semibold tracking-wide transition-all duration-200 cursor-pointer flex items-center gap-2 select-none active:scale-95 shrink-0 z-10 ${
                   isActive
                     ? 'text-white font-bold'
+                    : isHalloween
+                    ? 'text-orange-200 hover:text-white hover:bg-orange-900/30'
+                    : isChristmas
+                    ? 'text-emerald-200 hover:text-white hover:bg-emerald-900/30'
                     : isDark
                     ? 'text-slate-400 hover:text-white hover:bg-white/[0.04]'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/60'
@@ -921,7 +964,13 @@ export default function ProjectsPage() {
                 {isActive && (
                   <motion.div
                     layoutId="activeFilter3DPills"
-                    className="absolute inset-0 rounded-xl bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 shadow-[0_0_20px_rgba(99,102,241,0.55)] border border-indigo-300/40 -z-10"
+                    className={`absolute inset-0 rounded-xl ${
+                      isHalloween
+                        ? 'bg-gradient-to-r from-orange-600 via-amber-600 to-orange-500 shadow-[0_0_20px_rgba(249,115,22,0.55)] border border-orange-400/40'
+                        : isChristmas
+                        ? 'bg-gradient-to-r from-red-600 via-red-500 to-emerald-600 shadow-[0_0_20px_rgba(239,68,68,0.55)] border border-red-400/40'
+                        : 'bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 shadow-[0_0_20px_rgba(99,102,241,0.55)] border border-indigo-300/40'
+                    } -z-10`}
                     transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -963,6 +1012,16 @@ export default function ProjectsPage() {
                         isDark ? 'text-white' : 'text-slate-900'
                       }`}>
                         {section.title}
+                        {isHalloween && (
+                          <span className="ml-2 text-base select-none">
+                            {section.id === 'apps' ? '🕸️' : section.id === 'security' ? '🦇' : '🎃'}
+                          </span>
+                        )}
+                        {isChristmas && (
+                          <span className="ml-2 text-base select-none">
+                            {section.id === 'apps' ? '❄️' : section.id === 'security' ? '✨' : '🎁'}
+                          </span>
+                        )}
                       </h2>
                       <p className={`text-xs sm:text-sm mt-1 max-w-3xl leading-relaxed ${
                         isDark ? 'text-slate-400' : 'text-slate-600'

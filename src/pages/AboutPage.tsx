@@ -16,9 +16,10 @@ import {
 import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import FloatingCyberObjects from '../components/FloatingCyberObjects';
+import CardBorderDecoration from '../components/CardBorderDecoration';
 
 export default function AboutPage() {
-  const { isDark } = useTheme();
+  const { isDark, isHalloween, isChristmas } = useTheme();
 
   const educationRecords = [
     {
@@ -220,7 +221,7 @@ export default function AboutPage() {
 
   return (
     <div className={`relative w-full py-16 sm:py-24 px-4 sm:px-8 overflow-hidden transition-colors duration-300 ${
-      isDark ? 'bg-[#070B14]' : 'bg-[#F8FAFC]'
+      isHalloween ? 'bg-[#0A0512]' : isChristmas ? 'bg-[#051120]' : isDark ? 'bg-[#070B14]' : 'bg-[#F8FAFC]'
     }`}>
       <FloatingCyberObjects />
       <div className="max-w-7xl mx-auto space-y-16 relative z-10">
@@ -230,7 +231,7 @@ export default function AboutPage() {
           <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight ${
             isDark ? 'text-white' : 'text-slate-900'
           }`}>
-            Turning ideas into <span className="text-gradient">functional digital solutions.</span>
+            Turning ideas into <span className="text-gradient">functional digital solutions</span>.
           </h1>
 
           <p className={`text-base sm:text-lg leading-relaxed ${
@@ -250,16 +251,24 @@ export default function AboutPage() {
       {/* Experience Section */}
       <section className="space-y-8">
         <div className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b ${
-          isDark ? 'border-white/[0.08]' : 'border-slate-200'
+          isHalloween ? 'border-orange-500/20' : isChristmas ? 'border-red-500/20' : isDark ? 'border-white/[0.08]' : 'border-slate-200'
         }`}>
           <div className="space-y-1">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-500">
+              <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                isHalloween
+                  ? 'bg-orange-500/15 border border-orange-500/30 text-orange-400'
+                  : isChristmas
+                  ? 'bg-red-500/15 border border-red-500/30 text-red-400'
+                  : 'bg-indigo-500/10 border border-indigo-500/20 text-indigo-500'
+              }`}>
                 <Briefcase size={18} />
               </div>
               <h2 className={`text-2xl sm:text-3xl font-extrabold tracking-tight ${
                 isDark ? 'text-white' : 'text-slate-900'
-              }`}>Experience & Career</h2>
+              }`}>
+                {isHalloween ? '🦇 Experience & Career 🎃' : isChristmas ? '🎁 Experience & Career 🎄' : 'Experience & Career'}
+              </h2>
             </div>
             <p className={`text-xs sm:text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
               Professional positions, penetration testing audits, and technical systems administration
@@ -270,7 +279,13 @@ export default function AboutPage() {
         {/* Timeline Container */}
         <div className="relative pl-0 sm:pl-4 space-y-6">
           {/* Subtle vertical connection beam on desktop/tablet */}
-          <div className="hidden sm:block absolute left-9 top-8 bottom-8 w-0.5 bg-gradient-to-b from-indigo-500/50 via-violet-500/30 to-indigo-500/10 pointer-events-none" />
+          <div className={`hidden sm:block absolute left-9 top-8 bottom-8 w-0.5 pointer-events-none ${
+            isHalloween
+              ? 'bg-gradient-to-b from-orange-500/50 via-purple-500/30 to-orange-500/10'
+              : isChristmas
+              ? 'bg-gradient-to-b from-red-500/50 via-emerald-500/30 to-red-500/10'
+              : 'bg-gradient-to-b from-indigo-500/50 via-violet-500/30 to-indigo-500/10'
+          }`} />
 
           {workExperience.map((exp, idx) => {
             const IconComponent = exp.icon;
@@ -284,9 +299,13 @@ export default function AboutPage() {
                 className="relative flex flex-col sm:flex-row items-start gap-4 sm:gap-6 group"
               >
                 {/* Timeline Node Badge */}
-                <div className={`hidden sm:flex relative z-10 shrink-0 w-11 h-11 rounded-2xl border group-hover:border-indigo-400/60 items-center justify-center transition-all duration-300 ${
-                  isDark
-                    ? 'bg-[#0B1120] border-white/[0.12] group-hover:shadow-[0_0_20px_rgba(99,102,241,0.35)]'
+                <div className={`hidden sm:flex relative z-10 shrink-0 w-11 h-11 rounded-2xl border items-center justify-center transition-all duration-300 ${
+                  isHalloween
+                    ? 'bg-[#180A26] border-orange-500/40 group-hover:shadow-[0_0_20px_rgba(249,115,22,0.4)]'
+                    : isChristmas
+                    ? 'bg-[#082035] border-emerald-500/40 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.4)]'
+                    : isDark
+                    ? 'bg-[#0B1120] border-white/[0.12] group-hover:border-indigo-400/60 group-hover:shadow-[0_0_20px_rgba(99,102,241,0.35)]'
                     : 'bg-white border-slate-300 shadow-sm'
                 }`}>
                   <IconComponent size={20} className={exp.iconColor} />
@@ -299,11 +318,16 @@ export default function AboutPage() {
                 </div>
 
                 {/* Experience Card */}
-                <div className={`p-4 sm:p-7 flex-1 w-full space-y-5 rounded-3xl border transition-all ${
-                  isDark
+                <div className={`relative overflow-hidden p-4 sm:p-7 flex-1 w-full space-y-5 rounded-3xl border transition-all ${
+                  isHalloween
+                    ? 'bg-[#140A1F]/90 border-orange-500/25 group-hover:border-orange-500/50 shadow-xl shadow-orange-950/40'
+                    : isChristmas
+                    ? 'bg-[#07192B]/90 border-emerald-500/25 group-hover:border-emerald-500/50 shadow-xl shadow-emerald-950/40'
+                    : isDark
                     ? 'bg-[#0D1424] border-white/[0.08] group-hover:border-indigo-500/40'
                     : 'bg-white border-slate-200 shadow-sm group-hover:border-indigo-400 group-hover:shadow-md'
                 }`}>
+                  <CardBorderDecoration />
                   {/* Card Header */}
                   <div className={`flex flex-col lg:flex-row lg:items-center justify-between gap-3 border-b pb-4 ${
                     isDark ? 'border-white/[0.06]' : 'border-slate-100'
@@ -401,11 +425,15 @@ export default function AboutPage() {
       {/* Education Record Section */}
       <section className="space-y-8">
         <div className={`flex items-center justify-between pb-3 border-b ${
-          isDark ? 'border-white/[0.08]' : 'border-slate-200'
+          isHalloween ? 'border-orange-500/20' : isChristmas ? 'border-emerald-500/20' : isDark ? 'border-white/[0.08]' : 'border-slate-200'
         }`}>
           <div className="space-y-1">
-            <h2 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>Education History</h2>
-            <p className={`text-xs ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Academic journey and foundational learning</p>
+            <h2 className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-slate-900'}`}>
+              {isHalloween ? '🕷️ Education History 🎃' : isChristmas ? '🔔 Education History ❄️' : 'Education History'}
+            </h2>
+            <p className={`text-xs ${isHalloween ? 'text-orange-200/60' : isChristmas ? 'text-emerald-200/60' : isDark ? 'text-slate-400' : 'text-slate-600'}`}>
+              Academic journey and foundational learning
+            </p>
           </div>
         </div>
 
@@ -416,12 +444,17 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1, duration: 0.5 }}
-              className={`p-6 flex flex-col justify-between group rounded-3xl border transition-all h-full ${
-                isDark
+              className={`relative overflow-hidden p-6 flex flex-col justify-between group rounded-3xl border transition-all h-full ${
+                isHalloween
+                  ? 'bg-[#140A1F]/90 border-orange-500/25 hover:border-orange-500/50 shadow-xl shadow-orange-950/40'
+                  : isChristmas
+                  ? 'bg-[#07192B]/90 border-emerald-500/25 hover:border-emerald-500/50 shadow-xl shadow-emerald-950/40'
+                  : isDark
                   ? 'bg-[#0D1424] border-white/[0.08] hover:border-indigo-500/40'
                   : 'bg-white border-slate-200 shadow-sm hover:border-indigo-400 hover:shadow-md'
               }`}
             >
+              <CardBorderDecoration />
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <span className={`text-xs font-mono font-bold px-3 py-1 rounded-full border ${

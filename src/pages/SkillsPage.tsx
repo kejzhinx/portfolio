@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTheme } from '../context/ThemeContext';
 import FloatingCyberObjects from '../components/FloatingCyberObjects';
+import CardBorderDecoration from '../components/CardBorderDecoration';
 import {
   Sparkles,
   Terminal,
@@ -401,7 +402,7 @@ function SkillIconRenderer({ skill }: { skill: SkillItem }) {
 }
 
 export default function SkillsPage() {
-  const { isDark } = useTheme();
+  const { isDark, isHalloween, isChristmas } = useTheme();
   const [activeTab, setActiveTab] = useState<'all' | 'dev' | 'security' | 'design' | 'db'>('all');
   const [showAll, setShowAll] = useState(false);
   const tabsRef = useRef<HTMLDivElement>(null);
@@ -427,16 +428,26 @@ export default function SkillsPage() {
 
   return (
     <div className={`relative w-full py-16 sm:py-24 px-4 sm:px-8 overflow-hidden transition-colors duration-300 ${
-      isDark ? 'bg-[#070B14]' : 'bg-[#F8FAFC]'
+      isHalloween ? 'bg-[#0A0512]' : isChristmas ? 'bg-[#051120]' : isDark ? 'bg-[#070B14]' : 'bg-[#F8FAFC]'
     }`}>
       <FloatingCyberObjects />
 
       <div className="max-w-7xl mx-auto w-full min-w-0 relative z-10">
       {/* Header */}
       <div className="space-y-4 mb-8 sm:mb-10 text-center sm:text-left">
-        <div className="badge-pill inline-flex items-center gap-1.5">
-          <Sparkles size={14} className="text-indigo-400" />
-          <span>My Skills</span>
+        <div className={`badge-pill inline-flex items-center gap-1.5 ${
+          isHalloween ? 'border-orange-500/40 bg-orange-500/10' : isChristmas ? 'border-red-500/40 bg-red-500/10' : ''
+        }`}>
+          {isHalloween ? (
+            <span className="text-sm">🎃</span>
+          ) : isChristmas ? (
+            <span className="text-sm">🎄</span>
+          ) : (
+            <Sparkles size={14} className="text-indigo-400" />
+          )}
+          <span className={isHalloween ? 'text-orange-300' : isChristmas ? 'text-red-300' : ''}>
+            {isHalloween ? 'Spooky Skills & Cyber Defense' : isChristmas ? 'Holiday Toolkit & Capabilities' : 'My Skills'}
+          </span>
         </div>
 
         <h1 className={`text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight break-words ${
@@ -454,7 +465,7 @@ export default function SkillsPage() {
 
       {/* Filter Tabs Dock */}
       <div className={`flex items-center justify-between gap-2.5 sm:gap-4 mb-8 sm:mb-10 pb-6 border-b w-full min-w-0 max-w-full ${
-        isDark ? 'border-white/[0.08]' : 'border-slate-200'
+        isHalloween ? 'border-orange-500/20' : isChristmas ? 'border-red-500/20' : isDark ? 'border-white/[0.08]' : 'border-slate-200'
       }`}>
         <button
           type="button"
@@ -462,7 +473,11 @@ export default function SkillsPage() {
           aria-label="Scroll tabs left"
           title="Scroll options left"
           className={`shrink-0 p-2.5 rounded-xl transition-all cursor-pointer flex items-center justify-center active:scale-90 ${
-            isDark
+            isHalloween
+              ? 'bg-orange-950/40 hover:bg-orange-900/60 text-orange-200 border border-orange-500/30'
+              : isChristmas
+              ? 'bg-emerald-950/40 hover:bg-emerald-900/60 text-emerald-200 border border-emerald-500/30'
+              : isDark
               ? 'bg-white/[0.05] hover:bg-white/[0.12] text-slate-300 hover:text-white border border-white/10'
               : 'bg-white hover:bg-slate-200 text-slate-700 border border-slate-300 shadow-sm'
           }`}
@@ -473,7 +488,11 @@ export default function SkillsPage() {
         <div
           ref={tabsRef}
           className={`flex items-center gap-1.5 sm:gap-2 p-1.5 pb-2.5 rounded-2xl backdrop-blur-md overflow-x-auto styled-scrollbar scroll-smooth flex-1 min-w-0 ${
-            isDark ? 'bg-white/[0.03] border border-white/[0.08]' : 'bg-slate-100 border border-slate-200 shadow-sm'
+            isHalloween
+              ? 'bg-orange-950/30 border border-orange-500/20'
+              : isChristmas
+              ? 'bg-emerald-950/30 border border-emerald-500/20'
+              : isDark ? 'bg-white/[0.03] border border-white/[0.08]' : 'bg-slate-100 border border-slate-200 shadow-sm'
           }`}
         >
           {[
@@ -491,13 +510,21 @@ export default function SkillsPage() {
                 onClick={() => handleTabChange(tab.id as any)}
                 className={`shrink-0 whitespace-nowrap flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs font-semibold tracking-wide transition-all cursor-pointer select-none active:scale-95 ${
                   isActive
-                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30 font-bold'
+                    ? isHalloween
+                      ? 'bg-orange-600 text-white shadow-md shadow-orange-600/40 font-bold'
+                      : isChristmas
+                      ? 'bg-red-600 text-white shadow-md shadow-red-600/40 font-bold'
+                      : 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30 font-bold'
+                    : isHalloween
+                    ? 'text-orange-200 hover:text-white hover:bg-orange-900/40 bg-orange-950/20'
+                    : isChristmas
+                    ? 'text-emerald-200 hover:text-white hover:bg-emerald-900/40 bg-emerald-950/20'
                     : isDark
                     ? 'text-slate-400 hover:text-white hover:bg-white/[0.06] bg-white/[0.02]'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-white bg-white/60'
                 }`}
               >
-                <Icon size={13} className={isActive ? 'text-white' : 'text-slate-400'} />
+                <Icon size={13} className={isActive ? 'text-white' : isHalloween ? 'text-orange-400' : isChristmas ? 'text-emerald-400' : 'text-slate-400'} />
                 <span>{tab.label}</span>
               </button>
             );
@@ -510,7 +537,11 @@ export default function SkillsPage() {
           aria-label="Scroll tabs right"
           title="Scroll options right"
           className={`shrink-0 p-2.5 rounded-xl transition-all cursor-pointer flex items-center justify-center active:scale-90 ${
-            isDark
+            isHalloween
+              ? 'bg-orange-950/40 hover:bg-orange-900/60 text-orange-200 border border-orange-500/30'
+              : isChristmas
+              ? 'bg-emerald-950/40 hover:bg-emerald-900/60 text-emerald-200 border border-emerald-500/30'
+              : isDark
               ? 'bg-white/[0.05] hover:bg-white/[0.12] text-slate-300 hover:text-white border border-white/10'
               : 'bg-white hover:bg-slate-200 text-slate-700 border border-slate-300 shadow-sm'
           }`}
@@ -533,12 +564,17 @@ export default function SkillsPage() {
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.25 }}
               key={skill.name}
-              className={`p-5 flex flex-col justify-between group hover:-translate-y-1 transition-all h-full rounded-2xl border ${
-                isDark
+              className={`relative overflow-hidden p-5 flex flex-col justify-between group hover:-translate-y-1 transition-all h-full rounded-2xl border ${
+                isHalloween
+                  ? 'bg-[#140A1F]/90 border-orange-500/25 hover:border-orange-500/50 shadow-xl shadow-orange-950/40'
+                  : isChristmas
+                  ? 'bg-[#07192B]/90 border-emerald-500/25 hover:border-emerald-500/50 shadow-xl shadow-emerald-950/40'
+                  : isDark
                   ? 'bg-[#0D1424] border-white/[0.08] hover:border-indigo-500/40'
                   : 'bg-white border-slate-200 shadow-sm hover:shadow-md hover:border-indigo-400'
               }`}
             >
+              <CardBorderDecoration />
               <div className="space-y-4">
                 {/* Icon & Category */}
                 <div className="flex items-center justify-between">
@@ -549,7 +585,11 @@ export default function SkillsPage() {
                   </div>
 
                   <span className={`text-[10px] font-mono font-semibold uppercase tracking-wider px-2.5 py-1 rounded-md border ${
-                    isDark
+                    isHalloween
+                      ? 'text-orange-300 bg-orange-950/40 border-orange-500/30'
+                      : isChristmas
+                      ? 'text-emerald-300 bg-emerald-950/40 border-emerald-500/30'
+                      : isDark
                       ? 'text-slate-400 bg-white/[0.03] border-white/[0.06]'
                       : 'text-slate-600 bg-slate-100 border-slate-200'
                   }`}>
@@ -565,7 +605,7 @@ export default function SkillsPage() {
                     {skill.name}
                   </h3>
                   <p className={`text-xs font-semibold mt-0.5 ${
-                    isDark ? 'text-indigo-400/90' : 'text-indigo-600 font-medium'
+                    isHalloween ? 'text-orange-400' : isChristmas ? 'text-emerald-400' : isDark ? 'text-indigo-400/90' : 'text-indigo-600 font-medium'
                   }`}>{skill.role}</p>
                 </div>
 
@@ -586,7 +626,11 @@ export default function SkillsPage() {
             type="button"
             onClick={() => setShowAll(!showAll)}
             className={`inline-flex items-center gap-2.5 px-7 py-3.5 rounded-2xl text-xs font-bold transition-all cursor-pointer shadow-xl active:scale-95 ${
-              isDark
+              isHalloween
+                ? 'bg-gradient-to-r from-orange-600 via-amber-600 to-orange-700 hover:from-orange-500 hover:to-amber-500 text-white shadow-orange-600/35 border border-orange-400/40'
+                : isChristmas
+                ? 'bg-gradient-to-r from-red-600 via-red-500 to-emerald-600 hover:from-red-500 hover:to-emerald-500 text-white shadow-red-600/35 border border-red-400/40'
+                : isDark
                 ? 'bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white shadow-indigo-600/30 border border-indigo-400/40'
                 : 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-indigo-600/25'
             }`}

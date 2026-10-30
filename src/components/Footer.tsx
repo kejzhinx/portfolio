@@ -2,15 +2,27 @@ import { Github, Linkedin, Mail, Heart } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 export default function Footer() {
-  const { isDark } = useTheme();
+  const { isDark, isHalloween, isChristmas } = useTheme();
 
   return (
     <footer className={`py-8 sm:py-9 relative overflow-hidden transition-colors duration-300 ${
-      isDark ? 'border-t border-white/[0.07] bg-[#070B14]' : 'border-t border-slate-200 bg-slate-100/90'
+      isHalloween
+        ? 'border-t border-orange-500/20 bg-[#0A0512]'
+        : isChristmas
+        ? 'border-t border-red-500/20 bg-[#051120]'
+        : isDark
+        ? 'border-t border-white/[0.07] bg-[#070B14]'
+        : 'border-t border-slate-200 bg-slate-100/90'
     }`}>
       {/* Subtle top glow line */}
       <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-px pointer-events-none ${
-        isDark ? 'bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent' : 'bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent'
+        isHalloween
+          ? 'bg-gradient-to-r from-transparent via-orange-500/40 to-transparent'
+          : isChristmas
+          ? 'bg-gradient-to-r from-transparent via-red-500/40 to-transparent'
+          : isDark
+          ? 'bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent'
+          : 'bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent'
       }`} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

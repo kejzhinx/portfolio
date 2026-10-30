@@ -589,3 +589,229 @@ html.light button.text-slate-400:hover {
   color: #0F172A !important;
 }
 
+/* ==========================================================================
+   Halloween Theme Global Card, Button & Typography Adaptations
+   ========================================================================== */
+html.theme-halloween {
+  color-scheme: dark;
+}
+
+html.theme-halloween body {
+  background-color: #0A0512 !important;
+}
+
+/* Card Surfaces in Halloween Mode */
+html.theme-halloween .card-surface,
+html.theme-halloween [class*="bg-[#0D1424]"],
+html.theme-halloween [class*="bg-[#0e1628]"],
+html.theme-halloween [class*="bg-[#090F21]"],
+html.theme-halloween [class*="bg-[#0B1220]"],
+html.theme-halloween [class*="bg-[#0D1527]"],
+html.theme-halloween [class*="bg-[#0a0f1d]"] {
+  background-color: #140A1F !important;
+  border-color: rgba(249, 115, 22, 0.3) !important;
+  box-shadow: 0 10px 30px -5px rgba(249, 115, 22, 0.2), 0 0 15px rgba(168, 85, 247, 0.15) !important;
+}
+
+html.theme-halloween [class*="bg-[#080D1A]"] {
+  background-color: #0E0517 !important;
+  border-color: rgba(249, 115, 22, 0.25) !important;
+}
+
+html.theme-halloween .card-surface:hover {
+  background-color: #1A0E2A !important;
+  border-color: rgba(249, 115, 22, 0.55) !important;
+  box-shadow: 0 15px 35px -5px rgba(249, 115, 22, 0.3), 0 0 20px rgba(168, 85, 247, 0.25) !important;
+}
+
+/* Text Gradient in Halloween */
+html.theme-halloween .text-gradient {
+  background: linear-gradient(135deg, #FB923C 0%, #FBBF24 45%, #C084FC 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: drop-shadow(0 0 12px rgba(249, 115, 22, 0.45)) !important;
+}
+
+/* Primary Button in Halloween (Download CV, Submit, View Skills) */
+html.theme-halloween .btn-primary {
+  background: linear-gradient(135deg, #EA580C 0%, #C2410C 100%) !important;
+  box-shadow: 0 10px 25px -5px rgba(234, 88, 12, 0.5) !important;
+  border: 1px solid rgba(251, 146, 60, 0.4) !important;
+}
+
+html.theme-halloween .btn-primary:hover {
+  background: linear-gradient(135deg, #F97316 0%, #EA580C 100%) !important;
+  box-shadow: 0 15px 30px -5px rgba(249, 115, 22, 0.6) !important;
+}
+
+/* Secondary Button in Halloween */
+html.theme-halloween .btn-secondary {
+  border-color: rgba(249, 115, 22, 0.35) !important;
+  background-color: rgba(249, 115, 22, 0.08) !important;
+  color: #FED7AA !important;
+}
+
+html.theme-halloween .btn-secondary:hover {
+  border-color: rgba(249, 115, 22, 0.6) !important;
+  background-color: rgba(249, 115, 22, 0.15) !important;
+  color: #FFFFFF !important;
+}
+
+/* Badge Pill in Halloween */
+html.theme-halloween .badge-pill {
+  background-color: rgba(249, 115, 22, 0.12) !important;
+  border-color: rgba(249, 115, 22, 0.35) !important;
+  color: #FDBA74 !important;
+}
+
+/* ==========================================================================
+   Christmas Theme Global Card, Button & Typography Adaptations
+   ========================================================================== */
+html.theme-christmas {
+  color-scheme: dark;
+}
+
+html.theme-christmas body {
+  background-color: #051120 !important;
+}
+
+/* Card Surfaces in Christmas Mode */
+html.theme-christmas .card-surface,
+html.theme-christmas [class*="bg-[#0D1424]"],
+html.theme-christmas [class*="bg-[#0e1628]"],
+html.theme-christmas [class*="bg-[#090F21]"],
+html.theme-christmas [class*="bg-[#0B1220]"],
+html.theme-christmas [class*="bg-[#0D1527]"],
+html.theme-christmas [class*="bg-[#0a0f1d]"] {
+  background-color: #07192B !important;
+  border-color: rgba(16, 185, 129, 0.3) !important;
+  box-shadow: 0 10px 30px -5px rgba(239, 68, 68, 0.2), 0 0 15px rgba(16, 185, 129, 0.16) !important;
+}
+
+html.theme-christmas [class*="bg-[#080D1A]"] {
+  background-color: #031321 !important;
+  border-color: rgba(16, 185, 129, 0.25) !important;
+}
+
+html.theme-christmas .card-surface:hover {
+  background-color: #0B233A !important;
+  border-color: rgba(239, 68, 68, 0.55) !important;
+  box-shadow: 0 15px 35px -5px rgba(239, 68, 68, 0.28), 0 0 20px rgba(16, 185, 129, 0.25) !important;
+}
+
+/* Text Gradient in Christmas */
+html.theme-christmas .text-gradient {
+  background: linear-gradient(135deg, #F87171 0%, #FBBF24 45%, #34D399 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: drop-shadow(0 0 12px rgba(239, 68, 68, 0.45)) !important;
+}
+
+/* Primary Button in Christmas */
+html.theme-christmas .btn-primary {
+  background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%) !important;
+  box-shadow: 0 10px 25px -5px rgba(220, 38, 38, 0.5) !important;
+  border: 1px solid rgba(248, 113, 113, 0.4) !important;
+}
+
+html.theme-christmas .btn-primary:hover {
+  background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%) !important;
+  box-shadow: 0 15px 30px -5px rgba(239, 68, 68, 0.6) !important;
+}
+
+/* Secondary Button in Christmas */
+html.theme-christmas .btn-secondary {
+  border-color: rgba(16, 185, 129, 0.35) !important;
+  background-color: rgba(16, 185, 129, 0.08) !important;
+  color: #A7F3D0 !important;
+}
+
+html.theme-christmas .btn-secondary:hover {
+  border-color: rgba(16, 185, 129, 0.6) !important;
+  background-color: rgba(16, 185, 129, 0.15) !important;
+  color: #FFFFFF !important;
+}
+
+/* Badge Pill in Christmas */
+html.theme-christmas .badge-pill {
+  background-color: rgba(239, 68, 68, 0.12) !important;
+  border-color: rgba(239, 68, 68, 0.35) !important;
+  color: #FECACA !important;
+}
+
+/* ==========================================================================
+   Storm Rain Theme Global Card, Button & Typography Adaptations
+   ========================================================================== */
+html.theme-rain {
+  color-scheme: dark;
+}
+
+html.theme-rain body {
+  background-color: #030C1A !important;
+}
+
+/* Card Surfaces in Rain Mode */
+html.theme-rain .card-surface,
+html.theme-rain [class*="bg-[#0D1424]"],
+html.theme-rain [class*="bg-[#0e1628]"],
+html.theme-rain [class*="bg-[#090F21]"],
+html.theme-rain [class*="bg-[#0B1220]"],
+html.theme-rain [class*="bg-[#0D1527]"],
+html.theme-rain [class*="bg-[#0a0f1d]"] {
+  background-color: #08162A !important;
+  border-color: rgba(6, 182, 212, 0.3) !important;
+  box-shadow: 0 10px 30px -5px rgba(14, 165, 233, 0.2), 0 0 15px rgba(56, 189, 248, 0.15) !important;
+}
+
+html.theme-rain [class*="bg-[#080D1A]"] {
+  background-color: #041021 !important;
+  border-color: rgba(6, 182, 212, 0.25) !important;
+}
+
+html.theme-rain .card-surface:hover {
+  background-color: #0C1F3A !important;
+  border-color: rgba(14, 165, 233, 0.55) !important;
+  box-shadow: 0 15px 35px -5px rgba(14, 165, 233, 0.3), 0 0 20px rgba(56, 189, 248, 0.25) !important;
+}
+
+/* Text Gradient in Rain */
+html.theme-rain .text-gradient {
+  background: linear-gradient(135deg, #38BDF8 0%, #06B6D4 50%, #60A5FA 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  filter: drop-shadow(0 0 12px rgba(14, 165, 233, 0.45)) !important;
+}
+
+/* Primary Button in Rain */
+html.theme-rain .btn-primary {
+  background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%) !important;
+  box-shadow: 0 10px 25px -5px rgba(14, 165, 233, 0.5) !important;
+  border: 1px solid rgba(56, 189, 248, 0.4) !important;
+}
+
+html.theme-rain .btn-primary:hover {
+  background: linear-gradient(135deg, #0EA5E9 0%, #0284C7 100%) !important;
+  box-shadow: 0 15px 30px -5px rgba(14, 165, 233, 0.6) !important;
+}
+
+/* Secondary Button in Rain */
+html.theme-rain .btn-secondary {
+  border-color: rgba(6, 182, 212, 0.35) !important;
+  background-color: rgba(6, 182, 212, 0.08) !important;
+  color: #BAE6FD !important;
+}
+
+html.theme-rain .btn-secondary:hover {
+  border-color: rgba(6, 182, 212, 0.6) !important;
+  background-color: rgba(6, 182, 212, 0.15) !important;
+  color: #FFFFFF !important;
+}
+
+/* Badge Pill in Rain */
+html.theme-rain .badge-pill {
+  background-color: rgba(6, 182, 212, 0.12) !important;
+  border-color: rgba(6, 182, 212, 0.35) !important;
+  color: #7DD3FC !important;
+}
+
+

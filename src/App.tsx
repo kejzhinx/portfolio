@@ -93,12 +93,7 @@ function SinglePagePortfolio() {
 }
 
 function MainLayout() {
-  const { isDark, isHalloween, isChristmas, transitioningTheme, clearTransition } = useTheme();
-  const [showPortal, setShowPortal] = useState(true);
-
-  const handlePortalComplete = () => {
-    setShowPortal(false);
-  };
+  const { isDark, isHalloween, isChristmas, transitioningTheme, transitionId, clearTransition } = useTheme();
 
   return (
     <div
@@ -119,24 +114,24 @@ function MainLayout() {
       {isHalloween && <HalloweenDecorations />}
       {isChristmas && <ChristmasDecorations />}
 
-      {/* Halloween Bouncing Pumpkin Loading Screen */}
-      <AnimatePresence>
-        {transitioningTheme === 'halloween' && (
-          <HalloweenTransition key="halloween-loading" onComplete={clearTransition} />
-        )}
-      </AnimatePresence>
-
-      {/* Christmas Rolling Snowball Loading Screen */}
-      <AnimatePresence>
-        {transitioningTheme === 'christmas' && (
-          <ChristmasTransition key="christmas-loading" onComplete={clearTransition} />
-        )}
-      </AnimatePresence>
-
-      {/* Doctor Strange Initial Welcome Portal Screen */}
+      {/* Halloween Bouncing Pumpkin Loading Screen (Plays on theme switch & browser refresh) */}
       <AnimatePresence mode="wait">
-        {showPortal && (
-          <DoctorStrangeWelcomePortal key="welcome-portal" onComplete={handlePortalComplete} />
+        {transitioningTheme === 'halloween' && (
+          <HalloweenTransition key={`halloween-loading-${transitionId}`} onComplete={clearTransition} />
+        )}
+      </AnimatePresence>
+
+      {/* Christmas Rolling Snowball Loading Screen (Plays on theme switch & browser refresh) */}
+      <AnimatePresence mode="wait">
+        {transitioningTheme === 'christmas' && (
+          <ChristmasTransition key={`christmas-loading-${transitionId}`} onComplete={clearTransition} />
+        )}
+      </AnimatePresence>
+
+      {/* Doctor Strange Welcome Portal Screen (Plays on Dark/Light initial load, refresh, or switch) */}
+      <AnimatePresence mode="wait">
+        {transitioningTheme === 'portal' && (
+          <DoctorStrangeWelcomePortal key={`welcome-portal-${transitionId}`} onComplete={clearTransition} />
         )}
       </AnimatePresence>
 

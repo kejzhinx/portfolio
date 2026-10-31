@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 export type Theme = 'dark' | 'light' | 'halloween' | 'christmas';
+export type TransitioningTheme = 'halloween' | 'christmas' | 'portal' | null;
 
 interface ThemeContextType {
   theme: Theme;
@@ -9,7 +10,8 @@ interface ThemeContextType {
   isNatural: boolean; // Alias to ensure full backward compatibility
   isChristmas: boolean;
   isRain: boolean;
-  transitioningTheme: 'halloween' | 'christmas' | null;
+  transitioningTheme: TransitioningTheme;
+  transitionId: number;
   toggleTheme: () => void;
   setTheme: (theme: Theme) => void;
   clearTransition: () => void;
@@ -28,7 +30,25 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     return 'dark';
   });
 
-  const [transitioningTheme, setTransitioningTheme] = useState<'halloween' | 'christmas' | null>(null);
+  // When users refresh the browser, the theme's loading screen animation matches their active theme:
+  // - Halloween theme -> Halloween Transition (bouncing pumpkin)
+  // - Christmas theme -> Christmas Transition (rolling snowball)
+  // - Dark / Light theme -> Doctor Strange Welcome Portal
+  const [transitioningTheme, setTransitioningTheme] = useState<TransitioningTheme>(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('kejzhin_portfolio_theme') as Theme | null;
+      if (saved === 'halloween') {
+        return 'halloween';
+      }
+      if (saved === 'christmas') {
+        return 'christmas';
+      }
+      return 'portal';
+    }
+    return 'portal';
+  });
+
+  const [transitionId, setTransitionId] = useState(1);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -51,18 +71,21 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, [theme]);
 
   const toggleTheme = () => {
+    setTransitionId((prev) => prev + 1);
+    setTransitioningTheme('portal');
     setThemeState((prev) => (prev === 'dark' ? 'light' : 'dark'));
   };
 
   const setTheme = (newTheme: Theme) => {
     if (newTheme === theme) return;
 
+    setTransitionId((prev) => prev + 1);
     if (newTheme === 'halloween') {
       setTransitioningTheme('halloween');
     } else if (newTheme === 'christmas') {
       setTransitioningTheme('christmas');
     } else {
-      setTransitioningTheme(null);
+      setTransitioningTheme('portal');
     }
 
     setThemeState(newTheme);
@@ -88,6 +111,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         isChristmas,
         isRain,
         transitioningTheme,
+        transitionId,
         toggleTheme,
         setTheme,
         clearTransition,

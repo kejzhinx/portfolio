@@ -1,14 +1,15 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-export type Theme = 'dark' | 'light' | 'halloween' | 'christmas' | 'rain';
+export type Theme = 'dark' | 'light' | 'halloween' | 'christmas';
 
 interface ThemeContextType {
   theme: Theme;
   isDark: boolean;
   isHalloween: boolean;
+  isNatural: boolean; // Alias to ensure full backward compatibility
   isChristmas: boolean;
   isRain: boolean;
-  transitioningTheme: 'halloween' | 'christmas' | 'rain' | null;
+  transitioningTheme: 'halloween' | 'christmas' | null;
   toggleTheme: () => void;
   setTheme: (theme: Theme) => void;
   clearTransition: () => void;
@@ -20,19 +21,19 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('kejzhin_portfolio_theme') as Theme | null;
-      if (saved && ['dark', 'light', 'halloween', 'christmas', 'rain'].includes(saved)) {
+      if (saved && ['dark', 'light', 'halloween', 'christmas'].includes(saved)) {
         return saved;
       }
     }
     return 'dark';
   });
 
-  const [transitioningTheme, setTransitioningTheme] = useState<'halloween' | 'christmas' | 'rain' | null>(null);
+  const [transitioningTheme, setTransitioningTheme] = useState<'halloween' | 'christmas' | null>(null);
 
   useEffect(() => {
     const root = document.documentElement;
     // Remove all theme classes first
-    root.classList.remove('light', 'dark', 'theme-halloween', 'theme-christmas', 'theme-rain');
+    root.classList.remove('light', 'dark', 'theme-halloween', 'theme-christmas', 'theme-natural');
 
     if (theme === 'light') {
       root.classList.add('light');
@@ -44,8 +45,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         root.classList.add('theme-halloween');
       } else if (theme === 'christmas') {
         root.classList.add('theme-christmas');
-      } else if (theme === 'rain') {
-        root.classList.add('theme-rain');
       }
     }
     localStorage.setItem('kejzhin_portfolio_theme', theme);
@@ -62,8 +61,6 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       setTransitioningTheme('halloween');
     } else if (newTheme === 'christmas') {
       setTransitioningTheme('christmas');
-    } else if (newTheme === 'rain') {
-      setTransitioningTheme('rain');
     } else {
       setTransitioningTheme(null);
     }
@@ -77,8 +74,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const isDark = theme !== 'light';
   const isHalloween = theme === 'halloween';
+  const isNatural = isHalloween; // Alias so legacy checks resolve cleanly
   const isChristmas = theme === 'christmas';
-  const isRain = theme === 'rain';
+  const isRain = false;
 
   return (
     <ThemeContext.Provider
@@ -86,6 +84,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         theme,
         isDark,
         isHalloween,
+        isNatural,
         isChristmas,
         isRain,
         transitioningTheme,

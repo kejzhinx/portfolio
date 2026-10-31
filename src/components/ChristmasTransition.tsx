@@ -107,7 +107,7 @@ export default function ChristmasTransition({ onComplete }: ChristmasTransitionP
         className="relative z-20 text-center space-y-3 px-4"
       >
         <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-red-600/20 border border-red-500/40 text-red-200 text-xs sm:text-sm font-semibold tracking-wide shadow-lg shadow-red-900/30">
-          <span>🎄 Season's Greetings & Festive Joy</span>
+          <span>🎄 Merry Christmas</span>
         </div>
 
         <h2 className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-amber-200 to-emerald-400 drop-shadow-[0_0_25px_rgba(239,68,68,0.5)]">

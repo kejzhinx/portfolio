@@ -6,7 +6,7 @@ import { useTheme } from '../context/ThemeContext';
 import FloatingCyberObjects from '../components/FloatingCyberObjects';
 
 export default function HomePage() {
-  const { isDark, isHalloween, isChristmas, isRain } = useTheme();
+  const { isDark, isChristmas, isRain, isHalloween } = useTheme();
   const [activeClickId, setActiveClickId] = useState<string | null>(null);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [clickFeedback, setClickFeedback] = useState<{ id: string; text: string } | null>(null);
@@ -109,8 +109,8 @@ export default function HomePage() {
               : ''
           }`}>
             <span className={`w-2 h-2 rounded-full animate-pulse ${
-              isRain ? 'bg-cyan-300' : isHalloween ? 'bg-orange-400' : isChristmas ? 'bg-red-400' : 'bg-indigo-400'
-            }`} />
+                isRain ? 'bg-cyan-300' : isHalloween ? 'bg-orange-400' : isChristmas ? 'bg-red-400' : 'bg-indigo-400'
+              }`} />
             <span className={`font-semibold tracking-wide text-xs sm:text-sm ${
               isRain
                 ? 'text-cyan-200'
@@ -120,7 +120,7 @@ export default function HomePage() {
                 ? 'text-red-300'
                 : 'text-indigo-600 dark:text-indigo-300'
             }`}>
-              {isRain ? '🌧️ Rainy Greetings' : isHalloween ? '🎃 Spooky Greetings' : isChristmas ? '🎄 Holiday Greetings' : "Hello, I'm"}
+            {isRain ? '🌧️ Rainy Greetings' : isHalloween ? '🎃 Spooky Greetings' : isChristmas ? '🎄 Merry Christmas' : "Hello, I'm"}
             </span>
           </div>
 
@@ -190,7 +190,6 @@ export default function HomePage() {
             {/* PHYSICAL HERO CARD FESTIVE DECORATIONS (Sit on top of the Hero Frame) */}
             {isHalloween && (
               <>
-
                 {/* Hanging Bat on top center of the Hero Card */}
                 <div className="absolute -top-7 sm:-top-9 left-1/2 -translate-x-1/2 pointer-events-none z-20 flex flex-col items-center">
                   <div className="w-0.5 h-3 bg-orange-400/50" />
@@ -590,7 +589,7 @@ export default function HomePage() {
                   animClass: 'kejzhin-float-3',
                   icon: (
                     <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 24 24" fill="white">
-                      <path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-3.13 0-5.467 2.122-6.284 5.372-1.745-2.28-2.617-4.887-2.923-7.39H6.35c.348 3.526 1.635 6.953 3.791 9.771l-1.396 6.578H5.74V7h-3v12.35h3.004l1.196-5.636c1.17 1.054 2.61 1.768 4.225 1.954l-1.29 6.074h3.053l1.248-5.882c.983.313 2.052.484 3.197.484 3.737 0 6.776-3.04 6.776-6.776 0-3.734-3.04-6.748-6.776-6.748z" />
+                      <path fill="#6FDA44" d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703-.001 1.489-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.548-1.405-.002-2.543-1.143-2.545-2.548V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3-2.439-5.439-5.439-5.439z"/>
                     </svg>
                   ),
                 },
@@ -653,11 +652,7 @@ export default function HomePage() {
                   animClass: 'kejzhin-float-6',
                   icon: (
                     <svg className="w-5 h-5 sm:w-6 sm:h-6" viewBox="0 0 48 48">
-                      <path fill="#4caf50" d="M45,16.2l-5,2.75v19.05c0,2.21-1.79,4-4,4h-4V22.5L45,16.2z" />
-                      <path fill="#1e88e5" d="M3,16.2l5,2.75v19.05c0,2.21,1.79,4,4,4h4V22.5L3,16.2z" />
-                      <path fill="#e53935" d="M35,11.2l-11,8.3l-11-8.3v-2.7c0-2.21,1.79-4,4-4h14c2.21,0,4,1.79,4,4V11.2z" />
-                      <path fill="#c62828" d="M35,8.5v2.7l10,5V11.2c0-2.21-1.79-4-4-4h-6" />
-                      <path fill="#fbc02d" d="M13,8.5v2.7l-10,5V11.2c0-2.21,1.79-4,4-4h6" />
+                      <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" fill="currentColor"/>
                     </svg>
                   ),
                 },

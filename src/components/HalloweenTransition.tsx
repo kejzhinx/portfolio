@@ -94,9 +94,9 @@ export default function HalloweenTransition({ onComplete }: HalloweenTransitionP
         ))}
       </div>
 
-      {/* Center Bouncing Pumpkin */}
+      {/* Center Natural Bouncing Pumpkin */}
       <div className="relative z-10 flex flex-col items-center">
-        {/* Animated Pumpkin Container */}
+        {/* Animated Natural Pumpkin Container */}
         <motion.div
           animate={{
             y: [-120, 0, -85, 0, -40, 0],
@@ -111,41 +111,49 @@ export default function HalloweenTransition({ onComplete }: HalloweenTransitionP
           }}
           className="relative w-40 h-40 sm:w-48 sm:h-48 filter drop-shadow-[0_0_40px_rgba(249,115,22,0.85)]"
         >
-          {/* Exact Reference Jack-o'-lantern Pumpkin SVG */}
-          <svg viewBox="0 0 120 120" className="w-full h-full overflow-visible drop-shadow-[0_0_40px_rgba(249,115,22,0.9)]">
+          {/* Natural Pumpkin SVG (Pure organic pumpkin with natural ribs & realistic stem) */}
+          <svg viewBox="0 0 120 120" className="w-full h-full overflow-visible drop-shadow-[0_0_35px_rgba(249,115,22,0.85)]">
             <defs>
-              {/* Vibrant Orange Body Shading matching reference */}
-              <radialGradient id="refPumpkinBody" cx="45%" cy="35%" r="65%">
+              {/* Vibrant Orange Body Shading */}
+              <radialGradient id="natPumpkinBody" cx="45%" cy="35%" r="65%">
                 <stop offset="0%" stopColor="#ffb703" />
-                <stop offset="40%" stopColor="#f77f00" />
-                <stop offset="78%" stopColor="#d65108" />
+                <stop offset="35%" stopColor="#f77f00" />
+                <stop offset="75%" stopColor="#d65108" />
                 <stop offset="100%" stopColor="#9a3412" />
               </radialGradient>
 
-              {/* Side Lobe Gradient */}
-              <radialGradient id="refSideLobe" cx="28%" cy="40%" r="65%">
+              {/* Side Rib Lobe Gradient */}
+              <radialGradient id="natSideLobe" cx="28%" cy="40%" r="65%">
                 <stop offset="0%" stopColor="#f77f00" />
                 <stop offset="65%" stopColor="#d65108" />
                 <stop offset="100%" stopColor="#7c2d12" />
               </radialGradient>
 
               {/* Center Highlight Crown */}
-              <radialGradient id="refCenterHigh" cx="50%" cy="25%" r="45%">
-                <stop offset="0%" stopColor="#ffd166" />
-                <stop offset="55%" stopColor="#f77f00" />
+              <radialGradient id="natCenterHigh" cx="50%" cy="28%" r="48%">
+                <stop offset="0%" stopColor="#ffe082" />
+                <stop offset="30%" stopColor="#ffb703" />
+                <stop offset="65%" stopColor="#f77f00" />
                 <stop offset="100%" stopColor="#c54100" />
               </radialGradient>
 
-              {/* Brown Curved Stem matching reference */}
-              <linearGradient id="refBrownStem" x1="20%" y1="0%" x2="80%" y2="100%">
+              {/* Natural Wooden Stem */}
+              <linearGradient id="natBrownStem" x1="20%" y1="0%" x2="80%" y2="100%">
                 <stop offset="0%" stopColor="#8d5b4c" />
                 <stop offset="35%" stopColor="#6b3a2a" />
                 <stop offset="85%" stopColor="#4a2214" />
                 <stop offset="100%" stopColor="#2c120a" />
               </linearGradient>
 
-              {/* Glowing Warm Fire */}
-              <radialGradient id="refFireGlow" cx="50%" cy="50%" r="50%">
+              {/* Soft Surface Light Sheen */}
+              <linearGradient id="natSheen" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#ffffff" stopOpacity="0.35" />
+                <stop offset="40%" stopColor="#ffffff" stopOpacity="0.08" />
+                <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+              </linearGradient>
+
+              {/* Glowing Warm Fire Inner Light */}
+              <radialGradient id="natFireGlow" cx="50%" cy="50%" r="50%">
                 <stop offset="0%" stopColor="#ffffff" />
                 <stop offset="25%" stopColor="#fef08a" />
                 <stop offset="65%" stopColor="#f97316" />
@@ -153,7 +161,7 @@ export default function HalloweenTransition({ onComplete }: HalloweenTransitionP
               </radialGradient>
 
               {/* Carve Depth Shadow */}
-              <filter id="refCarveDepth" x="-20%" y="-20%" width="140%" height="140%">
+              <filter id="natCarveDepth" x="-20%" y="-20%" width="140%" height="140%">
                 <feDropShadow dx="0" dy="2" stdDeviation="1.5" floodColor="#270902" floodOpacity="0.95" />
               </filter>
             </defs>
@@ -161,66 +169,74 @@ export default function HalloweenTransition({ onComplete }: HalloweenTransitionP
             {/* Back Outer Ribs */}
             <path
               d="M 60 22 C 10 22, 2 95, 60 102 C 118 95, 110 22, 60 22 Z"
-              fill="url(#refPumpkinBody)"
+              fill="url(#natPumpkinBody)"
             />
 
             {/* Outer Left Lobe */}
             <path
               d="M 58 23 C 20 24, 6 44, 8 68 C 10 92, 30 101, 58 101 C 28 92, 20 46, 58 23 Z"
-              fill="url(#refSideLobe)"
+              fill="url(#natSideLobe)"
             />
 
             {/* Outer Right Lobe */}
             <path
               d="M 62 23 C 100 24, 114 44, 112 68 C 110 92, 90 101, 62 101 C 92 92, 100 46, 62 23 Z"
-              fill="url(#refSideLobe)"
+              fill="url(#natSideLobe)"
             />
 
-            {/* Inner Left Lobe */}
+            {/* Inner Left Rib */}
             <path
               d="M 59 22 C 34 24, 20 44, 23 68 C 26 90, 42 100, 59 101 C 36 90, 32 46, 59 22 Z"
-              fill="url(#refPumpkinBody)"
+              fill="url(#natPumpkinBody)"
             />
 
-            {/* Inner Right Lobe */}
+            {/* Inner Right Rib */}
             <path
               d="M 61 22 C 86 24, 100 44, 97 68 C 94 90, 78 100, 61 101 C 84 90, 88 46, 61 22 Z"
-              fill="url(#refPumpkinBody)"
+              fill="url(#natPumpkinBody)"
             />
 
             {/* Center Front Main Lobe */}
             <path
               d="M 60 22 C 40 24, 34 44, 36 68 C 38 90, 48 101, 60 102 C 72 101, 82 90, 84 68 C 86 44, 80 24, 60 22 Z"
-              fill="url(#refCenterHigh)"
+              fill="url(#natCenterHigh)"
             />
+
+            {/* Natural Organic Grooves & Texture Lines */}
+            <path d="M 46 25 Q 36 60 48 98" fill="none" stroke="#8c2d0c" strokeWidth="1.2" opacity="0.45" />
+            <path d="M 74 25 Q 84 60 72 98" fill="none" stroke="#8c2d0c" strokeWidth="1.2" opacity="0.45" />
+            <path d="M 60 24 Q 60 62 60 100" fill="none" stroke="#a33a10" strokeWidth="0.8" opacity="0.3" />
+
+            {/* Upper Surface Glow / Light Sheen */}
+            <ellipse cx="60" cy="40" rx="36" ry="18" fill="url(#natSheen)" />
 
             {/* Top Stem Socket Depression */}
             <ellipse cx="60" cy="24" rx="13" ry="4" fill="#381308" opacity="0.85" />
 
-            {/* Distinct Curved Brown Stem matching reference */}
+            {/* Distinct Curved Natural Brown Stem */}
             <path
               d="M 54 25 C 50 12, 54 3, 44 -4 C 53 -1, 61 10, 58 24 Z"
-              fill="url(#refBrownStem)"
+              fill="url(#natBrownStem)"
               stroke="#1a0a05"
               strokeWidth="0.9"
             />
-            {/* Stem Texture Lines */}
+            {/* Stem Woody Grain Lines */}
             <path d="M 50 12 Q 47 4 45 -2" fill="none" stroke="#2c120a" strokeWidth="0.8" opacity="0.7" />
             <path d="M 53 15 Q 51 8 48 1" fill="none" stroke="#8d5b4c" strokeWidth="0.6" opacity="0.5" />
 
-            {/* Precise Triangular Eyes & Grinning Toothy Mouth */}
+            {/* Glowing Jack-o'-lantern Carved Face */}
             <g className="animate-pulse" style={{ animationDuration: '0.85s' }}>
               {/* Left Triangular Eye */}
               <path d="M 28 44 L 52 54 L 38 60 Z" fill="#1c0501" />
-              <path d="M 30 46 L 50 54 L 38 58 Z" fill="url(#refFireGlow)" filter="url(#refCarveDepth)" style={{ filter: 'drop-shadow(0 0 12px #fef08a)' }} />
+              <path d="M 30 46 L 50 54 L 38 58 Z" fill="url(#natFireGlow)" filter="url(#natCarveDepth)" style={{ filter: 'drop-shadow(0 0 12px #fef08a)' }} />
 
               {/* Right Triangular Eye */}
               <path d="M 92 44 L 68 54 L 82 60 Z" fill="#1c0501" />
-              <path d="M 90 46 L 70 54 L 82 58 Z" fill="url(#refFireGlow)" filter="url(#refCarveDepth)" style={{ filter: 'drop-shadow(0 0 12px #fef08a)' }} />
+              <path d="M 90 46 L 70 54 L 82 58 Z" fill="url(#natFireGlow)" filter="url(#natCarveDepth)" style={{ filter: 'drop-shadow(0 0 12px #fef08a)' }} />
 
               {/* Triangular Nose */}
               <polygon points="60,54 53,64 67,64" fill="#1c0501" />
-              <polygon points="60,56 55,63 65,63" fill="url(#refFireGlow)" style={{ filter: 'drop-shadow(0 0 8px #fde047)' }} />
+              <polygon points="60,56 55,63 65,63" fill="url(#natFireGlow)" style={{ filter: 'drop-shadow(0 0 8px #fde047)' }} />
 
               {/* Wide Grinning Toothy Mouth */}
               <path
@@ -229,8 +245,8 @@ export default function HalloweenTransition({ onComplete }: HalloweenTransitionP
               />
               <path
                 d="M 25 67 Q 60 97 95 67 Q 83 81 72 79 L 72 71 L 66 79 L 60 71 L 54 79 L 48 71 L 48 79 Q 37 81 25 67 Z"
-                fill="url(#refFireGlow)"
-                filter="url(#refCarveDepth)"
+                fill="url(#natFireGlow)"
+                filter="url(#natCarveDepth)"
                 style={{ filter: 'drop-shadow(0 0 16px #fef08a)' }}
               />
             </g>
@@ -281,4 +297,3 @@ export default function HalloweenTransition({ onComplete }: HalloweenTransitionP
     </motion.div>
   );
 }
-

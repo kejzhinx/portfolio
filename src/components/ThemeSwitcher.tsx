@@ -6,63 +6,44 @@ import { Sun, Moon, Sparkles, Check } from 'lucide-react';
 interface ThemeOption {
   id: Theme;
   label: string;
-  badge: string;
   description: string;
   icon: string | ReactNode;
   activeBorder: string;
-  badgeColor: string;
 }
 
 export default function ThemeSwitcher() {
-  const { theme, setTheme, isDark, isHalloween, isChristmas, isRain } = useTheme();
+  const { theme, setTheme, isDark, isHalloween, isChristmas } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const themeOptions: ThemeOption[] = [
     {
       id: 'dark',
-      label: 'Cyber Dark',
-      badge: 'Default',
+      label: 'Dark Mode',
       description: 'Futuristic deep navy & cosmic blue portal',
       icon: <Moon size={16} className="text-indigo-400" />,
       activeBorder: 'border-indigo-500/50 bg-indigo-500/10 text-indigo-300',
-      badgeColor: 'text-indigo-400 bg-indigo-500/15 border-indigo-500/30',
     },
     {
       id: 'light',
-      label: 'Clean Light',
-      badge: 'Daylight',
+      label: 'Light Mode',
       description: 'Crisp bright aesthetic & subtle pastel aurora',
       icon: <Sun size={16} className="text-amber-500" />,
       activeBorder: 'border-amber-500/50 bg-amber-500/10 text-amber-600 dark:text-amber-300',
-      badgeColor: 'text-amber-600 dark:text-amber-400 bg-amber-500/15 border-amber-500/30',
-    },
-    {
-      id: 'rain',
-      label: 'Storm Rain',
-      badge: 'Atmospheric',
-      description: 'Heavy downfall, rising water transition & storm rain',
-      icon: '🌧️',
-      activeBorder: 'border-cyan-500/60 bg-cyan-500/15 text-cyan-300',
-      badgeColor: 'text-cyan-300 bg-cyan-500/15 border-cyan-500/30',
     },
     {
       id: 'halloween',
       label: 'Halloween',
-      badge: 'Spooky',
-      description: 'Bouncing pumpkin, flying bats on scroll & eerie glow',
+      description: 'Spooky jack-o\'-lanterns, eerie aurora & flying bats',
       icon: '🎃',
       activeBorder: 'border-orange-500/60 bg-orange-500/15 text-orange-400',
-      badgeColor: 'text-orange-400 bg-orange-500/15 border-orange-500/30',
     },
     {
       id: 'christmas',
       label: 'Christmas',
-      badge: 'Festive',
       description: 'Rolling snowball, falling snowflakes & fairy lights',
       icon: '🎄',
       activeBorder: 'border-red-500/60 bg-red-500/15 text-red-400',
-      badgeColor: 'text-red-400 bg-red-500/15 border-red-500/30',
     },
   ];
 
@@ -87,7 +68,6 @@ export default function ThemeSwitcher() {
     setIsOpen(false);
   };
 
-  // Current theme badge & icon
   const currentThemeObj = themeOptions.find((t) => t.id === theme) || themeOptions[0];
 
   return (
@@ -98,10 +78,8 @@ export default function ThemeSwitcher() {
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Change theme"
         className={`h-9 px-3 rounded-full flex items-center gap-2 transition-all cursor-pointer select-none focus:outline-none ${
-          isRain
-            ? 'bg-sky-950/80 border border-cyan-500/50 text-cyan-200 shadow-[0_0_12px_rgba(14,165,233,0.4)] hover:bg-sky-900/80'
-            : isHalloween
-            ? 'bg-orange-950/70 border border-orange-500/50 text-orange-300 shadow-[0_0_12px_rgba(249,115,22,0.4)] hover:bg-orange-900/80'
+          isHalloween
+            ? 'bg-orange-950/70 border border-orange-500/50 text-orange-200 shadow-[0_0_12px_rgba(249,115,22,0.4)] hover:bg-orange-900/80'
             : isChristmas
             ? 'bg-red-950/70 border border-red-500/50 text-red-200 shadow-[0_0_12px_rgba(239,68,68,0.4)] hover:bg-red-900/80'
             : isDark
@@ -128,10 +106,8 @@ export default function ThemeSwitcher() {
             exit={{ opacity: 0, y: 8, scale: 0.95 }}
             transition={{ duration: 0.18, ease: 'easeOut' }}
             className={`absolute right-0 mt-2 w-72 sm:w-80 rounded-2xl p-2 z-50 shadow-2xl backdrop-blur-2xl border ${
-              isRain
-                ? 'bg-[#040D1C]/95 border-cyan-500/30 text-white shadow-cyan-950/60'
-                : isHalloween
-                ? 'bg-[#0E0617]/95 border-orange-500/30 text-white shadow-orange-950/50'
+              isHalloween
+                ? 'bg-[#140A1F]/95 border-orange-500/30 text-white shadow-orange-950/50'
                 : isChristmas
                 ? 'bg-[#07172B]/95 border-red-500/30 text-white shadow-red-950/50'
                 : isDark
@@ -169,9 +145,6 @@ export default function ThemeSwitcher() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-1">
                         <span className="text-xs font-bold">{opt.label}</span>
-                        <span className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${opt.badgeColor}`}>
-                          {opt.badge}
-                        </span>
                       </div>
                       <p className={`text-[11px] leading-snug mt-0.5 line-clamp-1 ${
                         isDark ? 'text-slate-400' : 'text-slate-500'
@@ -181,7 +154,7 @@ export default function ThemeSwitcher() {
                     </div>
 
                     {isSelected && (
-                      <div className="mt-1 shrink-0 text-indigo-400">
+                      <div className="mt-1 shrink-0 text-orange-400">
                         <Check size={14} className="stroke-[2.5]" />
                       </div>
                     )}

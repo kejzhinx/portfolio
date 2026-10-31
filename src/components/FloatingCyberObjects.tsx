@@ -7,18 +7,18 @@ export default function FloatingCyberObjects() {
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0 select-none">
       {isHalloween ? (
         <>
-          {/* Halloween Spooky Night Ambient Orbs */}
+          {/* Natural Forest Ambient Orbs */}
           <div 
-            className="absolute top-[-10%] left-[-10%] w-[55vw] h-[55vw] rounded-full blur-[50px] sm:blur-[140px] pointer-events-none transform-gpu will-change-transform bg-orange-600/20" 
+            className="absolute top-[-10%] left-[-10%] w-[55vw] h-[55vw] rounded-full blur-[50px] sm:blur-[140px] pointer-events-none transform-gpu will-change-transform bg-emerald-600/20" 
           />
           <div 
-            className="absolute top-[38%] right-[-10%] w-[52vw] h-[52vw] rounded-full blur-[50px] sm:blur-[150px] pointer-events-none transform-gpu will-change-transform bg-purple-700/22" 
+            className="absolute top-[38%] right-[-10%] w-[52vw] h-[52vw] rounded-full blur-[50px] sm:blur-[150px] pointer-events-none transform-gpu will-change-transform bg-teal-700/22" 
           />
           <div 
-            className="absolute bottom-[-10%] left-[20%] w-[60vw] h-[60vw] rounded-full blur-[60px] sm:blur-[160px] pointer-events-none transform-gpu will-change-transform bg-amber-500/15" 
+            className="absolute bottom-[-10%] left-[20%] w-[60vw] h-[60vw] rounded-full blur-[60px] sm:blur-[160px] pointer-events-none transform-gpu will-change-transform bg-lime-500/15" 
           />
           <div 
-            className="absolute top-[65%] right-[25%] w-[38vw] h-[38vw] rounded-full blur-[45px] sm:blur-[120px] pointer-events-none transform-gpu will-change-transform bg-orange-700/15" 
+            className="absolute top-[65%] right-[25%] w-[38vw] h-[38vw] rounded-full blur-[45px] sm:blur-[120px] pointer-events-none transform-gpu will-change-transform bg-emerald-700/15" 
           />
         </>
       ) : isChristmas ? (
@@ -75,8 +75,8 @@ export default function FloatingCyberObjects() {
         }`}
         style={{
           backgroundImage: isHalloween
-            ? `linear-gradient(to right, rgba(249, 115, 22, 0.25) 1px, transparent 1px),
-               linear-gradient(to bottom, rgba(168, 85, 247, 0.25) 1px, transparent 1px)`
+            ? `linear-gradient(to right, rgba(16, 185, 129, 0.25) 1px, transparent 1px),
+               linear-gradient(to bottom, rgba(13, 148, 136, 0.25) 1px, transparent 1px)`
             : isChristmas
             ? `linear-gradient(to right, rgba(239, 68, 68, 0.2) 1px, transparent 1px),
                linear-gradient(to bottom, rgba(52, 211, 153, 0.2) 1px, transparent 1px)`

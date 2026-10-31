@@ -35,11 +35,18 @@
     max-width: 100vw;
     width: 100%;
     touch-action: manipulation;
-    cursor: none !important;
   }
 
-  html, body, *, a, button, input, textarea, select, [role="button"] {
-    cursor: none !important;
+  html, body {
+    cursor: auto !important;
+  }
+
+  a, button, [role="button"], input[type="button"], input[type="submit"] {
+    cursor: pointer !important;
+  }
+
+  input[type="text"], input[type="email"], textarea {
+    cursor: text !important;
   }
 
   ::selection {
@@ -588,6 +595,8 @@ html.light button.text-slate-400:hover {
   background-color: #E2E8F0 !important;
   color: #0F172A !important;
 }
+
+
 
 /* ==========================================================================
    Halloween Theme Global Card, Button & Typography Adaptations

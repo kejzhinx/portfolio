@@ -96,24 +96,21 @@ export default function Navbar() {
         >
           <div className="relative">
             <div className={`w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold text-sm shadow-md group-hover:scale-105 transition-all ${
-              isHalloween
-                ? 'bg-gradient-to-br from-orange-500 to-purple-600 shadow-orange-500/30'
+                isHalloween
+                ? 'bg-gradient-to-br from-emerald-600 to-teal-700 shadow-emerald-500/30'
                 : isChristmas
                 ? 'bg-gradient-to-br from-red-600 to-emerald-600 shadow-red-500/30'
                 : 'bg-gradient-to-br from-indigo-500 to-violet-600 shadow-indigo-500/30'
             }`}>
               K
             </div>
-            {isHalloween && (
-              <span className="absolute -top-1.5 -right-1.5 text-xs select-none">🎃</span>
-            )}
             {isChristmas && (
               <span className="absolute -top-2.5 -right-2 text-xs select-none">🎅</span>
             )}
           </div>
           <span className={`text-lg font-bold tracking-tight transition-colors ${
             isHalloween
-              ? 'text-orange-300 group-hover:text-orange-400'
+              ? 'text-emerald-300 group-hover:text-emerald-400'
               : isChristmas
               ? 'text-red-300 group-hover:text-red-400'
               : isDark ? 'text-white group-hover:text-indigo-400' : 'text-slate-900 group-hover:text-indigo-600'

@@ -1,4 +1,5 @@
-import { motion } from 'motion/react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import {
   GraduationCap,
   ArrowRight,
@@ -11,7 +12,8 @@ import {
   Database,
   Server,
   Palette,
-  CheckCircle2
+  CheckCircle2,
+  ChevronDown
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
@@ -20,6 +22,14 @@ import CardBorderDecoration from '../components/CardBorderDecoration';
 
 export default function AboutPage() {
   const { isDark, isHalloween, isChristmas } = useTheme();
+  const [expandedRoles, setExpandedRoles] = useState<Record<string, boolean>>({});
+
+  const toggleRole = (company: string) => {
+    setExpandedRoles((prev) => ({
+      ...prev,
+      [company]: !prev[company],
+    }));
+  };
 
   const educationRecords = [
     {
@@ -274,6 +284,35 @@ export default function AboutPage() {
               Professional positions, penetration testing audits, and technical systems administration
             </p>
           </div>
+
+          {/* Expand All / Collapse All Toggle Button */}
+          <button
+            type="button"
+            onClick={() => {
+              const allExpanded = workExperience.every((exp) => expandedRoles[exp.company]);
+              if (allExpanded) {
+                setExpandedRoles({});
+              } else {
+                const all: Record<string, boolean> = {};
+                workExperience.forEach((exp) => {
+                  all[exp.company] = true;
+                });
+                setExpandedRoles(all);
+              }
+            }}
+            className={`self-start sm:self-center inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all cursor-pointer select-none active:scale-95 shadow-sm ${
+              isHalloween
+                ? 'bg-orange-500/15 hover:bg-orange-500/25 text-orange-300 border border-orange-500/30'
+                : isChristmas
+                ? 'bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 border border-emerald-500/30'
+                : isDark
+                ? 'bg-indigo-600/15 hover:bg-indigo-600/25 text-indigo-300 border border-indigo-500/30'
+                : 'bg-indigo-50 hover:bg-indigo-100 text-indigo-600 border border-indigo-200'
+            }`}
+          >
+            <span>{workExperience.every((exp) => expandedRoles[exp.company]) ? 'Collapse All Details' : 'Expand All Details'}</span>
+            <ChevronDown size={14} className={`transition-transform duration-200 ${workExperience.every((exp) => expandedRoles[exp.company]) ? 'rotate-180' : ''}`} />
+          </button>
         </div>
 
         {/* Timeline Container */}
@@ -289,13 +328,15 @@ export default function AboutPage() {
 
           {workExperience.map((exp, idx) => {
             const IconComponent = exp.icon;
+            const isRoleExpanded = !!expandedRoles[exp.company];
+
             return (
               <motion.div
                 key={exp.company}
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                transition={{ delay: Math.min(idx * 0.05, 0.3), duration: 0.4 }}
                 className="relative flex flex-col sm:flex-row items-start gap-4 sm:gap-6 group"
               >
                 {/* Timeline Node Badge */}
@@ -318,7 +359,7 @@ export default function AboutPage() {
                 </div>
 
                 {/* Experience Card */}
-                <div className={`relative overflow-hidden p-4 sm:p-7 flex-1 w-full space-y-5 rounded-3xl border transition-all ${
+                <div className={`relative overflow-hidden p-4 sm:p-7 flex-1 w-full space-y-4 rounded-3xl border transition-all ${
                   isHalloween
                     ? 'bg-[#140A1F]/90 border-orange-500/25 group-hover:border-orange-500/50 shadow-xl shadow-orange-950/40'
                     : isChristmas
@@ -328,9 +369,9 @@ export default function AboutPage() {
                     : 'bg-white border-slate-200 shadow-sm group-hover:border-indigo-400 group-hover:shadow-md'
                 }`}>
                   <CardBorderDecoration />
-                  {/* Card Header */}
-                  <div className={`flex flex-col lg:flex-row lg:items-center justify-between gap-3 border-b pb-4 ${
-                    isDark ? 'border-white/[0.06]' : 'border-slate-100'
+                  {/* Card Header (Role, Company, Badges, and Expand Details Button) */}
+                  <div className={`flex flex-col lg:flex-row lg:items-center justify-between gap-3 ${
+                    isRoleExpanded ? (isDark ? 'border-b border-white/[0.06] pb-4' : 'border-b border-slate-100 pb-4') : ''
                   }`}>
                     <div className="space-y-1.5 w-full lg:w-auto">
                       <div className="flex items-center justify-between sm:justify-start gap-2 sm:gap-2.5">
@@ -360,7 +401,7 @@ export default function AboutPage() {
                       </div>
                     </div>
 
-                    {/* Period & Category Badges */}
+                    {/* Period & Category Badges + Interactive Expand Details Button */}
                     <div className="flex flex-wrap items-center gap-2 pt-0.5 sm:pt-0 self-start lg:self-center">
                       <span className={`inline-flex items-center gap-1 text-xs font-mono px-3 py-1 rounded-full border ${
                         isDark ? 'text-slate-300 bg-white/[0.05] border-white/[0.08]' : 'text-slate-700 bg-slate-100 border-slate-200'
@@ -371,50 +412,82 @@ export default function AboutPage() {
                       <span className={`text-xs font-semibold px-3 py-1 rounded-full border ${exp.badgeColor}`}>
                         {exp.badge}
                       </span>
+
+                      {/* Expand / Collapse Button */}
+                      <button
+                        type="button"
+                        onClick={() => toggleRole(exp.company)}
+                        aria-expanded={isRoleExpanded}
+                        className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-all cursor-pointer select-none active:scale-95 shadow-sm ${
+                          isHalloween
+                            ? 'bg-orange-500/20 hover:bg-orange-500/30 text-orange-300 border border-orange-500/40'
+                            : isChristmas
+                            ? 'bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/40'
+                            : isDark
+                            ? 'bg-indigo-600/20 hover:bg-indigo-600/30 text-indigo-300 border border-indigo-500/40'
+                            : 'bg-indigo-50 hover:bg-indigo-100 text-indigo-600 border border-indigo-200'
+                        }`}
+                      >
+                        <span>{isRoleExpanded ? 'Hide Details' : 'Expand Details'}</span>
+                        <ChevronDown size={14} className={`transition-transform duration-300 ${isRoleExpanded ? 'rotate-180' : ''}`} />
+                      </button>
                     </div>
                   </div>
 
-                  {/* Summary Description */}
-                  <p className={`text-sm sm:text-base leading-relaxed ${
-                    isDark ? 'text-slate-300' : 'text-slate-700'
-                  }`}>
-                    {exp.description}
-                  </p>
-
-                  {/* Responsibilities Bullets */}
-                  <div className="space-y-2 pt-1">
-                    <span className={`text-[11px] font-mono uppercase tracking-wider font-semibold block ${
-                      isDark ? 'text-slate-400' : 'text-slate-500'
-                    }`}>
-                      Key Highlights & Impact:
-                    </span>
-                    <ul className="space-y-1.5">
-                      {exp.responsibilities.map((resp, i) => (
-                        <li key={i} className={`flex items-start gap-2.5 text-xs sm:text-sm ${
-                          isDark ? 'text-slate-400' : 'text-slate-600'
-                        }`}>
-                          <CheckCircle2 size={15} className="text-indigo-500 shrink-0 mt-0.5" />
-                          <span>{resp}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Tech Stack Tags */}
-                  <div className="pt-2 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:items-center sm:gap-1.5">
-                    {exp.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className={`text-[11px] font-medium border px-2.5 py-1.5 sm:py-0.5 rounded-lg sm:rounded-md transition-colors flex items-center justify-center text-center last:odd:col-span-2 sm:last:odd:col-span-1 min-h-[30px] sm:min-h-0 sm:w-auto leading-tight ${
-                          isDark
-                            ? 'text-slate-300 bg-white/[0.04] hover:bg-white/[0.08] hover:text-white border-white/[0.06]'
-                            : 'text-slate-700 bg-slate-100 hover:bg-slate-200 border-slate-200'
-                        }`}
+                  {/* Extra Details: Expandable Section */}
+                  <AnimatePresence>
+                    {isRoleExpanded && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                        className="space-y-5 overflow-hidden pt-1"
                       >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                        {/* Summary Description */}
+                        <p className={`text-sm sm:text-base leading-relaxed ${
+                          isDark ? 'text-slate-300' : 'text-slate-700'
+                        }`}>
+                          {exp.description}
+                        </p>
+
+                        {/* Responsibilities Bullets */}
+                        <div className="space-y-2 pt-1">
+                          <span className={`text-[11px] font-mono uppercase tracking-wider font-semibold block ${
+                            isDark ? 'text-slate-400' : 'text-slate-500'
+                          }`}>
+                            Key Highlights & Impact:
+                          </span>
+                          <ul className="space-y-1.5">
+                            {exp.responsibilities.map((resp, i) => (
+                              <li key={i} className={`flex items-start gap-2.5 text-xs sm:text-sm ${
+                                isDark ? 'text-slate-400' : 'text-slate-600'
+                              }`}>
+                                <CheckCircle2 size={15} className="text-indigo-500 shrink-0 mt-0.5" />
+                                <span>{resp}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Tech Stack Tags */}
+                        <div className="pt-2 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:items-center sm:gap-1.5">
+                          {exp.technologies.map((tech) => (
+                            <span
+                              key={tech}
+                              className={`text-[11px] font-medium border px-2.5 py-1.5 sm:py-0.5 rounded-lg sm:rounded-md transition-colors flex items-center justify-center text-center last:odd:col-span-2 sm:last:odd:col-span-1 min-h-[30px] sm:min-h-0 sm:w-auto leading-tight ${
+                                isDark
+                                  ? 'text-slate-300 bg-white/[0.04] hover:bg-white/[0.08] hover:text-white border-white/[0.06]'
+                                  : 'text-slate-700 bg-slate-100 hover:bg-slate-200 border-slate-200'
+                              }`}
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </motion.div>
             );

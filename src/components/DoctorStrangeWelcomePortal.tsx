@@ -81,10 +81,10 @@ export default function DoctorStrangeWelcomePortal({ onComplete }: PortalWelcome
     let lastTime = startTime;
 
     // Timing parameters:
-    // 1. Initial 2-second delay: small circle in center, violently spinning with realistic metal sparks
-    // 2. After 2 seconds: smooth, accelerating expansion until the whole website is revealed
-    const SMALL_CIRCLE_DELAY = 2000;
-    const EXPAND_DURATION = 1200;
+    // 1. Initial snappy spark spin
+    // 2. Accelerating expansion revealing the portfolio quickly
+    const SMALL_CIRCLE_DELAY = 600;
+    const EXPAND_DURATION = 650;
 
     // Small circle radius held during the initial 2-second delay
     const smallRadius = Math.max(38, Math.min(54, Math.min(width, height) * 0.08));
@@ -161,6 +161,11 @@ export default function DoctorStrangeWelcomePortal({ onComplete }: PortalWelcome
     };
 
     const render = (time: number) => {
+      if (document.hidden) {
+        animId = requestAnimationFrame(render);
+        return;
+      }
+
       const dt = Math.min((time - lastTime) / 16.67, 1.8);
       lastTime = time;
       const elapsed = time - startTime;

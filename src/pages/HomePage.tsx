@@ -509,7 +509,7 @@ export default function HomePage() {
                 src="/profile.webp"
                 alt="Jeric M. De Los Reyes"
                 fetchPriority="high"
-                decoding="sync"
+                decoding="async"
                 loading="eager"
                 onError={(e) => {
                   const target = e.currentTarget;

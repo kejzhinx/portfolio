@@ -10,7 +10,7 @@ export default function ChristmasTransition({ onComplete }: ChristmasTransitionP
   useEffect(() => {
     const timer = setTimeout(() => {
       onComplete();
-    }, 2200);
+    }, 1200);
 
     return () => clearTimeout(timer);
   }, [onComplete]);

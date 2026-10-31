@@ -392,6 +392,8 @@ function SkillIconRenderer({ skill }: { skill: SkillItem }) {
       <img
         src={skill.iconUrl}
         alt={skill.name}
+        loading="lazy"
+        decoding="async"
         className="w-full h-full object-contain filter brightness-95 group-hover:brightness-100 transition-all"
         onError={() => setImgError(true)}
       />

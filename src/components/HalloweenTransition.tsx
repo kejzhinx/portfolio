@@ -10,7 +10,7 @@ export default function HalloweenTransition({ onComplete }: HalloweenTransitionP
   useEffect(() => {
     const timer = setTimeout(() => {
       onComplete();
-    }, 2200);
+    }, 1200);
 
     return () => clearTimeout(timer);
   }, [onComplete]);
@@ -105,7 +105,7 @@ export default function HalloweenTransition({ onComplete }: HalloweenTransitionP
             rotate: [-6, 0, 5, 0, -3, 0],
           }}
           transition={{
-            duration: 1.9,
+            duration: 1.1,
             ease: [0.33, 1, 0.68, 1],
             times: [0, 0.35, 0.6, 0.78, 0.9, 1],
           }}
@@ -260,7 +260,7 @@ export default function HalloweenTransition({ onComplete }: HalloweenTransitionP
             opacity: [0.2, 0.85, 0.35, 0.8, 0.5, 0.75],
           }}
           transition={{
-            duration: 1.9,
+            duration: 1.1,
             ease: [0.33, 1, 0.68, 1],
             times: [0, 0.35, 0.6, 0.78, 0.9, 1],
           }}
@@ -271,7 +271,7 @@ export default function HalloweenTransition({ onComplete }: HalloweenTransitionP
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.25, duration: 0.5 }}
+          transition={{ delay: 0.1, duration: 0.35 }}
           className="mt-8 text-center space-y-3"
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-500/15 border border-orange-500/30 text-orange-400 text-xs font-mono tracking-widest uppercase shadow-[0_0_15px_rgba(249,115,22,0.2)]">
@@ -288,7 +288,7 @@ export default function HalloweenTransition({ onComplete }: HalloweenTransitionP
             <motion.div
               initial={{ x: '-100%' }}
               animate={{ x: '0%' }}
-              transition={{ duration: 2.1, ease: 'easeInOut' }}
+              transition={{ duration: 1.1, ease: 'easeInOut' }}
               className="h-full bg-gradient-to-r from-orange-600 via-amber-400 to-orange-500 rounded-full shadow-[0_0_10px_#f97316]"
             />
           </div>

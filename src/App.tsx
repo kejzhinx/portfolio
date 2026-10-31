@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'motion/react';
 import Navbar from './components/Navbar';
@@ -9,13 +9,14 @@ import AboutPage from './pages/AboutPage';
 import SkillsPage from './pages/SkillsPage';
 import ProjectsPage from './pages/ProjectsPage';
 import ContactPage from './pages/ContactPage';
-import DoctorStrangeWelcomePortal from './components/DoctorStrangeWelcomePortal';
 import FloatingCyberObjects from './components/FloatingCyberObjects';
-import HalloweenTransition from './components/HalloweenTransition';
-import ChristmasTransition from './components/ChristmasTransition';
-import HalloweenDecorations from './components/HalloweenDecorations';
-import ChristmasDecorations from './components/ChristmasDecorations';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
+
+const DoctorStrangeWelcomePortal = lazy(() => import('./components/DoctorStrangeWelcomePortal'));
+const HalloweenTransition = lazy(() => import('./components/HalloweenTransition'));
+const ChristmasTransition = lazy(() => import('./components/ChristmasTransition'));
+const HalloweenDecorations = lazy(() => import('./components/HalloweenDecorations'));
+const ChristmasDecorations = lazy(() => import('./components/ChristmasDecorations'));
 
 function ReloadToHome() {
   useEffect(() => {
@@ -111,29 +112,31 @@ function MainLayout() {
       <FloatingCyberObjects />
 
       {/* Seasonal Atmospheric Overlays & Interactions */}
-      {isHalloween && <HalloweenDecorations />}
-      {isChristmas && <ChristmasDecorations />}
+      <Suspense fallback={null}>
+        {isHalloween && <HalloweenDecorations />}
+        {isChristmas && <ChristmasDecorations />}
 
-      {/* Halloween Bouncing Pumpkin Loading Screen (Plays on theme switch & browser refresh) */}
-      <AnimatePresence mode="wait">
-        {transitioningTheme === 'halloween' && (
-          <HalloweenTransition key={`halloween-loading-${transitionId}`} onComplete={clearTransition} />
-        )}
-      </AnimatePresence>
+        {/* Halloween Bouncing Pumpkin Loading Screen */}
+        <AnimatePresence mode="wait">
+          {transitioningTheme === 'halloween' && (
+            <HalloweenTransition key={`halloween-loading-${transitionId}`} onComplete={clearTransition} />
+          )}
+        </AnimatePresence>
 
-      {/* Christmas Rolling Snowball Loading Screen (Plays on theme switch & browser refresh) */}
-      <AnimatePresence mode="wait">
-        {transitioningTheme === 'christmas' && (
-          <ChristmasTransition key={`christmas-loading-${transitionId}`} onComplete={clearTransition} />
-        )}
-      </AnimatePresence>
+        {/* Christmas Rolling Snowball Loading Screen */}
+        <AnimatePresence mode="wait">
+          {transitioningTheme === 'christmas' && (
+            <ChristmasTransition key={`christmas-loading-${transitionId}`} onComplete={clearTransition} />
+          )}
+        </AnimatePresence>
 
-      {/* Doctor Strange Welcome Portal Screen (Plays on Dark/Light initial load, refresh, or switch) */}
-      <AnimatePresence mode="wait">
-        {transitioningTheme === 'portal' && (
-          <DoctorStrangeWelcomePortal key={`welcome-portal-${transitionId}`} onComplete={clearTransition} />
-        )}
-      </AnimatePresence>
+        {/* Doctor Strange Welcome Portal Screen */}
+        <AnimatePresence mode="wait">
+          {transitioningTheme === 'portal' && (
+            <DoctorStrangeWelcomePortal key={`welcome-portal-${transitionId}`} onComplete={clearTransition} />
+          )}
+        </AnimatePresence>
+      </Suspense>
 
       <Navbar />
       <main className="flex-1 flex flex-col relative z-20">

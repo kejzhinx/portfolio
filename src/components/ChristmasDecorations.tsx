@@ -55,6 +55,11 @@ export default function ChristmasDecorations() {
     let angle = 0;
 
     const render = () => {
+      if (document.hidden) {
+        animId = requestAnimationFrame(render);
+        return;
+      }
+
       ctx.clearRect(0, 0, width, height);
       angle += 0.01;
 

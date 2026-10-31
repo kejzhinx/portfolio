@@ -132,6 +132,8 @@ interface Ember {
 interface ScrollBat {
   id: number;
   direction: 'right' | 'left';
+  startX: number;
+  endX: number;
   startY: number;
   midY: number;
   endY: number;
@@ -151,29 +153,30 @@ export default function HalloweenDecorations() {
 
   // Scroll & Wheel Listener: Spawns flying bats EVERYWHERE across the viewport ONLY when user scrolls UP or DOWN
   useEffect(() => {
-    lastScrollY.current = window.scrollY;
+    lastScrollY.current = window.scrollY || document.documentElement.scrollTop || 0;
 
     const triggerBats = (delta: number) => {
       const now = performance.now();
-      // Responsive trigger threshold; throttled so bursts look organic without overwhelming
-      if (Math.abs(delta) > 4 && now - lastSpawnTime.current > 260) {
+      // Responsive trigger threshold (>= 1px delta) with 150ms burst cooldown
+      if (Math.abs(delta) >= 1 && now - lastSpawnTime.current > 150) {
         lastSpawnTime.current = now;
         const isScrollingDown = delta > 0;
         const vh = window.innerHeight;
+        const vw = window.innerWidth;
 
         // Distribute bats EVERYWHERE across vertical height lanes (not in a single line!)
-        // Lanes: 1. Top sky (6-22%), 2. Upper-mid (24-42%), 3. Center (45-63%), 4. Lower-mid (65-82%), 5. Bottom (84-95%)
+        // Lanes: 1. Top sky (5-22%), 2. Upper-mid (24-42%), 3. Center (45-63%), 4. Lower-mid (65-82%), 5. Bottom (84-94%)
         const verticalLanes = [
-          { min: 0.06, max: 0.22 },
+          { min: 0.05, max: 0.22 },
           { min: 0.24, max: 0.42 },
           { min: 0.45, max: 0.63 },
           { min: 0.65, max: 0.82 },
-          { min: 0.84, max: 0.95 },
+          { min: 0.84, max: 0.94 },
         ];
 
         // Pick 3 to 5 lanes across the screen for this scroll event
         const shuffledLanes = [...verticalLanes].sort(() => 0.5 - Math.random());
-        const batCount = Math.floor(Math.random() * 3) + 3; // 3, 4, or 5 bats everywhere
+        const batCount = Math.floor(Math.random() * 3) + 3; // 3 to 5 bats everywhere
         const selectedLanes = shuffledLanes.slice(0, batCount);
 
         const newBats: ScrollBat[] = selectedLanes.map((lane, index) => {
@@ -188,27 +191,34 @@ export default function HalloweenDecorations() {
           const endY = startY + swoopOffset * 0.4;
 
           // Alternate / mix flight directions so bats cross each other across the screen
-          const flyToRight = index % 2 === 0 ? Math.random() > 0.4 : Math.random() > 0.6;
-          const duration = 1.3 + Math.random() * 0.6; // 1.3s to 1.9s fast swoops
-          const delay = index * 0.06 + Math.random() * 0.08; // staggered organic burst
+          const flyToRight = index % 2 === 0 ? Math.random() > 0.35 : Math.random() > 0.65;
+          const duration = 1.2 + Math.random() * 0.5; // 1.2s to 1.7s fast swoops
+          const delay = index * 0.05 + Math.random() * 0.06; // staggered organic burst
+          const size = 48 + Math.random() * 20;
+
+          // Concrete pixel start and end coordinates based on current window width
+          const startX = flyToRight ? -size - 30 : vw + 30;
+          const endX = flyToRight ? vw + 50 : -size - 50;
 
           return {
             id: ++batCounter.current,
             direction: flyToRight ? 'right' : 'left',
+            startX,
+            endX,
             startY,
             midY,
             endY,
-            scale: 0.85 + Math.random() * 0.4, // varied sizes: 0.85 to 1.25
+            scale: 0.85 + Math.random() * 0.35,
             duration,
             delay,
-            size: 46 + Math.random() * 20, // 46px to 66px
+            size,
             tiltAngle: isScrollingDown
-              ? (flyToRight ? 15 : -15) + (Math.random() * 6 - 3)
-              : (flyToRight ? -15 : 15) + (Math.random() * 6 - 3),
+              ? (flyToRight ? 14 : -14) + (Math.random() * 6 - 3)
+              : (flyToRight ? -14 : 14) + (Math.random() * 6 - 3),
           };
         });
 
-        setActiveScrollBats((prev) => [...prev.slice(-12), ...newBats]);
+        setActiveScrollBats((prev) => [...prev.slice(-14), ...newBats]);
 
         // Clean up completed bats when their animation finishes
         const maxDuration = Math.max(...newBats.map((b) => b.duration + b.delay));
@@ -221,14 +231,18 @@ export default function HalloweenDecorations() {
     };
 
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+      const currentScrollY = window.scrollY || document.documentElement.scrollTop || 0;
       const delta = currentScrollY - lastScrollY.current;
       lastScrollY.current = currentScrollY;
-      triggerBats(delta);
+      if (Math.abs(delta) >= 1) {
+        triggerBats(delta);
+      }
     };
 
     const handleWheel = (e: WheelEvent) => {
-      triggerBats(e.deltaY);
+      if (Math.abs(e.deltaY) >= 1) {
+        triggerBats(e.deltaY);
+      }
     };
 
     let touchStartY = 0;
@@ -239,17 +253,21 @@ export default function HalloweenDecorations() {
       if (e.touches.length > 0) {
         const delta = touchStartY - e.touches[0].clientY;
         touchStartY = e.touches[0].clientY;
-        triggerBats(delta * 2);
+        if (Math.abs(delta) >= 1) {
+          triggerBats(delta * 2);
+        }
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    document.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('wheel', handleWheel, { passive: true });
     window.addEventListener('touchstart', handleTouchStart, { passive: true });
     window.addEventListener('touchmove', handleTouchMove, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('scroll', handleScroll);
       window.removeEventListener('wheel', handleWheel);
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchmove', handleTouchMove);
@@ -300,6 +318,11 @@ export default function HalloweenDecorations() {
     let animId: number;
 
     const render = () => {
+      if (document.hidden) {
+        animId = requestAnimationFrame(render);
+        return;
+      }
+
       ctx.clearRect(0, 0, width, height);
 
       for (let i = 0; i < embers.length; i++) {
@@ -358,7 +381,7 @@ export default function HalloweenDecorations() {
             <motion.div
               key={bat.id}
               initial={{
-                x: isRight ? '-16vw' : '116vw',
+                x: bat.startX,
                 y: bat.startY,
                 scaleX: isRight ? bat.scale : -bat.scale,
                 scaleY: bat.scale,
@@ -366,7 +389,7 @@ export default function HalloweenDecorations() {
                 opacity: 0,
               }}
               animate={{
-                x: isRight ? '116vw' : '-16vw',
+                x: bat.endX,
                 y: [bat.startY, bat.midY, bat.endY],
                 rotate: isRight ? [bat.tiltAngle, -8, 12] : [-bat.tiltAngle, 8, -12],
                 opacity: [0, 1, 1, 0],
@@ -377,7 +400,7 @@ export default function HalloweenDecorations() {
                 delay: bat.delay,
                 ease: [0.25, 0.1, 0.25, 1],
               }}
-              className="fixed z-50 pointer-events-none select-none filter drop-shadow-[0_6px_22px_rgba(0,0,0,0.95)]"
+              className="fixed top-0 left-0 z-50 pointer-events-none select-none filter drop-shadow-[0_6px_22px_rgba(0,0,0,0.95)]"
             >
               <PurpleBat size={bat.size} />
             </motion.div>

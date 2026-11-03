@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, type MouseEvent } from 'react';
+import React, { useState, useEffect, useRef, type MouseEvent, type PointerEvent } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import {
@@ -19,7 +19,9 @@ import {
   ShieldCheck,
   Palette,
   Globe,
-  Filter
+  Filter,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import FloatingCyberObjects from '../components/FloatingCyberObjects';
@@ -297,11 +299,11 @@ function ProjectCard3D({
           {/* Elevated Content */}
           <div
             style={{ transform: 'translateZ(20px)' }}
-            className="p-5 sm:p-6 pb-5 space-y-3"
+            className="p-3.5 sm:p-4 pb-3.5 space-y-2"
           >
             <div>
               <div className="flex items-center justify-between gap-2">
-                <span className={`text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider ${
+                <span className={`text-[9.5px] sm:text-[10px] font-extrabold uppercase tracking-wider ${
                   isDark
                     ? 'text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-300 to-indigo-300'
                     : 'text-indigo-600'
@@ -310,17 +312,17 @@ function ProjectCard3D({
                 </span>
               </div>
 
-              <h3 className={`text-base sm:text-lg font-bold transition-colors cursor-pointer mt-1 leading-snug ${
+              <h3 className={`text-sm sm:text-base font-bold transition-colors cursor-pointer mt-0.5 leading-snug ${
                 isDark ? 'text-white group-hover:text-indigo-200' : 'text-slate-900 group-hover:text-indigo-600'
               }`}>
                 {project.title}
               </h3>
 
-              <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-2.5 items-center">
-                {project.tags.slice(0, 5).map((tag) => (
+              <div className="flex flex-wrap gap-1 mt-2 items-center">
+                {project.tags.slice(0, 4).map((tag) => (
                   <span
                     key={tag}
-                    className={`px-2 sm:px-2.5 py-0.5 rounded-lg text-[10px] font-semibold transition-all hover:-translate-y-0.5 shadow-sm ${
+                    className={`px-1.5 sm:px-2 py-0.5 rounded-md text-[9px] sm:text-[9.5px] font-semibold transition-all hover:-translate-y-0.5 shadow-sm ${
                       isDark
                         ? 'text-slate-300 bg-white/[0.04] hover:bg-indigo-500/20 border border-white/[0.08] hover:border-indigo-400/40'
                         : 'text-slate-700 bg-slate-100/90 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-300'
@@ -329,15 +331,15 @@ function ProjectCard3D({
                     {tag}
                   </span>
                 ))}
-                {project.tags.length > 5 && (
-                  <span className={`text-[10px] font-mono ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
-                    +{project.tags.length - 5}
+                {project.tags.length > 4 && (
+                  <span className={`text-[9px] font-mono ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
+                    +{project.tags.length - 4}
                   </span>
                 )}
               </div>
             </div>
 
-            <p className={`text-xs leading-relaxed line-clamp-3 ${
+            <p className={`text-[11px] sm:text-xs leading-relaxed line-clamp-2 ${
               isDark ? 'text-slate-400' : 'text-slate-600'
             }`}>
               {project.description}
@@ -348,7 +350,7 @@ function ProjectCard3D({
         {/* Card Footer Actions */}
         <div
           style={{ transform: 'translateZ(24px)' }}
-          className={`px-5 sm:px-6 pb-5 pt-2.5 border-t flex items-center justify-between text-xs ${
+          className={`px-3.5 sm:px-4 pb-3.5 pt-2 border-t flex items-center justify-between text-[11px] sm:text-xs ${
             isDark ? 'border-white/[0.06]' : 'border-slate-200/80'
           }`}
         >
@@ -382,6 +384,288 @@ function ProjectCard3D({
         </div>
       </div>
     </motion.div>
+  );
+}
+
+
+
+// ----------------------------------------------------------------------
+// 3D Infinite Flow Stream - Continuously Moving in 3D Perspective
+// ----------------------------------------------------------------------
+function ProjectsStream3D({
+  projects,
+  onOpenModal,
+}: {
+  projects: ProjectItem[];
+  onOpenModal: (project: ProjectItem) => void;
+  sectionId?: string;
+}) {
+  const { isHalloween, isChristmas } = useTheme();
+
+  const trackRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const posRef = useRef<number>(0);
+  const isDraggingRef = useRef<boolean>(false);
+  const dragStartXRef = useRef<number>(0);
+  const dragStartPosRef = useRef<number>(0);
+  const hasDraggedFarRef = useRef<boolean>(false);
+  const isHoveredRef = useRef<boolean>(false);
+  const requestRef = useRef<number | null>(null);
+  const singleSetWidthRef = useRef<number>(0);
+
+  const speed = 0.35; // Gentle, slow continuous pace moving from left
+
+  // Repeat projects so that it seamlessly wraps in an infinite loop
+  const repeatCount = projects.length < 5 ? 4 : 3;
+  const streamItems = Array.from({ length: repeatCount }).flatMap((_, setIdx) =>
+    projects.map((item, itemIdx) => ({
+      ...item,
+      streamUniqueKey: `${item.id}-loop-${setIdx}-${itemIdx}`,
+    }))
+  );
+
+  // Measure total width and width of one repeated set
+  useEffect(() => {
+    const updateMetrics = () => {
+      if (trackRef.current) {
+        const total = trackRef.current.scrollWidth;
+        const oneSet = total / repeatCount;
+        singleSetWidthRef.current = oneSet;
+        if (posRef.current === 0 && oneSet > 0) {
+          // Center the initial view so cards are populated immediately from the left
+          posRef.current = -oneSet * 0.45;
+          trackRef.current.style.transform = `translate3d(${posRef.current}px, 0, 0)`;
+        }
+      }
+    };
+
+    updateMetrics();
+    const t1 = setTimeout(updateMetrics, 200);
+    const t2 = setTimeout(updateMetrics, 800);
+    window.addEventListener('resize', updateMetrics);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      window.removeEventListener('resize', updateMetrics);
+    };
+  }, [projects.length, repeatCount]);
+
+  // RequestAnimationFrame continuous 3D slow translation loop (moving from the left)
+  useEffect(() => {
+    let lastTimestamp = performance.now();
+
+    const loop = (currentTimestamp: number) => {
+      const delta = Math.min((currentTimestamp - lastTimestamp) / 16.67, 2.5);
+      lastTimestamp = currentTimestamp;
+
+      if (!isHoveredRef.current && !isDraggingRef.current) {
+        const oneSet = singleSetWidthRef.current;
+        if (oneSet > 0) {
+          // Positive increment moves track to the right, cards flow slowly in from the left!
+          posRef.current += speed * delta;
+
+          // Seamless infinite wraparound
+          if (posRef.current > 0) {
+            posRef.current -= oneSet;
+          } else if (posRef.current < -oneSet) {
+            posRef.current += oneSet;
+          }
+
+          if (trackRef.current) {
+            trackRef.current.style.transform = `translate3d(${posRef.current}px, 0, 0)`;
+          }
+        }
+      }
+
+      requestRef.current = requestAnimationFrame(loop);
+    };
+
+    requestRef.current = requestAnimationFrame(loop);
+    return () => {
+      if (requestRef.current) cancelAnimationFrame(requestRef.current);
+    };
+  }, [speed]);
+
+  // Smooth nudge helper for arrow controls
+  const nudge = (amount: number) => {
+    const oneSet = singleSetWidthRef.current;
+    if (!oneSet) return;
+    let nextPos = posRef.current + amount;
+    while (nextPos > 0) nextPos -= oneSet;
+    while (nextPos < -oneSet) nextPos += oneSet;
+    posRef.current = nextPos;
+    if (trackRef.current) {
+      trackRef.current.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+      trackRef.current.style.transform = `translate3d(${nextPos}px, 0, 0)`;
+      setTimeout(() => {
+        if (trackRef.current) {
+          trackRef.current.style.transition = 'none';
+        }
+      }, 400);
+    }
+  };
+
+  // Pointer drag & touch scrub handlers
+  const handlePointerDown = (e: React.PointerEvent) => {
+    isDraggingRef.current = true;
+    hasDraggedFarRef.current = false;
+    dragStartXRef.current = e.clientX;
+    dragStartPosRef.current = posRef.current;
+    if (trackRef.current) {
+      trackRef.current.style.transition = 'none';
+    }
+    if (containerRef.current) {
+      try {
+        containerRef.current.setPointerCapture(e.pointerId);
+      } catch {}
+    }
+  };
+
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (!isDraggingRef.current) return;
+    const deltaX = e.clientX - dragStartXRef.current;
+    if (Math.abs(deltaX) > 6) {
+      hasDraggedFarRef.current = true;
+    }
+    const oneSet = singleSetWidthRef.current;
+    let nextPos = dragStartPosRef.current + deltaX;
+    if (oneSet > 0) {
+      while (nextPos > 0) nextPos -= oneSet;
+      while (nextPos < -oneSet) nextPos += oneSet;
+    }
+    posRef.current = nextPos;
+    if (trackRef.current) {
+      trackRef.current.style.transform = `translate3d(${nextPos}px, 0, 0)`;
+    }
+  };
+
+  const handlePointerUp = (e: React.PointerEvent) => {
+    if (isDraggingRef.current) {
+      isDraggingRef.current = false;
+      if (containerRef.current) {
+        try {
+          containerRef.current.releasePointerCapture(e.pointerId);
+        } catch {}
+      }
+    }
+  };
+
+  return (
+    <div className="relative w-full py-2 group/stream-wrapper">
+      {/* Floating Left Arrow */}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          nudge(310);
+        }}
+        className={`absolute left-1 sm:left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center backdrop-blur-xl border shadow-xl transition-all duration-300 cursor-pointer active:scale-90 hover:scale-110 ${
+          isHalloween
+            ? 'bg-[#180A26]/85 border-orange-500/40 text-orange-300 hover:text-white hover:bg-orange-600 hover:border-orange-400 shadow-[0_0_20px_rgba(249,115,22,0.4)]'
+            : isChristmas
+            ? 'bg-[#082035]/85 border-emerald-500/40 text-emerald-300 hover:text-white hover:bg-emerald-600 hover:border-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.4)]'
+            : 'bg-[#090F21]/85 border-white/20 text-white hover:bg-indigo-600 hover:border-indigo-400 shadow-[0_0_20px_rgba(99,102,241,0.4)]'
+        }`}
+        aria-label="Previous projects"
+        title="Previous projects"
+      >
+        <ChevronLeft size={22} className="relative -left-0.5" />
+      </button>
+
+      {/* Floating Right Arrow */}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          nudge(-310);
+        }}
+        className={`absolute right-1 sm:right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center backdrop-blur-xl border shadow-xl transition-all duration-300 cursor-pointer active:scale-90 hover:scale-110 ${
+          isHalloween
+            ? 'bg-[#180A26]/85 border-orange-500/40 text-orange-300 hover:text-white hover:bg-orange-600 hover:border-orange-400 shadow-[0_0_20px_rgba(249,115,22,0.4)]'
+            : isChristmas
+            ? 'bg-[#082035]/85 border-emerald-500/40 text-emerald-300 hover:text-white hover:bg-emerald-600 hover:border-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.4)]'
+            : 'bg-[#090F21]/85 border-white/20 text-white hover:bg-indigo-600 hover:border-indigo-400 shadow-[0_0_20px_rgba(99,102,241,0.4)]'
+        }`}
+        aria-label="Next projects"
+        title="Next projects"
+      >
+        <ChevronRight size={22} className="relative -right-0.5" />
+      </button>
+
+      {/* 3D Flow Stage Viewport */}
+      <div
+        ref={containerRef}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+        className="relative w-full overflow-hidden py-6 cursor-grab active:cursor-grabbing touch-pan-y select-none"
+        style={{
+          perspective: '1350px',
+          perspectiveOrigin: '50% 38%',
+          maskImage: 'linear-gradient(to right, transparent, black 4%, black 96%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent, black 4%, black 96%, transparent)',
+        }}
+      >
+        {/* 3D Ambient Floor Glow */}
+        <div
+          className={`absolute inset-x-0 bottom-0 h-24 blur-3xl pointer-events-none -z-10 ${
+            isHalloween
+              ? 'bg-gradient-to-t from-orange-600/20 via-purple-600/10 to-transparent'
+              : isChristmas
+              ? 'bg-gradient-to-t from-emerald-600/20 via-red-600/10 to-transparent'
+              : 'bg-gradient-to-t from-indigo-600/20 via-purple-600/10 to-transparent'
+          }`}
+        />
+
+        {/* 3D Moving Track */}
+        <div
+          ref={trackRef}
+          className="flex items-stretch gap-4 sm:gap-5.5 will-change-transform"
+          style={{
+            transformStyle: 'preserve-3d',
+            transform: `translate3d(${posRef.current}px, 0, 0)`,
+          }}
+        >
+          {streamItems.map((item) => (
+            <div
+              key={item.streamUniqueKey}
+              onMouseEnter={() => {
+                isHoveredRef.current = true;
+              }}
+              onMouseLeave={() => {
+                isHoveredRef.current = false;
+              }}
+              className="w-[260px] sm:w-[310px] md:w-[335px] shrink-0 flex flex-col transition-all duration-300 ease-out group/stream-item"
+              style={{
+                transformStyle: 'preserve-3d',
+                transform: 'rotateY(-4deg) rotateX(1.5deg)',
+              }}
+            >
+              <div
+                onClick={(e) => {
+                  if (hasDraggedFarRef.current) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                  }
+                }}
+                className="h-full rounded-2xl sm:rounded-3xl transition-transform duration-300 group-hover/stream-item:-translate-y-2 group-hover/stream-item:scale-[1.02] group-hover/stream-item:rotate-y-0 group-hover/stream-item:rotate-x-0"
+              >
+                <ProjectCard3D
+                  project={item}
+                  priority={false}
+                  onOpenModal={(proj) => {
+                    if (!hasDraggedFarRef.current) {
+                      onOpenModal(proj);
+                    }
+                  }}
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -477,6 +761,122 @@ export default function ProjectsPage() {
         'Verified Flight Seminars, technical aviation certificates, and academic credentials database'
       ],
       highlights: 'Executive VA & Aviation Operations Platform • Live on Vercel'
+    },
+
+    // New Video Mockup Projects Uploaded by Jeric
+    {
+      id: 'allan-balasbas-portfolio',
+      title: 'Allan Vincent Balasbas — Healthcare BPO & Real Estate VA',
+      subtitle: 'Medical Records Retrieval & Real Estate Client Acquisition',
+      category: 'apps',
+      categoryLabel: 'Healthcare BPO & VA Platform',
+      tags: ['Healthcare BPO', 'Virtual Assistant', 'Medical Records', 'Claims Processing', 'Real Estate', 'React', 'Tailwind CSS'],
+      description: 'An executive portfolio platform for Allan Vincent (Cindy) Balasbas highlighting 5+ years handling US Healthcare accounts, Medical Records Retrieval (MRR), appointment setting, claims processing, and multi-million peso real estate sales.',
+      longDescription: 'Engineered an executive virtual assistant portfolio for Allan Vincent (Cindy) Balasbas. Highlights extensive expertise in US Healthcare operations, HIPAA-conscious medical records retrieval (MRR), insurance claims processing, patient appointment setting, and high-value real estate property sales.',
+      image: '/image/allan_preview.png',
+      videoUrl: '/assets/images/allan.mp4',
+      features: [
+        'Specialized US Healthcare BPO showcase covering Medical Records Retrieval (MRR) and claims processing',
+        'High-volume appointment scheduling and patient intake coordination workflows',
+        'Proven track record in multi-million peso real estate sales and client negotiations',
+        'Interactive single-page portfolio with responsive mobile-first typography and dark/light support'
+      ],
+      highlights: 'Healthcare BPO Specialist & Real Estate VA • Production Video Mockup'
+    },
+    {
+      id: 'jessa-delacerna-portfolio',
+      title: 'Jessa Dela Cerna — Administrative VA & Operations Platform',
+      subtitle: 'Reliable Business Support & Structured Data Management',
+      category: 'apps',
+      categoryLabel: 'Administrative VA & Operations',
+      tags: ['Administrative VA', 'Data Entry', 'Calendar Management', 'Magna Cum Laude', 'Licensed Professional Teacher', 'React'],
+      description: 'An executive administrative virtual assistant portfolio for Jessa C. Dela Cerna (Magna Cum Laude & LPT), highlighting structured business records, high-accuracy data entry, document preparation, and executive calendar management.',
+      longDescription: 'Designed and developed a specialized administrative virtual assistant platform for Jessa C. Dela Cerna. Highlights academic excellence (Magna Cum Laude & Licensed Professional Teacher), transferable pedagogical precision, executive calendar coordination, inbox organization, research synthesis, and business operations support.',
+      image: '/image/erna_preview.png',
+      videoUrl: '/assets/images/erna.mp4',
+      features: [
+        'Classroom-to-corporate transferable organizational rigor and administrative discipline',
+        'High-accuracy data entry, document preparation, and business filing workflows',
+        'Executive inbox zero management, calendar scheduling, and meeting buffer coordination',
+        'Comprehensive qualifications archive and interactive direct contact hub'
+      ],
+      highlights: 'Administrative Virtual Assistant Portfolio • Magna Cum Laude & LPT • Live Video Mockup'
+    },
+    {
+      id: 'joan-saluta-portfolio',
+      title: 'Joan Saluta — Administrative Executive & VA Portfolio',
+      subtitle: 'Executive Assistant, E-Commerce Support & SOPs',
+      category: 'apps',
+      categoryLabel: 'Executive Assistant & VA Platform',
+      tags: ['Executive Assistant', 'Inbox Zero', 'Calendar Scheduling', 'Shopify Operations', 'SOPs', 'React'],
+      description: 'A high-impact executive virtual assistant portfolio for Joan Saluta, demonstrating 15+ hours/week saved for business leaders through proactive inbox management, calendar logistics, customer care ticketing, and Shopify store administration.',
+      longDescription: 'Engineered a sleek, modern executive virtual assistant and administrative portfolio for Joan Saluta. Built to highlight measurable business impact (saving founders 15+ hours weekly), multi-timezone appointment coordination, VIP communication triage, SOP documentation, and e-commerce support across global client retainers.',
+      image: '/image/joan_hero.png',
+      videoUrl: '/assets/images/joan.mp4',
+      features: [
+        'Executive support workflows saving clients 15+ hours per week of operational overhead',
+        'Multi-timezone calendar scheduling (US, UK, AU, and Asian time zones) with Zoom & Google Meet integrations',
+        'Shopify e-commerce support, customer ticket resolution, and SOP documentation',
+        'Human-centered aesthetic with interactive client testimonials and direct WhatsApp/Email inquiry'
+      ],
+      highlights: 'Administrative Executive Portfolio • 15+ Hours Saved Weekly • Live Video Mockup'
+    },
+    {
+      id: 'lerizza-jimenez-portfolio',
+      title: 'Lerriza Jimenez — Shopify Operations & Administrative VA',
+      subtitle: 'E-Commerce Product Listings, CRM & Lead Generation',
+      category: 'apps',
+      categoryLabel: 'E-Commerce VA & Lead Gen',
+      tags: ['Shopify VA', 'Product Listing', 'GoHighLevel CRM', 'Canva Graphics', 'Instagram Outreach', 'React'],
+      description: 'A dynamic virtual assistant and e-commerce operations platform for Lerriza Jimenez, showcasing 9 years of teaching and administrative discipline, Shopify SKU listings, GoHighLevel CRM pipelines, and Instagram cold outreach.',
+      longDescription: 'Designed and developed a results-driven virtual assistant portfolio for Lerriza Jimenez. Showcases 9 years of educational and organizational discipline merged with hands-on e-commerce operations, Shopify product listings, SKU variants, GoHighLevel CRM lead funnels, Canva marketing graphics, and client outreach.',
+      image: '/image/lerizza_hero.png',
+      videoUrl: '/assets/images/lerizza.mp4',
+      features: [
+        'Shopify e-commerce product listings, variant structuring, and inventory coordination',
+        'GoHighLevel CRM customer pipeline tracking, automated follow-ups, and lead capture',
+        'Targeted Instagram cold outreach, personalized DM scripting, and prospect research',
+        'Visual asset generation using Canva for marketing graphics and product mockups'
+      ],
+      highlights: 'Shopify Operations & E-Commerce VA Platform • Video Mockup'
+    },
+    {
+      id: 'diane-abella-portfolio',
+      title: 'Diane Abella — Service Desk & IT Support Portfolio',
+      subtitle: 'Front-Line Technical Administration & Customer Operations',
+      category: 'apps',
+      categoryLabel: 'IT Service Desk & Support',
+      tags: ['Service Desk', 'Ticketing Systems', 'IT Support', 'Verizon Customer Care', 'Account Provisioning', 'React'],
+      description: 'A modern IT service desk and customer support portfolio for Diane B. Abella, highlighting front-line technical administration for hotel hospitality systems and Verizon customer service, credential resets, and incident escalation.',
+      longDescription: 'Engineered a high-precision IT service desk portfolio website for Diane B. Abella. Highlights front-line technical administration across hotel enterprise networks in Cebu, Philippines and Verizon customer service, covering identity access provisioning, incident ticketing, credential recovery, and SLA compliance.',
+      image: '/image/diane_hero.png',
+      videoUrl: '/assets/images/diane.mp4',
+      features: [
+        'Front-line enterprise service desk administration and incident ticketing workflows',
+        'Account lifecycle management, user onboarding, password resets, and access requests',
+        'Telecommunications customer care experience supporting Verizon account inquiries',
+        'Direct contact hub with live local time zone synchronization (PHT)'
+      ],
+      highlights: 'IT Service Desk & Support Portfolio • Hotel Operations & Verizon • Video Mockup'
+    },
+    {
+      id: 'cheela-felix-portfolio',
+      title: 'Cheela Mae Felix — Retail POS & Customer Care Portfolio',
+      subtitle: 'Customer Service, Cashier Operations & POS Management',
+      category: 'apps',
+      categoryLabel: 'Customer Support & POS Operations',
+      tags: ['Customer Service', 'POS Systems', 'Cash Handling', 'Retail Operations', 'Conflict Resolution', 'React'],
+      description: 'A clean, professional customer support portfolio for Cheela Mae Felix showcasing 3+ years of front-line customer service, high-accuracy POS money transactions, inventory monitoring, and rapid conflict resolution.',
+      longDescription: 'Designed and developed an elegant professional portfolio for Cheela Mae Felix. Showcases over 3 years of dedicated customer service, retail point-of-sale (POS) terminal management, accurate financial balancing, inventory tracking, and friendly customer problem resolution.',
+      image: '/image/chela_preview.png',
+      videoUrl: '/assets/images/chela.mp4',
+      features: [
+        'Over 3 years of hands-on point-of-sale (POS) cashiering and cash register balancing',
+        'Customer service excellence, customer onboarding, and prompt problem escalation',
+        'Clean typography with downloadable resume modal and fast direct communication channels',
+        'Responsive layout optimized across desktop, tablet, and mobile devices'
+      ],
+      highlights: 'Customer Service & Retail POS Specialist • Video Mockup'
     },
 
     // Applications & Software
@@ -925,8 +1325,8 @@ export default function ProjectsPage() {
         </p>
       </div>
 
-      {/* Interactive Filter Dock */}
-      <div className="flex flex-wrap items-center gap-4 mb-10">
+      {/* Interactive Filter Dock & View Switcher */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
         <div className={`relative inline-flex items-center gap-1.5 p-1.5 rounded-2xl backdrop-blur-xl border overflow-x-auto styled-scrollbar max-w-full ${
           isHalloween
             ? 'bg-[#180A26]/90 border-orange-500/30 shadow-[0_15px_35px_-10px_rgba(249,115,22,0.3)]'
@@ -1049,18 +1449,13 @@ export default function ProjectsPage() {
                   </div>
                 </div>
 
-                {/* Section Cards Grid */}
+                {/* Section Cards 3D Stream */}
                 {section.projects.length > 0 ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                    {section.projects.map((project, idx) => (
-                      <ProjectCard3D
-                        key={project.id}
-                        project={project}
-                        priority={idx < 3}
-                        onOpenModal={openProjectModal}
-                      />
-                    ))}
-                  </div>
+                  <ProjectsStream3D
+                    projects={section.projects}
+                    onOpenModal={openProjectModal}
+                    sectionId={section.id}
+                  />
                 ) : (
                   <div className={`py-8 text-center rounded-2xl p-6 border ${
                     isDark ? 'bg-[#070D1E]/40 border-white/5 text-slate-400' : 'bg-white/80 border-slate-200 text-slate-600 shadow-sm'

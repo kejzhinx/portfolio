@@ -24,6 +24,7 @@ import {
 import { useTheme } from '../context/ThemeContext';
 import FloatingCyberObjects from '../components/FloatingCyberObjects';
 import CardBorderDecoration from '../components/CardBorderDecoration';
+import VideoWatermarkOverlay from '../components/VideoWatermarkOverlay';
 
 interface ProjectItem {
   id: string;
@@ -209,7 +210,10 @@ function ProjectCard3D({
             )}
 
             {project.videoUrl ? (
-              <div className="relative w-full h-full">
+              <div
+                className="relative w-full h-full select-none"
+                onContextMenu={(e) => e.preventDefault()}
+              >
                 <video
                   ref={videoRef}
                   src={project.videoUrl}
@@ -217,10 +221,17 @@ function ProjectCard3D({
                   loop
                   muted
                   playsInline
+                  controlsList="nodownload nofullscreen noremoteplayback"
+                  disablePictureInPicture
+                  draggable={false}
                   preload={priority ? 'auto' : 'metadata'}
                   className="w-full h-full object-cover object-top group-hover/screen:scale-105 transition-transform duration-500 ease-out"
                 />
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover/screen:opacity-100 transition-all duration-300 scale-90 group-hover/screen:scale-100 z-20">
+
+                {/* Full-coverage Anti-Theft Watermark Overlay */}
+                <VideoWatermarkOverlay mode="card" />
+
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover/screen:opacity-100 transition-all duration-300 scale-90 group-hover/screen:scale-100 z-25">
                   <div className="relative">
                     <div className="absolute -inset-2 rounded-full bg-indigo-500/40 blur-md animate-ping" />
                     <div className="relative w-12 h-12 rounded-full bg-gradient-to-tr from-indigo-600 to-violet-600 text-white flex items-center justify-center shadow-[0_0_25px_rgba(99,102,241,0.8)] border border-white/30 backdrop-blur-md">
@@ -386,6 +397,7 @@ export default function ProjectsPage() {
   const [isModalMuted, setIsModalMuted] = useState(true);
   const [isModalPlaying, setIsModalPlaying] = useState(true);
   const modalVideoRef = useRef<HTMLVideoElement>(null);
+  const modalTheaterContainerRef = useRef<HTMLDivElement>(null);
 
   const openProjectModal = (project: ProjectItem) => {
     setSelectedProject(project);
@@ -412,9 +424,14 @@ export default function ProjectsPage() {
   };
 
   const toggleModalFullscreen = () => {
-    if (modalVideoRef.current) {
-      if (modalVideoRef.current.requestFullscreen) {
-        modalVideoRef.current.requestFullscreen();
+    const target = modalTheaterContainerRef.current || modalVideoRef.current;
+    if (target) {
+      if (document.fullscreenElement) {
+        document.exitFullscreen?.().catch(() => {});
+      } else if (target.requestFullscreen) {
+        target.requestFullscreen().catch(() => {
+          modalVideoRef.current?.requestFullscreen?.();
+        });
       }
     }
   };
@@ -1117,7 +1134,11 @@ export default function ProjectsPage() {
                       isDark ? 'bg-black border-white/[0.08]' : 'bg-slate-950 border-slate-200'
                     }`}>
                       {selectedProject.videoUrl ? (
-                        <div className="relative w-full aspect-video max-h-[56vh] bg-black flex items-center justify-center">
+                        <div
+                          ref={modalTheaterContainerRef}
+                          onContextMenu={(e) => e.preventDefault()}
+                          className="relative w-full aspect-video max-h-[56vh] bg-black flex items-center justify-center overflow-hidden select-none"
+                        >
                           <video
                             ref={modalVideoRef}
                             src={selectedProject.videoUrl}
@@ -1125,10 +1146,17 @@ export default function ProjectsPage() {
                             loop
                             playsInline
                             controls
-                            controlsList="nodownload"
+                            controlsList="nodownload nofullscreen noremoteplayback"
+                            disablePictureInPicture
                             className="w-full h-full object-contain bg-black"
                             onPlay={() => setIsModalPlaying(true)}
                             onPause={() => setIsModalPlaying(false)}
+                          />
+
+                          {/* Full-coverage Anti-Theft Watermark Overlay */}
+                          <VideoWatermarkOverlay
+                            mode="modal"
+                            interactiveControls={true}
                           />
                         </div>
                       ) : (
@@ -1172,11 +1200,20 @@ export default function ProjectsPage() {
                           </button>
                         </div>
 
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-2.5">
+                          <div className={`hidden sm:flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-medium border ${
+                            isDark
+                              ? 'bg-indigo-950/60 border-indigo-500/30 text-indigo-300'
+                              : 'bg-indigo-50 border-indigo-200 text-indigo-700'
+                          }`}>
+                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                            <span>Watermark Protected</span>
+                          </div>
+
                           <button
                             onClick={toggleModalFullscreen}
                             className="hover:text-indigo-600 flex items-center gap-1 transition-colors cursor-pointer text-indigo-500 font-semibold"
-                            title="Fullscreen"
+                            title="Fullscreen with Watermark Protection"
                           >
                             <Maximize2 size={14} />
                             <span className="hidden sm:inline font-mono text-[11px]">Fullscreen</span>

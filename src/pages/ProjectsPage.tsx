@@ -72,6 +72,7 @@ function ProjectCard3D({
     opacity: 0,
   });
   const [isHovered, setIsHovered] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current || (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches)) return;
@@ -185,16 +186,28 @@ function ProjectCard3D({
                 className="relative w-full h-full select-none"
                 onContextMenu={(e) => e.preventDefault()}
               >
-                <video
-                  src={`${project.videoUrl}#t=0.001`}
-                  muted
-                  playsInline
-                  controlsList="nodownload nofullscreen noremoteplayback"
-                  disablePictureInPicture
-                  draggable={false}
-                  preload="metadata"
-                  className="w-full h-full object-cover object-top group-hover/screen:scale-105 transition-transform duration-500 ease-out"
-                />
+                {!imgError && project.image ? (
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    loading={priority ? 'eager' : 'lazy'}
+                    decoding="async"
+                    draggable={false}
+                    onError={() => setImgError(true)}
+                    className="w-full h-full object-cover object-top group-hover/screen:scale-105 transition-transform duration-500 ease-out"
+                  />
+                ) : (
+                  <video
+                    src={`${project.videoUrl}#t=0.001`}
+                    muted
+                    playsInline
+                    controlsList="nodownload nofullscreen noremoteplayback"
+                    disablePictureInPicture
+                    draggable={false}
+                    preload="metadata"
+                    className="w-full h-full object-cover object-top group-hover/screen:scale-105 transition-transform duration-500 ease-out"
+                  />
+                )}
 
                 {/* Full-coverage Anti-Theft Watermark Overlay */}
                 <VideoWatermarkOverlay mode="card" />
@@ -1255,56 +1268,6 @@ export default function ProjectsPage() {
                         </div>
                       )}
                     </div>
-
-                    {/* Quick Video Controls Bar */}
-                    {selectedProject.videoUrl && (
-                      <div className={`border-b px-4 sm:px-6 py-2 flex items-center justify-between text-xs ${
-                        isDark
-                          ? 'bg-[#0A1021] border-white/[0.06] text-slate-300'
-                          : 'bg-slate-50 border-slate-200 text-slate-700'
-                      }`}>
-                        <div className="flex items-center gap-3">
-                          <button
-                            onClick={toggleModalPlay}
-                            className={`flex items-center gap-1 transition-colors cursor-pointer ${
-                              isDark ? 'hover:text-white' : 'hover:text-slate-900'
-                            }`}
-                          >
-                            {isModalPlaying ? <Pause size={14} /> : <Play size={14} />}
-                            <span className="font-mono text-[11px]">{isModalPlaying ? 'Pause' : 'Play'}</span>
-                          </button>
-                          <button
-                            onClick={toggleModalMute}
-                            className={`flex items-center gap-1 transition-colors cursor-pointer ${
-                              isDark ? 'hover:text-white' : 'hover:text-slate-900'
-                            }`}
-                          >
-                            {isModalMuted ? <VolumeX size={14} /> : <Volume2 size={14} />}
-                            <span className="font-mono text-[11px]">{isModalMuted ? 'Unmute' : 'Mute'}</span>
-                          </button>
-                        </div>
-
-                        <div className="flex items-center gap-2.5">
-                          <div className={`hidden sm:flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-medium border ${
-                            isDark
-                              ? 'bg-indigo-950/60 border-indigo-500/30 text-indigo-300'
-                              : 'bg-indigo-50 border-indigo-200 text-indigo-700'
-                          }`}>
-                            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                            <span>Watermark Protected</span>
-                          </div>
-
-                          <button
-                            onClick={toggleModalFullscreen}
-                            className="hover:text-indigo-600 flex items-center gap-1 transition-colors cursor-pointer text-indigo-500 font-semibold"
-                            title="Fullscreen with Watermark Protection"
-                          >
-                            <Maximize2 size={14} />
-                            <span className="hidden sm:inline font-mono text-[11px]">Fullscreen</span>
-                          </button>
-                        </div>
-                      </div>
-                    )}
 
                     {/* Modal Details & Technical Narrative */}
                     <div className="p-5 sm:p-7 space-y-5">

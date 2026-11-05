@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, type MouseEvent, type PointerEvent } from 'react';
+import { useState, useEffect, useRef, type MouseEvent } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import {
@@ -19,9 +19,7 @@ import {
   ShieldCheck,
   Palette,
   Globe,
-  Filter,
-  ChevronLeft,
-  ChevronRight
+  Filter
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import FloatingCyberObjects from '../components/FloatingCyberObjects';
@@ -66,7 +64,6 @@ function ProjectCard3D({
 }) {
   const { isDark, isHalloween, isChristmas } = useTheme();
   const cardRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
   const [coords, setCoords] = useState({
     rotateX: 0,
     rotateY: 0,
@@ -75,34 +72,6 @@ function ProjectCard3D({
     opacity: 0,
   });
   const [isHovered, setIsHovered] = useState(false);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video || !project.videoUrl) return;
-
-    if (!('IntersectionObserver' in window)) {
-      video.play().catch(() => {});
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            video.play().catch(() => {});
-          } else {
-            video.pause();
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-
-    observer.observe(video);
-    return () => {
-      observer.disconnect();
-    };
-  }, [project.videoUrl]);
 
   const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current || (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches)) return;
@@ -217,25 +186,22 @@ function ProjectCard3D({
                 onContextMenu={(e) => e.preventDefault()}
               >
                 <video
-                  ref={videoRef}
-                  src={project.videoUrl}
-                  autoPlay
-                  loop
+                  src={`${project.videoUrl}#t=0.001`}
                   muted
                   playsInline
                   controlsList="nodownload nofullscreen noremoteplayback"
                   disablePictureInPicture
                   draggable={false}
-                  preload={priority ? 'auto' : 'metadata'}
+                  preload="metadata"
                   className="w-full h-full object-cover object-top group-hover/screen:scale-105 transition-transform duration-500 ease-out"
                 />
 
                 {/* Full-coverage Anti-Theft Watermark Overlay */}
                 <VideoWatermarkOverlay mode="card" />
 
-                <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-0 group-hover/screen:opacity-100 transition-all duration-300 scale-90 group-hover/screen:scale-100 z-25">
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-90 group-hover/screen:opacity-100 transition-all duration-300 scale-95 group-hover/screen:scale-105 z-25">
                   <div className="relative">
-                    <div className="absolute -inset-2 rounded-full bg-indigo-500/40 blur-md animate-ping" />
+                    <div className="absolute -inset-2 rounded-full bg-indigo-500/40 blur-md opacity-0 group-hover/screen:opacity-100 group-hover/screen:animate-ping" />
                     <div className="relative w-12 h-12 rounded-full bg-gradient-to-tr from-indigo-600 to-violet-600 text-white flex items-center justify-center shadow-[0_0_25px_rgba(99,102,241,0.8)] border border-white/30 backdrop-blur-md">
                       <Play size={18} className="ml-0.5 fill-white" />
                     </div>
@@ -299,11 +265,11 @@ function ProjectCard3D({
           {/* Elevated Content */}
           <div
             style={{ transform: 'translateZ(20px)' }}
-            className="p-3.5 sm:p-4 pb-3.5 space-y-2"
+            className="p-5 sm:p-6 pb-5 space-y-3"
           >
             <div>
               <div className="flex items-center justify-between gap-2">
-                <span className={`text-[9.5px] sm:text-[10px] font-extrabold uppercase tracking-wider ${
+                <span className={`text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider ${
                   isDark
                     ? 'text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-cyan-300 to-indigo-300'
                     : 'text-indigo-600'
@@ -312,17 +278,17 @@ function ProjectCard3D({
                 </span>
               </div>
 
-              <h3 className={`text-sm sm:text-base font-bold transition-colors cursor-pointer mt-0.5 leading-snug ${
+              <h3 className={`text-base sm:text-lg font-bold transition-colors cursor-pointer mt-1 leading-snug ${
                 isDark ? 'text-white group-hover:text-indigo-200' : 'text-slate-900 group-hover:text-indigo-600'
               }`}>
                 {project.title}
               </h3>
 
-              <div className="flex flex-wrap gap-1 mt-2 items-center">
-                {project.tags.slice(0, 4).map((tag) => (
+              <div className="flex flex-wrap gap-1.5 sm:gap-2 mt-2.5 items-center">
+                {project.tags.slice(0, 5).map((tag) => (
                   <span
                     key={tag}
-                    className={`px-1.5 sm:px-2 py-0.5 rounded-md text-[9px] sm:text-[9.5px] font-semibold transition-all hover:-translate-y-0.5 shadow-sm ${
+                    className={`px-2 sm:px-2.5 py-0.5 rounded-lg text-[10px] font-semibold transition-all hover:-translate-y-0.5 shadow-sm ${
                       isDark
                         ? 'text-slate-300 bg-white/[0.04] hover:bg-indigo-500/20 border border-white/[0.08] hover:border-indigo-400/40'
                         : 'text-slate-700 bg-slate-100/90 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-300'
@@ -331,15 +297,15 @@ function ProjectCard3D({
                     {tag}
                   </span>
                 ))}
-                {project.tags.length > 4 && (
-                  <span className={`text-[9px] font-mono ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
-                    +{project.tags.length - 4}
+                {project.tags.length > 5 && (
+                  <span className={`text-[10px] font-mono ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
+                    +{project.tags.length - 5}
                   </span>
                 )}
               </div>
             </div>
 
-            <p className={`text-[11px] sm:text-xs leading-relaxed line-clamp-2 ${
+            <p className={`text-xs leading-relaxed line-clamp-3 ${
               isDark ? 'text-slate-400' : 'text-slate-600'
             }`}>
               {project.description}
@@ -350,7 +316,7 @@ function ProjectCard3D({
         {/* Card Footer Actions */}
         <div
           style={{ transform: 'translateZ(24px)' }}
-          className={`px-3.5 sm:px-4 pb-3.5 pt-2 border-t flex items-center justify-between text-[11px] sm:text-xs ${
+          className={`px-5 sm:px-6 pb-5 pt-2.5 border-t flex items-center justify-between text-xs ${
             isDark ? 'border-white/[0.06]' : 'border-slate-200/80'
           }`}
         >
@@ -384,288 +350,6 @@ function ProjectCard3D({
         </div>
       </div>
     </motion.div>
-  );
-}
-
-
-
-// ----------------------------------------------------------------------
-// 3D Infinite Flow Stream - Continuously Moving in 3D Perspective
-// ----------------------------------------------------------------------
-function ProjectsStream3D({
-  projects,
-  onOpenModal,
-}: {
-  projects: ProjectItem[];
-  onOpenModal: (project: ProjectItem) => void;
-  sectionId?: string;
-}) {
-  const { isHalloween, isChristmas } = useTheme();
-
-  const trackRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const posRef = useRef<number>(0);
-  const isDraggingRef = useRef<boolean>(false);
-  const dragStartXRef = useRef<number>(0);
-  const dragStartPosRef = useRef<number>(0);
-  const hasDraggedFarRef = useRef<boolean>(false);
-  const isHoveredRef = useRef<boolean>(false);
-  const requestRef = useRef<number | null>(null);
-  const singleSetWidthRef = useRef<number>(0);
-
-  const speed = 0.35; // Gentle, slow continuous pace moving from left
-
-  // Repeat projects so that it seamlessly wraps in an infinite loop
-  const repeatCount = projects.length < 5 ? 4 : 3;
-  const streamItems = Array.from({ length: repeatCount }).flatMap((_, setIdx) =>
-    projects.map((item, itemIdx) => ({
-      ...item,
-      streamUniqueKey: `${item.id}-loop-${setIdx}-${itemIdx}`,
-    }))
-  );
-
-  // Measure total width and width of one repeated set
-  useEffect(() => {
-    const updateMetrics = () => {
-      if (trackRef.current) {
-        const total = trackRef.current.scrollWidth;
-        const oneSet = total / repeatCount;
-        singleSetWidthRef.current = oneSet;
-        if (posRef.current === 0 && oneSet > 0) {
-          // Center the initial view so cards are populated immediately from the left
-          posRef.current = -oneSet * 0.45;
-          trackRef.current.style.transform = `translate3d(${posRef.current}px, 0, 0)`;
-        }
-      }
-    };
-
-    updateMetrics();
-    const t1 = setTimeout(updateMetrics, 200);
-    const t2 = setTimeout(updateMetrics, 800);
-    window.addEventListener('resize', updateMetrics);
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-      window.removeEventListener('resize', updateMetrics);
-    };
-  }, [projects.length, repeatCount]);
-
-  // RequestAnimationFrame continuous 3D slow translation loop (moving from the left)
-  useEffect(() => {
-    let lastTimestamp = performance.now();
-
-    const loop = (currentTimestamp: number) => {
-      const delta = Math.min((currentTimestamp - lastTimestamp) / 16.67, 2.5);
-      lastTimestamp = currentTimestamp;
-
-      if (!isHoveredRef.current && !isDraggingRef.current) {
-        const oneSet = singleSetWidthRef.current;
-        if (oneSet > 0) {
-          // Positive increment moves track to the right, cards flow slowly in from the left!
-          posRef.current += speed * delta;
-
-          // Seamless infinite wraparound
-          if (posRef.current > 0) {
-            posRef.current -= oneSet;
-          } else if (posRef.current < -oneSet) {
-            posRef.current += oneSet;
-          }
-
-          if (trackRef.current) {
-            trackRef.current.style.transform = `translate3d(${posRef.current}px, 0, 0)`;
-          }
-        }
-      }
-
-      requestRef.current = requestAnimationFrame(loop);
-    };
-
-    requestRef.current = requestAnimationFrame(loop);
-    return () => {
-      if (requestRef.current) cancelAnimationFrame(requestRef.current);
-    };
-  }, [speed]);
-
-  // Smooth nudge helper for arrow controls
-  const nudge = (amount: number) => {
-    const oneSet = singleSetWidthRef.current;
-    if (!oneSet) return;
-    let nextPos = posRef.current + amount;
-    while (nextPos > 0) nextPos -= oneSet;
-    while (nextPos < -oneSet) nextPos += oneSet;
-    posRef.current = nextPos;
-    if (trackRef.current) {
-      trackRef.current.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
-      trackRef.current.style.transform = `translate3d(${nextPos}px, 0, 0)`;
-      setTimeout(() => {
-        if (trackRef.current) {
-          trackRef.current.style.transition = 'none';
-        }
-      }, 400);
-    }
-  };
-
-  // Pointer drag & touch scrub handlers
-  const handlePointerDown = (e: React.PointerEvent) => {
-    isDraggingRef.current = true;
-    hasDraggedFarRef.current = false;
-    dragStartXRef.current = e.clientX;
-    dragStartPosRef.current = posRef.current;
-    if (trackRef.current) {
-      trackRef.current.style.transition = 'none';
-    }
-    if (containerRef.current) {
-      try {
-        containerRef.current.setPointerCapture(e.pointerId);
-      } catch {}
-    }
-  };
-
-  const handlePointerMove = (e: React.PointerEvent) => {
-    if (!isDraggingRef.current) return;
-    const deltaX = e.clientX - dragStartXRef.current;
-    if (Math.abs(deltaX) > 6) {
-      hasDraggedFarRef.current = true;
-    }
-    const oneSet = singleSetWidthRef.current;
-    let nextPos = dragStartPosRef.current + deltaX;
-    if (oneSet > 0) {
-      while (nextPos > 0) nextPos -= oneSet;
-      while (nextPos < -oneSet) nextPos += oneSet;
-    }
-    posRef.current = nextPos;
-    if (trackRef.current) {
-      trackRef.current.style.transform = `translate3d(${nextPos}px, 0, 0)`;
-    }
-  };
-
-  const handlePointerUp = (e: React.PointerEvent) => {
-    if (isDraggingRef.current) {
-      isDraggingRef.current = false;
-      if (containerRef.current) {
-        try {
-          containerRef.current.releasePointerCapture(e.pointerId);
-        } catch {}
-      }
-    }
-  };
-
-  return (
-    <div className="relative w-full py-2 group/stream-wrapper">
-      {/* Floating Left Arrow */}
-      <button
-        type="button"
-        onClick={(e) => {
-          e.stopPropagation();
-          nudge(310);
-        }}
-        className={`absolute left-1 sm:left-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center backdrop-blur-xl border shadow-xl transition-all duration-300 cursor-pointer active:scale-90 hover:scale-110 ${
-          isHalloween
-            ? 'bg-[#180A26]/85 border-orange-500/40 text-orange-300 hover:text-white hover:bg-orange-600 hover:border-orange-400 shadow-[0_0_20px_rgba(249,115,22,0.4)]'
-            : isChristmas
-            ? 'bg-[#082035]/85 border-emerald-500/40 text-emerald-300 hover:text-white hover:bg-emerald-600 hover:border-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.4)]'
-            : 'bg-[#090F21]/85 border-white/20 text-white hover:bg-indigo-600 hover:border-indigo-400 shadow-[0_0_20px_rgba(99,102,241,0.4)]'
-        }`}
-        aria-label="Previous projects"
-        title="Previous projects"
-      >
-        <ChevronLeft size={22} className="relative -left-0.5" />
-      </button>
-
-      {/* Floating Right Arrow */}
-      <button
-        type="button"
-        onClick={(e) => {
-          e.stopPropagation();
-          nudge(-310);
-        }}
-        className={`absolute right-1 sm:right-3 top-1/2 -translate-y-1/2 z-30 w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center backdrop-blur-xl border shadow-xl transition-all duration-300 cursor-pointer active:scale-90 hover:scale-110 ${
-          isHalloween
-            ? 'bg-[#180A26]/85 border-orange-500/40 text-orange-300 hover:text-white hover:bg-orange-600 hover:border-orange-400 shadow-[0_0_20px_rgba(249,115,22,0.4)]'
-            : isChristmas
-            ? 'bg-[#082035]/85 border-emerald-500/40 text-emerald-300 hover:text-white hover:bg-emerald-600 hover:border-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.4)]'
-            : 'bg-[#090F21]/85 border-white/20 text-white hover:bg-indigo-600 hover:border-indigo-400 shadow-[0_0_20px_rgba(99,102,241,0.4)]'
-        }`}
-        aria-label="Next projects"
-        title="Next projects"
-      >
-        <ChevronRight size={22} className="relative -right-0.5" />
-      </button>
-
-      {/* 3D Flow Stage Viewport */}
-      <div
-        ref={containerRef}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={handlePointerUp}
-        onPointerCancel={handlePointerUp}
-        className="relative w-full overflow-hidden py-6 cursor-grab active:cursor-grabbing touch-pan-y select-none"
-        style={{
-          perspective: '1350px',
-          perspectiveOrigin: '50% 38%',
-          maskImage: 'linear-gradient(to right, transparent, black 4%, black 96%, transparent)',
-          WebkitMaskImage: 'linear-gradient(to right, transparent, black 4%, black 96%, transparent)',
-        }}
-      >
-        {/* 3D Ambient Floor Glow */}
-        <div
-          className={`absolute inset-x-0 bottom-0 h-24 blur-3xl pointer-events-none -z-10 ${
-            isHalloween
-              ? 'bg-gradient-to-t from-orange-600/20 via-purple-600/10 to-transparent'
-              : isChristmas
-              ? 'bg-gradient-to-t from-emerald-600/20 via-red-600/10 to-transparent'
-              : 'bg-gradient-to-t from-indigo-600/20 via-purple-600/10 to-transparent'
-          }`}
-        />
-
-        {/* 3D Moving Track */}
-        <div
-          ref={trackRef}
-          className="flex items-stretch gap-4 sm:gap-5.5 will-change-transform"
-          style={{
-            transformStyle: 'preserve-3d',
-            transform: `translate3d(${posRef.current}px, 0, 0)`,
-          }}
-        >
-          {streamItems.map((item) => (
-            <div
-              key={item.streamUniqueKey}
-              onMouseEnter={() => {
-                isHoveredRef.current = true;
-              }}
-              onMouseLeave={() => {
-                isHoveredRef.current = false;
-              }}
-              className="w-[260px] sm:w-[310px] md:w-[335px] shrink-0 flex flex-col transition-all duration-300 ease-out group/stream-item"
-              style={{
-                transformStyle: 'preserve-3d',
-                transform: 'rotateY(-4deg) rotateX(1.5deg)',
-              }}
-            >
-              <div
-                onClick={(e) => {
-                  if (hasDraggedFarRef.current) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                  }
-                }}
-                className="h-full rounded-2xl sm:rounded-3xl transition-transform duration-300 group-hover/stream-item:-translate-y-2 group-hover/stream-item:scale-[1.02] group-hover/stream-item:rotate-y-0 group-hover/stream-item:rotate-x-0"
-              >
-                <ProjectCard3D
-                  project={item}
-                  priority={false}
-                  onOpenModal={(proj) => {
-                    if (!hasDraggedFarRef.current) {
-                      onOpenModal(proj);
-                    }
-                  }}
-                />
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
   );
 }
 
@@ -1325,8 +1009,8 @@ export default function ProjectsPage() {
         </p>
       </div>
 
-      {/* Interactive Filter Dock & View Switcher */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
+      {/* Interactive Filter Dock */}
+      <div className="flex flex-wrap items-center gap-4 mb-10">
         <div className={`relative inline-flex items-center gap-1.5 p-1.5 rounded-2xl backdrop-blur-xl border overflow-x-auto styled-scrollbar max-w-full ${
           isHalloween
             ? 'bg-[#180A26]/90 border-orange-500/30 shadow-[0_15px_35px_-10px_rgba(249,115,22,0.3)]'
@@ -1449,13 +1133,18 @@ export default function ProjectsPage() {
                   </div>
                 </div>
 
-                {/* Section Cards 3D Stream */}
+                {/* Section Cards Grid */}
                 {section.projects.length > 0 ? (
-                  <ProjectsStream3D
-                    projects={section.projects}
-                    onOpenModal={openProjectModal}
-                    sectionId={section.id}
-                  />
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                    {section.projects.map((project, idx) => (
+                      <ProjectCard3D
+                        key={project.id}
+                        project={project}
+                        priority={idx < 3}
+                        onOpenModal={openProjectModal}
+                      />
+                    ))}
+                  </div>
                 ) : (
                   <div className={`py-8 text-center rounded-2xl p-6 border ${
                     isDark ? 'bg-[#070D1E]/40 border-white/5 text-slate-400' : 'bg-white/80 border-slate-200 text-slate-600 shadow-sm'
